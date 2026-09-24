@@ -1,1 +1,10 @@
-<Solution />
+<Solution>
+  <Folder Name="/Presentation/">
+    <Project Path="TgBot/TgBot.csproj" />
+    <Project Path="Web Api/Web Api.csproj" />
+    <Project Path="Web/Web.csproj" />
+  </Folder>
+  <Project Path="Application/Application.csproj" />
+  <Project Path="Domain/Domain.csproj" />
+  <Project Path="Infrastructure/Infrastructure.csproj" />
+</Solution>
