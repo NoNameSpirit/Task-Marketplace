@@ -1,8 +1,8 @@
 ﻿namespace Domain.Enums.Task;
 
-public enum TaskStatus
+public enum ProjectTaskStatus
 {
-    Publishied,
+    Published,
     InProgress,
     Done,
     Cancelled,
