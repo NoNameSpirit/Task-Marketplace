@@ -31,11 +31,11 @@ public class ChatCommandRepository : IChatCommandRepository
     }
 
     public async Task DeleteAsync(
-        Chat chat,
+        Guid chatId,
         CancellationToken cancellationToken = default)
     {
         var deletedChat = await _context.Chats
-            .FirstOrDefaultAsync(p => p.Id == chat.Id, cancellationToken);
+            .FirstOrDefaultAsync(p => p.Id == chatId, cancellationToken);
 
         if (deletedChat is not null)
         {

@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.ProjectTasks.Queries;
 
-public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
+public class queryRepository : IProjectTaskQueryRepository
 {
     private readonly AppDbContext _context;
 
-    public ProjectTaskQueryRepository(AppDbContext context)
+    public queryRepository(AppDbContext context)
     {
         _context = context;
     }
@@ -26,7 +26,7 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
         return projectTask;
     }
 
-    public async Task<PagedResult<ProjectTask?>> GetPublishedAsync(
+    public async Task<PagedResult<ProjectTask>> GetPublishedAsync(
         int page,
         int pageSize,
         CancellationToken cancellationToken = default)
@@ -40,7 +40,7 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
 
         if (totalCount == CurrencyConstants.ZeroElements)
         {
-            return PagedResult<ProjectTask?>.Empty(page, pageSize);
+            return PagedResult<ProjectTask>.Empty(page, pageSize);
         }
 
         var items = await query
@@ -48,10 +48,10 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
             .Take(pageSize)
             .ToListAsync(cancellationToken);
 
-        return PagedResult<ProjectTask?>.Create(items, page, pageSize, totalCount);
+        return PagedResult<ProjectTask>.Create(items, page, pageSize, totalCount);
     }
 
-    public async Task<PagedResult<ProjectTask?>> GetByCustomerIdAsync(
+    public async Task<PagedResult<ProjectTask>> GetByCustomerIdAsync(
         Guid CustomerId,
         int page,
         int pageSize,
@@ -66,7 +66,7 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
 
         if (totalCount == CurrencyConstants.ZeroElements)
         {
-            return PagedResult<ProjectTask?>.Empty(page, pageSize);
+            return PagedResult<ProjectTask>.Empty(page, pageSize);
         }
 
         var items = await query
@@ -74,7 +74,7 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
             .Take(pageSize)
             .ToListAsync(cancellationToken);
 
-        return PagedResult<ProjectTask?>.Create(items, page, pageSize, totalCount);
+        return PagedResult<ProjectTask>.Create(items, page, pageSize, totalCount);
     }
 
     public async Task<IReadOnlyCollection<ProjectTask>> GetOverdueAsync(

@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.ProjectTasks.Commands;
 
-public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
+public class commandRepository : IProjectTaskCommandRepository
 {
     private readonly AppDbContext _context;
 
-    public ProjectTaskCommandRepository(AppDbContext context)
+    public commandRepository(AppDbContext context)
     {
         _context = context;
     }
@@ -31,11 +31,11 @@ public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
     }
 
     public async Task DeleteAsync(
-        ProjectTask projectTask,
+        Guid projectTaskId,
         CancellationToken cancellationToken = default)
     {
         var deletedProjectTask = await _context.ProjectTasks
-            .FirstOrDefaultAsync(p => p.Id == projectTask.Id, cancellationToken);
+            .FirstOrDefaultAsync(p => p.Id == projectTaskId, cancellationToken);
 
         if (deletedProjectTask is not null)
         {

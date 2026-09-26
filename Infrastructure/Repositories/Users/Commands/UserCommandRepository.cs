@@ -31,11 +31,11 @@ public class UserCommandRepository : IUserCommandRepository
     }
 
     public async Task DeleteAsync(
-        User user,
+        Guid userId,
         CancellationToken cancellationToken = default)
     {
         var deletedUser = await _context.Users
-            .FirstOrDefaultAsync(p => p.Id == user.Id, cancellationToken);
+            .FirstOrDefaultAsync(p => p.Id == userId, cancellationToken);
 
         if (deletedUser is not null)
         {
