@@ -1,0 +1,10 @@
+﻿using Domain.Entities;
+
+namespace Infrastructure.Repositories.Users.Commands;
+
+public interface IUserCommandRepository
+{
+    Task AddAsync(User user, CancellationToken cancellationToken = default);
+    Task UpdateAsync(User user, CancellationToken cancellationToken = default);
+    Task DeleteAsync(User user, CancellationToken cancellationToken = default);
+}
