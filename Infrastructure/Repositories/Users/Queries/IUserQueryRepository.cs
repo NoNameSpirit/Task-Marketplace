@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories.Users.Queries;
 
 public interface IUserQueryRepository
 {
-    Task<User?> GetByIdAsync(Guid id, CancellationToken ct);
-    Task<PagedResult<User>> SearchByNameAsync(string searchQuery, int page, int pageSize, CancellationToken ct);
-    Task<PagedResult<User>> GetAllAsync(int page, int pageSize, CancellationToken ct);
+    Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<PagedResult<User>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken = default);
+    Task<PagedResult<User>> SearchByNameAsync(string searchQuery, int page, int pageSize, CancellationToken cancellationToken = default);
 }

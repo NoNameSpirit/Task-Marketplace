@@ -24,14 +24,12 @@ public class UserQueryRepository : IUserQueryRepository
     }
 
     public async Task<PagedResult<User>> GetAllAsync(
-        Guid userId,
         int page,
         int pageSize,
         CancellationToken cancellationToken = default)
     {
         var query = _context.Users
             .AsNoTracking()
-            .Where(u => u.Id == userId)
             .OrderBy(u => u.Name);
 
         var totalCount = await query.CountAsync(cancellationToken);
