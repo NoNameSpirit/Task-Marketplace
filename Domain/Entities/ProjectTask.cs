@@ -19,9 +19,7 @@ public class ProjectTask : Entity
 
     private readonly List<Guid> _respondentIds = new();
     public IReadOnlyCollection<Guid> RespondentIds
-    {
-        get { return _respondentIds.AsReadOnly(); }
-    }
+        => _respondentIds.AsReadOnly();
 
     private ProjectTask() { }
 

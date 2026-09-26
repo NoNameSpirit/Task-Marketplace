@@ -9,9 +9,7 @@ public class Chat : Entity
 
     private readonly List<Message> _messages = new();
     public IReadOnlyCollection<Message> Messages
-    {
-        get { return _messages.AsReadOnly(); }
-    }
+        => _messages.AsReadOnly();
 
     private Chat() { }
 
