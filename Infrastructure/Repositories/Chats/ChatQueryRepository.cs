@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Chats;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Chats;
