@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.ProjectTasks.Commands;
 
-public class commandRepository : IProjectTaskCommandRepository
+public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
 {
     private readonly AppDbContext _context;
 
-    public commandRepository(AppDbContext context)
+    public ProjectTaskCommandRepository(AppDbContext context)
     {
         _context = context;
     }

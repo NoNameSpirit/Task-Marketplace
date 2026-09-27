@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.ProjectTasks.Queries;
 
-public class queryRepository : IProjectTaskQueryRepository
+public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
 {
     private readonly AppDbContext _context;
 
-    public queryRepository(AppDbContext context)
+    public ProjectTaskQueryRepository(AppDbContext context)
     {
         _context = context;
     }

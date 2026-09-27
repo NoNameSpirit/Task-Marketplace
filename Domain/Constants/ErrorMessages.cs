@@ -23,9 +23,12 @@ public static class ErrorMessages
 
     public const string ExecutorMustBeAtRespondedCollection = "Executor must be at responded collection";
 
-    public const string TaskNotFound = "Task not found";
+    public const string ProjectTaskNotFound = "Task not found";
     public const string UserNotFound = "User not found";
     public const string ChatNotFound = "Chat not found";
+
+    public const string ProjectTaskByCustomerNotFound = "Project task by customer zero elements";
+    public const string UsersNotFound = "Users not found";
 
     public const string ChatAlreadyExists = "Chat already exists";
 }
