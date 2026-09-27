@@ -27,7 +27,7 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.TaskNotFound);
+            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
         }
 
         var result = task.RespondToTask(request.ExecutorId);

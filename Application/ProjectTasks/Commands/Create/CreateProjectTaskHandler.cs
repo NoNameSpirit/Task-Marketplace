@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.ProjectTasks.Commands.Create;
 
-public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result>
+public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result<ProjectTask>>
 {
     private readonly IProjectTaskCommandRepository _commandRepository;
 
@@ -14,7 +14,7 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
         _commandRepository = commandRepository;
     }
 
-    public async Task<Result> Handle(
+    public async Task<Result<ProjectTask>> Handle(
         CreateProjectTaskCommand request,
         CancellationToken cancellationToken)
     {
@@ -28,11 +28,11 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 
         if (!result.IsSuccess)
         {
-            return Result.Failure(result.Message);
+            return Result<ProjectTask>.Failure(result.Message);
         }
 
         await _commandRepository.AddAsync(result.Value!);
 
-        return Result.Success();
+        return Result<ProjectTask>.Success(result.Value!);
     }
 }

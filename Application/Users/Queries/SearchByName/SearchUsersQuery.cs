@@ -7,4 +7,4 @@ namespace Application.Users.Queries.SearchByName;
 public record SearchUsersQuery(
     string SearchQuery,
     int Page,
-    int PageSize) : IRequest<PagedResult<User>>;
+    int PageSize) : IRequest<Result<PagedResult<User>>>;

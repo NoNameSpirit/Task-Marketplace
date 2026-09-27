@@ -27,7 +27,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.TaskNotFound);
+            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
         }
 
         var result = task.MarkAsDone();

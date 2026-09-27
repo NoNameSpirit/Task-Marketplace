@@ -1,10 +1,12 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
+using Domain.Shared;
 using Infrastructure.Repositories.ProjectTasks.Queries;
 using MediatR;
 
 namespace Application.ProjectTasks.Queries.GetProjectTaskById;
 
-public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery, ProjectTask?>
+public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery, Result<ProjectTask>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
 
@@ -13,10 +15,17 @@ public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery
         _queryRepository = queryRepository;
     }
 
-    public async Task<ProjectTask?> Handle(
+    public async Task<Result<ProjectTask>> Handle(
         GetProjectTaskByIdQuery request,
         CancellationToken cancellationToken = default)
     {
-        return await _queryRepository.GetByIdAsync(request.TaskId, cancellationToken);
+        var projectTask = await _queryRepository.GetByIdAsync(request.TaskId, cancellationToken);
+
+        if (projectTask is null)
+        {
+            Result<ProjectTask>.Failure(ErrorMessages.ProjectTaskNotFound);
+        }
+
+        return Result<ProjectTask>.Success(projectTask!);
     }
 }

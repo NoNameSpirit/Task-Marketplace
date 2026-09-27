@@ -27,7 +27,7 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.TaskNotFound);
+            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
         }
 
         var result = task.AssignExecutor(request.ExecutorId, request.CustomerId);

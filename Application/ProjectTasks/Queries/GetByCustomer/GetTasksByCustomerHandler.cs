@@ -1,11 +1,12 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Shared;
 using Infrastructure.Repositories.ProjectTasks.Queries;
 using MediatR;
 
 namespace Application.ProjectTasks.Queries.GetTasksByCustomer;
 
-public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery, PagedResult<ProjectTask>>
+public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery, Result<PagedResult<ProjectTask>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
 
@@ -14,10 +15,17 @@ public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery
         _queryRepository = queryRepository;
     }
 
-    public async Task<PagedResult<ProjectTask>> Handle(
+    public async Task<Result<PagedResult<ProjectTask>>> Handle(
         GetTasksByCustomerQuery request,
         CancellationToken cancellationToken = default)
     {
-        return await _queryRepository.GetByCustomerIdAsync(request.CustomerId, request.Page, request.PageSize, cancellationToken);
+        var projectTask = await _queryRepository.GetByCustomerIdAsync(request.CustomerId, request.Page, request.PageSize, cancellationToken);
+
+        if (projectTask.TotalCount == CurrencyConstants.ZeroElements)
+        {
+            return Result<PagedResult<ProjectTask>>.Failure(ErrorMessages.ProjectTaskByCustomerNotFound);
+        }
+
+        return Result<PagedResult<ProjectTask>>.Success(projectTask);
     }
 }

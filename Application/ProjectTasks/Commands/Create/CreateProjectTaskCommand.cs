@@ -1,4 +1,5 @@
-﻿using Domain.Shared;
+﻿using Domain.Entities;
+using Domain.Shared;
 using MediatR;
 
 namespace Application.ProjectTasks.Commands.Create;
@@ -9,4 +10,4 @@ public record class CreateProjectTaskCommand(
     decimal Price,
     DateTimeOffset StartsAt,
     DateTimeOffset EndsAt,
-    Guid CustomerId) : IRequest<Result>;
+    Guid CustomerId) : IRequest<Result<ProjectTask>>;

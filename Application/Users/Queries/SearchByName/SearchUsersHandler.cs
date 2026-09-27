@@ -1,11 +1,12 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Shared;
 using Infrastructure.Repositories.Users.Queries;
 using MediatR;
 
 namespace Application.Users.Queries.SearchByName;
 
-public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, PagedResult<User>>
+public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, Result<PagedResult<User>>>
 {
     private readonly IUserQueryRepository _queryRepository;
 
@@ -14,10 +15,17 @@ public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, PagedResult<
         _queryRepository = queryRepository;
     }
 
-    public async Task<PagedResult<User>> Handle(
+    public async Task<Result<PagedResult<User>>> Handle(
         SearchUsersQuery request,
         CancellationToken cancellationToken = default)
     {
-        return await _queryRepository.SearchByNameAsync(request.SearchQuery, request.Page, request.PageSize, cancellationToken);
+        var user = await _queryRepository.SearchByNameAsync(request.SearchQuery, request.Page, request.PageSize, cancellationToken);
+
+        if (user is null)
+        {
+            return Result<PagedResult<User>>.Failure(ErrorMessages.UserNotFound);
+        }
+
+        return Result<PagedResult<User>>.Success(user);
     }
 }

@@ -27,7 +27,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.TaskNotFound);
+            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
         }
 
         var result = task.Update(

@@ -7,4 +7,4 @@ namespace Application.ProjectTasks.Queries.GetTasksByCustomer;
 public record GetTasksByCustomerQuery(
     Guid CustomerId,
     int Page,
-    int PageSize) : IRequest<PagedResult<ProjectTask>>;
+    int PageSize) : IRequest<Result<PagedResult<ProjectTask>>>;
