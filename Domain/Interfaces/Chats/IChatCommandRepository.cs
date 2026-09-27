@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Repositories.Chats.Commands;
+namespace Domain.Interfaces.Chats;
 
 public interface IChatCommandRepository
 {

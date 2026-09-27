@@ -1,7 +1,6 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces.Users;
 using Domain.Shared;
-using Infrastructure.Repositories.Users.Commands;
-using Infrastructure.Repositories.Users.Queries;
 using MediatR;
 
 namespace Application.Users.Commands.Update;

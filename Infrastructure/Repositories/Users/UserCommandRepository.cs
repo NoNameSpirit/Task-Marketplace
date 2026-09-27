@@ -1,45 +1,46 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.ProjectTasks.Commands;
+namespace Infrastructure.Repositories.Users;
 
-public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
+public class UserCommandRepository : IUserCommandRepository
 {
     private readonly AppDbContext _context;
 
-    public ProjectTaskCommandRepository(AppDbContext context)
+    public UserCommandRepository(AppDbContext context)
     {
         _context = context;
     }
 
     public async Task AddAsync(
-        ProjectTask projectTask,
+        User user,
         CancellationToken cancellationToken = default)
     {
-        await _context.ProjectTasks.AddAsync(projectTask, cancellationToken);
+        await _context.Users.AddAsync(user, cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(
-        ProjectTask projectTask,
+        User user,
         CancellationToken cancellationToken = default)
     {
-        _context.ProjectTasks.Update(projectTask);
+        _context.Users.Update(user);
 
         await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(
-        Guid projectTaskId,
+        Guid userId,
         CancellationToken cancellationToken = default)
     {
-        var deletedProjectTask = await _context.ProjectTasks
-            .FirstOrDefaultAsync(p => p.Id == projectTaskId, cancellationToken);
+        var deletedUser = await _context.Users
+            .FirstOrDefaultAsync(p => p.Id == userId, cancellationToken);
 
-        if (deletedProjectTask is not null)
+        if (deletedUser is not null)
         {
-            deletedProjectTask.Delete();
+            deletedUser.Delete();
 
             await _context.SaveChangesAsync(cancellationToken);
         }

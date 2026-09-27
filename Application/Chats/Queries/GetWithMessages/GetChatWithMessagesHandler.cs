@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Infrastructure.Repositories.Chats.Queries;
+using Domain.Interfaces.Chats;
 using MediatR;
 
 namespace Application.Chats.Queries.GetWithMessages;

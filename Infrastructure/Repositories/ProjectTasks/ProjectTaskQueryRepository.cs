@@ -1,10 +1,11 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
 using Domain.Enums.Task;
+using Domain.Interfaces.ProjectTasks;
 using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.ProjectTasks.Queries;
+namespace Infrastructure.Repositories.ProjectTasks;
 
 public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
 {

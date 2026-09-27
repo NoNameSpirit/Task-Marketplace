@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Infrastructure.Repositories.ProjectTasks.Queries;
+using Domain.Interfaces.ProjectTasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;

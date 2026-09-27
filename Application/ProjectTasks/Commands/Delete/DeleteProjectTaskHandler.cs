@@ -1,5 +1,5 @@
-﻿using Domain.Shared;
-using Infrastructure.Repositories.ProjectTasks.Commands;
+﻿using Domain.Interfaces.ProjectTasks;
+using Domain.Shared;
 using MediatR;
 
 namespace Application.ProjectTasks.Commands.DeleteProjectTask;

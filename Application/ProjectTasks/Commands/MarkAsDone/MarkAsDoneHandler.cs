@@ -1,7 +1,6 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces.ProjectTasks;
 using Domain.Shared;
-using Infrastructure.Repositories.ProjectTasks.Commands;
-using Infrastructure.Repositories.ProjectTasks.Queries;
 using MediatR;
 
 namespace Application.ProjectTasks.Commands.MarkAsDone;

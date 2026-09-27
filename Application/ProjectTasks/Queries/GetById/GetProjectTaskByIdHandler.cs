@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces.ProjectTasks;
 using Domain.Shared;
-using Infrastructure.Repositories.ProjectTasks.Queries;
 using MediatR;
 
 namespace Application.ProjectTasks.Queries.GetProjectTaskById;

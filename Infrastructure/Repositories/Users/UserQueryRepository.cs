@@ -1,9 +1,10 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces.Users;
 using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.Users.Queries;
+namespace Infrastructure.Repositories.Users;
 
 public class UserQueryRepository : IUserQueryRepository
 {

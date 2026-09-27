@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Shared;
 
-namespace Infrastructure.Repositories.ProjectTasks.Queries;
+namespace Domain.Interfaces.ProjectTasks;
 
 public interface IProjectTaskQueryRepository
 {

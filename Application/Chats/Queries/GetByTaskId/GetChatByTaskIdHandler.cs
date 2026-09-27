@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces.Chats;
 using Domain.Shared;
-using Infrastructure.Repositories.Chats.Queries;
 using MediatR;
 
 namespace Application.Chats.Queries.GetByTaskId;

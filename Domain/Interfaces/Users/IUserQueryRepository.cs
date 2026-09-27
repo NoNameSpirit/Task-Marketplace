@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Shared;
 
-namespace Infrastructure.Repositories.Users.Queries;
+namespace Domain.Interfaces.Users;
 
 public interface IUserQueryRepository
 {

@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Repositories.Users.Commands;
+namespace Domain.Interfaces.Users;
 
 public interface IUserCommandRepository
 {

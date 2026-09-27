@@ -1,5 +1,5 @@
-﻿using Domain.Shared;
-using Infrastructure.Repositories.Users.Commands;
+﻿using Domain.Interfaces.Users;
+using Domain.Shared;
 using MediatR;
 
 namespace Application.Users.Commands.Delete;

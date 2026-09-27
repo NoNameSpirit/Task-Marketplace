@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Repositories.ProjectTasks.Commands;
+namespace Domain.Interfaces.ProjectTasks;
 
 public interface IProjectTaskCommandRepository
 {

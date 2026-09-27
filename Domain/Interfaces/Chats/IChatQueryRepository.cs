@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Repositories.Chats.Queries;
+namespace Domain.Interfaces.Chats;
 
 public interface IChatQueryRepository
 {

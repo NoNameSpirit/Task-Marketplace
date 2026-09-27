@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.Chats.Queries;
+namespace Infrastructure.Repositories.Chats;
 
 public class ChatQueryRepository : IChatQueryRepository
 {

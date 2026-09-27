@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Users;
 using Domain.Shared;
-using Infrastructure.Repositories.Users.Commands;
 using MediatR;
 
 namespace Application.Users.Commands.CreateUser;

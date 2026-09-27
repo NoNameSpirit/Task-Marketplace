@@ -1,7 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Chats;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.Chats.Commands;
+namespace Infrastructure.Repositories.Chats;
 
 public class ChatCommandRepository : IChatCommandRepository
 {

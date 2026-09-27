@@ -1,5 +1,5 @@
-﻿using Domain.Shared;
-using Infrastructure.Repositories.Chats.Commands;
+﻿using Domain.Interfaces.Chats;
+using Domain.Shared;
 using MediatR;
 
 namespace Application.Chats.Commands.Delete;
