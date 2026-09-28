@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
 
 namespace Application.ProjectTasks.Commands.Create;
 

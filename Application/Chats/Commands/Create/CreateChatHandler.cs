@@ -1,8 +1,8 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces.Chats;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
 
 namespace Application.Chats.Commands.Create;
 

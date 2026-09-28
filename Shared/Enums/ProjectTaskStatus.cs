@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums.Task;
+﻿namespace Shared.Enums;
 
 public enum ProjectTaskStatus
 {

@@ -1,8 +1,8 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces.Users;
-using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
+using Shared.Dtos;
 
 namespace Infrastructure.Repositories.Users;
 

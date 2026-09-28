@@ -1,9 +1,10 @@
-﻿using Domain.Constants;
-
-namespace Domain.Shared;
+﻿namespace Shared.Dtos;
 
 public class PagedResult<T>
 {
+    private static int ZeroElements = 0;
+    private static int MinPage = 0;
+
     public IReadOnlyCollection<T> Collection = null!;
     public int Page { get; }
     public int PageSize { get; }
@@ -11,11 +12,10 @@ public class PagedResult<T>
     public int TotalPages { get; }
 
     public bool HasPreviousPage
-        => Page > CurrencyConstants.MinPage;
+        => Page > MinPage;
 
     public bool HasNextPage
         => Page < TotalPages;
-
 
     private PagedResult(
         IReadOnlyCollection<T> items,
@@ -43,6 +43,7 @@ public class PagedResult<T>
         int page,
         int pageSize)
     {
-        return new PagedResult<T>(Array.Empty<T>(), page, pageSize, CurrencyConstants.ZeroElements);
+        return new PagedResult<T>(Array.Empty<T>(), page, pageSize, ZeroElements);
     }
 }
+

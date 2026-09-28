@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
-using Domain.Enums.User;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.Users.Commands.CreateUser;
 

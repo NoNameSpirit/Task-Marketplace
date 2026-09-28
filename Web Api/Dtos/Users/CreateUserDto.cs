@@ -1,4 +1,4 @@
-﻿using Domain.Enums.User;
+﻿using Shared.Enums;
 
 namespace Web_Api.Dtos.Users;
 

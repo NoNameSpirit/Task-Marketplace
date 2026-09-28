@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces.ProjectTasks;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
 
 namespace Application.ProjectTasks.Commands.DeleteProjectTask;
 

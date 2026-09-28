@@ -1,10 +1,11 @@
-﻿using Domain.Entities;
+﻿using Application.Mappers;
 using Domain.Interfaces.Chats;
 using MediatR;
+using Shared.Dtos.Chats;
 
 namespace Application.Chats.Queries.GetWithMessages;
 
-public class GetChatWithMessagesHandler : IRequestHandler<GetChatWithMessagesQuery, Chat?>
+public class GetChatWithMessagesHandler : IRequestHandler<GetChatWithMessagesQuery, ChatDto?>
 {
     private readonly IChatQueryRepository _queryRepository;
 
@@ -13,10 +14,12 @@ public class GetChatWithMessagesHandler : IRequestHandler<GetChatWithMessagesQue
         _queryRepository = queryRepository;
     }
 
-    public async Task<Chat?> Handle(
+    public async Task<ChatDto?> Handle(
         GetChatWithMessagesQuery request,
         CancellationToken cancellationToken = default)
     {
-        return await _queryRepository.GetByIdWithMessagesAsync(request.ChatId, cancellationToken);
+        var chat = await _queryRepository.GetByIdWithMessagesAsync(request.ChatId, cancellationToken);
+
+        return ChatMapper.ToDto(chat);
     }
 }

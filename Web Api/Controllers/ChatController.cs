@@ -4,10 +4,10 @@ using Application.Chats.Commands.Delete;
 using Application.Chats.Queries.GetById;
 using Application.Chats.Queries.GetByTaskId;
 using Application.Chats.Queries.GetWithMessages;
-using Domain.Enums.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Enums;
 using Web_Api.Dtos.Chats;
 
 namespace Web_Api.Controllers;

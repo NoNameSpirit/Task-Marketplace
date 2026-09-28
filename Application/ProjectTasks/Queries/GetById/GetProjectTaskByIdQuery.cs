@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
-using Domain.Shared;
-using MediatR;
+﻿using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetProjectTaskById;
 
 public record GetProjectTaskByIdQuery(
-    Guid TaskId) : IRequest<Result<ProjectTask>>;
+    Guid TaskId) : IRequest<Result<ProjectTaskDto>>;

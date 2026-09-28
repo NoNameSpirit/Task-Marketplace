@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
-using Domain.Shared;
-using MediatR;
+﻿using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
 public record GetPublishedTasksQuery(
     int Page,
-    int PageSize) : IRequest<PagedResult<ProjectTask>>;
+    int PageSize) : IRequest<PagedResult<ProjectTaskDto>>;

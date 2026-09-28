@@ -1,11 +1,12 @@
-﻿using Domain.Entities;
+﻿using Application.Mappers;
 using Domain.Interfaces.Users;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.Users;
 
 namespace Application.Users.Queries.GetAll;
 
-public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<User>>
+public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<UserDto>>
 {
     private readonly IUserQueryRepository _queryRepository;
 
@@ -14,10 +15,15 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<
         _queryRepository = queryRepository;
     }
 
-    public async Task<PagedResult<User>> Handle(
+    public async Task<PagedResult<UserDto>> Handle(
         GetAllUsersQuery request,
         CancellationToken cancellationToken = default)
     {
-        return await _queryRepository.GetAllAsync(request.Page, request.PageSize, cancellationToken);
+        var pagedResult = await _queryRepository.GetAllAsync(
+            request.Page,
+            request.PageSize,
+            cancellationToken);
+
+        return UserMapper.ToPagedDto(pagedResult);
     }
 }

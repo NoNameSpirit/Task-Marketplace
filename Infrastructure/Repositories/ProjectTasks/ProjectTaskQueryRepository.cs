@@ -1,9 +1,9 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Enums.Task;
 using Domain.Interfaces.ProjectTasks;
-using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
+using Shared.Dtos;
+using Shared.Enums;
 
 namespace Infrastructure.Repositories.ProjectTasks;
 

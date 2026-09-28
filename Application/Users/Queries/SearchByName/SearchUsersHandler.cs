@@ -1,12 +1,13 @@
-﻿using Domain.Constants;
-using Domain.Entities;
+﻿using Application.Mappers;
+using Domain.Constants;
 using Domain.Interfaces.Users;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.Users;
 
 namespace Application.Users.Queries.SearchByName;
 
-public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, Result<PagedResult<User>>>
+public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, Result<PagedResult<UserDto>>>
 {
     private readonly IUserQueryRepository _queryRepository;
 
@@ -15,17 +16,17 @@ public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, Result<Paged
         _queryRepository = queryRepository;
     }
 
-    public async Task<Result<PagedResult<User>>> Handle(
+    public async Task<Result<PagedResult<UserDto>>> Handle(
         SearchUsersQuery request,
         CancellationToken cancellationToken = default)
     {
-        var user = await _queryRepository.SearchByNameAsync(request.SearchQuery, request.Page, request.PageSize, cancellationToken);
+        var pagedResult = await _queryRepository.SearchByNameAsync(request.SearchQuery, request.Page, request.PageSize, cancellationToken);
 
-        if (user is null)
+        if (pagedResult is null)
         {
-            return Result<PagedResult<User>>.Failure(ErrorMessages.UserNotFound);
+            return Result<PagedResult<UserDto>>.Failure(ErrorMessages.UserNotFound);
         }
 
-        return Result<PagedResult<User>>.Success(user);
+        return Result<PagedResult<UserDto>>.Success(UserMapper.ToPagedDto(pagedResult));
     }
 }

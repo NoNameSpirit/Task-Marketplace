@@ -1,12 +1,13 @@
-﻿using Domain.Constants;
-using Domain.Entities;
+﻿using Application.Mappers;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetProjectTaskById;
 
-public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery, Result<ProjectTask>>
+public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery, Result<ProjectTaskDto>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
 
@@ -15,7 +16,7 @@ public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery
         _queryRepository = queryRepository;
     }
 
-    public async Task<Result<ProjectTask>> Handle(
+    public async Task<Result<ProjectTaskDto>> Handle(
         GetProjectTaskByIdQuery request,
         CancellationToken cancellationToken = default)
     {
@@ -23,9 +24,9 @@ public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery
 
         if (projectTask is null)
         {
-            Result<ProjectTask>.Failure(ErrorMessages.ProjectTaskNotFound);
+            Result<ProjectTaskDto>.Failure(ErrorMessages.ProjectTaskNotFound);
         }
 
-        return Result<ProjectTask>.Success(projectTask!);
+        return Result<ProjectTaskDto>.Success(ProjectTaskMapper.ToDto(projectTask!));
     }
 }

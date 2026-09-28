@@ -1,5 +1,5 @@
-﻿using Domain.Shared;
-using MediatR;
+﻿using MediatR;
+using Shared.Dtos;
 
 namespace Application.Users.Commands.Update;
 

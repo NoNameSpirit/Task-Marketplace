@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Shared;
+using Shared.Dtos;
 
 namespace Domain.Interfaces.ProjectTasks;
 

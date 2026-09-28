@@ -1,12 +1,13 @@
-﻿using Domain.Constants;
-using Domain.Entities;
+﻿using Application.Mappers;
+using Domain.Constants;
 using Domain.Interfaces.Chats;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.Chats;
 
 namespace Application.Chats.Queries.GetById;
 
-public class GetChatByIdHandler : IRequestHandler<GetChatByIdQuery, Result<Chat>>
+public class GetChatByIdHandler : IRequestHandler<GetChatByIdQuery, Result<ChatDto>>
 {
     private readonly IChatQueryRepository _queryRepository;
 
@@ -15,7 +16,7 @@ public class GetChatByIdHandler : IRequestHandler<GetChatByIdQuery, Result<Chat>
         _queryRepository = queryRepository;
     }
 
-    public async Task<Result<Chat>> Handle(
+    public async Task<Result<ChatDto>> Handle(
         GetChatByIdQuery request,
         CancellationToken cancellationToken = default)
     {
@@ -23,9 +24,9 @@ public class GetChatByIdHandler : IRequestHandler<GetChatByIdQuery, Result<Chat>
 
         if (chat is null)
         {
-            return Result<Chat>.Failure(ErrorMessages.ChatNotFound);
+            return Result<ChatDto>.Failure(ErrorMessages.ChatNotFound);
         }
 
-        return Result<Chat>.Success(chat);
+        return Result<ChatDto>.Success(ChatMapper.ToDto(chat));
     }
 }

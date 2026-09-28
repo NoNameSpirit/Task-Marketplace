@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
-using Domain.Shared;
-using MediatR;
+﻿using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.Users;
 
 namespace Application.Users.Queries.GetById;
 
 public record GetUserByIdQuery(
-    Guid UserId) : IRequest<Result<User>>;
+    Guid UserId) : IRequest<Result<UserDto>>;

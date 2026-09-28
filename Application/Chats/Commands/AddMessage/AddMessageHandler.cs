@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces.Chats;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
 
 namespace Application.Chats.Commands.AddMessage;
 

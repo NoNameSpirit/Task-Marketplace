@@ -1,6 +1,6 @@
 ﻿using Domain.Constants;
-using Domain.Enums.Task;
-using Domain.Shared;
+using Shared.Dtos;
+using Shared.Enums;
 
 namespace Domain.Entities;
 

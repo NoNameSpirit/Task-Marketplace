@@ -1,12 +1,13 @@
-﻿using Domain.Constants;
-using Domain.Entities;
+﻿using Application.Mappers;
+using Domain.Constants;
 using Domain.Interfaces.Users;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
+using Shared.Dtos.Users;
 
 namespace Application.Users.Queries.GetById;
 
-public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, Result<User>>
+public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, Result<UserDto>>
 {
     private readonly IUserQueryRepository _queryRepository;
 
@@ -15,17 +16,19 @@ public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, Result<User>
         _queryRepository = queryRepository;
     }
 
-    public async Task<Result<User>> Handle(
+    public async Task<Result<UserDto>> Handle(
         GetUserByIdQuery request,
         CancellationToken cancellationToken = default)
     {
-        var user = await _queryRepository.GetByIdAsync(request.UserId, cancellationToken);
+        var user = await _queryRepository.GetByIdAsync(
+            request.UserId,
+            cancellationToken);
 
         if (user is null)
         {
-            return Result<User>.Failure(ErrorMessages.UserNotFound);
+            return Result<UserDto>.Failure(ErrorMessages.UserNotFound);
         }
 
-        return Result<User>.Success(user);
+        return Result<UserDto>.Success(UserMapper.ToDto(user));
     }
 }

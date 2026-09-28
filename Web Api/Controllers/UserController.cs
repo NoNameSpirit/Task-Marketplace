@@ -4,10 +4,10 @@ using Application.Users.Commands.Update;
 using Application.Users.Queries.GetAll;
 using Application.Users.Queries.GetById;
 using Application.Users.Queries.SearchByName;
-using Domain.Enums.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Enums;
 using Web_Api.Dtos;
 using Web_Api.Dtos.Users;
 

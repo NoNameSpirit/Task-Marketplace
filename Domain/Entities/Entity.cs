@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Domain.Shared;
+using Shared.Dtos;
 
 namespace Domain.Entities;
 

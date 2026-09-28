@@ -1,4 +1,4 @@
-﻿namespace Domain.Shared;
+﻿namespace Shared.Dtos;
 
 public class Result
 {
@@ -47,3 +47,4 @@ public class Result<T> where T : class
         };
     }
 }
+

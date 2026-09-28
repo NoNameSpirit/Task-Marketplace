@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces.Users;
-using Domain.Shared;
 using MediatR;
+using Shared.Dtos;
 
 namespace Application.Users.Commands.Update;
 
