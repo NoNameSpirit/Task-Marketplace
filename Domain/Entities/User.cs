@@ -8,7 +8,7 @@ public class User : Entity
 {
     public string Name { get; private set; } = string.Empty;
     public UserRole Role { get; private set; }
-    public string PasswordHash { get; private set; }
+    public string PasswordHash { get; private set; } = string.Empty;
     public decimal? Rating { get; internal set; }
 
     private User() { }
