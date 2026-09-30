@@ -1,8 +1,7 @@
 docker-compose down -v
 
-docker-compose up -d
+docker-compose up --build
 docker ps
 
-dotnet ef database update --project Infrastructure --startup-project "Web Api"
+http://localhost:7025/swagger/index.html
 
-https://localhost:7025/swagger/index.html
