@@ -6,7 +6,7 @@ using Shared.Dtos.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
-public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, PagedResult<ProjectTaskDto>>
+public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, Result<PagedResult<ProjectTaskDto>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
 
@@ -15,12 +15,15 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
         _queryRepository = queryRepository;
     }
 
-    public async Task<PagedResult<ProjectTaskDto>> Handle(
+    public async Task<Result<PagedResult<ProjectTaskDto>>> Handle(
         GetPublishedTasksQuery request,
         CancellationToken cancellationToken = default)
     {
-        var pagedResult = await _queryRepository.GetPublishedAsync(request.Page, request.PageSize, cancellationToken);
+        var pagedResult = await _queryRepository.GetPublishedAsync(
+            request.Page,
+            request.PageSize,
+            cancellationToken);
 
-        return ProjectTaskMapper.ToPagedDto(pagedResult);
+        return Result<PagedResult<ProjectTaskDto>>.Success(ProjectTaskMapper.ToPagedDto(pagedResult));
     }
 }

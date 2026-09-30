@@ -2,6 +2,7 @@
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.Users.Commands.Update;
 
@@ -26,7 +27,9 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
 
         if (user is null)
         {
-            return Result.Failure(ErrorMessages.UserNotFound);
+            return Result.Failure(
+                ErrorMessages.UserNotFound,
+                ErrorType.NotFound);
         }
 
         var result = user.Update(request.Name);

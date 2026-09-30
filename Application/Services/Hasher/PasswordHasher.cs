@@ -1,5 +1,6 @@
 ﻿using Domain.Constants;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.Services.Hasher;
 
@@ -9,7 +10,9 @@ public class PasswordHasher : IPasswordHasher
     {
         if (string.IsNullOrEmpty(password))
         {
-            return Result<string>.Failure(ErrorMessages.PasswordCannotBeEmpty);
+            return Result<string>.Failure(
+                ErrorMessages.PasswordCannotBeEmpty,
+                ErrorType.Validation);
         }
 
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
@@ -21,19 +24,25 @@ public class PasswordHasher : IPasswordHasher
     {
         if (string.IsNullOrEmpty(password))
         {
-            return Result.Failure(ErrorMessages.PasswordCannotBeEmpty);
+            return Result.Failure(
+                ErrorMessages.PasswordCannotBeEmpty,
+                ErrorType.Validation);
         }
 
         if (string.IsNullOrEmpty(passwordHash))
         {
-            return Result.Failure(ErrorMessages.PasswordHashCannotBeEmpty);
+            return Result.Failure(
+                ErrorMessages.PasswordHashCannotBeEmpty,
+                ErrorType.Validation);
         }
 
         var isVerified = BCrypt.Net.BCrypt.Verify(password, passwordHash);
 
         if (!isVerified)
         {
-            return Result.Failure(ErrorMessages.IncorrectLoginOrPassword);
+            return Result.Failure(
+                ErrorMessages.IncorrectLoginOrPassword,
+                ErrorType.Validation);
         }
 
         return Result.Success();

@@ -6,7 +6,7 @@ using Shared.Dtos.Users;
 
 namespace Application.Users.Queries.GetAll;
 
-public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<UserDto>>
+public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, Result<PagedResult<UserDto>>>
 {
     private readonly IUserQueryRepository _queryRepository;
 
@@ -15,7 +15,7 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<
         _queryRepository = queryRepository;
     }
 
-    public async Task<PagedResult<UserDto>> Handle(
+    public async Task<Result<PagedResult<UserDto>>> Handle(
         GetAllUsersQuery request,
         CancellationToken cancellationToken = default)
     {
@@ -24,6 +24,6 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, PagedResult<
             request.PageSize,
             cancellationToken);
 
-        return UserMapper.ToPagedDto(pagedResult);
+        return Result<PagedResult<UserDto>>.Success(UserMapper.ToPagedDto(pagedResult));
     }
 }

@@ -4,6 +4,7 @@ using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos;
 using Shared.Dtos.Users;
+using Shared.Enums;
 
 namespace Application.Users.Queries.GetById;
 
@@ -26,7 +27,9 @@ public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, Result<UserD
 
         if (user is null)
         {
-            return Result<UserDto>.Failure(ErrorMessages.UserNotFound);
+            return Result<UserDto>.Failure(
+                ErrorMessages.UserNotFound,
+                ErrorType.NotFound);
         }
 
         return Result<UserDto>.Success(UserMapper.ToDto(user));

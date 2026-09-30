@@ -36,4 +36,15 @@ public static class ErrorMessages
     public const string ChatAlreadyExists = "Chat already exists";
 
     public const string IncorrectLoginOrPassword = "Incorrect login or password";
+
+    public const string GlobalExceptionMessage = "Global exception handling exception: {Exception}";
+    public const string UnexpectedError = "Unexpected error occured";
+    public const string ServerError = "Server error";
+    public const string NotFound = "Not found";
+    public const string Validation = "Validation error";
+    public const string Conflict = "Conflict";
+    public const string Unauthorized = "Unauthorized";
+    public const string Forbidden = "Forbidden";
+
+
 }

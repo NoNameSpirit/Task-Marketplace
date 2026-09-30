@@ -4,6 +4,7 @@ using Domain.Interfaces.Chats;
 using MediatR;
 using Shared.Dtos;
 using Shared.Dtos.Chats;
+using Shared.Enums;
 
 namespace Application.Chats.Queries.GetById;
 
@@ -24,9 +25,11 @@ public class GetChatByIdHandler : IRequestHandler<GetChatByIdQuery, Result<ChatD
 
         if (chat is null)
         {
-            return Result<ChatDto>.Failure(ErrorMessages.ChatNotFound);
+            return Result<ChatDto>.Failure(
+                ErrorMessages.ChatNotFound,
+                ErrorType.NotFound);
         }
 
-        return Result<ChatDto>.Success(ChatMapper.ToDto(chat));
+        return Result<ChatDto>.Success(ChatMapper.ToDto(chat)!);
     }
 }

@@ -6,4 +6,4 @@ namespace Application.Users.Queries.GetAll;
 
 public record GetAllUsersQuery(
     int Page,
-    int PageSize) : IRequest<PagedResult<UserDto>>;
+    int PageSize) : IRequest<Result<PagedResult<UserDto>>>;

@@ -4,6 +4,7 @@ using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
 using Shared.Dtos.ProjectTasks;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Queries.GetTasksByCustomer;
 
@@ -28,7 +29,9 @@ public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery
 
         if (projectTask.TotalCount == CurrencyConstants.ZeroElements)
         {
-            return Result<PagedResult<ProjectTaskDto>>.Failure(ErrorMessages.ProjectTaskByCustomerNotFound);
+            return Result<PagedResult<ProjectTaskDto>>.Failure(
+                ErrorMessages.ProjectTaskByCustomerNotFound,
+                ErrorType.NotFound);
         }
 
         return Result<PagedResult<ProjectTaskDto>>.Success(ProjectTaskMapper.ToPagedDto(projectTask));

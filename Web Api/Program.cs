@@ -1,5 +1,6 @@
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Web_Api.ExceptionHandler;
 using Web_Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddControllers();
 
-builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var configuration = builder.Configuration;
 
@@ -28,11 +30,12 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.MapOpenApi();
+    app.MapSwagger();
+    app.MapSwaggerUI();
 }
 
 app.UseHttpsRedirection();

@@ -6,4 +6,4 @@ namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
 public record GetPublishedTasksQuery(
     int Page,
-    int PageSize) : IRequest<PagedResult<ProjectTaskDto>>;
+    int PageSize) : IRequest<Result<PagedResult<ProjectTaskDto>>>;

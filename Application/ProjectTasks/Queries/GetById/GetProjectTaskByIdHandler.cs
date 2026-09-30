@@ -4,6 +4,7 @@ using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
 using Shared.Dtos.ProjectTasks;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Queries.GetProjectTaskById;
 
@@ -24,7 +25,9 @@ public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery
 
         if (projectTask is null)
         {
-            Result<ProjectTaskDto>.Failure(ErrorMessages.ProjectTaskNotFound);
+            return Result<ProjectTaskDto>.Failure(
+                ErrorMessages.ProjectTaskNotFound,
+                ErrorType.NotFound);
         }
 
         return Result<ProjectTaskDto>.Success(ProjectTaskMapper.ToDto(projectTask!));

@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.Users.Commands.Register;
 
@@ -32,7 +33,9 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<s
 
         if (!hashResult.IsSuccess)
         {
-            return Result<string>.Failure(hashResult.Message);
+            return Result<string>.Failure(
+                hashResult.Message,
+                ErrorType.Validation);
         }
 
         var userResult = User.Create(
@@ -42,7 +45,9 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<s
 
         if (!userResult.IsSuccess)
         {
-            return Result<string>.Failure(userResult.Message);
+            return Result<string>.Failure(
+                userResult.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.AddAsync(userResult.Value!, cancellationToken);

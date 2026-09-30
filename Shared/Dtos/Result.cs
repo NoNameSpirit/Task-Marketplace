@@ -1,9 +1,12 @@
-﻿namespace Shared.Dtos;
+﻿using Shared.Enums;
+
+namespace Shared.Dtos;
 
 public class Result
 {
     public bool IsSuccess { get; private set; }
     public string Message { get; private set; } = string.Empty;
+    public ErrorType Error { get; private set; }
 
     public static Result Success()
     {
@@ -13,12 +16,15 @@ public class Result
         };
     }
 
-    public static Result Failure(string message)
+    public static Result Failure(
+        string message,
+        ErrorType error = ErrorType.Failure)
     {
         return new Result
         {
             IsSuccess = false,
-            Message = message
+            Message = message,
+            Error = error
         };
     }
 }
@@ -28,6 +34,7 @@ public class Result<T> where T : class
     public bool IsSuccess { get; private set; }
     public string Message { get; private set; } = string.Empty;
     public T? Value { get; private set; } = null;
+    public ErrorType Error { get; private set; }
 
     public static Result<T> Success(T value)
     {
@@ -38,12 +45,15 @@ public class Result<T> where T : class
         };
     }
 
-    public static Result<T> Failure(string message)
+    public static Result<T> Failure(
+        string message,
+        ErrorType error = ErrorType.Failure)
     {
         return new Result<T>
         {
             IsSuccess = false,
-            Message = message
+            Message = message,
+            Error = error
         };
     }
 }

@@ -4,6 +4,7 @@ using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos;
 using Shared.Dtos.Users;
+using Shared.Enums;
 
 namespace Application.Users.Queries.SearchByName;
 
@@ -24,7 +25,9 @@ public class SearchUsersHandler : IRequestHandler<SearchUsersQuery, Result<Paged
 
         if (pagedResult is null)
         {
-            return Result<PagedResult<UserDto>>.Failure(ErrorMessages.UserNotFound);
+            return Result<PagedResult<UserDto>>.Failure(
+                ErrorMessages.UserNotFound,
+                ErrorType.NotFound);
         }
 
         return Result<PagedResult<UserDto>>.Success(UserMapper.ToPagedDto(pagedResult));

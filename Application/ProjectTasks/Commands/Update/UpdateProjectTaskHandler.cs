@@ -2,6 +2,7 @@
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.Update;
 
@@ -26,7 +27,9 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
+            return Result.Failure(
+                ErrorMessages.ProjectTaskNotFound,
+                ErrorType.NotFound);
         }
 
         var result = task.Update(
@@ -39,7 +42,9 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
 
         if (!result.IsSuccess)
         {
-            return Result.Failure(result.Message);
+            return Result.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.UpdateAsync(task, cancellationToken);

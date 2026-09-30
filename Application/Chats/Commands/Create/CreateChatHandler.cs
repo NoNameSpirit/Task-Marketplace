@@ -1,12 +1,15 @@
-﻿using Domain.Constants;
+﻿using Application.Mappers;
+using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces.Chats;
 using MediatR;
 using Shared.Dtos;
+using Shared.Dtos.Chats;
+using Shared.Enums;
 
 namespace Application.Chats.Commands.Create;
 
-public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<Chat>>
+public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatDto>>
 {
     private readonly IChatCommandRepository _commandRepository;
     private readonly IChatQueryRepository _queryRepository;
@@ -19,7 +22,7 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<Chat>
         _queryRepository = queryRepository;
     }
 
-    public async Task<Result<Chat>> Handle(
+    public async Task<Result<ChatDto>> Handle(
         CreateChatCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -27,18 +30,22 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<Chat>
 
         if (existingChat is not null)
         {
-            return Result<Chat>.Failure(ErrorMessages.ChatAlreadyExists);
+            return Result<ChatDto>.Failure(
+                ErrorMessages.ChatAlreadyExists,
+                ErrorType.Conflict);
         }
 
         var result = Chat.Create(request.ProjectTaskId);
 
         if (!result.IsSuccess)
         {
-            return Result<Chat>.Failure(result.Message);
+            return Result<ChatDto>.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
 
-        return Result<Chat>.Success(result.Value!);
+        return Result<ChatDto>.Success(ChatMapper.ToDto(result.Value!));
     }
 }

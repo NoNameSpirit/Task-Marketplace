@@ -2,6 +2,7 @@
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.AssignExecutor;
 
@@ -26,14 +27,18 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
+            return Result.Failure(
+                ErrorMessages.ProjectTaskNotFound,
+                ErrorType.NotFound);
         }
 
         var result = task.AssignExecutor(request.ExecutorId, request.CustomerId);
 
         if (!result.IsSuccess)
         {
-            return Result.Failure(result.Message);
+            return Result.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.UpdateAsync(task, cancellationToken);

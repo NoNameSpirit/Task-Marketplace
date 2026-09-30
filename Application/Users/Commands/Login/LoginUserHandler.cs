@@ -4,6 +4,7 @@ using Domain.Constants;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.Users.Commands.Login;
 
@@ -33,7 +34,9 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>
 
         if (user is null)
         {
-            return Result<string>.Failure(ErrorMessages.UsersNotFound);
+            return Result<string>.Failure(
+                ErrorMessages.UsersNotFound,
+                ErrorType.NotFound);
         }
 
         var result = _passwordHasher.Verify(
@@ -42,7 +45,9 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>
 
         if (!result.IsSuccess)
         {
-            return Result<string>.Failure(result.Message);
+            return Result<string>.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         var token = _jwtTokenGenerator.GenerateToken(user);

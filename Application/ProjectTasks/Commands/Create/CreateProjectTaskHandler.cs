@@ -1,11 +1,14 @@
-﻿using Domain.Entities;
+﻿using Application.Mappers;
+using Domain.Entities;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
+using Shared.Dtos.ProjectTasks;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.Create;
 
-public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result<ProjectTask>>
+public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result<ProjectTaskDto>>
 {
     private readonly IProjectTaskCommandRepository _commandRepository;
 
@@ -14,7 +17,7 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
         _commandRepository = commandRepository;
     }
 
-    public async Task<Result<ProjectTask>> Handle(
+    public async Task<Result<ProjectTaskDto>> Handle(
         CreateProjectTaskCommand request,
         CancellationToken cancellationToken)
     {
@@ -28,11 +31,13 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 
         if (!result.IsSuccess)
         {
-            return Result<ProjectTask>.Failure(result.Message);
+            return Result<ProjectTaskDto>.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.AddAsync(result.Value!);
 
-        return Result<ProjectTask>.Success(result.Value!);
+        return Result<ProjectTaskDto>.Success(ProjectTaskMapper.ToDto(result.Value!));
     }
 }

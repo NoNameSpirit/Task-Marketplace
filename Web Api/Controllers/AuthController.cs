@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Dtos.Users;
+using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
 
@@ -28,12 +29,7 @@ public class AuthController : ControllerBase
 
         var result = await _mediatr.Send(command, cancellationToken);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return Ok(new { token = result.Value });
+        return result.ToResponse(this);
     }
 
     [HttpPost("login")]
@@ -47,11 +43,6 @@ public class AuthController : ControllerBase
 
         var result = await _mediatr.Send(command, cancellationToken);
 
-        if (!result.IsSuccess)
-        {
-            return Unauthorized(new { error = result.Message });
-        }
-
-        return Ok(new { token = result.Value });
+        return result.ToResponse(this);
     }
 }

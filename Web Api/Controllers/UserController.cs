@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Enums;
 using Web_Api.Dtos;
 using Web_Api.Dtos.Users;
+using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
 
@@ -32,12 +33,7 @@ public class UserController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize(Roles = (nameof(UserRole.Admin)))]
@@ -52,12 +48,7 @@ public class UserController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -69,12 +60,7 @@ public class UserController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(new { error = result.Message });
-        }
-
-        return Ok(result);
+        return result.ToResponse(this);
     }
 
     [Authorize(Roles = (nameof(UserRole.Admin)))]
@@ -90,12 +76,7 @@ public class UserController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(new { error = result.Message });
-        }
-
-        return Ok(result);
+        return result.ToResponse(this);
     }
 
     [Authorize(Roles = (nameof(UserRole.Admin)))]
@@ -109,6 +90,6 @@ public class UserController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        return Ok(result);
+        return result.ToResponse(this);
     }
 }

@@ -23,25 +23,29 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSwagger(
         this IServiceCollection services)
     {
-        services.AddSwaggerGen(option =>
+        services.AddSwaggerGen(options =>
         {
-            var openApiInfo = new OpenApiInfo
+            options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Demo API",
+                Title = "My Web API",
                 Version = "v1"
-            };
+            });
 
-            option.SwaggerDoc("v1", openApiInfo);
-
-            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                In = ParameterLocation.Header,
-                Description = "JWT Authorization header using the Bearer scheme.",
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
                 BearerFormat = "JWT",
-                Scheme = "Bearer"
+                In = ParameterLocation.Header,
+                Description = "Please enter token"
             });
+
+            options.AddSecurityRequirement(document =>
+                new OpenApiSecurityRequirement
+                {
+                    [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+                });
         });
 
         return services;

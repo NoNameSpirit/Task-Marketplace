@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Dtos;
 using Web_Api.Dtos.ProjectTasks;
+using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
 
@@ -58,12 +59,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -83,12 +79,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -103,12 +94,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -120,12 +106,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -141,12 +122,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(command);
 
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return NoContent();
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -158,12 +134,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(result.Message);
-        }
-
-        return Ok(result);
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -179,12 +150,7 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        if (!result.IsSuccess)
-        {
-            return NotFound(result.Message);
-        }
-
-        return Ok(result);
+        return result.ToResponse(this);
     }
 
     [Authorize]
@@ -198,6 +164,6 @@ public class ProjectTaskController : ControllerBase
 
         var result = await _mediatr.Send(query);
 
-        return Ok(result);
+        return result.ToResponse(this);
     }
 }

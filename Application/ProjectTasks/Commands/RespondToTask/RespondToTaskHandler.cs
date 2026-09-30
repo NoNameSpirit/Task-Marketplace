@@ -2,6 +2,7 @@
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.RespondToTask;
 
@@ -26,14 +27,18 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
 
         if (task is null)
         {
-            return Result.Failure(ErrorMessages.ProjectTaskNotFound);
+            return Result.Failure(
+                ErrorMessages.ProjectTaskNotFound,
+                ErrorType.NotFound);
         }
 
         var result = task.RespondToTask(request.ExecutorId);
 
         if (!result.IsSuccess)
         {
-            return Result.Failure(result.Message);
+            return Result.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.UpdateAsync(task, cancellationToken);
