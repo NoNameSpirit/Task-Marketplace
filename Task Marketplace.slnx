@@ -1,10 +1,11 @@
 <Solution>
   <Folder Name="/Presentation/">
+    <Project Path="Blazor Web App/Blazor Web App.csproj" Id="02384016-ea71-49c2-9fc6-644b00343494" />
     <Project Path="TgBot/TgBot.csproj" />
     <Project Path="Web Api/Web Api.csproj" />
-    <Project Path="Web/Web.csproj" />
   </Folder>
   <Project Path="Application/Application.csproj" />
   <Project Path="Domain/Domain.csproj" />
   <Project Path="Infrastructure/Infrastructure.csproj" />
+  <Project Path="Shared/Shared.csproj" Id="135bf695-b4f1-4f3b-a89c-9d44b2c8260e" />
 </Solution>

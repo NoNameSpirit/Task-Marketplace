@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<PageTitle>ProjectTasks</PageTitle>
+
+<h1>Published project tasks</h1>
+
+@if (Tasks.Count == 0)
+{
+    <p>No projects</p>
+}
+else
+{
+    @foreach (var projectTask in Tasks)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h3>@projectTask.Title</h3>
+                    <p>@projectTask.Description</p>
+                    <p>@(projectTask.Price).ToString("F2")</p>
+                    <p>@(projectTask.EndsAt).ToString("yyyy:MM:dd")</p>
+                    <p>@(projectTask.Price).ToString("yyyy:MM:dd")</p>
+                </div>
+            </div>
+        }
+    }
+}
