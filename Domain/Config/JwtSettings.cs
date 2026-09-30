@@ -12,4 +12,6 @@ public class JwtSettings : IConfigSection
     public string[] ValidIssuers { get; set; } = [];
     [Required(ErrorMessage = "Valid audience must be set to start an app")]
     public string[] ValidAudiences { get; set; } = [];
+    [Required(ErrorMessage = "Valid expires hours must be set to start an app")]
+    public int ExpiresHours { get; set; } = 2;
 }

@@ -1,5 +1,4 @@
-﻿using Application.Users.Commands.CreateUser;
-using Application.Users.Commands.Delete;
+﻿using Application.Users.Commands.Delete;
 using Application.Users.Commands.Update;
 using Application.Users.Queries.GetAll;
 using Application.Users.Queries.GetById;
@@ -22,24 +21,6 @@ public class UserController : ControllerBase
     public UserController(IMediator mediatr)
     {
         _mediatr = mediatr;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(
-        [FromBody] CreateUserDto request)
-    {
-        var command = new CreateUserCommand(
-            request.Name,
-            request.Role);
-
-        var result = await _mediatr.Send(command);
-
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new { error = result.Message });
-        }
-
-        return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);
     }
 
     [Authorize(Roles = (nameof(UserRole.Admin)))]

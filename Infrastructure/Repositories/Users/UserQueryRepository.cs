@@ -24,6 +24,17 @@ public class UserQueryRepository : IUserQueryRepository
             .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
     }
 
+    public async Task<User?> GetByNameAsync(
+        string name,
+        CancellationToken cancellationToken = default)
+    {
+        var user = _context.Users
+            .AsNoTracking()
+            .FirstOrDefault(u => u.Name == name);
+
+        return user;
+    }
+
     public async Task<PagedResult<User>> GetAllAsync(
         int page,
         int pageSize,

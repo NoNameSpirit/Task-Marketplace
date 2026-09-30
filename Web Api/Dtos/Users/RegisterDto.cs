@@ -2,6 +2,7 @@
 
 namespace Web_Api.Dtos.Users;
 
-public record class CreateUserDto(
+public record RegisterUserDto(
     string Name,
+    string Password,
     UserRole Role);

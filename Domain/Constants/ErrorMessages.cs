@@ -9,6 +9,8 @@ public static class ErrorMessages
     public const string PriceConnotBeNegative = "Price must be greater than 0";
     public const string FutureDateTime = "StartsAt and EndsAt must be in the future";
 
+    public const string PasswordCannotBeEmpty = "User password can't be empty";
+    public const string PasswordHashCannotBeEmpty = "User passwordhash can't be empty";
     public const string UserNameCannotBeEmpty = "User name can't be empty";
     public const string CannotEditInProgressOrDone = "Can't edit in progress or done";
     public const string CustomerMustBeSame = "Customer must be same";
@@ -29,6 +31,9 @@ public static class ErrorMessages
 
     public const string ProjectTaskByCustomerNotFound = "Project task by customer zero elements";
     public const string UsersNotFound = "Users not found";
+    public const string UsersAlreadyExists = "User already exists";
 
     public const string ChatAlreadyExists = "Chat already exists";
+
+    public const string IncorrectLoginOrPassword = "Incorrect login or password";
 }

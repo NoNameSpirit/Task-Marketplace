@@ -1,4 +1,6 @@
 ﻿using Application.ProjectTasks.Commands.Create;
+using Application.Services.Hasher;
+using Application.Services.JwtGenerator;
 using Domain.Config;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
@@ -11,12 +13,40 @@ using Infrastructure.Workers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 using System.Text;
 
 namespace Web_Api.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    public static IServiceCollection AddSwagger(
+        this IServiceCollection services)
+    {
+        services.AddSwaggerGen(option =>
+        {
+            var openApiInfo = new OpenApiInfo
+            {
+                Title = "Demo API",
+                Version = "v1"
+            };
+
+            option.SwaggerDoc("v1", openApiInfo);
+
+            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header using the Bearer scheme.",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
+            });
+        });
+
+        return services;
+    }
+
     public static IServiceCollection AddConfigurationOptions(
         this IServiceCollection services,
         IConfiguration configuration)
@@ -41,6 +71,9 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(configuration =>
             configuration.RegisterServicesFromAssembly(typeof(CreateProjectTaskCommand).Assembly));
 
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
+                .AddScoped<IPasswordHasher, PasswordHasher>();
+
         return services;
     }
     public static IServiceCollection AddInfrastructureServices(
@@ -55,7 +88,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddScoped<IChatCommandRepository, ChatCommandRepository>()
-                    .AddScoped<IChatQueryRepository, ChatQueryRepository>();
+                .AddScoped<IChatQueryRepository, ChatQueryRepository>();
 
         services.AddScoped<IProjectTaskCommandRepository, ProjectTaskCommandRepository>()
                 .AddScoped<IProjectTaskQueryRepository, ProjectTaskQueryRepository>();
