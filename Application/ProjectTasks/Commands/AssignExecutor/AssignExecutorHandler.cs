@@ -23,7 +23,9 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
         AssignExecutorCommand request,
         CancellationToken cancellationToken = default)
     {
-        var task = await _queryRepository.GetTrackedByIdAsync(request.TaskId, cancellationToken);
+        var task = await _queryRepository.GetTrackedByIdAsync(
+            request.TaskId,
+            cancellationToken);
 
         if (task is null)
         {
@@ -32,7 +34,9 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
                 ErrorType.NotFound);
         }
 
-        var result = task.AssignExecutor(request.ExecutorId, request.CustomerId);
+        var result = task.AssignExecutor(
+            request.ExecutorId,
+            request.CurrentUserId);
 
         if (!result.IsSuccess)
         {

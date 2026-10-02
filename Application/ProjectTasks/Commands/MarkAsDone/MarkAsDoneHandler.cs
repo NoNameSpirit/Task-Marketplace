@@ -41,7 +41,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = task.MarkAsDone(request.CustomerId, request.Rating);
+        var result = task.MarkAsDone(request.CurrentUserId, request.Rating);
 
         if (!result.IsSuccess)
         {

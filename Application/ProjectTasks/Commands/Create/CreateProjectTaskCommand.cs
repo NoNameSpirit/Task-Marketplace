@@ -1,13 +1,20 @@
-﻿using MediatR;
+﻿using Application.Common;
+using Domain.Entities;
+using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.Create;
 
+[LogAction(UserActionType.CreatedTask, nameof(ProjectTask))]
 public record class CreateProjectTaskCommand(
     string Title,
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
     DateTimeOffset EndsAt,
-    Guid CustomerId) : IRequest<Result<ProjectTaskDto>>;
+    Guid CurrentUserId) : IRequest<Result<ProjectTaskDto>>, IUserCommand
+{
+    public Guid UserId => CurrentUserId;
+}

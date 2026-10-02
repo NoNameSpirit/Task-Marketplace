@@ -38,7 +38,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CustomerId);
+            request.CurrentUserId);
 
         if (!result.IsSuccess)
         {

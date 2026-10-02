@@ -34,7 +34,7 @@ public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand
                 ErrorType.NotFound);
         }
 
-        var result = task.Cancel(request.CustomerId);
+        var result = task.Cancel(request.CurrentUserId);
 
         if (!result.IsSuccess)
         {

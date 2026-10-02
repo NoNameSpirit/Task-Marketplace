@@ -28,7 +28,7 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CustomerId);
+            request.CurrentUserId);
 
         if (!result.IsSuccess)
         {

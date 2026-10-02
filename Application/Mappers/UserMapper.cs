@@ -12,7 +12,8 @@ public static class UserMapper
             entity.Id,
             entity.Name,
             entity.Role,
-            entity.Rating);
+            entity.Rating,
+            entity.IsBlocked);
     }
 
     public static PagedResult<UserDto> ToPagedDto(PagedResult<User> paged)

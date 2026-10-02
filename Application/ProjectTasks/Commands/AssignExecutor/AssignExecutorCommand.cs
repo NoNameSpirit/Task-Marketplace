@@ -1,9 +1,16 @@
-﻿using MediatR;
+﻿using Application.Common;
+using Domain.Entities;
+using MediatR;
 using Shared.Dtos.Responses;
+using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.AssignExecutor;
 
+[LogAction(UserActionType.AssignedExecutor, nameof(ProjectTask))]
 public record AssignExecutorCommand(
     Guid TaskId,
     Guid ExecutorId,
-    Guid CustomerId) : IRequest<Result>;
+    Guid CurrentUserId) : IRequest<Result>, IUserCommand
+{
+    public Guid UserId => CurrentUserId;
+}

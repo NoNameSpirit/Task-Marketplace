@@ -40,6 +40,13 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<AuthDto
                 ErrorType.NotFound);
         }
 
+        if (user.IsBlocked)
+        {
+            return Result<AuthDto>.Failure(
+                ErrorMessages.UserIsBlocked,
+                ErrorType.Validation);
+        }
+
         var result = _passwordHasher.Verify(
             request.Password,
             user.PasswordHash);
