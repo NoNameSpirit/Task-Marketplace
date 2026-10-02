@@ -2,8 +2,8 @@
 using Domain.Entities;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.Create;
@@ -12,7 +12,8 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 {
     private readonly IProjectTaskCommandRepository _commandRepository;
 
-    public CreateProjectTaskHandler(IProjectTaskCommandRepository commandRepository)
+    public CreateProjectTaskHandler(
+        IProjectTaskCommandRepository commandRepository)
     {
         _commandRepository = commandRepository;
     }

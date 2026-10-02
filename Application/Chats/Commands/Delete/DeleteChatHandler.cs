@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces.Chats;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Application.Chats.Commands.Delete;
 

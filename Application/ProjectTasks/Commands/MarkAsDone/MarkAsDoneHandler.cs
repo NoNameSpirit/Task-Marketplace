@@ -1,29 +1,38 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
+using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.MarkAsDone;
 
 public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
 {
-    private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly IProjectTaskCommandRepository _taskCommandRepository;
+    private readonly IUserQueryRepository _userQueryRepository;
+    private readonly IUserCommandRepository _userCommandRepository;
 
     public MarkAsDoneHandler(
-        IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository)
+        IProjectTaskQueryRepository taskQueryRepository,
+        IProjectTaskCommandRepository taskCommandRepository,
+        IUserQueryRepository userQueryRepository,
+        IUserCommandRepository userCommandRepository)
     {
-        _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
+        _taskQueryRepository = taskQueryRepository;
+        _taskCommandRepository = taskCommandRepository;
+        _userQueryRepository = userQueryRepository;
+        _userCommandRepository = userCommandRepository;
     }
 
     public async Task<Result> Handle(
         MarkAsDoneCommand request,
         CancellationToken cancellationToken = default)
     {
-        var task = await _queryRepository.GetByIdAsync(request.TaskId, cancellationToken);
+        var task = await _taskQueryRepository.GetTrackedByIdAsync(
+            request.TaskId,
+            cancellationToken);
 
         if (task is null)
         {
@@ -32,7 +41,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = task.MarkAsDone();
+        var result = task.MarkAsDone(request.CustomerId, request.Rating);
 
         if (!result.IsSuccess)
         {
@@ -41,7 +50,25 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.Validation);
         }
 
-        await _commandRepository.UpdateAsync(task, cancellationToken);
+        await _taskCommandRepository.SaveChangesAsync(cancellationToken);
+
+        if (task.ExecutorId.HasValue && request.Rating.HasValue)
+        {
+            var executor = await _userQueryRepository.GetTrackedByIdAsync(
+                task.ExecutorId.Value,
+                cancellationToken);
+
+            if (executor is not null)
+            {
+                var ratings = await _taskQueryRepository.GetRatingsByExecutorAsync(
+                    executor.Id,
+                    cancellationToken);
+
+                executor.RecalculateRating(ratings);
+
+                await _userCommandRepository.SaveChangesAsync(cancellationToken);
+            }
+        }
 
         return Result.Success();
     }

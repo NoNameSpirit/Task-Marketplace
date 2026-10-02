@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.Chats;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Chats;
 
 namespace Application.Chats.Queries.GetById;
 

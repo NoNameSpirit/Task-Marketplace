@@ -2,8 +2,8 @@
 using Domain.Constants;
 using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.Users;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Application.Users.Queries.GetById;

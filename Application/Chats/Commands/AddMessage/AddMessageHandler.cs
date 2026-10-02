@@ -2,7 +2,7 @@
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Application.Chats.Commands.AddMessage;
@@ -27,7 +27,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
         AddMessageCommand request,
         CancellationToken cancellationToken = default)
     {
-        var chat = await _queryRepository.GetByIdAsync(
+        var chat = await _queryRepository.GetTrackedByIdAsync(
             request.ChatId,
             cancellationToken);
 
@@ -58,7 +58,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 ErrorType.Validation);
         }
 
-        await _commandRepository.UpdateAsync(chat, cancellationToken);
+        await _commandRepository.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

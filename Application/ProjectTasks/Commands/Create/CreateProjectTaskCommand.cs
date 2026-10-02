@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Application.ProjectTasks.Commands.Create;
 

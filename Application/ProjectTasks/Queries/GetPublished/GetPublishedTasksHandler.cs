@@ -1,8 +1,8 @@
 ﻿using Application.Mappers;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
@@ -24,6 +24,18 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
             request.PageSize,
             cancellationToken);
 
-        return Result<PagedResult<ProjectTaskDto>>.Success(ProjectTaskMapper.ToPagedDto(pagedResult));
+        var dtos = pagedResult.Collection
+            .Select(t => ProjectTaskMapper.ToDto(
+                t,
+                t.Responses.Any(r => r.ExecutorId == request.CurrentUserId)))
+            .ToList();
+
+        var result = PagedResult<ProjectTaskDto>.Create(
+            dtos,
+            pagedResult.Page,
+            pagedResult.PageSize,
+            pagedResult.TotalCount);
+
+        return Result<PagedResult<ProjectTaskDto>>.Success(result);
     }
 }

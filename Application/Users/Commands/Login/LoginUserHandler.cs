@@ -3,12 +3,13 @@ using Application.Services.JwtGenerator;
 using Domain.Constants;
 using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Application.Users.Commands.Login;
 
-public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>>
+public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<AuthDto>>
 {
     private readonly IUserQueryRepository _queryRepository;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -24,7 +25,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>
         _passwordHasher = passwordHasher;
     }
 
-    public async Task<Result<string>> Handle(
+    public async Task<Result<AuthDto>> Handle(
         LoginUserCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -34,7 +35,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>
 
         if (user is null)
         {
-            return Result<string>.Failure(
+            return Result<AuthDto>.Failure(
                 ErrorMessages.UsersNotFound,
                 ErrorType.NotFound);
         }
@@ -45,13 +46,13 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<string>
 
         if (!result.IsSuccess)
         {
-            return Result<string>.Failure(
+            return Result<AuthDto>.Failure(
                 result.Message,
                 ErrorType.Validation);
         }
 
-        var token = _jwtTokenGenerator.GenerateToken(user);
+        var authDto = _jwtTokenGenerator.GenerateToken(user);
 
-        return Result<string>.Success(token);
+        return Result<AuthDto>.Success(authDto);
     }
 }

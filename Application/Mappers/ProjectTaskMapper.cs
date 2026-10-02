@@ -1,12 +1,14 @@
 ﻿using Domain.Entities;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Application.Mappers;
 
 public static class ProjectTaskMapper
 {
-    public static ProjectTaskDto ToDto(ProjectTask entity)
+    public static ProjectTaskDto ToDto(
+        ProjectTask entity,
+        bool isRespondedByCurrentUser = false)
     {
         return new ProjectTaskDto(
             entity.Id,
@@ -15,13 +17,15 @@ public static class ProjectTaskMapper
             entity.Price,
             entity.Status,
             entity.StartsAt,
-            entity.EndsAt);
+            entity.EndsAt,
+            isRespondedByCurrentUser,
+            entity.ProjectRating);
     }
 
     public static PagedResult<ProjectTaskDto> ToPagedDto(PagedResult<ProjectTask> paged)
     {
         var dtos = paged.Collection
-            .Select(ToDto)
+            .Select(t => ToDto(t))
             .ToList();
 
         var pagedResult = PagedResult<ProjectTaskDto>.Create(
@@ -31,5 +35,20 @@ public static class ProjectTaskMapper
             paged.TotalCount);
 
         return pagedResult;
+    }
+
+    public static List<TaskResponseDto> ToResponseDtos(ProjectTask entity)
+    {
+        if (entity.Responses is null || !entity.Responses.Any())
+            return new List<TaskResponseDto>();
+
+        return entity.Responses
+            .Select(r => new TaskResponseDto
+            {
+                ExecutorId = r.ExecutorId,
+                ExecutorName = $"Executor {r.ExecutorId}",
+                RespondedAt = r.RespondedAt
+            })
+            .ToList();
     }
 }

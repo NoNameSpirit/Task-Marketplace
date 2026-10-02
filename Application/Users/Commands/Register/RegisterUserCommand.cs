@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Application.Users.Commands.Login;
@@ -7,4 +8,4 @@ namespace Application.Users.Commands.Login;
 public record RegisterUserCommand(
     string Name,
     string Password,
-    UserRole Role) : IRequest<Result<string>>;
+    UserRole Role) : IRequest<Result<AuthDto>>;

@@ -4,12 +4,13 @@ using Application.Users.Commands.Login;
 using Domain.Entities;
 using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Application.Users.Commands.Register;
 
-public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<string>>
+public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<AuthDto>>
 {
     private readonly IUserCommandRepository _commandRepository;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -25,7 +26,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<s
         _passwordHasher = passwordHasher;
     }
 
-    public async Task<Result<string>> Handle(
+    public async Task<Result<AuthDto>> Handle(
         RegisterUserCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -33,7 +34,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<s
 
         if (!hashResult.IsSuccess)
         {
-            return Result<string>.Failure(
+            return Result<AuthDto>.Failure(
                 hashResult.Message,
                 ErrorType.Validation);
         }
@@ -45,15 +46,15 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<s
 
         if (!userResult.IsSuccess)
         {
-            return Result<string>.Failure(
+            return Result<AuthDto>.Failure(
                 userResult.Message,
                 ErrorType.Validation);
         }
 
         await _commandRepository.AddAsync(userResult.Value!, cancellationToken);
 
-        var token = _jwtTokenGenerator.GenerateToken(userResult.Value!);
+        var authDto = _jwtTokenGenerator.GenerateToken(userResult.Value!);
 
-        return Result<string>.Success(token);
+        return Result<AuthDto>.Success(authDto);
     }
 }

@@ -2,8 +2,8 @@
 using Domain.Constants;
 using Domain.Interfaces.Chats;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.Chats;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Chats;
 using Shared.Enums;
 
 namespace Application.Chats.Queries.GetByTaskId;

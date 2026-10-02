@@ -1,7 +1,9 @@
 ﻿using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Application.ProjectTasks.Commands.MarkAsDone;
 
 public record MarkAsDoneCommand(
-    Guid TaskId) : IRequest<Result>;
+    Guid TaskId,
+    Guid CustomerId,
+    decimal? Rating) : IRequest<Result>;

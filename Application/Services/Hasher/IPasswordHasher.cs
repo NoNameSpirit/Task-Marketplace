@@ -1,4 +1,4 @@
-﻿using Shared.Dtos;
+﻿using Shared.Dtos.Responses;
 
 namespace Application.Services.Hasher;
 

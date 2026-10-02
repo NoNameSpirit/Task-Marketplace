@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Application.ProjectTasks.Commands.DeleteProjectTask;
 

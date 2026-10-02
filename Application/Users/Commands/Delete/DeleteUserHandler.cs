@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Application.Users.Commands.Delete;
 

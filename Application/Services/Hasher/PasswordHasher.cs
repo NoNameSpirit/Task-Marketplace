@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Application.Services.Hasher;

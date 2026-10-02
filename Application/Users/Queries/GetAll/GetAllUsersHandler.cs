@@ -1,8 +1,8 @@
 ﻿using Application.Mappers;
 using Domain.Interfaces.Users;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.Users;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
 
 namespace Application.Users.Queries.GetAll;
 

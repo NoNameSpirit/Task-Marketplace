@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Shared.Dtos.Responses.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -17,7 +18,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtSettings.Value;
     }
 
-    public string GenerateToken(User user)
+    public AuthDto GenerateToken(User user)
     {
         var claims = new List<Claim>
         {
@@ -43,6 +44,12 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        return tokenHandler.WriteToken(token);
+        var authDto = new AuthDto(
+            tokenHandler.WriteToken(token),
+            user.Name,
+            user.Role.ToString(),
+            user.Id.ToString());
+
+        return authDto;
     }
 }

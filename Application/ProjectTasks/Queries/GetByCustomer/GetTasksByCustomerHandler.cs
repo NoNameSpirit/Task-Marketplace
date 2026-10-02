@@ -2,8 +2,8 @@
 using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 
 namespace Application.ProjectTasks.Queries.GetTasksByCustomer;

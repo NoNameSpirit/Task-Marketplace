@@ -1,8 +1,9 @@
 ﻿using Domain.Entities;
+using Shared.Dtos.Responses.Users;
 
 namespace Application.Services.JwtGenerator;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(User user);
+    AuthDto GenerateToken(User user);
 }

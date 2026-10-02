@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Application.ProjectTasks.Commands.Update;
@@ -23,7 +23,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
         UpdateProjectTaskCommand request,
         CancellationToken cancellationToken = default)
     {
-        var task = await _queryRepository.GetByIdAsync(request.TaskId, cancellationToken);
+        var task = await _queryRepository.GetTrackedByIdAsync(request.TaskId, cancellationToken);
 
         if (task is null)
         {
@@ -47,7 +47,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
                 ErrorType.Validation);
         }
 
-        await _commandRepository.UpdateAsync(task, cancellationToken);
+        await _commandRepository.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

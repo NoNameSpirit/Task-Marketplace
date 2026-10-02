@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Shared.Dtos.Chats;
+using Shared.Dtos.Responses.Chats;
 
 namespace Application.Mappers;
 
@@ -9,10 +9,12 @@ public static class ChatMapper
     {
         return new ChatDto(
             entity.Id,
+            entity.ProjectTaskId,
             entity.Messages.Select(m => new MessageDto(
                 m.Id,
                 m.UserId,
-                m.Text)
+                m.Text,
+                m.SentAt)
             ).ToList()
         );
     }

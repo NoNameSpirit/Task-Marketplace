@@ -1,9 +1,10 @@
 ﻿using MediatR;
-using Shared.Dtos;
-using Shared.Dtos.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
 public record GetPublishedTasksQuery(
     int Page,
-    int PageSize) : IRequest<Result<PagedResult<ProjectTaskDto>>>;
+    int PageSize,
+    Guid CurrentUserId) : IRequest<Result<PagedResult<ProjectTaskDto>>>;
