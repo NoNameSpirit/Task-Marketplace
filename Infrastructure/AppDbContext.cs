@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<Message> Messages { get; set; }
     public DbSet<Chat> Chats { get; set; }
     public DbSet<TaskResponse> TaskResponses { get; set; }
+    public DbSet<UserAction> UserActions { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -41,5 +42,22 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Chat>()
             .HasQueryFilter(u => !u.IsDeleted)
             .Property(c => c.Id).ValueGeneratedNever();
+
+        modelBuilder.Entity<UserAction>()
+            .HasQueryFilter(a => !a.IsDeleted)
+            .Property(a => a.Id)
+            .ValueGeneratedNever();
+
+        modelBuilder.Entity<ProjectTask>()
+            .Property(t => t.Price)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<ProjectTask>()
+            .Property(t => t.ProjectRating)
+            .HasPrecision(3, 1);
+
+        modelBuilder.Entity<User>()
+            .Property(u => u.Rating)
+            .HasPrecision(3, 1);
     }
 }

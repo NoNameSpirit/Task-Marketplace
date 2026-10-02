@@ -10,6 +10,7 @@ public class User : Entity
     public UserRole Role { get; private set; }
     public string PasswordHash { get; private set; } = string.Empty;
     public decimal? Rating { get; internal set; }
+    public bool IsBlocked { get; set; }
 
     private User() { }
 
@@ -67,5 +68,20 @@ public class User : Entity
         }
 
         Rating = projectRatings.Average();
+    }
+
+    public void Block()
+    {
+        IsBlocked = true;
+    }
+
+    public void Unblock()
+    {
+        IsBlocked = false;
+    }
+
+    public void ChangeRole(UserRole role)
+    {
+        Role = role;
     }
 }

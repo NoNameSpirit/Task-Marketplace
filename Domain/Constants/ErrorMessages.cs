@@ -54,4 +54,5 @@ public static class ErrorMessages
     public const string InvalidRatingValue = "Rating must be between {0} and {1}.";
     public const string CannotCancelDoneOrCancelled = "Cannot cancel done or cancelled task.";
     public const string ExecutorHasNoRating = "Executor has no rating yet.";
+    public const string UserIsBlocked = "User is blocked.";
 }
