@@ -1,6 +1,6 @@
 ﻿using Shared.Enums;
 
-namespace Shared.Dtos.Users;
+namespace Shared.Dtos.Responses.Users;
 
 public record class UserDto(
     Guid Id,

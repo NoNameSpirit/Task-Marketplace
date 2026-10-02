@@ -1,6 +1,6 @@
 ﻿using Shared.Enums;
 
-namespace Shared.Dtos;
+namespace Shared.Dtos.Responses;
 
 public class Result
 {

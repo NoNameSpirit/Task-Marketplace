@@ -1,21 +1,23 @@
-﻿namespace Shared.Dtos;
+﻿namespace Shared.Dtos.Responses;
 
 public class PagedResult<T>
 {
     private static int ZeroElements = 0;
     private static int MinPage = 0;
 
-    public IReadOnlyCollection<T> Collection = null!;
-    public int Page { get; }
-    public int PageSize { get; }
-    public int TotalCount { get; }
-    public int TotalPages { get; }
+    public IReadOnlyCollection<T> Collection { get; set; } = null!;
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+    public int TotalCount { get; set; }
+    public int TotalPages { get; set; }
 
     public bool HasPreviousPage
         => Page > MinPage;
 
     public bool HasNextPage
         => Page < TotalPages;
+
+    public PagedResult() { }
 
     private PagedResult(
         IReadOnlyCollection<T> items,
