@@ -45,4 +45,9 @@ public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
+
+    public async Task SaveChangesAsync(CancellationToken ct = default)
+    {
+        await _context.SaveChangesAsync(ct);
+    }
 }

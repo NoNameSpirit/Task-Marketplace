@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Domain.Entities;
@@ -28,6 +28,11 @@ public class User : Entity
             return Result<User>.Failure(ErrorMessages.PasswordHashCannotBeEmpty);
         }
 
+        if (role == UserRole.Admin)
+        {
+            return Result<User>.Failure(ErrorMessages.AdminRoleCannotSetup);
+        }
+
         var user = new User()
         {
             Id = Guid.NewGuid(),
@@ -50,5 +55,17 @@ public class User : Entity
         Name = name;
 
         return Result.Success();
+    }
+
+    public void RecalculateRating(
+        IReadOnlyCollection<decimal> projectRatings)
+    {
+        if (projectRatings.Count == RatingConstants.ZeroCount)
+        {
+            Rating = RatingConstants.NoRating;
+            return;
+        }
+
+        Rating = projectRatings.Average();
     }
 }

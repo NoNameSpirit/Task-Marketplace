@@ -19,6 +19,7 @@ public class ChatQueryRepository : IChatQueryRepository
     {
         return await _context.Chats
             .AsNoTracking()
+            .Include(c => c.Messages.OrderBy(m => m.SentAt))
             .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 
@@ -28,7 +29,7 @@ public class ChatQueryRepository : IChatQueryRepository
     {
         return await _context.Chats
             .AsNoTracking()
-            .Include(c => c.Messages)
+            .Include(c => c.Messages.OrderBy(m => m.SentAt))
             .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 
@@ -38,6 +39,16 @@ public class ChatQueryRepository : IChatQueryRepository
     {
         return await _context.Chats
             .AsNoTracking()
+            .Include(c => c.Messages.OrderBy(m => m.SentAt))
             .FirstOrDefaultAsync(c => c.ProjectTaskId == taskId, cancellationToken);
+    }
+
+    public async Task<Chat?> GetTrackedByIdAsync(
+        Guid id,
+        CancellationToken ct = default)
+    {
+        return await _context.Chats
+            .Include(c => c.Messages)
+            .FirstOrDefaultAsync(c => c.Id == id, ct);
     }
 }

@@ -2,7 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Infrastructure.Repositories.Users;
 
@@ -83,5 +83,13 @@ public class UserQueryRepository : IUserQueryRepository
             .ToListAsync(cancellationToken);
 
         return PagedResult<User>.Create(items, page, pageSize, totalCount);
+    }
+
+    public async Task<User?> GetTrackedByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Users
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
     }
 }

@@ -15,6 +15,7 @@ public static class ErrorMessages
     public const string CannotEditInProgressOrDone = "Can't edit in progress or done";
     public const string CustomerMustBeSame = "Customer must be same";
     public const string OnlyCustomerCanAssign = "Only customer can assign to project task";
+    public const string AdminRoleCannotSetup = "Admin role cannot setup";
 
     public const string ProjectMustBeInProgress = "Project must be in progress to do done";
     public const string OnlyPublishedTaskCanBeAssigned = "Only a published task can be assigned";
@@ -46,5 +47,11 @@ public static class ErrorMessages
     public const string Unauthorized = "Unauthorized";
     public const string Forbidden = "Forbidden";
 
-
+    public const string AlreadyResponded = "You have already responded to this task";
+    public const string OnlyCustomerCanCancel = "Only customer can cancel task.";
+    public const string OnlyCustomerCanRate = "Only customer can rate executor.";
+    public const string TaskMustBeDoneToRate = "Task must be done to rate executor.";
+    public const string InvalidRatingValue = "Rating must be between {0} and {1}.";
+    public const string CannotCancelDoneOrCancelled = "Cannot cancel done or cancelled task.";
+    public const string ExecutorHasNoRating = "Executor has no rating yet.";
 }

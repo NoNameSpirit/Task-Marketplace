@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 
 namespace Domain.Entities;
 
@@ -24,14 +24,20 @@ public class Chat : Entity
         return Result<Chat>.Success(chat);
     }
 
-    public Result AddMessage(string text, Guid senderId)
+    public Result AddMessage(
+        string text,
+        Guid senderId)
     {
         if (string.IsNullOrEmpty(text))
         {
             return Result.Failure(ErrorMessages.MessageTextCannotBeEmpty);
         }
 
-        var message = new Message(text, senderId, Id);
+        var message = new Message(
+            text,
+            senderId,
+            Id,
+            DateTimeOffset.UtcNow);
 
         _messages.Add(message);
 

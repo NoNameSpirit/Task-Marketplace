@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Domain.Entities;
@@ -17,9 +17,7 @@ public class ProjectTask : Entity
     public Guid? ExecutorId { get; private set; }
     public decimal? ProjectRating { get; private set; }
 
-    private readonly List<Guid> _respondentIds = new();
-    public IReadOnlyCollection<Guid> RespondentIds
-        => _respondentIds.AsReadOnly();
+    public ICollection<TaskResponse> Responses { get; private set; } = new List<TaskResponse>();
 
     private ProjectTask() { }
 
@@ -96,14 +94,38 @@ public class ProjectTask : Entity
         return Result.Success();
     }
 
-    public Result MarkAsDone()
+    public Result Cancel(Guid currentUserId)
     {
+        if (CustomerId != currentUserId)
+            return Result.Failure(ErrorMessages.OnlyCustomerCanCancel);
+
+        if (Status == ProjectTaskStatus.Done || Status == ProjectTaskStatus.Cancelled)
+            return Result.Failure(ErrorMessages.CannotCancelDoneOrCancelled);
+
+        Status = ProjectTaskStatus.Cancelled;
+
+        return Result.Success();
+    }
+
+    public Result MarkAsDone(Guid currentUserId, decimal? rating)
+    {
+        if (CustomerId != currentUserId)
+            return Result.Failure(ErrorMessages.OnlyCustomerCanRate);
+
         if (Status != ProjectTaskStatus.InProgress)
-        {
             return Result.Failure(ErrorMessages.ProjectMustBeInProgress);
+
+        if (rating.HasValue &&
+            (rating.Value < RatingConstants.MinRating || rating.Value > RatingConstants.MaxRating))
+        {
+            return Result.Failure(string.Format(
+                ErrorMessages.InvalidRatingValue,
+                RatingConstants.MinRating,
+                RatingConstants.MaxRating));
         }
 
         Status = ProjectTaskStatus.Done;
+        ProjectRating = rating;
 
         return Result.Success();
     }
@@ -120,10 +142,16 @@ public class ProjectTask : Entity
             return Result.Failure(ErrorMessages.CustomerCannotRespond);
         }
 
-        if (!_respondentIds.Contains(executorId))
+        if (Responses.Any(r => r.ExecutorId == executorId))
         {
-            _respondentIds.Add(executorId);
+            return Result.Failure(ErrorMessages.AlreadyResponded);
         }
+
+        var response = TaskResponse.Create(
+            Id,
+            executorId);
+
+        Responses.Add(response);
 
         return Result.Success();
     }
@@ -140,12 +168,13 @@ public class ProjectTask : Entity
             return Result.Failure(ErrorMessages.OnlyPublishedTaskCanBeAssigned);
         }
 
-        if (!_respondentIds.Contains(executorId))
+        if (!Responses.Any(r => r.ExecutorId == executorId))
         {
             return Result.Failure(ErrorMessages.ExecutorMustBeAtRespondedCollection);
         }
 
         Status = ProjectTaskStatus.InProgress;
+
         ExecutorId = executorId;
 
         return Result.Success();
