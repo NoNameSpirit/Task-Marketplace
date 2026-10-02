@@ -6,4 +6,5 @@ public record class UserDto(
     Guid Id,
     string Name,
     UserRole Role,
-    decimal? Rating);
+    decimal? Rating,
+    bool IsBlocked);

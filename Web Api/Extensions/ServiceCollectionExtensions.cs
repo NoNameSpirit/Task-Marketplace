@@ -1,15 +1,19 @@
-﻿using Application.ProjectTasks.Commands.Create;
+﻿using Application.Common;
+using Application.ProjectTasks.Commands.Create;
 using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
 using Domain.Config;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
+using Domain.Interfaces.UserActions;
 using Domain.Interfaces.Users;
 using Infrastructure;
 using Infrastructure.Repositories.Chats;
 using Infrastructure.Repositories.ProjectTasks;
+using Infrastructure.Repositories.UserActions;
 using Infrastructure.Repositories.Users;
 using Infrastructure.Workers;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -72,6 +76,9 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
+        services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UserActionLoggingBehavior<,>));
+
         services.AddMediatR(configuration =>
             configuration.RegisterServicesFromAssembly(typeof(CreateProjectTaskCommand).Assembly));
 
@@ -99,6 +106,9 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IUserCommandRepository, UserCommandRepository>()
                 .AddScoped<IUserQueryRepository, UserQueryRepository>();
+
+        services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
+                .AddScoped<IUserActionQueryRepository, UserActionQueryRepository>();
 
         services.AddHostedService<DeadlineOverdueWorker>();
 

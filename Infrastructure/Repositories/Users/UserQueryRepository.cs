@@ -89,7 +89,40 @@ public class UserQueryRepository : IUserQueryRepository
         Guid id,
         CancellationToken cancellationToken = default)
     {
+        return await _context.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+    }
+
+    public async Task<Dictionary<Guid, string>> GetNamesByIdsAsync(
+        IReadOnlyCollection<Guid> ids,
+        CancellationToken cancellationToken = default)
+    {
         return await _context.Users
-            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+            .AsNoTracking()
+            .Where(u => ids.Contains(u.Id))
+            .ToDictionaryAsync(u => u.Id, u => u.Name, cancellationToken);
+    }
+
+    public async Task<PagedResult<User>> GetPagedAsync(
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var query = _context.Users
+            .AsNoTracking()
+            .OrderBy(u => u.Name);
+
+        var totalCount = await query.CountAsync(cancellationToken);
+
+        if (totalCount == CurrencyConstants.ZeroElements)
+        {
+            return PagedResult<User>.Empty(page, pageSize);
+        }
+
+        var items = await query
+            .Skip((page - CurrencyConstants.OffsetPage) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return PagedResult<User>.Create(items, page, pageSize, totalCount);
     }
 }
