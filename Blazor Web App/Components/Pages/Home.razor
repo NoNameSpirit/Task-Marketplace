@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Welcome!</h1>
+
+<AuthorizeView>
+    <Authorized>
+        <p class="text-success fw-bold">Hello, @context.User.Identity?.Name!</p>
+        <p>Your role: @context.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>You are not logged in.</p>
+        <a href="/register" class="btn btn-primary">Register now</a>
+    </NotAuthorized>
+</AuthorizeView>

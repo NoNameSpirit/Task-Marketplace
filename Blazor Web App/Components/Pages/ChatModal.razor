@@ -1,0 +1,47 @@
+﻿@if (IsVisible)
+{
+    <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title">Chat: @TaskTitle</h5>
+                    <button class="btn-close" @onclick="Close"></button>
+                </div>
+
+                <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                    @if (IsLoading)
+                    {
+                        <div class="spinner-border text-primary"></div>
+                    }
+                    else if (ErrorMessage != "")
+                    {
+                        <div class="alert alert-danger">@ErrorMessage</div>
+                    }
+                    else if (Chat?.Messages is null || Chat.Messages.Count == 0)
+                    {
+                        <div class="text-muted">No messages yet</div>
+                    }
+                    else
+                    {
+                        @foreach (var m in Chat.Messages)
+                        {
+                            var own = m.UserId == CurrentUserId;
+
+                            <div class="mb-2 @(own ? "text-end" : "text-start")">
+                                <span class="badge @(own ? "bg-primary" : "bg-secondary")">@m.Text</span>
+                                <div><small class="text-muted">@m.SentAt.ToLocalTime().ToString("g")</small></div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <input class="form-control" @bind="NewMessage" placeholder="Message..." />
+                    <button class="btn btn-primary" @onclick="Send" disabled="@IsSending">Send</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

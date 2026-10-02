@@ -1,0 +1,56 @@
+﻿@page "/my-assigned"
+
+<PageTitle>My Assigned Tasks</PageTitle>
+
+<div class="container py-4">
+    <h2 class="mb-4">My Assigned Tasks</h2>
+
+    @if (IsLoading)
+    {
+        <div class="spinner-border text-primary"></div>
+    }
+    else if (ErrorMessage != "")
+    {
+        <div class="alert alert-danger">@ErrorMessage</div>
+    }
+    else if (ListTasks is null || ListTasks.Count == 0)
+    {
+        <div class="alert alert-info">No assigned tasks.</div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var task in ListTasks)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <TaskCard
+                        ProjectTask="task"
+                        IsExecutor="true"
+                        IsCustomer="false"
+                        IsResponded="true"
+                        OnOpenChat="OpenChatModal" />
+                </div>
+            }
+        </div>
+
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">Prev</button>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">@CurrentPage / @TotalPages</span>
+                </li>
+                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">Next</button>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>
+
+<ChatModal
+    IsVisible="IsChatModalOpen"
+    TaskId="_chatTaskId"
+    CurrentUserId="CurrentUserId"
+    OnClose="() => IsChatModalOpen = false" />

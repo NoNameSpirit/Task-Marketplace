@@ -1,0 +1,41 @@
+﻿@if (IsVisible)
+{
+    <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rate executor for "@TaskTitle"</h5>
+                    <button class="btn-close" @onclick="CloseModal"></button>
+                </div>
+
+                <div class="modal-body">
+                    @if (ErrorMessage != "")
+                    {
+                        <div class="alert alert-danger">@ErrorMessage</div>
+                    }
+
+                    <p>Select rating (@MinRating–@MaxRating):</p>
+
+                    <div class="d-flex gap-2 mb-3">
+                        @for (var i = MinRating; i <= MaxRating; i++)
+                        {
+                            var value = i;
+
+                            <button class="btn @(SelectedRating == value ? "btn-primary" : "btn-outline-primary")"
+                                    @onclick="() => SelectedRating = value">
+                                @value
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="Skip" disabled="@IsSubmitting">Skip</button>
+                    <button class="btn btn-primary" @onclick="Submit" disabled="@IsSubmitting">
+                        @(IsSubmitting ? "..." : "Submit")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

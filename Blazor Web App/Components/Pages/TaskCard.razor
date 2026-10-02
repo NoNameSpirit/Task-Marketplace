@@ -1,0 +1,60 @@
+﻿<div class="card h-100 d-flex flex-column">
+    <div class="card-body">
+        <h5 class="card-title">@ProjectTask.Title</h5>
+        <p class="text-muted small mb-2">@ProjectTask.Description</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="badge bg-secondary">@ProjectTask.Status</span>
+            <span class="fw-bold">@ProjectTask.Price.ToString("C")</span>
+
+            @if (ProjectTask.ProjectRating.HasValue)
+            {
+                <span class="badge bg-warning text-dark">
+                    @ProjectTask.ProjectRating.Value.ToString("0.0")
+                </span>
+            }
+        </div>
+
+        <small class="text-muted d-block mt-2">
+            @ProjectTask.StartsAt.Date.ToShortDateString() - @ProjectTask.EndsAt.Date.ToShortDateString()
+        </small>
+    </div>
+
+    <div class="card-footer bg-transparent border-top-0 p-2 mt-auto">
+        @if (ShowRespondButton)
+        {
+            <button class="btn btn-sm w-100 @(IsResponded ? "btn-secondary" : "btn-success")"
+                    @onclick="HandleRespond"
+                    disabled="@IsResponded">
+                @(IsResponded ? "Already Responded" : "Respond")
+            </button>
+        }
+        else if (ShowDeleteButton)
+        {
+            <button class="btn btn-sm btn-outline-danger w-100" @onclick="HandleDelete">
+                Delete
+            </button>
+        }
+
+        @if (ShowChatButton)
+        {
+            <button class="btn btn-sm btn-outline-info w-100 mt-1" @onclick="HandleOpenChat">
+                Open Chat
+            </button>
+        }
+
+        @if (ShowMarkDoneButton)
+        {
+            <button class="btn btn-sm btn-outline-success w-100 mt-1" @onclick="HandleMarkDone">
+                Mark as Done
+            </button>
+        }
+
+        @if (ShowCancelButton)
+        {
+            <button class="btn btn-sm btn-outline-warning w-100 mt-1" @onclick="HandleCancel">
+                Cancel
+            </button>
+        }
+    </div>
+</div>

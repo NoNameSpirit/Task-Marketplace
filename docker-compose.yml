@@ -30,6 +30,7 @@ services:
             condition: service_healthy
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
+        - AppConfig__ConnectionString=Server=sqlserver;Database=ProjectTaskDb;User Id=sa;Password=StrongP@ssw0rd123!;TrustServerCertificate=True;
             
 volumes:
   sqlserver-data:

@@ -1,0 +1,33 @@
+﻿@page "/login"
+
+<PageTitle>Login</PageTitle>
+
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="card p-4" style="width: 40rem;">
+        <h3 class="text-center mb-4">Login</h3>
+
+        @if (!IsSuccess)
+        {
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <input class="form-control mb-3" type="text" placeholder="Login" @bind="Name" />
+            
+            <input class="form-control mb-3" type="password" placeholder="Password" @bind="Password" />
+
+            <button class="btn btn-primary w-100" @onclick="HandleLogin" disabled="@IsLoading">
+                @(IsLoading ? "Loading..." : "Sign In")
+            </button>
+
+            <div class="text-center mt-3">
+                <a href="/register" class="text-decoration-none">Don't have an account? Register</a>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success text-center">Logged in successfully!</div>
+        }
+    </div>
+</div>
