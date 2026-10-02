@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Shared.Dtos.Responses.ProjectTasks;
 using System.Security.Claims;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.Executor;
 
 public partial class MyAssignedTasks : ComponentBase
 {

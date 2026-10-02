@@ -3,13 +3,13 @@
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                
+
                 <div class="modal-header">
                     <h5 class="modal-title">Chat: @TaskTitle</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
-                <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                <div class="modal-body d-flex flex-column-reverse" style="max-height: 400px; overflow-y: auto;">
                     @if (IsLoading)
                     {
                         <div class="spinner-border text-primary"></div>
@@ -24,7 +24,7 @@
                     }
                     else
                     {
-                        @foreach (var m in Chat.Messages)
+                        @foreach (var m in Chat.Messages.AsEnumerable().Reverse())
                         {
                             var own = m.UserId == CurrentUserId;
 
@@ -37,7 +37,11 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input class="form-control" @bind="NewMessage" placeholder="Message..." />
+                    <input class="form-control"
+                           @bind="NewMessage"
+                           @bind:event="oninput"
+                           @onkeydown="HandleKeyDown"
+                           placeholder="Message..." />
                     <button class="btn btn-primary" @onclick="Send" disabled="@IsSending">Send</button>
                 </div>
 

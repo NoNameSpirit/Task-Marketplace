@@ -19,6 +19,11 @@
     <nav class="nav flex-column">
           <AuthorizeView>
             <Authorized Context="AuthContext">
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
+                {
+                    <NavLink class="nav-link" href="/admin/users" Match="NavLinkMatch.Prefix">Admin: Users</NavLink>
+                    <NavLink class="nav-link" href="/admin/actions" Match="NavLinkMatch.Prefix">Admin: Actions</NavLink>
+                }
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
                 {
                     <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">My Tasks</NavLink>

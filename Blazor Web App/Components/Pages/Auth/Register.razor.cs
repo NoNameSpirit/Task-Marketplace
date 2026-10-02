@@ -6,7 +6,7 @@ using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.Auth;
 
 public partial class Register : ComponentBase
 {

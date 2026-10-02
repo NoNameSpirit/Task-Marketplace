@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Requests.ProjectTasks;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class CreateTaskModal : ComponentBase
 {

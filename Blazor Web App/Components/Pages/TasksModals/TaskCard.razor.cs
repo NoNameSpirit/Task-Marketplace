@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class TaskCard : ComponentBase
 {

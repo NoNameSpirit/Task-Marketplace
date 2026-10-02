@@ -1,7 +1,7 @@
 ﻿using Blazor_Web_App.Services;
 using Microsoft.AspNetCore.Components;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class RateExecutorModal : ComponentBase
 {

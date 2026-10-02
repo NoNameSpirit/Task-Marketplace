@@ -1,0 +1,87 @@
+﻿@page "/admin/actions"
+@using Shared.Enums
+
+<PageTitle>User Actions</PageTitle>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <div class="container py-4">
+            <h2 class="mb-4">User Actions</h2>
+
+            <div class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Action Type</label>
+                    <select class="form-select" @bind="_filterActionType">
+                        <option value="">All</option>
+                        @foreach (var type in Enum.GetValues<UserActionType>())
+                        {
+                            <option value="@((int)type)">@type</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary me-2" @onclick="ApplyFilter">Apply</button>
+                    <button class="btn btn-secondary" @onclick="ClearFilter">Clear</button>
+                </div>
+            </div>
+
+            @if (IsLoading)
+            {
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary"></div>
+                </div>
+            }
+            else if (ErrorMessage != "")
+            {
+                <div class="alert alert-danger">@ErrorMessage</div>
+            }
+            else if (Actions is null || Actions.Count == 0)
+            {
+                <div class="alert alert-info">No actions found.</div>
+            }
+            else
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Entity</th>
+                            <th>When</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var action in Actions)
+                        {
+                            <tr>
+                                <td>@action.UserName</td>
+                                <td>@action.ActionType</td>
+                                <td>@action.EntityType</td>
+                                <td>@action.PerformedAt.ToLocalTime().ToString("g")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">Prev</button>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">@CurrentPage / @TotalPages</span>
+                        </li>
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container py-4">
+            <div class="alert alert-danger">Access denied. Admin only.</div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>

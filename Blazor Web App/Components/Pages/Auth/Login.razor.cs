@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses.Users;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.Auth;
 
 public partial class Login : ComponentBase
 {

@@ -1,0 +1,93 @@
+﻿@page "/admin/users"
+@using Shared.Enums
+
+<PageTitle>Users</PageTitle>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <div class="container py-4">
+            <h2 class="mb-4">Users</h2>
+
+            @if (IsLoading)
+            {
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary"></div>
+                </div>
+            }
+            else if (ErrorMessage != "")
+            {
+                <div class="alert alert-danger">@ErrorMessage</div>
+            }
+            else if (Users is null || Users.Count == 0)
+            {
+                <div class="alert alert-info">No users found.</div>
+            }
+            else
+            {
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Rating</th>
+                            <th>Blocked</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Users)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td>
+                                    <select class="form-select form-select-sm"
+                                            value="@user.Role"
+                                            disabled="@(_processingUserId == user.Id)"
+                                            @onchange="e => HandleChangeRole(user.Id, e)">
+                                        @foreach (var role in Enum.GetValues<UserRole>())
+                                        {
+                                            <option value="@role">@role</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>@(user.Rating?.ToString("0.0") ?? "—")</td>
+                                <td>@(user.IsBlocked ? "Yes" : "No")</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-warning me-1"
+                                            disabled="@(_processingUserId == user.Id)"
+                                            @onclick="() => HandleBlock(user)">
+                                        @(user.IsBlocked ? "Unblock" : "Block")
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                            disabled="@(_processingUserId == user.Id)"
+                                            @onclick="() => HandleDelete(user.Id)">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">Prev</button>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">@CurrentPage / @TotalPages</span>
+                        </li>
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container py-4">
+            <div class="alert alert-danger">Access denied. Admin only.</div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>

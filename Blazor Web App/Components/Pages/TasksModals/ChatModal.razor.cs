@@ -1,8 +1,9 @@
 ﻿using Blazor_Web_App.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Shared.Dtos.Responses.Chats;
 
-namespace Blazor_Web_App.Components.Pages;
+namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class ChatModal : ComponentBase
 {
@@ -88,5 +89,13 @@ public partial class ChatModal : ComponentBase
     {
         IsVisible = false;
         await OnClose.InvokeAsync();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Send();
+        }
     }
 }

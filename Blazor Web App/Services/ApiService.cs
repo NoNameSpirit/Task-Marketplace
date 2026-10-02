@@ -5,7 +5,9 @@ using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 using Shared.Dtos.Responses.ProjectTasks;
+using Shared.Dtos.Responses.UserActions;
 using Shared.Dtos.Responses.Users;
+using Shared.Enums;
 using System.Text.Json;
 
 namespace Blazor_Web_App.Services;
@@ -395,5 +397,149 @@ public class ApiService
         }
 
         return Result.Success();
+    }
+
+    public async Task<Result<PagedResult<UserDto>>> GetUsersAsync(
+    int page = 1,
+    int pageSize = 10,
+    CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.GetAsync(
+            $"api/user?page={page}&pageSize={pageSize}",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return Result<PagedResult<UserDto>>.Failure("Failed to load users");
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<PagedResult<UserDto>>(
+            _options,
+            cancellationToken);
+
+        return Result<PagedResult<UserDto>>.Success(result!);
+    }
+
+    public async Task<Result> ChangeRoleAsync(
+        Guid userId,
+        UserRole newRole,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var body = new { NewRole = newRole };
+
+        var response = await _httpClient.PatchAsJsonAsync(
+            $"api/user/{userId}/role",
+            body,
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to change role");
+        }
+
+        return Result.Success();
+    }
+
+    public async Task<Result> BlockUserAsync(
+        Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.PostAsync(
+            $"api/user/{userId}/block",
+            null,
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to block user");
+        }
+
+        return Result.Success();
+    }
+
+    public async Task<Result> UnblockUserAsync(
+        Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.PostAsync(
+            $"api/user/{userId}/unblock",
+            null,
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to unblock user");
+        }
+
+        return Result.Success();
+    }
+
+    public async Task<Result> DeleteUserAsync(
+        Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.DeleteAsync(
+            $"api/user/{userId}",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to delete user");
+        }
+
+        return Result.Success();
+    }
+
+    public async Task<Result<PagedResult<UserActionDto>>> GetUserActionsAsync(
+        Guid? userId,
+        int? actionType,
+        int page = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var url = $"api/useraction?page={page}&pageSize={pageSize}";
+
+        if (userId.HasValue)
+        {
+            url += $"&userId={userId.Value}";
+        }
+
+        if (actionType.HasValue)
+        {
+            url += $"&actionType={actionType.Value}";
+        }
+
+        var response = await _httpClient.GetAsync(url, cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return Result<PagedResult<UserActionDto>>.Failure("Failed to load actions");
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<PagedResult<UserActionDto>>(
+            _options,
+            cancellationToken);
+
+        return Result<PagedResult<UserActionDto>>.Success(result!);
     }
 }
