@@ -1,6 +1,6 @@
 ﻿using Domain.Constants;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Dtos;
+using Shared.Dtos.Responses;
 using Shared.Enums;
 
 namespace Web_Api.Extensions;

@@ -6,9 +6,9 @@ using Application.Users.Queries.SearchByName;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Dtos.Requests;
+using Shared.Dtos.Requests.Users;
 using Shared.Enums;
-using Web_Api.Dtos;
-using Web_Api.Dtos.Users;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;

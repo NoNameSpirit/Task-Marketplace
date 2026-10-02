@@ -1,7 +1,7 @@
 ﻿using Application.Users.Commands.Login;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Web_Api.Dtos.Users;
+using Shared.Dtos.Requests.Users;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;

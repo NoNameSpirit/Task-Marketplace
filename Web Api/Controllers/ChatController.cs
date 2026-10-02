@@ -7,8 +7,8 @@ using Application.Chats.Queries.GetWithMessages;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Dtos.Requests.Chats;
 using Shared.Enums;
-using Web_Api.Dtos.Chats;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -36,7 +36,7 @@ public class ChatController : ControllerBase
 
         if (!result.IsSuccess)
         {
-            return BadRequest(new { error = result.Message });
+            return result.ToResponse(this);
         }
 
         return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);

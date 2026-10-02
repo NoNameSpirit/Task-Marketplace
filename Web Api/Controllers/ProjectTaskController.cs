@@ -1,17 +1,22 @@
 ﻿using Application.ProjectTasks.Commands.AssignExecutor;
+using Application.ProjectTasks.Commands.Cancel;
 using Application.ProjectTasks.Commands.Create;
 using Application.ProjectTasks.Commands.DeleteProjectTask;
 using Application.ProjectTasks.Commands.MarkAsDone;
 using Application.ProjectTasks.Commands.RespondToTask;
 using Application.ProjectTasks.Commands.Update;
+using Application.ProjectTasks.Queries.GetAssigned;
 using Application.ProjectTasks.Queries.GetProjectTaskById;
 using Application.ProjectTasks.Queries.GetPublishedTasks;
+using Application.ProjectTasks.Queries.GetResponses;
 using Application.ProjectTasks.Queries.GetTasksByCustomer;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Web_Api.Dtos;
-using Web_Api.Dtos.ProjectTasks;
+using Shared.Dtos.Requests;
+using Shared.Dtos.Requests.ProjectTasks;
+using Shared.Enums;
+using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -32,19 +37,21 @@ public class ProjectTaskController : ControllerBase
     public async Task<IActionResult> Create(
         [FromBody] CreateProjectTaskDto request)
     {
+        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
         var command = new CreateProjectTaskCommand(
             request.Title,
             request.Description,
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CustomerId);
+            customerId);
 
         var result = await _mediatr.Send(command);
 
         if (!result.IsSuccess)
         {
-            return BadRequest(new { error = result.Message });
+            return result.ToResponse(this);
         }
 
         return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);
@@ -97,12 +104,34 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPost("{id}/mark-as-done")]
     public async Task<IActionResult> MarkAsDone(
+        Guid id,
+        [FromBody] MarkAsDoneProjectTaskDto request)
+    {
+        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        var command = new MarkAsDoneCommand(
+            id,
+            customerId,
+            request.Rating);
+
+        var result = await _mediatr.Send(command);
+
+        return result.ToResponse(this);
+    }
+
+    [Authorize(Roles = nameof(UserRole.Customer))]
+    [HttpPost("{id}/cancel")]
+    public async Task<IActionResult> Cancel(
         Guid id)
     {
-        var command = new MarkAsDoneCommand(id);
+        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        var command = new CancelProjectTaskCommand(
+            id,
+            customerId);
 
         var result = await _mediatr.Send(command);
 
@@ -115,10 +144,12 @@ public class ProjectTaskController : ControllerBase
         Guid id,
         [FromBody] AssignProjectTaskDto request)
     {
+        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
         var command = new AssignExecutorCommand(
             id,
             request.ExecutorId,
-            request.CustomerId);
+            customerId);
 
         var result = await _mediatr.Send(command);
 
@@ -153,12 +184,42 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("published")]
     public async Task<IActionResult> GetPublished(
         [FromQuery] PageDto request)
     {
+        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
         var query = new GetPublishedTasksQuery(
+            request.Page,
+            request.PageSize,
+            currentUserId);
+
+        var result = await _mediatr.Send(query);
+
+        return result.ToResponse(this);
+    }
+
+    [Authorize]
+    [HttpGet("{id}/responses")]
+    public async Task<IActionResult> GetResponses(
+        Guid id)
+    {
+        var query = new GetTaskResponsesQuery(id);
+
+        var result = await _mediatr.Send(query);
+
+        return result.ToResponse(this);
+    }
+
+    [Authorize]
+    [HttpGet("assigned/{executorId}")]
+    public async Task<IActionResult> GetAssigned(
+        Guid executorId,
+        [FromQuery] PageDto request)
+    {
+        var query = new GetAssignedTasksQuery(
+            executorId,
             request.Page,
             request.PageSize);
 
