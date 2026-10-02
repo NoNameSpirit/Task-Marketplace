@@ -62,7 +62,9 @@ public class ProjectTaskController : ControllerBase
     public async Task<IActionResult> Delete(
         Guid id)
     {
-        var command = new DeleteProjectTaskCommand(id);
+        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        var command = new DeleteProjectTaskCommand(id, userId);
 
         var result = await _mediatr.Send(command);
 

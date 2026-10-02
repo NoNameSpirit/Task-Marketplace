@@ -10,4 +10,6 @@ public interface IUserQueryRepository
     Task<PagedResult<User>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken = default);
     Task<PagedResult<User>> SearchByNameAsync(string searchQuery, int page, int pageSize, CancellationToken cancellationToken = default);
     Task<User?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<Dictionary<Guid, string>> GetNamesByIdsAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken = default);
+    Task<PagedResult<User>> GetPagedAsync(int page, int pageSize, CancellationToken cancellationToken = default);
 }

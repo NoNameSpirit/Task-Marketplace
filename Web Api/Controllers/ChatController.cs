@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests.Chats;
 using Shared.Enums;
+using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -29,8 +30,11 @@ public class ChatController : ControllerBase
     public async Task<IActionResult> Create(
         Guid projectTaskId)
     {
+        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
         var command = new CreateChatCommand(
-            projectTaskId);
+            projectTaskId,
+            userId);
 
         var result = await _mediatr.Send(command);
 
@@ -47,7 +51,9 @@ public class ChatController : ControllerBase
     public async Task<IActionResult> Delete(
         Guid id)
     {
-        var command = new DeleteChatCommand(id);
+        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        var command = new DeleteChatCommand(id, userId);
 
         var result = await _mediatr.Send(command);
 
