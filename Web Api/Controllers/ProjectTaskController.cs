@@ -10,6 +10,7 @@ using Application.ProjectTasks.Queries.GetProjectTaskById;
 using Application.ProjectTasks.Queries.GetPublishedTasks;
 using Application.ProjectTasks.Queries.GetResponses;
 using Application.ProjectTasks.Queries.GetTasksByCustomer;
+using Application.ProjectTasks.Queries.SearchTasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -71,12 +72,14 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(
         Guid id,
         [FromBody] UpdateProjectTaskDto request)
     {
+        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
         var command = new UpdateProjectTaskCommand(
             id,
             request.Title,
@@ -84,7 +87,7 @@ public class ProjectTaskController : ControllerBase
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CustomerId);
+            customerId);
 
         var result = await _mediatr.Send(command);
 
@@ -226,6 +229,28 @@ public class ProjectTaskController : ControllerBase
             request.PageSize);
 
         var result = await _mediatr.Send(query);
+
+        return result.ToResponse(this);
+    }
+
+    [Authorize]
+    [HttpGet("search")]
+    public async Task<IActionResult> Search(
+        [FromQuery] string query,
+        [FromQuery] PageDto request)
+    {
+        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        var isCustomer = User.IsInRole(nameof(UserRole.Customer));
+
+        var searchQuery = SearchTasksQueryFactory.Create(
+            currentUserId,
+            isCustomer,
+            query,
+            request.Page,
+            request.PageSize);
+
+        var result = await _mediatr.Send(searchQuery);
 
         return result.ToResponse(this);
     }

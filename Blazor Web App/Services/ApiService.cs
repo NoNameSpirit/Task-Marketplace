@@ -400,9 +400,9 @@ public class ApiService
     }
 
     public async Task<Result<PagedResult<UserDto>>> GetUsersAsync(
-    int page = 1,
-    int pageSize = 10,
-    CancellationToken cancellationToken = default)
+        int page = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);
 
@@ -541,5 +541,49 @@ public class ApiService
             cancellationToken);
 
         return Result<PagedResult<UserActionDto>>.Success(result!);
+    }
+
+    public async Task<Result<PagedResult<ProjectTaskDto>>> SearchTasksAsync(
+        string query,
+        int page = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.GetAsync(
+            $"api/projecttask/search?query={Uri.EscapeDataString(query)}&page={page}&pageSize={pageSize}",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return Result<PagedResult<ProjectTaskDto>>.Failure("Failed to search tasks");
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<PagedResult<ProjectTaskDto>>(_options, cancellationToken);
+
+        return Result<PagedResult<ProjectTaskDto>>.Success(result!);
+    }
+
+    public async Task<Result> UpdateTaskAsync(
+        Guid id,
+        UpdateProjectTaskDto dto,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.PutAsJsonAsync(
+            $"api/projecttask/{id}",
+            dto,
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to update task");
+        }
+
+        return Result.Success();
     }
 }

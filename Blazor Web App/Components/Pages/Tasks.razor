@@ -15,6 +15,12 @@
         }
     </div>
 
+    <div class="d-flex gap-2 mb-3">
+        <input class="form-control" placeholder="Search by title..." @bind="_searchQuery" />
+        <button class="btn btn-primary" @onclick="HandleSearch">Search</button>
+        <button class="btn btn-secondary" @onclick="ClearSearch">Clear</button>
+    </div>
+
     @if (IsLoading)
     {
         <div class="text-center py-5">
@@ -36,15 +42,17 @@
             {
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex flex-column h-100">
-                        <TaskCard ProjectTask="task"
-                                  IsExecutor="IsExecutor"
-                                  IsCustomer="IsCustomer"
-                                  IsResponded="task.IsRespondedByCurrentUser"
-                                  OnDeleted="HandleTaskDeleted"
-                                  OnRespond="HandleRespond"
-                                  OnOpenChat="OpenChatModal"
-                                  OnMarkDone="OpenRateModal"
-                                  OnCancel="HandleCancel" />
+                        <TaskCard 
+                            ProjectTask="task"
+                            IsExecutor="IsExecutor"
+                            IsCustomer="IsCustomer"
+                            IsResponded="task.IsRespondedByCurrentUser"
+                            OnDeleted="HandleTaskDeleted"
+                            OnRespond="HandleRespond"
+                            OnOpenChat="OpenChatModal"
+                            OnMarkDone="OpenRateModal"
+                            OnCancel="HandleCancel"
+                            OnEdit="OpenEditModal" />
 
                         @if (IsCustomer && task.Status == ProjectTaskStatus.Published)
                         {
@@ -83,7 +91,6 @@
 
 <ResponsesModal IsVisible="_responsesModal.IsOpen"
                 TaskId="_responsesModal.TaskId"
-                TaskTitle="_responsesModal.TaskTitle"
                 OnAssigned="HandleTaskCreated"
                 OnClose="_responsesModal.Close" />
 
@@ -94,6 +101,10 @@
 
 <RateExecutorModal IsVisible="_rateModal.IsOpen"
                    TaskId="_rateModal.TaskId"
-                   TaskTitle="_rateModal.TaskTitle"
                    OnCompleted="HandleRated"
                    OnClose="_rateModal.Close" />
+
+<EditTaskModal IsVisible="_editModal.IsOpen"
+               Task="_editingTask"
+               OnUpdated="HandleTaskUpdated"
+               OnClose="_editModal.Close" />

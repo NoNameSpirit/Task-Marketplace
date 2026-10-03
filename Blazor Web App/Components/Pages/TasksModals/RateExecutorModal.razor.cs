@@ -7,7 +7,6 @@ public partial class RateExecutorModal : ComponentBase
 {
     [Parameter] public bool IsVisible { get; set; }
     [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public string TaskTitle { get; set; } = string.Empty;
     [Parameter] public EventCallback OnCompleted { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
     [Inject] public ApiService ApiService { get; set; } = null!;

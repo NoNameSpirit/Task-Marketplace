@@ -14,4 +14,6 @@ public interface IProjectTaskQueryRepository
     Task<ProjectTask?> GetTrackedByIdAsync(Guid projectTaskId, CancellationToken cancellationToken = default);
     Task<PagedResult<ProjectTask>> GetByExecutorIdAsync(Guid executorId, int page, int pageSize, CancellationToken cancellationToken = default);
     Task<IReadOnlyCollection<decimal>> GetRatingsByExecutorAsync(Guid executorId, CancellationToken cancellationToken = default);
+    Task<PagedResult<ProjectTask>> SearchPublishedAsync(string query, int page, int pageSize, CancellationToken cancellationToken = default);
+    Task<PagedResult<ProjectTask>> SearchByCustomerIdAsync(Guid customerId, string query, int page, int pageSize, CancellationToken cancellationToken = default);
 }

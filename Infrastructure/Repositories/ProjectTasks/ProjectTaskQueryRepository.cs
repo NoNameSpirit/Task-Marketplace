@@ -174,4 +174,59 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
 
         return ratings;
     }
+    public async Task<PagedResult<ProjectTask>> SearchPublishedAsync(
+        string query,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var search = _context.ProjectTasks
+            .AsNoTracking()
+            .Include(t => t.Responses)
+            .Where(t => t.Status == ProjectTaskStatus.Published
+                     && t.Title.Contains(query))
+            .OrderByDescending(t => t.StartsAt);
+
+        var totalCount = await search.CountAsync(cancellationToken);
+
+        if (totalCount == CurrencyConstants.ZeroElements)
+        {
+            return PagedResult<ProjectTask>.Empty(page, pageSize);
+        }
+
+        var items = await search
+            .Skip((page - CurrencyConstants.OffsetPage) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return PagedResult<ProjectTask>.Create(items, page, pageSize, totalCount);
+    }
+
+    public async Task<PagedResult<ProjectTask>> SearchByCustomerIdAsync(
+        Guid customerId,
+        string query,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var search = _context.ProjectTasks
+            .AsNoTracking()
+            .Where(t => t.CustomerId == customerId
+                     && t.Title.Contains(query))
+            .OrderByDescending(t => t.StartsAt);
+
+        var totalCount = await search.CountAsync(cancellationToken);
+
+        if (totalCount == CurrencyConstants.ZeroElements)
+        {
+            return PagedResult<ProjectTask>.Empty(page, pageSize);
+        }
+
+        var items = await search
+            .Skip((page - CurrencyConstants.OffsetPage) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return PagedResult<ProjectTask>.Create(items, page, pageSize, totalCount);
+    }
 }

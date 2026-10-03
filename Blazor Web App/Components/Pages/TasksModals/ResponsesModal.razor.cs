@@ -8,7 +8,6 @@ public partial class ResponsesModal : ComponentBase
 {
     [Parameter] public bool IsVisible { get; set; }
     [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public string TaskTitle { get; set; } = string.Empty;
     [Parameter] public EventCallback OnAssigned { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
     [Inject] public ApiService ApiService { get; set; } = null!;
@@ -18,12 +17,26 @@ public partial class ResponsesModal : ComponentBase
     private bool IsLoading;
     private bool IsAssigning;
     private string ErrorMessage = string.Empty;
+    private string TaskTitle = string.Empty;
 
     protected override async Task OnParametersSetAsync()
     {
-        if (IsVisible && TaskId != Guid.Empty)
+        if (!IsVisible || TaskId == Guid.Empty)
         {
-            await LoadResponses();
+            return;
+        }
+
+        await LoadTitle();
+        await LoadResponses();
+    }
+
+    private async Task LoadTitle()
+    {
+        var result = await ApiService.GetTaskByIdAsync(TaskId);
+
+        if (result.IsSuccess && result.Value is not null)
+        {
+            TaskTitle = result.Value.Title;
         }
     }
 

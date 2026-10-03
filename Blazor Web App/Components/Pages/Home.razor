@@ -1,16 +1,80 @@
 ﻿@page "/"
+@using Shared.Enums
+@using System.Security.Claims
 
 <PageTitle>Home</PageTitle>
 
-<h1>Welcome!</h1>
+<div class="container py-5">
+    <h1 class="mb-4">Task Marketplace</h1>
 
-<AuthorizeView>
-    <Authorized>
-        <p class="text-success fw-bold">Hello, @context.User.Identity?.Name!</p>
-        <p>Your role: @context.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</p>
-    </Authorized>
-    <NotAuthorized>
-        <p>You are not logged in.</p>
-        <a href="/register" class="btn btn-primary">Register now</a>
-    </NotAuthorized>
-</AuthorizeView>
+    <AuthorizeView>
+        <Authorized Context="AuthContext">
+            <p class="text-success fw-bold">Hello, @AuthContext.User.Identity?.Name!</p>
+            <p>Your role: @AuthContext.User.FindFirst(ClaimTypes.Role)?.Value</p>
+
+            <div class="row g-3 mt-4">
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
+                {
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">My Tasks</h5>
+                                <p class="card-text">Manage your published tasks and view candidates.</p>
+                                <a class="btn btn-primary" href="/tasks">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
+                {
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Browse Tasks</h5>
+                                <p class="card-text">Find new tasks and respond to them.</p>
+                                <a class="btn btn-primary" href="/tasks">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">My Assigned Tasks</h5>
+                                <p class="card-text">Tasks assigned to you and chats with customers.</p>
+                                <a class="btn btn-primary" href="/my-assigned">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
+                {
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Admin: Users</h5>
+                                <p class="card-text">Manage users, roles and blocks.</p>
+                                <a class="btn btn-primary" href="/admin/users">Open</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Admin: Actions</h5>
+                                <p class="card-text">View user activity log.</p>
+                                <a class="btn btn-primary" href="/admin/actions">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <p>Please <a href="/login">log in</a> or <a href="/register">register</a>.</p>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

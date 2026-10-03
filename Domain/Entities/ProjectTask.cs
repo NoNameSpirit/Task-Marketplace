@@ -97,10 +97,14 @@ public class ProjectTask : Entity
     public Result Cancel(Guid currentUserId)
     {
         if (CustomerId != currentUserId)
+        {
             return Result.Failure(ErrorMessages.OnlyCustomerCanCancel);
+        }
 
         if (Status == ProjectTaskStatus.Done || Status == ProjectTaskStatus.Cancelled)
+        {
             return Result.Failure(ErrorMessages.CannotCancelDoneOrCancelled);
+        }
 
         Status = ProjectTaskStatus.Cancelled;
 
@@ -110,10 +114,14 @@ public class ProjectTask : Entity
     public Result MarkAsDone(Guid currentUserId, decimal? rating)
     {
         if (CustomerId != currentUserId)
+        {
             return Result.Failure(ErrorMessages.OnlyCustomerCanRate);
+        }
 
         if (Status != ProjectTaskStatus.InProgress)
+        {
             return Result.Failure(ErrorMessages.ProjectMustBeInProgress);
+        }
 
         if (rating.HasValue &&
             (rating.Value < RatingConstants.MinRating || rating.Value > RatingConstants.MaxRating))

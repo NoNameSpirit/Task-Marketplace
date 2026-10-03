@@ -1,6 +1,13 @@
 ﻿<div class="card h-100 d-flex flex-column">
-    <div class="card-body">
-        <h5 class="card-title">@ProjectTask.Title</h5>
+    <div class="card-body position-relative">
+        @if (ShowDeleteButton)
+        {
+            <button class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-2"
+                    title="Delete"
+                    @onclick="HandleDelete">✕</button>
+        }
+
+        <h5 class="card-title pe-5">@ProjectTask.Title</h5>
         <p class="text-muted small mb-2">@ProjectTask.Description</p>
 
         <div class="d-flex justify-content-between align-items-center">
@@ -20,39 +27,40 @@
         </small>
     </div>
 
-    <div class="card-footer bg-transparent border-top-0 p-2 mt-auto">
+    <div class="card-footer bg-transparent border-top-0 p-2 mt-auto d-flex flex-wrap gap-1">
         @if (ShowRespondButton)
         {
-            <button class="btn btn-sm w-100 @(IsResponded ? "btn-secondary" : "btn-success")"
+            <button class="btn btn-sm flex-fill @(IsResponded ? "btn-secondary" : "btn-success")"
                     @onclick="HandleRespond"
                     disabled="@IsResponded">
-                @(IsResponded ? "Already Responded" : "Respond")
-            </button>
-        }
-        else if (ShowDeleteButton)
-        {
-            <button class="btn btn-sm btn-outline-danger w-100" @onclick="HandleDelete">
-                Delete
+                @(IsResponded ? "Responded" : "Respond")
             </button>
         }
 
         @if (ShowChatButton)
         {
-            <button class="btn btn-sm btn-outline-info w-100 mt-1" @onclick="HandleOpenChat">
-                Open Chat
+            <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleOpenChat">
+                Chat
             </button>
         }
 
         @if (ShowMarkDoneButton)
         {
-            <button class="btn btn-sm btn-outline-success w-100 mt-1" @onclick="HandleMarkDone">
-                Mark as Done
+            <button class="btn btn-sm btn-outline-success flex-fill" @onclick="HandleMarkDone">
+                Done
+            </button>
+        }
+
+        @if (ShowEditButton)
+        {
+            <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleEdit">
+                Edit
             </button>
         }
 
         @if (ShowCancelButton)
         {
-            <button class="btn btn-sm btn-outline-warning w-100 mt-1" @onclick="HandleCancel">
+            <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleCancel">
                 Cancel
             </button>
         }

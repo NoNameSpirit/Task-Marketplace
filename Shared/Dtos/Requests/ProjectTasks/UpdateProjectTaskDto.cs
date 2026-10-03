@@ -5,5 +5,4 @@ public record class UpdateProjectTaskDto(
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
-    DateTimeOffset EndsAt,
-    Guid CustomerId);
+    DateTimeOffset EndsAt);

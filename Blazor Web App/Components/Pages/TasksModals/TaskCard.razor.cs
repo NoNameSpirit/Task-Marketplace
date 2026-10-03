@@ -16,13 +16,22 @@ public partial class TaskCard : ComponentBase
     [Parameter] public EventCallback<Guid> OnOpenChat { get; set; }
     [Parameter] public EventCallback<Guid> OnMarkDone { get; set; }
     [Parameter] public EventCallback<Guid> OnCancel { get; set; }
+    [Parameter] public EventCallback<Guid> OnEdit { get; set; }
     [Inject] public ApiService ApiService { get; set; } = null!;
+
+    private bool ShowEditButton
+         => IsCustomer
+         && ProjectTask.Status != ProjectTaskStatus.InProgress
+         && ProjectTask.Status != ProjectTaskStatus.Done
+         && ProjectTask.Status != ProjectTaskStatus.Cancelled;
+
+    private bool ShowDeleteButton
+        => IsCustomer
+        && ProjectTask.Status != ProjectTaskStatus.Done
+        && ProjectTask.Status != ProjectTaskStatus.Cancelled;
 
     private bool ShowRespondButton
         => IsExecutor && ProjectTask.Status == ProjectTaskStatus.Published;
-
-    private bool ShowDeleteButton
-        => IsCustomer;
 
     private bool ShowChatButton
         => ProjectTask.Status == ProjectTaskStatus.InProgress;
@@ -63,5 +72,10 @@ public partial class TaskCard : ComponentBase
     private async Task HandleCancel()
     {
         await OnCancel.InvokeAsync(ProjectTask.Id);
+    }
+
+    private async Task HandleEdit()
+    {
+        await OnEdit.InvokeAsync(ProjectTask.Id);
     }
 }

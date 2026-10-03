@@ -33,6 +33,9 @@ public partial class Tasks : ComponentBase
     private bool _initialized;
     private string ErrorMessage = string.Empty;
     private string PageTitleText = "Tasks";
+    private string _searchQuery = string.Empty;
+    private readonly ModalState _editModal = new();
+    private ProjectTaskDto? _editingTask;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -73,7 +76,11 @@ public partial class Tasks : ComponentBase
 
         Result<PagedResult<ProjectTaskDto>> result;
 
-        if (IsCustomer)
+        if (!string.IsNullOrWhiteSpace(_searchQuery))
+        {
+            result = await ApiService.SearchTasksAsync(_searchQuery, CurrentPage, PageSize);
+        }
+        else if (IsCustomer)
         {
             result = await ApiService.GetMyTasksAsync(CurrentUserId, CurrentPage, PageSize);
         }
@@ -173,13 +180,42 @@ public partial class Tasks : ComponentBase
 
     private void OpenRateModal(Guid taskId)
     {
-        var title = ListTasks?.FirstOrDefault(t => t.Id == taskId)?.Title ?? string.Empty;
-
-        _rateModal.Open(taskId, title);
+        _rateModal.Open(taskId);
     }
 
     private void ShowCreateModal()
     {
         _createModal.Open(Guid.Empty);
+    }
+    private async Task HandleSearch()
+    {
+        CurrentPage = FirstPage;
+        await LoadTasks();
+    }
+
+    private async Task ClearSearch()
+    {
+        _searchQuery = string.Empty;
+        CurrentPage = FirstPage;
+        await LoadTasks();
+    }
+
+    private void OpenEditModal(Guid taskId)
+    {
+        _editingTask = ListTasks?.FirstOrDefault(t => t.Id == taskId);
+
+        if (_editingTask is null)
+        {
+            return;
+        }
+
+        _editModal.Open(taskId);
+    }
+
+    private async Task HandleTaskUpdated()
+    {
+        _editModal.Close();
+
+        await LoadTasks();
     }
 }
