@@ -1,6 +1,7 @@
 ﻿using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
 using Application.Users.Commands.Login;
+using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces.Users;
 using MediatR;
@@ -15,21 +16,33 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<A
     private readonly IUserCommandRepository _commandRepository;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IPasswordHasher _passwordHasher;
+    private readonly IUserQueryRepository _queryRepository;
 
     public RegisterUserHandler(
         IUserCommandRepository commandRepository,
         IJwtTokenGenerator jwtTokenGenerator,
-        IPasswordHasher passwordHasher)
+        IPasswordHasher passwordHasher,
+        IUserQueryRepository queryRepository)
     {
         _commandRepository = commandRepository;
         _jwtTokenGenerator = jwtTokenGenerator;
         _passwordHasher = passwordHasher;
+        _queryRepository = queryRepository;
     }
 
     public async Task<Result<AuthDto>> Handle(
         RegisterUserCommand request,
         CancellationToken cancellationToken = default)
     {
+        var existing = await _queryRepository.GetByNameAsync(request.Name, cancellationToken);
+
+        if (existing is not null)
+        {
+            return Result<AuthDto>.Failure(
+                ErrorMessages.UserAlreadyExists,
+                ErrorType.Conflict);
+        }
+
         var hashResult = _passwordHasher.Hash(request.Password);
 
         if (!hashResult.IsSuccess)
