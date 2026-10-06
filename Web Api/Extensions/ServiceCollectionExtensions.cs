@@ -19,6 +19,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
+using Web_Api.Extensions.Constants;
 
 namespace Web_Api.Extensions;
 
@@ -29,26 +30,26 @@ public static class ServiceCollectionExtensions
     {
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc("v1", new OpenApiInfo
+            options.SwaggerDoc(SwaggerConstants.VersionName, new OpenApiInfo
             {
-                Title = "My Web API",
-                Version = "v1"
+                Title = SwaggerConstants.Title,
+                Version = SwaggerConstants.VersionName
             });
 
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            options.AddSecurityDefinition(SwaggerConstants.SchemeName, new OpenApiSecurityScheme
             {
-                Name = "Authorization",
+                Name = SwaggerConstants.SecuritySchemeName,
                 Type = SecuritySchemeType.Http,
-                Scheme = "bearer",
-                BearerFormat = "JWT",
+                Scheme = SwaggerConstants.SecurityScheme,
+                BearerFormat = SwaggerConstants.SecurityBearerFormat,
                 In = ParameterLocation.Header,
-                Description = "Please enter token"
+                Description = SwaggerConstants.SecurityDescription
             });
 
             options.AddSecurityRequirement(document =>
                 new OpenApiSecurityRequirement
                 {
-                    [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+                    [new OpenApiSecuritySchemeReference(SwaggerConstants.SchemeName, document)] = []
                 });
         });
 

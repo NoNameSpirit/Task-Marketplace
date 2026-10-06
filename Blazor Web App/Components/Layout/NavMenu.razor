@@ -17,24 +17,39 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
-          <AuthorizeView>
-            <Authorized Context="AuthContext">
-                @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
-                {
+    <AuthorizeView>
+        <Authorized Context="AuthContext">
+            @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
+            {
+                <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/admin/users" Match="NavLinkMatch.Prefix">Admin: Users</NavLink>
+                </div>
+                <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/admin/actions" Match="NavLinkMatch.Prefix">Admin: Actions</NavLink>
-                }
-                @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
-                {
+                </div>
+            }
+            @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
+            {
+                <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">My Tasks</NavLink>
-                }
-                @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
-                {
+                </div>
+            }
+            @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
+            {
+                <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">Browse Tasks</NavLink>
+                </div>
+                <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/my-assigned" Match="NavLinkMatch.Prefix">My Assigned</NavLink>
-                }
-            </Authorized>
-        </AuthorizeView>
-    </nav>
+                </div>
+            }
+        </Authorized>
+        <NotAuthorized>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/login" Match="NavLinkMatch.Prefix">Sign In</NavLink>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+</nav>
 </div>
 
