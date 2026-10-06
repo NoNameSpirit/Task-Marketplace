@@ -110,6 +110,47 @@ namespace Infrastructure.Migrations
                     b.ToTable("ProjectTasks");
                 });
 
+            modelBuilder.Entity("Domain.Entities.TaskAttachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SizeBytes")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StoredFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("UploadedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("UploadedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("UploadedByUserId");
+
+                    b.ToTable("TaskAttachments");
+                });
+
             modelBuilder.Entity("Domain.Entities.TaskResponse", b =>
                 {
                     b.Property<Guid>("Id")
@@ -204,6 +245,25 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domain.Entities.TaskAttachment", b =>
+                {
+                    b.HasOne("Domain.Entities.ProjectTask", "Task")
+                        .WithMany("Attachments")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", "UploadedByUser")
+                        .WithMany()
+                        .HasForeignKey("UploadedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+
+                    b.Navigation("UploadedByUser");
+                });
+
             modelBuilder.Entity("Domain.Entities.TaskResponse", b =>
                 {
                     b.HasOne("Domain.Entities.ProjectTask", "Task")
@@ -222,6 +282,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProjectTask", b =>
                 {
+                    b.Navigation("Attachments");
+
                     b.Navigation("Responses");
                 });
 #pragma warning restore 612, 618

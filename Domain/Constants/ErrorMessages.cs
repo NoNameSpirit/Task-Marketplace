@@ -56,4 +56,16 @@ public static class ErrorMessages
     public const string CannotCancelDoneOrCancelled = "Cannot cancel done or cancelled task.";
     public const string ExecutorHasNoRating = "Executor has no rating yet.";
     public const string UserIsBlocked = "User is blocked.";
+
+    public const string TaskIdCannotBeEmpty = "Task id cannot be empty.";
+    public const string UploadedByUserIdCannotBeEmpty = "Uploader user id cannot be empty.";
+    public const string OriginalFileNameCannotBeEmpty = "Original file name cannot be empty.";
+    public const string StoredFileNameCannotBeEmpty = "Stored file name cannot be empty.";
+    public const string FileSizeMustBePositive = "File size must be positive.";
+    public const string FileSizeExceedsLimit = "File size exceeds the allowed limit of {0} MB.";
+    public const string FileExtensionForbidden = "File extension {0} is forbidden.";
+    public const string CannotAttachToClosedTask = "Cannot attach files to a closed task.";
+    public const string OnlyParticipantsCanAttach = "Only the customer or the executor can attach files to the task.";
+    public const string OnlyUploaderCanDeleteAttachment = "Only the uploader can delete the attachment.";
+    public const string TaskAttachmentNotFound = "Attachment not found.";
 }

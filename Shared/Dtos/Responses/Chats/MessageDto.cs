@@ -1,7 +1,23 @@
 ﻿namespace Shared.Dtos.Responses.Chats;
 
-public record class MessageDto(
-    Guid Id,
-    Guid UserId,
-    string Text,
-    DateTimeOffset SentAt);
+public class MessageDto
+{
+    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
+    public string Text { get; set; } = string.Empty;
+    public DateTimeOffset SentAt { get; set; }
+
+    public MessageDto() { }
+
+    public MessageDto(
+        Guid id,
+        Guid userId,
+        string text,
+        DateTimeOffset sentAt)
+    {
+        Id = id;
+        UserId = userId;
+        Text = text;
+        SentAt = sentAt;
+    }
+}

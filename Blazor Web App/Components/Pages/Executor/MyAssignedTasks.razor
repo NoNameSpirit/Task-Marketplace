@@ -25,10 +25,12 @@
                 <div class="col-md-6 col-lg-4">
                     <TaskCard
                         ProjectTask="task"
+                        CurrentUserId="CurrentUserId"
                         IsExecutor="true"
                         IsCustomer="false"
                         IsResponded="true"
-                        OnOpenChat="OpenChatModal" />
+                        OnOpenChat="OpenChatModal"
+                        OnOpenAttachments="OpenAttachmentsModal" />
                 </div>
             }
         </div>
@@ -54,3 +56,9 @@
     TaskId="_chatTaskId"
     CurrentUserId="CurrentUserId"
     OnClose="() => IsChatModalOpen = false" />
+
+<AttachmentsModal IsVisible="_attachmentsModal.IsOpen"
+                  TaskId="_attachmentsModal.TaskId"
+                  CurrentUserId="CurrentUserId"
+                  CanUpload="@ComputeCanUpload()"
+                  OnClose="_attachmentsModal.Close" />

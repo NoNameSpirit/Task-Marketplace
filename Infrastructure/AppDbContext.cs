@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<Chat> Chats { get; set; }
     public DbSet<TaskResponse> TaskResponses { get; set; }
     public DbSet<UserAction> UserActions { get; set; }
+    public DbSet<TaskAttachment> TaskAttachments { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -59,5 +60,16 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>()
             .Property(u => u.Rating)
             .HasPrecision(3, 1);
+
+        modelBuilder.Entity<TaskAttachment>()
+           .HasQueryFilter(a => !a.IsDeleted)
+           .Property(a => a.Id)
+           .ValueGeneratedNever();
+
+        modelBuilder.Entity<TaskAttachment>()
+            .HasOne(a => a.Task)
+            .WithMany(t => t.Attachments)
+            .HasForeignKey(a => a.TaskId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

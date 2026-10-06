@@ -2,7 +2,7 @@
 
 namespace Shared.Dtos.Responses.ProjectTasks;
 
-public record class ProjectTaskDto
+public class ProjectTaskDto
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -13,6 +13,9 @@ public record class ProjectTaskDto
     public DateTimeOffset EndsAt { get; set; }
     public bool IsRespondedByCurrentUser { get; set; }
     public decimal? ProjectRating { get; set; }
+
+    public Guid CustomerId { get; set; }
+    public Guid? ExecutorId { get; set; }
 
     public ProjectTaskDto() { }
 
@@ -25,7 +28,9 @@ public record class ProjectTaskDto
         DateTimeOffset startsAt,
         DateTimeOffset endsAt,
         bool isRespondedByCurrentUser,
-        decimal? projectRating)
+        decimal? projectRating,
+        Guid customerId,
+        Guid? executorId)
     {
         Id = id;
         Title = title;
@@ -36,5 +41,7 @@ public record class ProjectTaskDto
         EndsAt = endsAt;
         IsRespondedByCurrentUser = isRespondedByCurrentUser;
         ProjectRating = projectRating;
+        CustomerId = customerId;
+        ExecutorId = executorId;
     }
 }

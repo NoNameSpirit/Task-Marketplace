@@ -1,9 +1,11 @@
 ﻿using Application.Common;
 using Application.ProjectTasks.Commands.Create;
+using Application.Services.FileStorage;
 using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
 using Domain.Config;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.Files;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.UserActions;
 using Domain.Interfaces.Users;
@@ -72,6 +74,24 @@ public static class ServiceCollectionExtensions
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        services
+            .AddOptions<FileSettings>()
+            .Bind(configuration.GetSection(FileSettings.SectionName))
+            .Configure(options =>
+            {
+                var userRoaming = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+                var appConfig = configuration.GetSection(AppConfig.SectionName)
+                    .Get<AppConfig>();
+
+                options.FullPath = Path.Combine(
+                    userRoaming,
+                    appConfig!.AppName,
+                    options.FileName);
+            })
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         return services;
     }
 
@@ -84,7 +104,8 @@ public static class ServiceCollectionExtensions
             configuration.RegisterServicesFromAssembly(typeof(CreateProjectTaskCommand).Assembly));
 
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
-                .AddScoped<IPasswordHasher, PasswordHasher>();
+                .AddScoped<IPasswordHasher, PasswordHasher>()
+                .AddScoped<IFileStorageService, FileStorageService>();
 
         return services;
     }
@@ -110,6 +131,9 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
                 .AddScoped<IUserActionQueryRepository, UserActionQueryRepository>();
+
+        services.AddScoped<ITaskAttachmentCommandRepository, TaskAttachmentCommandRepository>()
+                .AddScoped<ITaskAttachmentQueryRepository, TaskAttachmentQueryRepository>();
 
         services.AddHostedService<DeadlineOverdueWorker>();
 

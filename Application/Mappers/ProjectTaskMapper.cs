@@ -19,7 +19,9 @@ public static class ProjectTaskMapper
             entity.StartsAt,
             entity.EndsAt,
             isRespondedByCurrentUser,
-            entity.ProjectRating);
+            entity.ProjectRating,
+            entity.CustomerId,
+            entity.ExecutorId);
     }
 
     public static PagedResult<ProjectTaskDto> ToPagedDto(PagedResult<ProjectTask> paged)
@@ -28,13 +30,11 @@ public static class ProjectTaskMapper
             .Select(t => ToDto(t))
             .ToList();
 
-        var pagedResult = PagedResult<ProjectTaskDto>.Create(
+        return PagedResult<ProjectTaskDto>.Create(
             dtos,
             paged.Page,
             paged.PageSize,
             paged.TotalCount);
-
-        return pagedResult;
     }
 
     public static List<TaskResponseDto> ToResponseDtos(ProjectTask entity)

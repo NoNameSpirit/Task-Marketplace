@@ -42,14 +42,16 @@
             {
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex flex-column h-100">
-                        <TaskCard 
+                        <TaskCard
                             ProjectTask="task"
+                            CurrentUserId="CurrentUserId"
                             IsExecutor="IsExecutor"
                             IsCustomer="IsCustomer"
                             IsResponded="task.IsRespondedByCurrentUser"
                             OnDeleted="HandleTaskDeleted"
                             OnRespond="HandleRespond"
                             OnOpenChat="OpenChatModal"
+                            OnOpenAttachments="OpenAttachmentsModal"
                             OnMarkDone="OpenRateModal"
                             OnCancel="HandleCancel"
                             OnEdit="OpenEditModal" />
@@ -108,3 +110,9 @@
                Task="_editingTask"
                OnUpdated="HandleTaskUpdated"
                OnClose="_editModal.Close" />
+
+<AttachmentsModal IsVisible="_attachmentsModal.IsOpen"
+                  TaskId="_attachmentsModal.TaskId"
+                  CurrentUserId="CurrentUserId"
+                  CanUpload="@ComputeCanUpload()"
+                  OnClose="_attachmentsModal.Close" />

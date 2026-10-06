@@ -26,7 +26,6 @@ public class ChatController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> Create(
         Guid projectTaskId)
     {
@@ -61,7 +60,6 @@ public class ChatController : ControllerBase
     }
 
     [HttpPost("{id}/messages")]
-    [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Executor)}")]
     public async Task<IActionResult> AddMessage(
         Guid id,
         [FromBody] AddMessageChatDto request)
@@ -77,7 +75,6 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Executor)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> GetById(
         Guid id)
     {
@@ -89,7 +86,6 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet("task/{id}")]
-    [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Executor)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> GetByTaskId(
         Guid id)
     {
@@ -101,7 +97,6 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet("{id}/messages")]
-    [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Executor)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> GetAll(
         Guid id)
     {

@@ -8,6 +8,7 @@ using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Dtos.Responses.UserActions;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace Blazor_Web_App.Services;
@@ -239,8 +240,8 @@ public class ApiService
     }
 
     public async Task<Result<ChatDto>> CreateChatAsync(
-    Guid taskId,
-    CancellationToken cancellationToken = default)
+        Guid taskId,
+        CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);
 
@@ -585,5 +586,104 @@ public class ApiService
         }
 
         return Result.Success();
+    }
+
+    public async Task<Result<List<TaskAttachmentDto>>> GetTaskAttachmentsAsync(
+        Guid taskId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.GetAsync(
+            $"api/tasks/{taskId}/attachments",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+            return Result<List<TaskAttachmentDto>>.Failure("Failed to load attachments");
+
+        var result = await response.Content.ReadFromJsonAsync<List<TaskAttachmentDto>>(
+            _options, cancellationToken);
+
+        return Result<List<TaskAttachmentDto>>.Success(result ?? new List<TaskAttachmentDto>());
+    }
+
+    public async Task<Result<TaskAttachmentDto>> UploadAttachmentAsync(
+        Guid taskId,
+        Stream content,
+        string fileName,
+        string contentType,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        using var form = new MultipartFormDataContent();
+
+        using var fileContent = new StreamContent(content);
+
+        fileContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+        form.Add(fileContent, "file", fileName);
+
+        var response = await _httpClient.PostAsync(
+            $"api/tasks/{taskId}/attachments",
+            form,
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result<TaskAttachmentDto>.Failure(problem!.Detail);
+        }
+
+        var dto = await response.Content.ReadFromJsonAsync<TaskAttachmentDto>(
+            _options,
+            cancellationToken);
+
+        return Result<TaskAttachmentDto>.Success(dto!);
+    }
+
+    public async Task<Result> DeleteAttachmentAsync(
+        Guid taskId,
+        Guid attachmentId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.DeleteAsync(
+            $"api/tasks/{taskId}/attachments/{attachmentId}",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
+
+            return Result.Failure(problem?.Detail ?? "Failed to delete attachment");
+        }
+
+        return Result.Success();
+    }
+
+    public async Task<Result<AttachmentFileResult>> DownloadAttachmentAsync(
+        Guid taskId,
+        Guid attachmentId,
+        CancellationToken cancellationToken = default)
+    {
+        await SetAuthHeaderAsync(cancellationToken);
+
+        var response = await _httpClient.GetAsync(
+            $"api/tasks/{taskId}/attachments/{attachmentId}/download",
+            cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return Result<AttachmentFileResult>.Failure("Failed to download attachment");
+        }
+
+        var dto = await response.Content.ReadFromJsonAsync<AttachmentFileResult>(
+            _options,
+            cancellationToken);
+
+        return Result<AttachmentFileResult>.Success(dto!);
     }
 }

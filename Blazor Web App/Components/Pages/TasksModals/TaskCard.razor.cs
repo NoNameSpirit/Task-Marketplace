@@ -17,6 +17,8 @@ public partial class TaskCard : ComponentBase
     [Parameter] public EventCallback<Guid> OnMarkDone { get; set; }
     [Parameter] public EventCallback<Guid> OnCancel { get; set; }
     [Parameter] public EventCallback<Guid> OnEdit { get; set; }
+    [Parameter] public Guid CurrentUserId { get; set; }
+    [Parameter] public EventCallback<Guid> OnOpenAttachments { get; set; }
     [Inject] public ApiService ApiService { get; set; } = null!;
 
     private bool ShowEditButton
@@ -43,6 +45,14 @@ public partial class TaskCard : ComponentBase
         => IsCustomer
         && ProjectTask.Status != ProjectTaskStatus.Done
         && ProjectTask.Status != ProjectTaskStatus.Cancelled;
+    private bool ShowAttachmentsButton
+        => ProjectTask.CustomerId == CurrentUserId
+        || ProjectTask.ExecutorId == CurrentUserId;
+
+    private async Task HandleOpenAttachments()
+    {
+        await OnOpenAttachments.InvokeAsync(ProjectTask.Id);
+    }
 
     private async Task HandleRespond()
     {

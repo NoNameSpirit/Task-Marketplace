@@ -2,25 +2,42 @@
 @using Shared.Enums
 @using System.Security.Claims
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Task Marketplace</PageTitle>
 
 <div class="container py-5">
-    <h1 class="mb-4">Task Marketplace</h1>
 
     <AuthorizeView>
         <Authorized Context="AuthContext">
-            <p class="text-success fw-bold">Hello, @AuthContext.User.Identity?.Name!</p>
-            <p>Your role: @AuthContext.User.FindFirst(ClaimTypes.Role)?.Value</p>
+            @{
+                var userName = AuthContext.User.Identity?.Name ?? "User";
+                var role = AuthContext.User.FindFirst(ClaimTypes.Role)?.Value ?? "Unknown";
+            }
 
-            <div class="row g-3 mt-4">
+            <div class="p-5 mb-4 bg-light rounded-3 border">
+                <div class="container-fluid py-2">
+                    <h1 class="display-5 fw-bold mb-2">Task Marketplace</h1>
+                    
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fs-5">Hello, <strong>@userName</strong></span>
+                        <span class="badge bg-primary fs-6">@role</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="h4 mb-3">Quick actions</h2>
+
+            <div class="row g-3">
+
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
                 {
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">My Tasks</h5>
-                                <p class="card-text">Manage your published tasks and view candidates.</p>
-                                <a class="btn btn-primary" href="/tasks">Open</a>
+                                <p class="card-text text-muted">
+                                    Manage your published tasks, view candidates and pick an executor.
+                                </p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">Open tasks</a>
                             </div>
                         </div>
                     </div>
@@ -28,22 +45,26 @@
 
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
                 {
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Browse Tasks</h5>
-                                <p class="card-text">Find new tasks and respond to them.</p>
-                                <a class="btn btn-primary" href="/tasks">Browse</a>
+                                <p class="card-text text-muted">
+                                    Find new published tasks and respond to them.
+                                </p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">Browse</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">My Assigned Tasks</h5>
-                                <p class="card-text">Tasks assigned to you and chats with customers.</p>
-                                <a class="btn btn-primary" href="/my-assigned">Open</a>
+                                <p class="card-text text-muted">
+                                    Tasks assigned to you, chats with customers and deadlines.
+                                </p>
+                                <a class="btn btn-primary mt-auto" href="/my-assigned">Open assigned</a>
                             </div>
                         </div>
                     </div>
@@ -51,30 +72,43 @@
 
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
                 {
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Admin: Users</h5>
-                                <p class="card-text">Manage users, roles and blocks.</p>
-                                <a class="btn btn-primary" href="/admin/users">Open</a>
+                                <p class="card-text text-muted">
+                                    Manage users, roles, blocks and removals.
+                                </p>
+                                <a class="btn btn-primary mt-auto" href="/admin/users">Open users</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Admin: Actions</h5>
-                                <p class="card-text">View user activity log.</p>
-                                <a class="btn btn-primary" href="/admin/actions">Open</a>
+                                <p class="card-text text-muted">
+                                    View the user activity log with filters.
+                                </p>
+                                <a class="btn btn-primary mt-auto" href="/admin/actions">Open log</a>
                             </div>
                         </div>
                     </div>
                 }
             </div>
         </Authorized>
+
         <NotAuthorized>
-            <p>Please <a href="/login">log in</a> or <a href="/register">register</a>.</p>
+            <div class="p-5 mb-4 bg-light rounded-3 border text-center">
+                <h1 class="display-5 fw-bold mb-3">Task Marketplace</h1>
+                
+                <div class="d-flex justify-content-center gap-2">
+                    <a class="btn btn-primary btn-lg" href="/login">Sign In</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="/register">Register</a>
+                </div>
+            </div>
         </NotAuthorized>
     </AuthorizeView>
+
 </div>

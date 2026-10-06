@@ -18,6 +18,7 @@ public class ProjectTask : Entity
     public decimal? ProjectRating { get; private set; }
 
     public ICollection<TaskResponse> Responses { get; private set; } = new List<TaskResponse>();
+    public ICollection<TaskAttachment> Attachments { get; private set; } = new List<TaskAttachment>();
 
     private ProjectTask() { }
 

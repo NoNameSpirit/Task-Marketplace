@@ -64,5 +64,11 @@
                 Cancel
             </button>
         }
+        @if (ShowAttachmentsButton)
+        {
+            <button class="btn btn-sm btn-outline-secondary flex-fill" @onclick="HandleOpenAttachments">
+                Attachments
+            </button>
+        }
     </div>
 </div>
