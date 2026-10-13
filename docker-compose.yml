@@ -32,5 +32,32 @@ services:
         - ASPNETCORE_ENVIRONMENT=Development
         - AppConfig__ConnectionString=Server=sqlserver;Database=ProjectTaskDb;User Id=sa;Password=StrongP@ssw0rd123!;TrustServerCertificate=True;
             
+            
+  blazor_client:
+    build:
+      context: .
+      dockerfile: blazor.dockerfile
+    container_name: projecttask-client
+    ports:
+      - "5020:8080"
+    depends_on:
+      - web_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080
+
+  blazor_other_client:
+    build:
+      context: .
+      dockerfile: blazor.dockerfile
+    container_name: projecttask-other-client
+    ports:
+      - "5021:8080"
+    depends_on:
+      - web_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080
+
 volumes:
   sqlserver-data:
