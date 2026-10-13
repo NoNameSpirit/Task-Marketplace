@@ -1,0 +1,6 @@
+﻿@using Blazor_Web_App.Constants
+
+<select class="form-select form-select-sm" value="@_current" @onchange="OnCultureChanged">
+    <option value="@CultureConstants.English">English</option>
+    <option value="@CultureConstants.Russian">Русский</option>
+</select>

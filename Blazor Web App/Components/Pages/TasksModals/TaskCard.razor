@@ -1,10 +1,14 @@
-﻿<div class="card h-100 d-flex flex-column">
+﻿@inject IStringLocalizer<SharedResources> Loc
+
+<div class="card h-100 d-flex flex-column">
     <div class="card-body position-relative">
         @if (ShowDeleteButton)
         {
             <button class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-2"
-                    title="Delete"
-                    @onclick="HandleDelete">✕</button>
+                    title="@Loc[ResourceKeys.Delete]"
+                    @onclick="HandleDelete">
+                ✕
+            </button>
         }
 
         <h5 class="card-title pe-5">@ProjectTask.Title</h5>
@@ -12,7 +16,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <span class="badge bg-secondary">@ProjectTask.Status</span>
-            <span class="fw-bold">@ProjectTask.Price.ToString("C")</span>
+            <span class="fw-bold">@ProjectTask.Currency@ProjectTask.Price.ToString("0.00")</span>
 
             @if (ProjectTask.ProjectRating.HasValue)
             {
@@ -33,41 +37,41 @@
             <button class="btn btn-sm flex-fill @(IsResponded ? "btn-secondary" : "btn-success")"
                     @onclick="HandleRespond"
                     disabled="@IsResponded">
-                @(IsResponded ? "Responded" : "Respond")
+                @(IsResponded ? Loc[ResourceKeys.Responded] : Loc[ResourceKeys.Respond])
             </button>
         }
 
         @if (ShowChatButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleOpenChat">
-                Chat
+                @Loc[ResourceKeys.Chat]
             </button>
         }
 
         @if (ShowMarkDoneButton)
         {
             <button class="btn btn-sm btn-outline-success flex-fill" @onclick="HandleMarkDone">
-                Done
+                @Loc[ResourceKeys.Done]
             </button>
         }
 
         @if (ShowEditButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleEdit">
-                Edit
+                @Loc[ResourceKeys.Edit]
             </button>
         }
 
         @if (ShowCancelButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleCancel">
-                Cancel
+                @Loc[ResourceKeys.Cancel]
             </button>
         }
         @if (ShowAttachmentsButton)
         {
             <button class="btn btn-sm btn-outline-secondary flex-fill" @onclick="HandleOpenAttachments">
-                Attachments
+                @Loc[ResourceKeys.Attachments]
             </button>
         }
     </div>

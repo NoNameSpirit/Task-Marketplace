@@ -1,12 +1,13 @@
 ﻿@page "/admin/users"
 @using Shared.Enums
+@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>Users</PageTitle>
+<PageTitle>@Loc[ResourceKeys.Users]</PageTitle>
 
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container py-4">
-            <h2 class="mb-4">Users</h2>
+            <h2 class="mb-4">@Loc[ResourceKeys.Users]</h2>
 
             @if (IsLoading)
             {
@@ -20,18 +21,18 @@
             }
             else if (Users is null || Users.Count == 0)
             {
-                <div class="alert alert-info">No users found.</div>
+                <div class="alert alert-info">@Loc[ResourceKeys.NoUsersFound]</div>
             }
             else
             {
                 <table class="table table-striped align-middle">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Rating</th>
-                            <th>Blocked</th>
-                            <th>Actions</th>
+                            <th>@Loc[ResourceKeys.Name]</th>
+                            <th>@Loc[ResourceKeys.Role]</th>
+                            <th>@Loc[ResourceKeys.Rating]</th>
+                            <th>@Loc[ResourceKeys.Blocked]</th>
+                            <th>@Loc[ResourceKeys.Actions]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,17 +52,17 @@
                                     </select>
                                 </td>
                                 <td>@(user.Rating?.ToString("0.0") ?? "—")</td>
-                                <td>@(user.IsBlocked ? "Yes" : "No")</td>
+                                <td>@(user.IsBlocked ? Loc[ResourceKeys.Yes].Value : Loc[ResourceKeys.No].Value)</td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-warning me-1"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleBlock(user)">
-                                        @(user.IsBlocked ? "Unblock" : "Block")
+                                        @(user.IsBlocked ? Loc[ResourceKeys.Unblock].Value : Loc[ResourceKeys.Block].Value)
                                     </button>
                                     <button class="btn btn-sm btn-outline-danger"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleDelete(user.Id)">
-                                        Delete
+                                        @Loc[ResourceKeys.Delete]
                                     </button>
                                 </td>
                             </tr>
@@ -72,13 +73,13 @@
                 <nav class="mt-4">
                     <ul class="pagination justify-content-center">
                         <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">Prev</button>
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
                         </li>
                         <li class="page-item disabled">
                             <span class="page-link">@CurrentPage / @TotalPages</span>
                         </li>
                         <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">Next</button>
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
                         </li>
                     </ul>
                 </nav>
@@ -87,7 +88,7 @@
     </Authorized>
     <NotAuthorized>
         <div class="container py-4">
-            <div class="alert alert-danger">Access denied. Admin only.</div>
+            <div class="alert alert-danger">@Loc[ResourceKeys.AccessDenied]</div>
         </div>
     </NotAuthorized>
 </AuthorizeView>

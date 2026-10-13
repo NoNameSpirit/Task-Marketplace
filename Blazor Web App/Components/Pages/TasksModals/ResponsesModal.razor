@@ -1,10 +1,12 @@
-﻿@if (IsVisible)
+﻿@inject IStringLocalizer<SharedResources> Loc
+
+@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Candidates for "@TaskTitle"</h5>
+                    <h5 class="modal-title">@Loc[ResourceKeys.CandidatesFor] "@TaskTitle"</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
@@ -19,7 +21,7 @@
                     }
                     else if (Responses is null || Responses.Count == 0)
                     {
-                        <div class="alert alert-info">No candidates yet.</div>
+                        <div class="alert alert-info">@Loc[ResourceKeys.NoCandidates]</div>
                     }
                     else
                     {
@@ -36,13 +38,13 @@
                                         </span>
                                         <br />
                                         <small class="text-muted">
-                                            Responded: @resp.RespondedAt.Date.ToShortDateString()
+                                            @Loc[ResourceKeys.RespondedAt] @resp.RespondedAt.Date.ToShortDateString()
                                         </small>
                                     </div>
                                     <button class="btn btn-sm btn-primary"
                                             @onclick="() => HandleAssign(resp.ExecutorId)"
                                             disabled="@IsAssigning">
-                                        @(IsAssigning && _assigningId == resp.ExecutorId ? "..." : "Assign")
+                                        @(IsAssigning && _assigningId == resp.ExecutorId ? "..." : Loc[ResourceKeys.Assign].Value)
                                     </button>
                                 </li>
                             }

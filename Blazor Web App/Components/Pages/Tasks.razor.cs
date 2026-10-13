@@ -1,7 +1,9 @@
 ﻿using Blazor_Web_App.Modals;
+using Blazor_Web_App.Resources;
 using Blazor_Web_App.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
@@ -14,6 +16,7 @@ public partial class Tasks : ComponentBase
     [Inject] public ApiService ApiService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
 
     private const int PageSize = 10;
     private const int FirstPage = 1;
@@ -22,6 +25,8 @@ public partial class Tasks : ComponentBase
     private readonly ModalState _responsesModal = new();
     private readonly ModalState _chatModal = new();
     private readonly ModalState _rateModal = new();
+    private readonly ModalState _editModal = new();
+    private readonly ModalState _attachmentsModal = new();
 
     private List<ProjectTaskDto>? ListTasks;
     private Guid CurrentUserId;
@@ -32,11 +37,9 @@ public partial class Tasks : ComponentBase
     private bool IsExecutor;
     private bool _initialized;
     private string ErrorMessage = string.Empty;
-    private string PageTitleText = "Tasks";
+    private string PageTitleTextKey = ResourceKeys.MyTasks;
     private string _searchQuery = string.Empty;
-    private readonly ModalState _editModal = new();
     private ProjectTaskDto? _editingTask;
-    private readonly ModalState _attachmentsModal = new();
     private ProjectTaskDto? _attachmentsModalTask;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -63,7 +66,7 @@ public partial class Tasks : ComponentBase
 
         IsCustomer = state.User.IsInRole(nameof(UserRole.Customer));
         IsExecutor = state.User.IsInRole(nameof(UserRole.Executor));
-        PageTitleText = IsCustomer ? "My Tasks" : "Available Tasks";
+        PageTitleTextKey = IsCustomer ? ResourceKeys.MyTasks : ResourceKeys.AvailableTasks;
         CurrentUserId = userId;
 
         await LoadTasks();
@@ -208,6 +211,7 @@ public partial class Tasks : ComponentBase
     {
         _createModal.Open(Guid.Empty);
     }
+
     private async Task HandleSearch()
     {
         CurrentPage = FirstPage;

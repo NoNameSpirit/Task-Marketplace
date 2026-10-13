@@ -1,11 +1,13 @@
-﻿@if (IsVisible)
+﻿@inject IStringLocalizer<SharedResources> Loc
+
+@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Chat: @TaskTitle</h5>
+                    <h5 class="modal-title">@Loc[ResourceKeys.ChatTitle]: @TaskTitle</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
@@ -20,17 +22,26 @@
                     }
                     else if (Chat?.Messages is null || Chat.Messages.Count == 0)
                     {
-                        <div class="text-muted">No messages yet</div>
+                        <div class="text-muted">@Loc[ResourceKeys.NoMessages]</div>
                     }
                     else
                     {
                         @foreach (var m in Chat.Messages.AsEnumerable().Reverse())
                         {
                             var own = m.UserId == CurrentUserId;
+                            var sender = own ? Loc[ResourceKeys.You].Value : m.UserName;
 
-                            <div class="mb-2 @(own ? "text-end" : "text-start")">
-                                <span class="badge @(own ? "bg-primary" : "bg-secondary")">@m.Text</span>
-                                <div><small class="text-muted">@m.SentAt.ToLocalTime().ToString("g")</small></div>
+                            <div class="mb-3 @(own ? "text-end" : "text-start")">
+                                <div>
+                                    <small class="text-muted">@sender</small>
+                                </div>
+                                <div class="d-inline-block text-start p-2 rounded @(own ? "bg-primary text-white" : "bg-light border")"
+                                     style="max-width: 75%; word-wrap: break-word; white-space: pre-wrap;">
+                                    @m.Text
+                                </div>
+                                <div>
+                                    <small class="text-muted">@m.SentAt.ToLocalTime().ToString("g")</small>
+                                </div>
                             </div>
                         }
                     }
@@ -41,8 +52,10 @@
                            @bind="NewMessage"
                            @bind:event="oninput"
                            @onkeydown="HandleKeyDown"
-                           placeholder="Message..." />
-                    <button class="btn btn-primary" @onclick="Send" disabled="@IsSending">Send</button>
+                           placeholder="@Loc[ResourceKeys.MessagePlaceholder]" />
+                    <button class="btn btn-primary" @onclick="Send" disabled="@IsSending">
+                        @Loc[ResourceKeys.Send]
+                    </button>
                 </div>
 
             </div>

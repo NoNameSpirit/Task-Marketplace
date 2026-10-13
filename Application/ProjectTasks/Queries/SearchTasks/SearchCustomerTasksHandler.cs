@@ -1,6 +1,8 @@
 ﻿using Application.Mappers;
+using Domain.Config;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
+using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -10,10 +12,14 @@ public class SearchCustomerTasksHandler
     : IRequestHandler<SearchCustomerTasksQuery, Result<PagedResult<ProjectTaskDto>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
+    private readonly AppConfig _appConfig;
 
-    public SearchCustomerTasksHandler(IProjectTaskQueryRepository queryRepository)
+    public SearchCustomerTasksHandler(
+        IProjectTaskQueryRepository queryRepository,
+        IOptions<AppConfig> appConfig)
     {
         _queryRepository = queryRepository;
+        _appConfig = appConfig.Value;
     }
 
     public async Task<Result<PagedResult<ProjectTaskDto>>> Handle(
@@ -28,7 +34,7 @@ public class SearchCustomerTasksHandler
             cancellationToken);
 
         var dtos = paged.Collection
-             .Select(t => ProjectTaskMapper.ToDto(t))
+             .Select(t => ProjectTaskMapper.ToDto(t, _appConfig.Currency))
              .ToList();
 
         var result = PagedResult<ProjectTaskDto>.Create(

@@ -1,13 +1,19 @@
 ﻿@using global::Shared.Enums
+@inject IStringLocalizer<SharedResources> Loc
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Blazor App</a>
+        <a class="navbar-brand" href="">@Loc[ResourceKeys.AppName]</a>
         <AuthorizeView>
             <Authorized>
-                <button class="btn btn-outline-light btn-sm" @onclick="HandleLogout">Sign Out</button>
+                <button class="btn btn-outline-light btn-sm" @onclick="HandleLogout">
+                    @Loc[ResourceKeys.SignOut]
+                </button>
             </Authorized>
             <NotAuthorized>
-                <a href="/login" class="btn btn-outline-light btn-sm">Sign In</a>
+                <a href="/login" class="btn btn-outline-light btn-sm">
+                    @Loc[ResourceKeys.SignIn]
+                </a>
             </NotAuthorized>
         </AuthorizeView>
     </div>
@@ -17,39 +23,50 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
-    <AuthorizeView>
-        <Authorized Context="AuthContext">
-            @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
-            {
+        <AuthorizeView>
+            <Authorized Context="AuthContext">
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Admin)))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="/admin/users" Match="NavLinkMatch.Prefix">
+                            @Loc[ResourceKeys.AdminUsers]
+                        </NavLink>
+                    </div>
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="/admin/actions" Match="NavLinkMatch.Prefix">
+                            @Loc[ResourceKeys.AdminActions]
+                        </NavLink>
+                    </div>
+                }
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">
+                            @Loc[ResourceKeys.MyTasks]
+                        </NavLink>
+                    </div>
+                }
+                @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">
+                            @Loc[ResourceKeys.BrowseTasks]
+                        </NavLink>
+                    </div>
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="/my-assigned" Match="NavLinkMatch.Prefix">
+                            @Loc[ResourceKeys.MyAssigned]
+                        </NavLink>
+                    </div>
+                }
+            </Authorized>
+            <NotAuthorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/admin/users" Match="NavLinkMatch.Prefix">Admin: Users</NavLink>
+                    <NavLink class="nav-link" href="/login" Match="NavLinkMatch.Prefix">
+                        @Loc[ResourceKeys.SignIn]
+                    </NavLink>
                 </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/admin/actions" Match="NavLinkMatch.Prefix">Admin: Actions</NavLink>
-                </div>
-            }
-            @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
-            {
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">My Tasks</NavLink>
-                </div>
-            }
-            @if (AuthContext.User.IsInRole(nameof(UserRole.Executor)))
-            {
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">Browse Tasks</NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/my-assigned" Match="NavLinkMatch.Prefix">My Assigned</NavLink>
-                </div>
-            }
-        </Authorized>
-        <NotAuthorized>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="/login" Match="NavLinkMatch.Prefix">Sign In</NavLink>
-            </div>
-        </NotAuthorized>
-    </AuthorizeView>
-</nav>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
 </div>
-

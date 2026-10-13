@@ -5,7 +5,7 @@ using Shared.Dtos.Responses.Chats;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
-public partial class ChatModal : ComponentBase
+public partial class ChatModal : ComponentBase, IDisposable
 {
     [Parameter] public bool IsVisible { get; set; }
     [Parameter] public Guid TaskId { get; set; }
@@ -19,13 +19,58 @@ public partial class ChatModal : ComponentBase
     private string ErrorMessage = string.Empty;
     private bool IsLoading;
     private bool IsSending;
+    private Timer? _pollingTimer;
+
+    private const int PollingIntervalSeconds = 2;
 
     protected override async Task OnParametersSetAsync()
     {
-        if (!IsVisible || TaskId == Guid.Empty) return;
+        if (!IsVisible || TaskId == Guid.Empty)
+        {
+            StopPolling();
+            return;
+        }
 
         await LoadTitle();
         await LoadChat();
+
+        StartPolling();
+    }
+
+    private void StartPolling()
+    {
+        StopPolling();
+
+        _pollingTimer = new System.Threading.Timer(async _ =>
+        {
+            await InvokeAsync(async () =>
+            {
+                if (!IsVisible) return;
+                await SilentReload();
+                StateHasChanged();
+            });
+        }, null, TimeSpan.FromSeconds(PollingIntervalSeconds), TimeSpan.FromSeconds(PollingIntervalSeconds));
+    }
+
+    private void StopPolling()
+    {
+        _pollingTimer?.Dispose();
+        _pollingTimer = null;
+    }
+
+    private async Task SilentReload()
+    {
+        if (Chat is null)
+        {
+            return;
+        }
+
+        var existing = await ApiService.GetChatByTaskIdAsync(TaskId);
+
+        if (existing.IsSuccess && existing.Value is not null)
+        {
+            Chat = existing.Value;
+        }
     }
 
     private async Task LoadTitle()
@@ -87,6 +132,7 @@ public partial class ChatModal : ComponentBase
 
     private async Task Close()
     {
+        StopPolling();
         IsVisible = false;
         await OnClose.InvokeAsync();
     }
@@ -97,5 +143,10 @@ public partial class ChatModal : ComponentBase
         {
             await Send();
         }
+    }
+
+    public void Dispose()
+    {
+        StopPolling();
     }
 }

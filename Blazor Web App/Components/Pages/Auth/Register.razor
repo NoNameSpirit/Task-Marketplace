@@ -1,12 +1,13 @@
 ﻿@page "/register"
 @using Shared.Enums
+@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@PageTitle</PageTitle>
+<PageTitle>@Loc[ResourceKeys.Register]</PageTitle>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <div class="card p-4" style="width: 40rem;">
-        <h3 class="text-center mb-4">@PageTitle</h3>
-        
+        <h3 class="text-center mb-4">@Loc[ResourceKeys.Register]</h3>
+
         @if (!IsSuccess)
         {
             @if (!string.IsNullOrEmpty(ErrorMessage))
@@ -15,32 +16,32 @@
                     @ErrorMessage
                 </div>
             }
-            
+
             <input class="form-control mb-3"
                    type="text"
-                   placeholder="Login"
+                   placeholder="@Loc[ResourceKeys.Login]"
                    @bind="Login" />
 
             <input class="form-control mb-3"
                    type="password"
-                   placeholder="Password"
+                   placeholder="@Loc[ResourceKeys.Password]"
                    @bind="Password" />
 
             <select class="form-select mb-3" @bind="Role">
-                <option value="@UserRole.Customer">Customer</option>
-                <option value="@UserRole.Executor">Executor</option>
+                <option value="@UserRole.Customer">@Loc[ResourceKeys.Customer]</option>
+                <option value="@UserRole.Executor">@Loc[ResourceKeys.Executor]</option>
             </select>
 
             <button class="btn btn-primary w-100"
                     @onclick="HandleRegister"
                     disabled="@IsLoading">
-                @(IsLoading ? "Loading..." : "Register")
+                @(IsLoading ? Loc[ResourceKeys.Loading].Value : Loc[ResourceKeys.Register].Value)
             </button>
         }
         else
         {
             <div class="alert alert-success text-center">
-                Registered successfully!
+                @Loc[ResourceKeys.RegisteredSuccess]
             </div>
         }
     </div>

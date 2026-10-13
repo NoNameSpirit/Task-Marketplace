@@ -13,6 +13,7 @@ public class ProjectTaskDto
     public DateTimeOffset EndsAt { get; set; }
     public bool IsRespondedByCurrentUser { get; set; }
     public decimal? ProjectRating { get; set; }
+    public string Currency { get; set; } = string.Empty;
 
     public Guid CustomerId { get; set; }
     public Guid? ExecutorId { get; set; }
@@ -30,7 +31,8 @@ public class ProjectTaskDto
         bool isRespondedByCurrentUser,
         decimal? projectRating,
         Guid customerId,
-        Guid? executorId)
+        Guid? executorId,
+        string currency)
     {
         Id = id;
         Title = title;
@@ -43,5 +45,6 @@ public class ProjectTaskDto
         ProjectRating = projectRating;
         CustomerId = customerId;
         ExecutorId = executorId;
+        Currency = currency;
     }
 }

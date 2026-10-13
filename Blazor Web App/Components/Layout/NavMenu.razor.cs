@@ -2,23 +2,25 @@
 using Blazor_Web_App.Services.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Shared.Dtos.Responses.Users;
 
 namespace Blazor_Web_App.Components.Layout;
 
 public partial class NavMenu : ComponentBase
 {
-    [Inject] AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
-    [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
-    [Inject] NavigationManager NavigationManager { get; set; } = null!;
+    [Inject] public ILocalStorageService LocalStorage { get; set; } = null!;
+    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
+    [Inject] public NavigationManager Nav { get; set; } = null!;
 
     private async Task HandleLogout()
     {
-        await LocalStorageService.RemoveItemAsync("Token");
-        await LocalStorageService.RemoveItemAsync("Name");
-        await LocalStorageService.RemoveItemAsync("Role");
+        await LocalStorage.RemoveItemAsync(nameof(AuthDto.Token));
+        await LocalStorage.RemoveItemAsync(nameof(AuthDto.Name));
+        await LocalStorage.RemoveItemAsync(nameof(AuthDto.Role));
+        await LocalStorage.RemoveItemAsync(nameof(AuthDto.Id));
 
         ((CustomAuthStateProvider)AuthStateProvider).NotifyLogout();
 
-        NavigationManager.NavigateTo("/", forceLoad: true);
+        Nav.NavigateTo("/login");
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Application.Mappers;
+using Domain.Config;
 using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
+using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
@@ -11,10 +13,14 @@ namespace Application.ProjectTasks.Queries.GetProjectTaskById;
 public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery, Result<ProjectTaskDto>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
+    private readonly AppConfig _appConfig;
 
-    public GetProjectTaskByIdHandler(IProjectTaskQueryRepository queryRepository)
+    public GetProjectTaskByIdHandler(
+        IProjectTaskQueryRepository queryRepository,
+        IOptions<AppConfig> appConfig)
     {
         _queryRepository = queryRepository;
+        _appConfig = appConfig.Value;
     }
 
     public async Task<Result<ProjectTaskDto>> Handle(
@@ -30,6 +36,9 @@ public class GetProjectTaskByIdHandler : IRequestHandler<GetProjectTaskByIdQuery
                 ErrorType.NotFound);
         }
 
-        return Result<ProjectTaskDto>.Success(ProjectTaskMapper.ToDto(projectTask!));
+        return Result<ProjectTaskDto>.Success(
+            ProjectTaskMapper.ToDto(
+                projectTask!,
+                _appConfig.Currency));
     }
 }

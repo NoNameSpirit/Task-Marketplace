@@ -8,6 +8,7 @@ public static class ProjectTaskMapper
 {
     public static ProjectTaskDto ToDto(
         ProjectTask entity,
+        string currency,
         bool isRespondedByCurrentUser = false)
     {
         return new ProjectTaskDto(
@@ -21,13 +22,16 @@ public static class ProjectTaskMapper
             isRespondedByCurrentUser,
             entity.ProjectRating,
             entity.CustomerId,
-            entity.ExecutorId);
+            entity.ExecutorId,
+            currency);
     }
 
-    public static PagedResult<ProjectTaskDto> ToPagedDto(PagedResult<ProjectTask> paged)
+    public static PagedResult<ProjectTaskDto> ToPagedDto(
+        PagedResult<ProjectTask> paged,
+        string currency)
     {
         var dtos = paged.Collection
-            .Select(t => ToDto(t))
+            .Select(t => ToDto(t, currency))
             .ToList();
 
         return PagedResult<ProjectTaskDto>.Create(

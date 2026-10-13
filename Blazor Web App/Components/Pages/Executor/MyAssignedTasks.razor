@@ -1,9 +1,10 @@
 ﻿@page "/my-assigned"
+@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>My Assigned Tasks</PageTitle>
+<PageTitle>@Loc[ResourceKeys.MyAssignedTasks]</PageTitle>
 
 <div class="container py-4">
-    <h2 class="mb-4">My Assigned Tasks</h2>
+    <h2 class="mb-4">@Loc[ResourceKeys.MyAssignedTasks]</h2>
 
     @if (IsLoading)
     {
@@ -15,7 +16,7 @@
     }
     else if (ListTasks is null || ListTasks.Count == 0)
     {
-        <div class="alert alert-info">No assigned tasks.</div>
+        <div class="alert alert-info">@Loc[ResourceKeys.NoAssignedTasks]</div>
     }
     else
     {
@@ -38,13 +39,13 @@
         <nav class="mt-4">
             <ul class="pagination justify-content-center">
                 <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">Prev</button>
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
                 </li>
                 <li class="page-item disabled">
                     <span class="page-link">@CurrentPage / @TotalPages</span>
                 </li>
                 <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">Next</button>
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
                 </li>
             </ul>
         </nav>
