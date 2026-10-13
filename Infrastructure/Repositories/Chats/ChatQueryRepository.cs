@@ -23,6 +23,18 @@ public class ChatQueryRepository : IChatQueryRepository
             .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 
+    public async Task<Dictionary<Guid, string>> GetUserNamesAsync(
+        IEnumerable<Guid> userIds,
+        CancellationToken cancellationToken = default)
+    {
+        var ids = userIds.Distinct().ToList();
+
+        return await _context.Users
+            .AsNoTracking()
+            .Where(u => ids.Contains(u.Id))
+            .ToDictionaryAsync(u => u.Id, u => u.Name, cancellationToken);
+    }
+
     public async Task<Chat?> GetByIdWithMessagesAsync(
         Guid id,
         CancellationToken cancellationToken = default)

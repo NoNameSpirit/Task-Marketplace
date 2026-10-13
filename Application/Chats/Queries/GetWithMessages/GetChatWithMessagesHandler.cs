@@ -18,8 +18,8 @@ public class GetChatWithMessagesHandler : IRequestHandler<GetChatWithMessagesQue
     }
 
     public async Task<Result<ChatDto>> Handle(
-        GetChatWithMessagesQuery request,
-        CancellationToken cancellationToken = default)
+    GetChatWithMessagesQuery request,
+    CancellationToken cancellationToken = default)
     {
         var chat = await _queryRepository.GetByIdWithMessagesAsync(request.ChatId, cancellationToken);
 
@@ -30,6 +30,10 @@ public class GetChatWithMessagesHandler : IRequestHandler<GetChatWithMessagesQue
                 ErrorType.NotFound);
         }
 
-        return Result<ChatDto>.Success(ChatMapper.ToDto(chat));
+        var userIds = chat.Messages.Select(m => m.UserId);
+
+        var userNames = await _queryRepository.GetUserNamesAsync(userIds, cancellationToken);
+
+        return Result<ChatDto>.Success(ChatMapper.ToDto(chat, userNames));
     }
 }

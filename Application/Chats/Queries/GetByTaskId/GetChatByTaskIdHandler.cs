@@ -30,6 +30,9 @@ public class GetChatByTaskIdHandler : IRequestHandler<GetChatByTaskIdQuery, Resu
                 ErrorType.NotFound);
         }
 
-        return Result<ChatDto>.Success(ChatMapper.ToDto(chat)!);
+        var userIds = chat.Messages.Select(m => m.UserId);
+        var userNames = await _queryRepository.GetUserNamesAsync(userIds, cancellationToken);
+
+        return Result<ChatDto>.Success(ChatMapper.ToDto(chat, userNames));
     }
 }

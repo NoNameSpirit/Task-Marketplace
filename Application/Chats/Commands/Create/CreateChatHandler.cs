@@ -46,6 +46,8 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
 
-        return Result<ChatDto>.Success(ChatMapper.ToDto(result.Value!));
+        var dto = ChatMapper.ToDto(result.Value!, new Dictionary<Guid, string>());
+
+        return Result<ChatDto>.Success(dto);
     }
 }
