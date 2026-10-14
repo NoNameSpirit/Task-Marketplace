@@ -114,6 +114,7 @@ public class ProjectTaskQueryRepository : IProjectTaskQueryRepository
             .ToDictionaryAsync(u => u.Id, u => new { u.Name, u.Rating }, cancellationToken);
 
         var responses = task.Responses
+            .Where(r => users.ContainsKey(r.ExecutorId))
             .Select(r => new TaskResponseDto
             {
                 ExecutorId = r.ExecutorId,

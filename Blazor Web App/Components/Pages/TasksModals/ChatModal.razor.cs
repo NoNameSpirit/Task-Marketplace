@@ -13,6 +13,7 @@ public partial class ChatModal : ComponentBase, IDisposable
     [Parameter] public EventCallback OnClose { get; set; }
     [Inject] public ApiService ApiService { get; set; } = null!;
 
+    private bool _disposed;
     private ChatDto? Chat;
     private string TaskTitle = string.Empty;
     private string NewMessage = string.Empty;
@@ -39,23 +40,23 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private void StartPolling()
     {
-        StopPolling();
-
-        _pollingTimer = new System.Threading.Timer(async _ =>
+        _pollingTimer = new Timer(async _ =>
         {
-            await InvokeAsync(async () =>
+            if (!IsVisible || _disposed)
             {
-                if (!IsVisible) return;
-                await SilentReload();
+                return;
+            }
+
+            await SilentReload();
+
+            await InvokeAsync(() =>
+            {
                 StateHasChanged();
             });
-        }, null, TimeSpan.FromSeconds(PollingIntervalSeconds), TimeSpan.FromSeconds(PollingIntervalSeconds));
-    }
-
-    private void StopPolling()
-    {
-        _pollingTimer?.Dispose();
-        _pollingTimer = null;
+        },
+        null,
+        TimeSpan.FromSeconds(PollingIntervalSeconds),
+        TimeSpan.FromSeconds(PollingIntervalSeconds));
     }
 
     private async Task SilentReload()
@@ -78,7 +79,9 @@ public partial class ChatModal : ComponentBase, IDisposable
         var result = await ApiService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
+        {
             TaskTitle = result.Value.Title;
+        }
     }
 
     private async Task LoadChat()
@@ -133,6 +136,7 @@ public partial class ChatModal : ComponentBase, IDisposable
     private async Task Close()
     {
         StopPolling();
+
         IsVisible = false;
         await OnClose.InvokeAsync();
     }
@@ -144,9 +148,30 @@ public partial class ChatModal : ComponentBase, IDisposable
             await Send();
         }
     }
+    public void Dispose(bool disposing)
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        if (disposing)
+        {
+            StopPolling();
+        }
+
+        _disposed = true;
+    }
+
+    private void StopPolling()
+    {
+        _pollingTimer?.Dispose();
+        _pollingTimer = null;
+    }
 
     public void Dispose()
     {
-        StopPolling();
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

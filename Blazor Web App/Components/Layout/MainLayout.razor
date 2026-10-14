@@ -15,11 +15,6 @@
                     <CultureSelector />
 
                     <AuthorizeView>
-                        <Authorized>
-                            <button class="btn btn-outline-light btn-sm" @onclick="HandleLogout">
-                                @Loc[ResourceKeys.SignOut]
-                            </button>
-                        </Authorized>
                         <NotAuthorized>
                             <a href="/login" class="btn btn-outline-light btn-sm">
                                 @Loc[ResourceKeys.SignIn]

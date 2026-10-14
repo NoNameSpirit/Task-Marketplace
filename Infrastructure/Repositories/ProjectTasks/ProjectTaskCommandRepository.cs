@@ -18,8 +18,6 @@ public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
         CancellationToken cancellationToken = default)
     {
         await _context.ProjectTasks.AddAsync(projectTask, cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(
@@ -27,8 +25,6 @@ public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
         CancellationToken cancellationToken = default)
     {
         _context.ProjectTasks.Update(projectTask);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(
@@ -41,13 +37,6 @@ public class ProjectTaskCommandRepository : IProjectTaskCommandRepository
         if (deletedProjectTask is not null)
         {
             deletedProjectTask.Delete();
-
-            await _context.SaveChangesAsync(cancellationToken);
         }
-    }
-
-    public async Task SaveChangesAsync(CancellationToken ct = default)
-    {
-        await _context.SaveChangesAsync(ct);
     }
 }
