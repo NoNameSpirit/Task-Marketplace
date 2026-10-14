@@ -14,7 +14,6 @@ using Infrastructure.Repositories.Chats;
 using Infrastructure.Repositories.ProjectTasks;
 using Infrastructure.Repositories.UserActions;
 using Infrastructure.Repositories.Users;
-using Infrastructure.Workers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -134,8 +133,6 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<ITaskAttachmentCommandRepository, TaskAttachmentCommandRepository>()
                 .AddScoped<ITaskAttachmentQueryRepository, TaskAttachmentQueryRepository>();
-
-        services.AddHostedService<DeadlineOverdueWorker>();
 
         return services;
     }

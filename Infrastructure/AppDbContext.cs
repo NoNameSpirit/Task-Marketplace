@@ -20,11 +20,34 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>()
             .HasQueryFilter(u => !u.IsDeleted);
 
+        modelBuilder.Entity<Message>()
+            .HasQueryFilter(u => !u.IsDeleted);
+
         modelBuilder.Entity<ProjectTask>()
-            .HasQueryFilter(u => !u.IsDeleted)
+            .HasQueryFilter(u => !u.IsDeleted);
+
+        modelBuilder.Entity<TaskResponse>()
+            .HasQueryFilter(u => !u.IsDeleted);
+
+        modelBuilder.Entity<Chat>()
+            .HasQueryFilter(u => !u.IsDeleted);
+
+        modelBuilder.Entity<UserAction>()
+            .HasQueryFilter(a => !a.IsDeleted);
+
+        modelBuilder.Entity<TaskAttachment>()
+            .HasQueryFilter(a => !a.IsDeleted);
+
+        modelBuilder.Entity<ProjectTask>()
             .HasMany(p => p.Responses)
             .WithOne(r => r.Task)
             .HasForeignKey(r => r.TaskId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<TaskAttachment>()
+            .HasOne(a => a.Task)
+            .WithMany(t => t.Attachments)
+            .HasForeignKey(a => a.TaskId)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<ProjectTask>()
@@ -32,22 +55,24 @@ public class AppDbContext : DbContext
             .ValueGeneratedNever();
 
         modelBuilder.Entity<Message>()
-            .HasQueryFilter(u => !u.IsDeleted)
-            .Property(m => m.Id).ValueGeneratedNever();
+            .Property(m => m.Id)
+            .ValueGeneratedNever();
 
         modelBuilder.Entity<TaskResponse>()
-            .HasQueryFilter(u => !u.IsDeleted)
             .Property(r => r.Id)
             .ValueGeneratedNever();
 
         modelBuilder.Entity<Chat>()
-            .HasQueryFilter(u => !u.IsDeleted)
-            .Property(c => c.Id).ValueGeneratedNever();
+            .Property(c => c.Id)
+            .ValueGeneratedNever();
 
         modelBuilder.Entity<UserAction>()
-            .HasQueryFilter(a => !a.IsDeleted)
             .Property(a => a.Id)
             .ValueGeneratedNever();
+
+        modelBuilder.Entity<TaskAttachment>()
+           .Property(a => a.Id)
+           .ValueGeneratedNever();
 
         modelBuilder.Entity<ProjectTask>()
             .Property(t => t.Price)
@@ -60,16 +85,5 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>()
             .Property(u => u.Rating)
             .HasPrecision(3, 1);
-
-        modelBuilder.Entity<TaskAttachment>()
-           .HasQueryFilter(a => !a.IsDeleted)
-           .Property(a => a.Id)
-           .ValueGeneratedNever();
-
-        modelBuilder.Entity<TaskAttachment>()
-            .HasOne(a => a.Task)
-            .WithMany(t => t.Attachments)
-            .HasForeignKey(a => a.TaskId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,16 +1,18 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.UserActions;
 using MediatR;
+using Shared.Dtos.Responses;
+using System.Reflection;
 
 namespace Application.Common;
 
 public class UserActionLoggingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : notnull
 {
     private readonly IUserActionCommandRepository _repository;
 
-    public UserActionLoggingBehavior(IUserActionCommandRepository repository)
+    public UserActionLoggingBehavior(
+        IUserActionCommandRepository repository)
     {
         _repository = repository;
     }
@@ -20,17 +22,15 @@ public class UserActionLoggingBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        var response = await next();
+        var response = await next(cancellationToken);
 
-        if (request is not IUserCommand userCommand)
+        if (request is not IUserCommand userCommand
+            || response is IResult { IsSuccess: false })
         {
             return response;
         }
 
-        var attribute = typeof(TRequest)
-            .GetCustomAttributes(typeof(LogActionAttribute), false)
-            .OfType<LogActionAttribute>()
-            .FirstOrDefault();
+        var attribute = typeof(TRequest).GetCustomAttribute<LogActionAttribute>(false);
 
         if (attribute is null)
         {

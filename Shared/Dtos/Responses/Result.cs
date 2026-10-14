@@ -2,7 +2,12 @@
 
 namespace Shared.Dtos.Responses;
 
-public class Result
+public interface IResult
+{
+    bool IsSuccess { get; }
+}
+
+public class Result : IResult
 {
     public bool IsSuccess { get; private set; }
     public string Message { get; private set; } = string.Empty;
@@ -29,7 +34,8 @@ public class Result
     }
 }
 
-public class Result<T> where T : class
+public class Result<T> : IResult
+    where T : class
 {
     public bool IsSuccess { get; private set; }
     public string Message { get; private set; } = string.Empty;

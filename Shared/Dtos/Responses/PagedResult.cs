@@ -29,7 +29,7 @@ public class PagedResult<T>
         Page = page;
         PageSize = pageSize;
         TotalCount = totalCount;
-        TotalPages = (int)Math.Ceiling((double)(TotalCount / PageSize));
+        TotalPages = (int)Math.Ceiling((double)TotalCount / PageSize);
     }
 
     public static PagedResult<T> Create(
