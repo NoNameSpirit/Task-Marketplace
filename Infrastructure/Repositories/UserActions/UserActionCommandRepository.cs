@@ -17,7 +17,5 @@ public class UserActionCommandRepository : IUserActionCommandRepository
         CancellationToken cancellationToken = default)
     {
         await _context.UserActions.AddAsync(action, cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 }

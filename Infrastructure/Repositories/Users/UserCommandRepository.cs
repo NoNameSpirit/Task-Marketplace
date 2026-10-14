@@ -18,8 +18,6 @@ public class UserCommandRepository : IUserCommandRepository
         CancellationToken cancellationToken = default)
     {
         await _context.Users.AddAsync(user, cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(
@@ -27,8 +25,6 @@ public class UserCommandRepository : IUserCommandRepository
         CancellationToken cancellationToken = default)
     {
         _context.Users.Update(user);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(
@@ -41,13 +37,6 @@ public class UserCommandRepository : IUserCommandRepository
         if (deletedUser is not null)
         {
             deletedUser.Delete();
-
-            await _context.SaveChangesAsync(cancellationToken);
         }
-    }
-
-    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        await _context.SaveChangesAsync(cancellationToken);
     }
 }

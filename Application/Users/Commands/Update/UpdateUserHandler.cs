@@ -1,4 +1,5 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,13 +11,16 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
     private readonly IUserCommandRepository _commandRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UpdateUserHandler(
         IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository)
+        IUserCommandRepository commandRepository,
+        IUnitOfWork unitOfWork)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -40,6 +44,8 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
         }
 
         await _commandRepository.UpdateAsync(user, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync();
 
         return Result.Success();
     }

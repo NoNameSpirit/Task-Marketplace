@@ -1,5 +1,6 @@
 ﻿using Application.Services.FileStorage;
 using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -13,15 +14,18 @@ public class DeleteAttachmentHandler
     private readonly ITaskAttachmentQueryRepository _attachmentQueryRepository;
     private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
+    private readonly IUnitOfWork _unitOfWork;
 
     public DeleteAttachmentHandler(
         ITaskAttachmentQueryRepository attachmentQueryRepository,
         ITaskAttachmentCommandRepository attachmentCommandRepository,
-        IFileStorageService fileStorage)
+        IFileStorageService fileStorage,
+        IUnitOfWork unitOfWork)
     {
         _attachmentQueryRepository = attachmentQueryRepository;
         _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -48,7 +52,7 @@ public class DeleteAttachmentHandler
 
         attachment.Delete();
 
-        await _attachmentCommandRepository.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var relativePath = $"tasks/{attachment.TaskId}/{attachment.StoredFileName}";
 

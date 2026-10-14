@@ -18,8 +18,6 @@ public class ChatCommandRepository : IChatCommandRepository
         CancellationToken cancellationToken = default)
     {
         await _context.Chats.AddAsync(chat, cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(
@@ -27,8 +25,6 @@ public class ChatCommandRepository : IChatCommandRepository
         CancellationToken cancellationToken = default)
     {
         _context.Chats.Update(chat);
-
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(
@@ -41,13 +37,6 @@ public class ChatCommandRepository : IChatCommandRepository
         if (deletedChat is not null)
         {
             deletedChat.Delete();
-
-            await _context.SaveChangesAsync(cancellationToken);
         }
-    }
-
-    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        await _context.SaveChangesAsync(cancellationToken);
     }
 }

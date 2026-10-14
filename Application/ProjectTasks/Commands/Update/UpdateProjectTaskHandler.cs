@@ -1,4 +1,5 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,13 +11,16 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
     private readonly IProjectTaskCommandRepository _commandRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UpdateProjectTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository)
+        IProjectTaskCommandRepository commandRepository,
+        IUnitOfWork unitOfWork)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -47,7 +51,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
                 ErrorType.Validation);
         }
 
-        await _commandRepository.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

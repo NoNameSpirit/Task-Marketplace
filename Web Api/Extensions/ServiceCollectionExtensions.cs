@@ -4,12 +4,14 @@ using Application.Services.FileStorage;
 using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
 using Domain.Config;
+using Domain.Interfaces;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.Files;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.UserActions;
 using Domain.Interfaces.Users;
 using Infrastructure;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Chats;
 using Infrastructure.Repositories.ProjectTasks;
 using Infrastructure.Repositories.UserActions;
@@ -133,6 +135,8 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<ITaskAttachmentCommandRepository, TaskAttachmentCommandRepository>()
                 .AddScoped<ITaskAttachmentQueryRepository, TaskAttachmentQueryRepository>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

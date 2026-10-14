@@ -2,6 +2,7 @@
 using Application.Services.FileStorage;
 using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -17,15 +18,18 @@ public class UploadAttachmentHandler
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
     private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UploadAttachmentHandler(
         IProjectTaskQueryRepository taskQueryRepository,
         ITaskAttachmentCommandRepository attachmentCommandRepository,
-        IFileStorageService fileStorage)
+        IFileStorageService fileStorage,
+        IUnitOfWork unitOfWork)
     {
         _taskQueryRepository = taskQueryRepository;
         _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<TaskAttachmentDto>> Handle(
@@ -87,6 +91,8 @@ public class UploadAttachmentHandler
             cancellationToken);
 
         await _attachmentCommandRepository.AddAsync(attachment, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync();
 
         return Result<TaskAttachmentDto>.Success(TaskAttachmentMapper.ToDto(attachment));
     }

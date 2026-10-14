@@ -1,6 +1,7 @@
 ﻿using Application.Mappers;
 using Domain.Config;
 using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -13,14 +14,17 @@ namespace Application.ProjectTasks.Commands.Create;
 public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result<ProjectTaskDto>>
 {
     private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly AppConfig _appConfig;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly string _currency;
 
     public CreateProjectTaskHandler(
         IProjectTaskCommandRepository commandRepository,
-        IOptions<AppConfig> appConfig)
+        IOptions<AppConfig> appConfig,
+        IUnitOfWork unitOfWork)
     {
         _commandRepository = commandRepository;
-        _appConfig = appConfig.Value;
+        _currency = appConfig.Value.Currency;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<ProjectTaskDto>> Handle(
@@ -44,9 +48,11 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 
         await _commandRepository.AddAsync(result.Value!);
 
+        await _unitOfWork.SaveChangesAsync();
+
         return Result<ProjectTaskDto>.Success(
             ProjectTaskMapper.ToDto(
                 result.Value!,
-                _appConfig.Currency));
+                _currency));
     }
 }

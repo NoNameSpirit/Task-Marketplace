@@ -1,4 +1,5 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
 using MediatR;
@@ -13,17 +14,20 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
     private readonly IProjectTaskCommandRepository _taskCommandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
     private readonly IUserCommandRepository _userCommandRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public MarkAsDoneHandler(
         IProjectTaskQueryRepository taskQueryRepository,
         IProjectTaskCommandRepository taskCommandRepository,
         IUserQueryRepository userQueryRepository,
-        IUserCommandRepository userCommandRepository)
+        IUserCommandRepository userCommandRepository,
+        IUnitOfWork unitOfWork)
     {
         _taskQueryRepository = taskQueryRepository;
         _taskCommandRepository = taskCommandRepository;
         _userQueryRepository = userQueryRepository;
         _userCommandRepository = userCommandRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -50,8 +54,6 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.Validation);
         }
 
-        await _taskCommandRepository.SaveChangesAsync(cancellationToken);
-
         if (task.ExecutorId.HasValue && request.Rating.HasValue)
         {
             var executor = await _userQueryRepository.GetTrackedByIdAsync(
@@ -65,10 +67,10 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                     cancellationToken);
 
                 executor.RecalculateRating(ratings);
-
-                await _userCommandRepository.SaveChangesAsync(cancellationToken);
             }
         }
+
+        _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

@@ -1,6 +1,7 @@
 ﻿using Application.Mappers;
 using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Interfaces.Chats;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -13,13 +14,16 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
 {
     private readonly IChatCommandRepository _commandRepository;
     private readonly IChatQueryRepository _queryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public CreateChatHandler(
         IChatCommandRepository commandRepository,
-        IChatQueryRepository queryRepository)
+        IChatQueryRepository queryRepository,
+        IUnitOfWork unitOfWork)
     {
         _commandRepository = commandRepository;
         _queryRepository = queryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<ChatDto>> Handle(
@@ -45,6 +49,8 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
         }
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync();
 
         var dto = ChatMapper.ToDto(result.Value!, new Dictionary<Guid, string>());
 

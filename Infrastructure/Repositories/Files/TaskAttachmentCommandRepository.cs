@@ -17,12 +17,5 @@ public class TaskAttachmentCommandRepository : ITaskAttachmentCommandRepository
         CancellationToken cancellationToken = default)
     {
         await _context.TaskAttachments.AddAsync(attachment, cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
-    }
-
-    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        await _context.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.Users;
 using MediatR;
@@ -12,15 +13,18 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
     private readonly IChatQueryRepository _queryRepository;
     private readonly IChatCommandRepository _commandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public AddMessageHandler(
         IChatQueryRepository queryRepository,
         IChatCommandRepository commandRepository,
-        IUserQueryRepository userQueryRepository)
+        IUserQueryRepository userQueryRepository,
+        IUnitOfWork unitOfWork)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
         _userQueryRepository = userQueryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -58,7 +62,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 ErrorType.Validation);
         }
 
-        await _commandRepository.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

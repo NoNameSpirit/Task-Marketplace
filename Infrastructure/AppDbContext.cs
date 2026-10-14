@@ -50,6 +50,10 @@ public class AppDbContext : DbContext
             .HasForeignKey(a => a.TaskId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<Chat>()
+            .HasIndex(c => c.ProjectTaskId)
+            .IsUnique();
+
         modelBuilder.Entity<ProjectTask>()
             .Property(r => r.Id)
             .ValueGeneratedNever();

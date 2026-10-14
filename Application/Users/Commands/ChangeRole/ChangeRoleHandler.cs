@@ -1,4 +1,5 @@
 ﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,13 +11,16 @@ public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
     private readonly IUserCommandRepository _commandRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public ChangeRoleHandler(
         IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository)
+        IUserCommandRepository commandRepository,
+        IUnitOfWork unitOfWork)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -36,7 +40,7 @@ public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
 
         user.ChangeRole(request.NewRole);
 
-        await _commandRepository.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
