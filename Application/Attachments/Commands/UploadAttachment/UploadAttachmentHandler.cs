@@ -63,7 +63,8 @@ public class UploadAttachmentHandler
                 ErrorType.Forbidden);
         }
 
-        var extension = Path.GetExtension(request.FileName).ToLowerInvariant();
+        var extension = Path.GetExtension(request.FileName)
+            .ToLowerInvariant();
 
         var storedFileName = $"{Guid.NewGuid():N}{extension}";
 
@@ -92,7 +93,7 @@ public class UploadAttachmentHandler
 
         await _attachmentCommandRepository.AddAsync(attachment, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result<TaskAttachmentDto>.Success(TaskAttachmentMapper.ToDto(attachment));
     }

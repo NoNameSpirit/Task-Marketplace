@@ -9,8 +9,8 @@ public class User : Entity
     public string Name { get; private set; } = string.Empty;
     public UserRole Role { get; private set; }
     public string PasswordHash { get; private set; } = string.Empty;
-    public decimal? Rating { get; internal set; }
-    public bool IsBlocked { get; set; }
+    public decimal? Rating { get; private set; }
+    public bool IsBlocked { get; private set; }
 
     private User() { }
 

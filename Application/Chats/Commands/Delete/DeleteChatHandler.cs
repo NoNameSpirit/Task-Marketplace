@@ -1,7 +1,9 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Constants;
+using Domain.Interfaces;
 using Domain.Interfaces.Chats;
 using MediatR;
 using Shared.Dtos.Responses;
+using Shared.Enums;
 
 namespace Application.Chats.Commands.Delete;
 
@@ -22,9 +24,32 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
         DeleteChatCommand request,
         CancellationToken cancellationToken = default)
     {
+        var chat = await _queryRepository.GetByIdAsync(
+            request.ChatId,
+            cancellationToken);
+
+        if (chat is null)
+        {
+            return Result.Failure(
+                ErrorMessages.ChatNotFound,
+                ErrorType.NotFound);
+        }
+
+        var task = await _taskQueryRepository.GetByIdAsync(
+            chat.ProjectTaskId,
+            cancellationToken);
+
+        if (task is null
+            || task.CustomerId != request.CurrentUserId)
+        {
+            return Result.Failure(
+                ErrorMessages.Forbidden,
+                ErrorType.Forbidden);
+        }
+
         await _commandRepository.DeleteAsync(request.ChatId, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

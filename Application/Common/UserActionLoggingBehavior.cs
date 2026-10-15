@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Interfaces.UserActions;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -8,13 +9,17 @@ namespace Application.Common;
 
 public class UserActionLoggingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : notnull
 {
     private readonly IUserActionCommandRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UserActionLoggingBehavior(
-        IUserActionCommandRepository repository)
+        IUserActionCommandRepository repository,
+        IUnitOfWork unitOfWork)
     {
         _repository = repository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<TResponse> Handle(
@@ -43,6 +48,8 @@ public class UserActionLoggingBehavior<TRequest, TResponse>
             attribute.EntityType);
 
         await _repository.AddAsync(action, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return response;
     }

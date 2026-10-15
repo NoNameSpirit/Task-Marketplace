@@ -54,6 +54,8 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.Validation);
         }
 
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
         if (task.ExecutorId.HasValue && request.Rating.HasValue)
         {
             var executor = await _userQueryRepository.GetTrackedByIdAsync(
@@ -70,7 +72,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
             }
         }
 
-        _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

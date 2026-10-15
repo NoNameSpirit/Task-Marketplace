@@ -1,6 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -14,17 +15,20 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
     private readonly IChatCommandRepository _commandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
 
     public AddMessageHandler(
         IChatQueryRepository queryRepository,
         IChatCommandRepository commandRepository,
         IUserQueryRepository userQueryRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IProjectTaskQueryRepository taskQueryRepository)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
         _userQueryRepository = userQueryRepository;
         _unitOfWork = unitOfWork;
+        _taskQueryRepository = taskQueryRepository;
     }
 
     public async Task<Result> Handle(
@@ -40,6 +44,16 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
             return Result.Failure(
                 ErrorMessages.ChatNotFound,
                 ErrorType.NotFound);
+        }
+
+        var task = await _taskQueryRepository.GetByIdAsync(chat.ProjectTaskId, cancellationToken);
+        if (task is null
+            || (task.CustomerId != request.SenderId
+            && task.ExecutorId != request.SenderId))
+        {
+            return Result.Failure(
+                ErrorMessages.Forbidden,
+                ErrorType.Forbidden);
         }
 
         var sender = await _userQueryRepository.GetByIdAsync(

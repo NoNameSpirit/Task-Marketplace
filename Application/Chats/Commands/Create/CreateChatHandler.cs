@@ -50,7 +50,7 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var dto = ChatMapper.ToDto(result.Value!, new Dictionary<Guid, string>());
 

@@ -70,7 +70,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<A
 
         await _commandRepository.AddAsync(userResult.Value!, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var authDto = _jwtTokenGenerator.GenerateToken(userResult.Value!);
 

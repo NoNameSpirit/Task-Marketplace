@@ -48,7 +48,7 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 
         await _commandRepository.AddAsync(result.Value!);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result<ProjectTaskDto>.Success(
             ProjectTaskMapper.ToDto(

@@ -45,7 +45,7 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
 
         await _commandRepository.UpdateAsync(user, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
