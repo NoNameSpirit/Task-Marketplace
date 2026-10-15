@@ -2,7 +2,9 @@
 
 public interface ILocalStorageService
 {
-    ValueTask SetItemAsync(string key, string value);
-    ValueTask<string?> GetItemAsync(string key);
-    ValueTask RemoveItemAsync(string key);
+    Task SetItemAsync(string key, string value);
+
+    Task<string?> GetItemAsync(string key);
+
+    Task RemoveItemAsync(string key);
 }

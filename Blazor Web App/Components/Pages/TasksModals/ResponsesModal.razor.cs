@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -10,7 +10,7 @@ public partial class ResponsesModal : ComponentBase
     [Parameter] public Guid TaskId { get; set; }
     [Parameter] public EventCallback OnAssigned { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<TaskResponseDto>? Responses;
     private Guid _assigningId;

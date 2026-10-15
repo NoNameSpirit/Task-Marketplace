@@ -5,15 +5,9 @@ using System.Globalization;
 
 namespace Blazor_Web_App.Services;
 
-public class CultureService : ICultureService
+public class CultureService(
+    ILocalStorageService _storage) : ICultureService
 {
-    private readonly ILocalStorageService _storage;
-
-    public CultureService(ILocalStorageService storage)
-    {
-        _storage = storage;
-    }
-
     public async Task<string> GetCultureAsync()
     {
         var value = await _storage.GetItemAsync(CultureConstants.StorageKey);

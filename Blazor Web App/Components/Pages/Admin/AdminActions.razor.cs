@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Responses.UserActions;
 
@@ -9,7 +9,7 @@ public partial class AdminActions : ComponentBase
     private const int PageSize = 20;
     private const int FirstPage = 1;
 
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<UserActionDto>? Actions;
     private int CurrentPage = FirstPage;

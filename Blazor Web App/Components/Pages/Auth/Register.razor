@@ -1,6 +1,8 @@
 ﻿@page "/register"
+
 @using Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
+
+@attribute [AllowAnonymous]
 
 <PageTitle>@Loc[ResourceKeys.Register]</PageTitle>
 

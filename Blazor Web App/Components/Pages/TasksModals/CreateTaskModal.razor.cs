@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Requests.ProjectTasks;
 
@@ -9,7 +9,7 @@ public partial class CreateTaskModal : ComponentBase
     [Parameter] public bool IsVisible { get; set; }
     [Parameter] public EventCallback OnCreated { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private const int DefaultDurationDays = 7;
 

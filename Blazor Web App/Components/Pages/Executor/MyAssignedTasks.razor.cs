@@ -1,5 +1,5 @@
 ﻿using Blazor_Web_App.Modals;
-using Blazor_Web_App.Services;
+using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Shared.Dtos.Responses.ProjectTasks;
@@ -10,7 +10,7 @@ namespace Blazor_Web_App.Components.Pages.Executor;
 
 public partial class MyAssignedTasks : ComponentBase
 {
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
 

@@ -1,6 +1,6 @@
 ﻿using Blazor_Web_App.Modals;
 using Blazor_Web_App.Resources;
-using Blazor_Web_App.Services;
+using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -13,7 +13,7 @@ namespace Blazor_Web_App.Components.Pages;
 
 public partial class Tasks : ComponentBase
 {
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
     [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;

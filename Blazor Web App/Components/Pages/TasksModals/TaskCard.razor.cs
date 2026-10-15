@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
@@ -19,7 +19,7 @@ public partial class TaskCard : ComponentBase
     [Parameter] public EventCallback<Guid> OnEdit { get; set; }
     [Parameter] public Guid CurrentUserId { get; set; }
     [Parameter] public EventCallback<Guid> OnOpenAttachments { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private bool ShowEditButton
          => IsCustomer

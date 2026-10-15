@@ -2,28 +2,26 @@
 
 namespace Blazor_Web_App.Services.LocalStorage;
 
-public class LocalStorageService : ILocalStorageService
+public class LocalStorageService(
+    IJSRuntime _jsRuntime) : ILocalStorageService
 {
-    private readonly IJSRuntime _jsRuntime;
+    private const string localStorageSetItem = "localStorage.setItem";
+    private const string localStorageGetItem = "localStorage.getItem";
+    private const string localStorageRemoveItem = "localStorage.removeItem";
 
-    public LocalStorageService(IJSRuntime jsRuntime)
+    public async Task SetItemAsync(string key, string value)
     {
-        _jsRuntime = jsRuntime;
+        await _jsRuntime.InvokeVoidAsync(localStorageSetItem, key, value);
     }
 
-    public async ValueTask SetItemAsync(string key, string value)
+    public async Task<string?> GetItemAsync(string key)
     {
-        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", key, value);
-    }
-
-    public async ValueTask<string?> GetItemAsync(string key)
-    {
-        var result = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", key);
+        var result = await _jsRuntime.InvokeAsync<string?>(localStorageGetItem, key);
 
         return result;
     }
-    public async ValueTask RemoveItemAsync(string key)
+    public async Task RemoveItemAsync(string key)
     {
-        await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", key);
+        await _jsRuntime.InvokeVoidAsync(localStorageRemoveItem, key);
     }
 }

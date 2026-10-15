@@ -1,38 +1,15 @@
 using Blazor_Web_App.Components;
-using Blazor_Web_App.Services;
-using Blazor_Web_App.Services.Culture;
-using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Settings;
-using Microsoft.AspNetCore.Components.Authorization;
+using Blazor_Web_App.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddLocalization();
-
-builder.Services.AddAuthorizationCore()
-                .AddCascadingAuthenticationState()
-                .AddScoped<ILocalStorageService, LocalStorageService>()
-                .AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>()
-                .AddScoped<ICultureService, CultureService>();
-
-builder.Services
-    .AddOptions<ApiSettings>()
-    .Bind(builder.Configuration.GetSection(ApiSettings.SectionName))
-    .ValidateDataAnnotations()
-    .ValidateOnStart();
-
-var apiSettings = builder.Configuration
-    .GetSection(ApiSettings.SectionName)
-    .Get<ApiSettings>();
-
-builder.Services.AddHttpClient<ApiService>(options =>
-    {
-        options.BaseAddress = new Uri(apiSettings!.ApiUrl);
-    });
-
+builder.Services.ConfigureAppSettings(builder.Configuration)
+                .AddAuth()
+                .ConfigureHttpClients(builder.Configuration)
+                .AddServices();
 
 var app = builder.Build();
 
@@ -43,6 +20,9 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAntiforgery();
 

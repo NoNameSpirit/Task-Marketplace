@@ -1,5 +1,6 @@
 ﻿@page "/login"
-@inject IStringLocalizer<SharedResources> Loc
+
+@attribute [AllowAnonymous]
 
 <PageTitle>@Loc[ResourceKeys.Login]</PageTitle>
 

@@ -3,6 +3,8 @@
 public interface ICultureService
 {
     Task<string> GetCultureAsync();
+
     Task SetCultureAsync(string culture);
+
     void Apply(string culture);
 }

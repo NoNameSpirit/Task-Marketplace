@@ -1,7 +1,10 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.LocalStorage;
+using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
@@ -10,10 +13,11 @@ namespace Blazor_Web_App.Components.Pages.Auth;
 
 public partial class Register : ComponentBase
 {
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
     [Inject] public ILocalStorageService LocalStorageService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager NavigationManager { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
 
     protected string PageTitle
         => nameof(Register);
@@ -37,7 +41,7 @@ public partial class Register : ComponentBase
         {
             await LocalStorageService.SetItemAsync(nameof(AuthDto.Token), registerResult.Value!.Token);
             await LocalStorageService.SetItemAsync(nameof(AuthDto.Name), registerResult.Value!.Name);
-            await LocalStorageService.SetItemAsync(nameof(AuthDto.Role), registerResult.Value!.Role);
+            await LocalStorageService.SetItemAsync(nameof(AuthDto.Role), registerResult.Value!.Role.ToString());
             await LocalStorageService.SetItemAsync(nameof(AuthDto.Id), registerResult.Value.Id.ToString());
 
             ((CustomAuthStateProvider)AuthStateProvider).NotifyLogin(

@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
@@ -9,7 +9,7 @@ public partial class RateExecutorModal : ComponentBase
     [Parameter] public Guid TaskId { get; set; }
     [Parameter] public EventCallback OnCompleted { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private const int MinRating = 1;
     private const int MaxRating = 5;

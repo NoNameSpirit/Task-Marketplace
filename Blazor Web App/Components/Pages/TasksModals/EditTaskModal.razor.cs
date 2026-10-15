@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses.ProjectTasks;
@@ -11,7 +11,7 @@ public partial class EditTaskModal : ComponentBase
     [Parameter] public ProjectTaskDto? Task { get; set; }
     [Parameter] public EventCallback OnUpdated { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private string Title = string.Empty;
     private string Description = string.Empty;

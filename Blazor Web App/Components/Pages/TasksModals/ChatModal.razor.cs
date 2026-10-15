@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Shared.Dtos.Responses.Chats;
@@ -11,7 +11,7 @@ public partial class ChatModal : ComponentBase, IDisposable
     [Parameter] public Guid TaskId { get; set; }
     [Parameter] public Guid CurrentUserId { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private bool _disposed;
     private ChatDto? Chat;
@@ -20,7 +20,10 @@ public partial class ChatModal : ComponentBase, IDisposable
     private string ErrorMessage = string.Empty;
     private bool IsLoading;
     private bool IsSending;
-    private Timer? _pollingTimer;
+
+    private CancellationTokenSource? _cancellationTokenSource;
+    private PeriodicTimer? _periodicTimer;
+    private Guid? _currentTaskId;
 
     private const int PollingIntervalSeconds = 2;
 
@@ -29,8 +32,18 @@ public partial class ChatModal : ComponentBase, IDisposable
         if (!IsVisible || TaskId == Guid.Empty)
         {
             StopPolling();
+            _currentTaskId = null;
             return;
         }
+
+        if (_currentTaskId == TaskId && _periodicTimer is not null)
+        {
+            return;
+        }
+
+        StopPolling();
+
+        _currentTaskId = TaskId;
 
         await LoadTitle();
         await LoadChat();
@@ -40,23 +53,36 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private void StartPolling()
     {
-        _pollingTimer = new Timer(async _ =>
+        if (_periodicTimer is not null)
         {
-            if (!IsVisible || _disposed)
+            return;
+        }
+
+        _cancellationTokenSource = new CancellationTokenSource();
+        var cancellationToken = _cancellationTokenSource.Token;
+
+        var timer = new PeriodicTimer(TimeSpan.FromSeconds(PollingIntervalSeconds));
+        _periodicTimer = timer;
+
+        _ = Task.Run(async () =>
+        {
+            try
             {
-                return;
+                while (await timer.WaitForNextTickAsync(cancellationToken))
+                {
+                    if (!IsVisible || _disposed)
+                    {
+                        break;
+                    }
+
+                    await SilentReload();
+                    await InvokeAsync(StateHasChanged);
+                }
             }
-
-            await SilentReload();
-
-            await InvokeAsync(() =>
-            {
-                StateHasChanged();
-            });
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
         },
-        null,
-        TimeSpan.FromSeconds(PollingIntervalSeconds),
-        TimeSpan.FromSeconds(PollingIntervalSeconds));
+        cancellationToken);
     }
 
     private async Task SilentReload()
@@ -123,7 +149,7 @@ public partial class ChatModal : ComponentBase, IDisposable
         if (result.IsSuccess)
         {
             NewMessage = string.Empty;
-            await LoadChat();
+            await SilentReload();
         }
         else
         {
@@ -148,7 +174,7 @@ public partial class ChatModal : ComponentBase, IDisposable
             await Send();
         }
     }
-    public void Dispose(bool disposing)
+    protected virtual void Dispose(bool disposing)
     {
         if (_disposed)
         {
@@ -165,8 +191,18 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private void StopPolling()
     {
-        _pollingTimer?.Dispose();
-        _pollingTimer = null;
+        if (_cancellationTokenSource is not null)
+        {
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
+        }
+
+        if (_periodicTimer is not null)
+        {
+            _periodicTimer.Dispose();
+            _periodicTimer = null;
+        }
     }
 
     public void Dispose()

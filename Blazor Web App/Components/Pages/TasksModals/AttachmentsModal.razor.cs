@@ -1,4 +1,4 @@
-﻿using Blazor_Web_App.Services;
+﻿using Blazor_Web_App.Services.Receivers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
@@ -17,7 +17,7 @@ public partial class AttachmentsModal : ComponentBase
     [Parameter] public bool CanUpload { get; set; } = true;
     [Parameter] public EventCallback OnClose { get; set; }
 
-    [Inject] public ApiService ApiService { get; set; } = null!;
+    [Inject] public BaseService ApiService { get; set; } = null!;
     [Inject] public IJSRuntime JS { get; set; } = null!;
 
     private List<TaskAttachmentDto>? Attachments;

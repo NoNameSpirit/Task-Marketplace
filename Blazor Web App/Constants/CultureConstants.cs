@@ -9,5 +9,9 @@ public static class CultureConstants
 
     public const string StorageKey = "app.culture";
 
-    public static readonly string[] Supported = { English, Russian };
+    public static readonly string[] Supported =
+    [
+        English,
+        Russian
+    ];
 }
