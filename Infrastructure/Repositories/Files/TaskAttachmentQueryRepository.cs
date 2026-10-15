@@ -2,7 +2,7 @@
 using Domain.Interfaces.Files;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.ProjectTasks;
+namespace Infrastructure.Repositories.Files;
 
 public class TaskAttachmentQueryRepository : ITaskAttachmentQueryRepository
 {

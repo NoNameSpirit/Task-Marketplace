@@ -28,9 +28,9 @@ public class UserQueryRepository : IUserQueryRepository
         string name,
         CancellationToken cancellationToken = default)
     {
-        var user = _context.Users
+        var user = await _context.Users
             .AsNoTracking()
-            .FirstOrDefault(u => u.Name == name);
+            .FirstOrDefaultAsync(u => u.Name == name);
 
         return user;
     }

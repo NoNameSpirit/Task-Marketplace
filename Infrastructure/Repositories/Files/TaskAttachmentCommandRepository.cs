@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Files;
 
-namespace Infrastructure.Repositories.ProjectTasks;
+namespace Infrastructure.Repositories.Files;
 
 public class TaskAttachmentCommandRepository : ITaskAttachmentCommandRepository
 {
