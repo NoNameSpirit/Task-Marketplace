@@ -24,6 +24,7 @@ namespace Web_Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ProjectTaskController : ControllerBase
 {
     private readonly IMediator _mediatr;
@@ -34,7 +35,6 @@ public class ProjectTaskController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> Create(
         [FromBody] CreateProjectTaskDto request)
     {
@@ -58,7 +58,6 @@ public class ProjectTaskController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);
     }
 
-    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(
         Guid id)
@@ -94,15 +93,15 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpPost("{id}/respond")]
     public async Task<IActionResult> Respond(
-        Guid id,
-        [FromBody] RespondToTaskProjectTaskDto request)
+        Guid id)
     {
+        var executorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
         var command = new RespondToTaskCommand(
             id,
-            request.ExecutorId);
+            executorId);
 
         var result = await _mediatr.Send(command);
 
@@ -143,7 +142,6 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpPost("{id}/assign")]
     public async Task<IActionResult> Assign(
         Guid id,
@@ -161,7 +159,6 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(
         Guid id)
@@ -205,7 +202,6 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("{id}/responses")]
     public async Task<IActionResult> GetResponses(
         Guid id)
@@ -217,7 +213,6 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("assigned/{executorId}")]
     public async Task<IActionResult> GetAssigned(
         Guid executorId,
@@ -233,7 +228,6 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("search")]
     public async Task<IActionResult> Search(
         [FromQuery] string query,

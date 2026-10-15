@@ -27,7 +27,9 @@ public class GlobalExceptionHandler : IExceptionHandler
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = ErrorMessages.ServerError,
-            Detail = exception.Message ?? ErrorMessages.UnexpectedError
+            Detail = httpContext.RequestServices.GetRequiredService<IHostEnvironment>().IsDevelopment()
+                ? exception.Message
+                : ErrorMessages.UnexpectedError
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

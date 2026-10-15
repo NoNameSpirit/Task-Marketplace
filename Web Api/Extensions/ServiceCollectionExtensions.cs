@@ -13,6 +13,7 @@ using Domain.Interfaces.Users;
 using Infrastructure;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Chats;
+using Infrastructure.Repositories.Files;
 using Infrastructure.Repositories.ProjectTasks;
 using Infrastructure.Repositories.UserActions;
 using Infrastructure.Repositories.Users;
@@ -130,8 +131,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserCommandRepository, UserCommandRepository>()
                 .AddScoped<IUserQueryRepository, UserQueryRepository>();
 
-        services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
-                .AddScoped<IUserActionQueryRepository, UserActionQueryRepository>();
+        services.AddScoped<IUserActionQueryRepository, UserActionQueryRepository>();
 
         services.AddScoped<ITaskAttachmentCommandRepository, TaskAttachmentCommandRepository>()
                 .AddScoped<ITaskAttachmentQueryRepository, TaskAttachmentQueryRepository>();

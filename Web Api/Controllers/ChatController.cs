@@ -16,9 +16,18 @@ namespace Web_Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ChatController : ControllerBase
 {
     private readonly IMediator _mediatr;
+
+    private Guid CurrentUserId
+    {
+        get
+        {
+            return Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        }
+    }
 
     public ChatController(IMediator mediatr)
     {
@@ -29,11 +38,9 @@ public class ChatController : ControllerBase
     public async Task<IActionResult> Create(
         Guid projectTaskId)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new CreateChatCommand(
             projectTaskId,
-            userId);
+            CurrentUserId);
 
         var result = await _mediatr.Send(command);
 
@@ -50,9 +57,7 @@ public class ChatController : ControllerBase
     public async Task<IActionResult> Delete(
         Guid id)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
-        var command = new DeleteChatCommand(id, userId);
+        var command = new DeleteChatCommand(id, CurrentUserId);
 
         var result = await _mediatr.Send(command);
 
@@ -67,7 +72,7 @@ public class ChatController : ControllerBase
         var command = new AddMessageCommand(
             id,
             request.Text,
-            request.SenderId);
+            CurrentUserId);
 
         var result = await _mediatr.Send(command);
 
@@ -89,7 +94,7 @@ public class ChatController : ControllerBase
     public async Task<IActionResult> GetByTaskId(
         Guid id)
     {
-        var query = new GetChatByTaskIdQuery(id);
+        var query = new GetChatByTaskIdQuery(id, CurrentUserId);
 
         var result = await _mediatr.Send(query);
 
