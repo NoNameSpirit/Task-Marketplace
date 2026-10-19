@@ -1,17 +1,23 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Requests.ProjectTasks;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class CreateTaskModal : ComponentBase
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public EventCallback OnCreated { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int DefaultDurationDays = 7;
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public EventCallback OnCreated { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
 
     private string Title = string.Empty;
     private string Description = string.Empty;
@@ -35,7 +41,7 @@ public partial class CreateTaskModal : ComponentBase
             EndsAt = EndsAt
         };
 
-        var result = await ApiService.CreateTaskAsync(dto);
+        var result = await ProjectTaskService.CreateTaskAsync(dto);
 
         if (result.IsSuccess)
         {

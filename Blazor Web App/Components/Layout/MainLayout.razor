@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject IStringLocalizer<SharedResources> Loc
+@inject IStringLocalizer<SharedResources> Localizer
 
 <div class="page">
     <div class="sidebar">
@@ -16,7 +16,7 @@
                     <AuthorizeView>
                         <NotAuthorized>
                             <a href="/login" class="btn btn-outline-light btn-sm">
-                                @Loc[ResourceKeys.SignIn]
+                                @Localizer[ResourceKeys.SignIn]
                             </a>
                         </NotAuthorized>
                     </AuthorizeView>

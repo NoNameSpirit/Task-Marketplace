@@ -1,11 +1,11 @@
-﻿@inject IStringLocalizer<SharedResources> Loc
+﻿@using Blazor_Web_App.Constants
 
 <div class="card h-100 d-flex flex-column">
     <div class="card-body position-relative">
         @if (ShowDeleteButton)
         {
             <button class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-2"
-                    title="@Loc[ResourceKeys.Delete]"
+                    title="@Localizer[ResourceKeys.Delete]"
                     @onclick="HandleDelete">
                 ✕
             </button>
@@ -16,12 +16,12 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <span class="badge bg-secondary">@ProjectTask.Status</span>
-            <span class="fw-bold">@ProjectTask.Currency@ProjectTask.Price.ToString("0.00")</span>
+            <span class="fw-bold">@ProjectTask.Currency@ProjectTask.Price.ToString(PriceFormat)</span>
 
             @if (ProjectTask.ProjectRating.HasValue)
             {
                 <span class="badge bg-warning text-dark">
-                    @ProjectTask.ProjectRating.Value.ToString("0.0")
+                    @ProjectTask.ProjectRating.Value.ToString(FormatConstants.RatingFormat)
                 </span>
             }
         </div>
@@ -37,41 +37,42 @@
             <button class="btn btn-sm flex-fill @(IsResponded ? "btn-secondary" : "btn-success")"
                     @onclick="HandleRespond"
                     disabled="@IsResponded">
-                @(IsResponded ? Loc[ResourceKeys.Responded] : Loc[ResourceKeys.Respond])
+                @(IsResponded ? Localizer[ResourceKeys.Responded] : Localizer[ResourceKeys.Respond])
             </button>
         }
 
         @if (ShowChatButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleOpenChat">
-                @Loc[ResourceKeys.Chat]
+                @Localizer[ResourceKeys.Chat]
             </button>
         }
 
         @if (ShowMarkDoneButton)
         {
             <button class="btn btn-sm btn-outline-success flex-fill" @onclick="HandleMarkDone">
-                @Loc[ResourceKeys.Done]
+                @Localizer[ResourceKeys.Done]
             </button>
         }
 
         @if (ShowEditButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleEdit">
-                @Loc[ResourceKeys.Edit]
+                @Localizer[ResourceKeys.Edit]
             </button>
         }
 
         @if (ShowCancelButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleCancel">
-                @Loc[ResourceKeys.Cancel]
+                @Localizer[ResourceKeys.Cancel]
             </button>
         }
+
         @if (ShowAttachmentsButton)
         {
             <button class="btn btn-sm btn-outline-secondary flex-fill" @onclick="HandleOpenAttachments">
-                @Loc[ResourceKeys.Attachments]
+                @Localizer[ResourceKeys.Attachments]
             </button>
         }
     </div>

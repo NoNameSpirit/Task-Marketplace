@@ -1,7 +1,8 @@
 ﻿using Blazor_Web_App.Resources;
 using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Services.Receivers.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -11,21 +12,27 @@ using Shared.Enums;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
+[AllowAnonymous]
 public partial class Register : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IAuthService AuthService { get; set; } = null!;
     [Inject] public ILocalStorageService LocalStorageService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
-    protected string PageTitle
-        => nameof(Register);
+    private const string IndexUri = "/";
+
     protected string Login { get; set; } = string.Empty;
+
     protected string Password { get; set; } = string.Empty;
+
     protected UserRole Role { get; set; } = UserRole.Customer;
+
     protected string ErrorMessage { get; set; } = string.Empty;
+
     protected bool IsSuccess { get; set; }
+
     protected bool IsLoading { get; set; }
 
     public async Task HandleRegister()
@@ -35,7 +42,7 @@ public partial class Register : ComponentBase
 
         var registerUserDto = new RegisterUserDto(Login, Password, Role);
 
-        var registerResult = await ApiService.RegisterAsync(registerUserDto);
+        var registerResult = await AuthService.RegisterAsync(registerUserDto);
 
         if (registerResult.IsSuccess)
         {
@@ -49,7 +56,7 @@ public partial class Register : ComponentBase
                 registerResult.Value!.Role,
                 registerResult.Value.Id.ToString());
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo(IndexUri);
         }
         else
         {

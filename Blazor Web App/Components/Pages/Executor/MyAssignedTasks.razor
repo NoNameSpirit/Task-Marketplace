@@ -1,22 +1,21 @@
 ﻿@page "/my-assigned"
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.MyAssignedTasks]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.MyAssignedTasks]</PageTitle>
 
 <div class="container py-4">
-    <h2 class="mb-4">@Loc[ResourceKeys.MyAssignedTasks]</h2>
+    <h2 class="mb-4">@Localizer[ResourceKeys.MyAssignedTasks]</h2>
 
     @if (IsLoading)
     {
         <div class="spinner-border text-primary"></div>
     }
-    else if (ErrorMessage != "")
+    else if (ErrorMessage != string.Empty)
     {
         <div class="alert alert-danger">@ErrorMessage</div>
     }
     else if (ListTasks is null || ListTasks.Count == 0)
     {
-        <div class="alert alert-info">@Loc[ResourceKeys.NoAssignedTasks]</div>
+        <div class="alert alert-info">@Localizer[ResourceKeys.NoAssignedTasks]</div>
     }
     else
     {
@@ -24,39 +23,39 @@
             @foreach (var task in ListTasks)
             {
                 <div class="col-md-6 col-lg-4">
-                    <TaskCard
-                        ProjectTask="task"
-                        CurrentUserId="CurrentUserId"
-                        IsExecutor="true"
-                        IsCustomer="false"
-                        IsResponded="true"
-                        OnOpenChat="OpenChatModal"
-                        OnOpenAttachments="OpenAttachmentsModal" />
+                    <TaskCard ProjectTask="task"
+                              CurrentUserId="CurrentUserId"
+                              IsExecutor="true"
+                              IsCustomer="false"
+                              IsResponded="true"
+                              OnOpenChat="OpenChatModal"
+                              OnOpenAttachments="OpenAttachmentsModal" />
                 </div>
             }
         </div>
 
         <nav class="mt-4">
             <ul class="pagination justify-content-center">
-                <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                 </li>
+
                 <li class="page-item disabled">
                     <span class="page-link">@CurrentPage / @TotalPages</span>
                 </li>
-                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                 </li>
             </ul>
         </nav>
     }
 </div>
 
-<ChatModal
-    IsVisible="IsChatModalOpen"
-    TaskId="_chatTaskId"
-    CurrentUserId="CurrentUserId"
-    OnClose="() => IsChatModalOpen = false" />
+<ChatModal IsVisible="IsChatModalOpen"
+           TaskId="_chatTaskId"
+           CurrentUserId="CurrentUserId"
+           OnClose="() => IsChatModalOpen = false" />
 
 <AttachmentsModal IsVisible="_attachmentsModal.IsOpen"
                   TaskId="_attachmentsModal.TaskId"

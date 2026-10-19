@@ -1,12 +1,10 @@
 ﻿@page "/login"
 
-@attribute [AllowAnonymous]
-
-<PageTitle>@Loc[ResourceKeys.Login]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.Login]</PageTitle>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <div class="card p-4" style="width: 40rem;">
-        <h3 class="text-center mb-4">@Loc[ResourceKeys.Login]</h3>
+        <h3 class="text-center mb-4">@Localizer[ResourceKeys.Login]</h3>
 
         @if (!IsSuccess)
         {
@@ -15,21 +13,21 @@
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
 
-            <input class="form-control mb-3" type="text" placeholder="@Loc[ResourceKeys.Login]" @bind="Name" />
+            <input class="form-control mb-3" type="text" placeholder="@Localizer[ResourceKeys.Login]" @bind="Name" />
 
-            <input class="form-control mb-3" type="password" placeholder="@Loc[ResourceKeys.Password]" @bind="Password" />
+            <input class="form-control mb-3" type="password" placeholder="@Localizer[ResourceKeys.Password]" @bind="Password" />
 
             <button class="btn btn-primary w-100" @onclick="HandleLogin" disabled="@IsLoading">
-                @(IsLoading ? Loc[ResourceKeys.Loading].Value : Loc[ResourceKeys.SignIn].Value)
+                @(IsLoading ? Localizer[ResourceKeys.Loading].Value : Localizer[ResourceKeys.SignIn].Value)
             </button>
 
             <div class="text-center mt-3">
-                <a href="/register" class="text-decoration-none">@Loc[ResourceKeys.NoAccount]</a>
+                <a href="/register" class="text-decoration-none">@Localizer[ResourceKeys.NoAccount]</a>
             </div>
         }
         else
         {
-            <div class="alert alert-success text-center">@Loc[ResourceKeys.LoggedInSuccess]</div>
+            <div class="alert alert-success text-center">@Localizer[ResourceKeys.LoggedInSuccess]</div>
         }
     </div>
 </div>

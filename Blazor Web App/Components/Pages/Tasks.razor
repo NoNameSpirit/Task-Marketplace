@@ -1,24 +1,25 @@
 ﻿@page "/tasks"
 
 @using Blazor_Web_App.Components.Pages.TasksModals
+@using Blazor_Web_App.Constants
 @using Shared.Enums
 
-<PageTitle>@Loc[PageTitleTextKey]</PageTitle>
+<PageTitle>@Localizer[PageTitleTextKey]</PageTitle>
 
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>@Loc[PageTitleTextKey]</h2>
+        <h2>@Localizer[PageTitleTextKey]</h2>
 
         @if (IsCustomer)
         {
-            <button class="btn btn-primary" @onclick="ShowCreateModal">@Loc[ResourceKeys.NewTask]</button>
+            <button class="btn btn-primary" @onclick="ShowCreateModal">@Localizer[ResourceKeys.NewTask]</button>
         }
     </div>
 
     <div class="d-flex gap-2 mb-3">
-        <input class="form-control" placeholder="@Loc[ResourceKeys.SearchPlaceholder]" @bind="_searchQuery" />
-        <button class="btn btn-primary" @onclick="HandleSearch">@Loc[ResourceKeys.Search]</button>
-        <button class="btn btn-secondary" @onclick="ClearSearch">@Loc[ResourceKeys.Clear]</button>
+        <input class="form-control" placeholder="@Localizer[ResourceKeys.SearchPlaceholder]" @bind="_searchQuery" />
+        <button class="btn btn-primary" @onclick="HandleSearch">@Localizer[ResourceKeys.Search]</button>
+        <button class="btn btn-secondary" @onclick="ClearSearch">@Localizer[ResourceKeys.Clear]</button>
     </div>
 
     @if (IsLoading)
@@ -27,13 +28,13 @@
             <div class="spinner-border text-primary"></div>
         </div>
     }
-    else if (ErrorMessage != "")
+    else if (ErrorMessage != string.Empty)
     {
         <div class="alert alert-danger">@ErrorMessage</div>
     }
     else if (ListTasks is null || ListTasks.Count == 0)
     {
-        <div class="alert alert-info text-center">@Loc[ResourceKeys.NoTasksFound]</div>
+        <div class="alert alert-info text-center">@Localizer[ResourceKeys.NoTasksFound]</div>
     }
     else
     {
@@ -42,25 +43,24 @@
             {
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex flex-column h-100">
-                        <TaskCard
-                            ProjectTask="task"
-                            CurrentUserId="CurrentUserId"
-                            IsExecutor="IsExecutor"
-                            IsCustomer="IsCustomer"
-                            IsResponded="task.IsRespondedByCurrentUser"
-                            OnDeleted="HandleTaskDeleted"
-                            OnRespond="HandleRespond"
-                            OnOpenChat="OpenChatModal"
-                            OnOpenAttachments="OpenAttachmentsModal"
-                            OnMarkDone="OpenRateModal"
-                            OnCancel="HandleCancel"
-                            OnEdit="OpenEditModal" />
+                        <TaskCard ProjectTask="task"
+                                  CurrentUserId="CurrentUserId"
+                                  IsExecutor="IsExecutor"
+                                  IsCustomer="IsCustomer"
+                                  IsResponded="task.IsRespondedByCurrentUser"
+                                  OnDeleted="HandleTaskDeleted"
+                                  OnRespond="HandleRespond"
+                                  OnOpenChat="OpenChatModal"
+                                  OnOpenAttachments="OpenAttachmentsModal"
+                                  OnMarkDone="OpenRateModal"
+                                  OnCancel="HandleCancel"
+                                  OnEdit="OpenEditModal" />
 
                         @if (IsCustomer && task.Status == ProjectTaskStatus.Published)
                         {
                             <button class="btn btn-sm btn-outline-primary w-100 mt-2"
                                     @onclick="() => OpenResponsesModal(task.Id, task.Title)">
-                                @Loc[ResourceKeys.ViewCandidates]
+                                @Localizer[ResourceKeys.ViewCandidates]
                             </button>
                         }
                     </div>
@@ -70,14 +70,16 @@
 
         <nav class="mt-4 mb-5">
             <ul class="pagination justify-content-center">
-                <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                 </li>
+
                 <li class="page-item disabled">
                     <span class="page-link">@CurrentPage / @TotalPages</span>
                 </li>
-                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                 </li>
             </ul>
         </nav>

@@ -1,6 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Interfaces;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
@@ -10,13 +11,19 @@ namespace Application.Chats.Commands.Delete;
 public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
 {
     private readonly IChatCommandRepository _commandRepository;
+    private readonly IChatQueryRepository _queryRepository;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public DeleteChatHandler(
         IChatCommandRepository commandRepository,
+        IChatQueryRepository queryRepository,
+        IProjectTaskQueryRepository taskQueryRepository,
         IUnitOfWork unitOfWork)
     {
         _commandRepository = commandRepository;
+        _queryRepository = queryRepository;
+        _taskQueryRepository = taskQueryRepository;
         _unitOfWork = unitOfWork;
     }
 

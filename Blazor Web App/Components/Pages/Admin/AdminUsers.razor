@@ -1,13 +1,14 @@
 ﻿@page "/admin/users"
-@using Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.Users]</PageTitle>
+@using Blazor_Web_App.Constants
+@using Shared.Enums
+
+<PageTitle>@Localizer[ResourceKeys.Users]</PageTitle>
 
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container py-4">
-            <h2 class="mb-4">@Loc[ResourceKeys.Users]</h2>
+            <h2 class="mb-4">@Localizer[ResourceKeys.Users]</h2>
 
             @if (IsLoading)
             {
@@ -15,24 +16,24 @@
                     <div class="spinner-border text-primary"></div>
                 </div>
             }
-            else if (ErrorMessage != "")
+            else if (ErrorMessage != string.Empty)
             {
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
             else if (Users is null || Users.Count == 0)
             {
-                <div class="alert alert-info">@Loc[ResourceKeys.NoUsersFound]</div>
+                <div class="alert alert-info">@Localizer[ResourceKeys.NoUsersFound]</div>
             }
             else
             {
                 <table class="table table-striped align-middle">
                     <thead>
                         <tr>
-                            <th>@Loc[ResourceKeys.Name]</th>
-                            <th>@Loc[ResourceKeys.Role]</th>
-                            <th>@Loc[ResourceKeys.Rating]</th>
-                            <th>@Loc[ResourceKeys.Blocked]</th>
-                            <th>@Loc[ResourceKeys.Actions]</th>
+                            <th>@Localizer[ResourceKeys.Name]</th>
+                            <th>@Localizer[ResourceKeys.Role]</th>
+                            <th>@Localizer[ResourceKeys.Rating]</th>
+                            <th>@Localizer[ResourceKeys.Blocked]</th>
+                            <th>@Localizer[ResourceKeys.Actions]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,7 @@
                         {
                             <tr>
                                 <td>@user.Name</td>
+
                                 <td>
                                     <select class="form-select form-select-sm"
                                             value="@user.Role"
@@ -51,18 +53,22 @@
                                         }
                                     </select>
                                 </td>
-                                <td>@(user.Rating?.ToString("0.0") ?? "—")</td>
-                                <td>@(user.IsBlocked ? Loc[ResourceKeys.Yes].Value : Loc[ResourceKeys.No].Value)</td>
+
+                                <td>@(user.Rating?.ToString(FormatConstants.RatingFormat) ?? FormatConstants.EmptyPlaceholder)</td>
+
+                                <td>@(user.IsBlocked ? Localizer[ResourceKeys.Yes].Value : Localizer[ResourceKeys.No].Value)</td>
+
                                 <td>
                                     <button class="btn btn-sm btn-outline-warning me-1"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleBlock(user)">
-                                        @(user.IsBlocked ? Loc[ResourceKeys.Unblock].Value : Loc[ResourceKeys.Block].Value)
+                                        @(user.IsBlocked ? Localizer[ResourceKeys.Unblock].Value : Localizer[ResourceKeys.Block].Value)
                                     </button>
+
                                     <button class="btn btn-sm btn-outline-danger"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleDelete(user.Id)">
-                                        @Loc[ResourceKeys.Delete]
+                                        @Localizer[ResourceKeys.Delete]
                                     </button>
                                 </td>
                             </tr>
@@ -72,23 +78,26 @@
 
                 <nav class="mt-4">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled": string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                         </li>
+
                         <li class="page-item disabled">
                             <span class="page-link">@CurrentPage / @TotalPages</span>
                         </li>
-                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                         </li>
                     </ul>
                 </nav>
             }
         </div>
     </Authorized>
+
     <NotAuthorized>
         <div class="container py-4">
-            <div class="alert alert-danger">@Loc[ResourceKeys.AccessDenied]</div>
+            <div class="alert alert-danger">@Localizer[ResourceKeys.AccessDenied]</div>
         </div>
     </NotAuthorized>
 </AuthorizeView>

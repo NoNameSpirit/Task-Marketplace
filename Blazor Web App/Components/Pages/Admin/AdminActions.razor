@@ -1,28 +1,30 @@
 ﻿@page "/admin/actions"
-@using Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.UserActions]</PageTitle>
+@using Blazor_Web_App.Constants
+@using Shared.Enums
+
+<PageTitle>@Localizer[ResourceKeys.UserActions]</PageTitle>
 
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container py-4">
-            <h2 class="mb-4">@Loc[ResourceKeys.UserActions]</h2>
+            <h2 class="mb-4">@Localizer[ResourceKeys.UserActions]</h2>
 
             <div class="row g-2 mb-3">
                 <div class="col-md-4">
-                    <label class="form-label">@Loc[ResourceKeys.ActionType]</label>
+                    <label class="form-label">@Localizer[ResourceKeys.ActionType]</label>
                     <select class="form-select" @bind="_filterActionType">
-                        <option value="">@Loc[ResourceKeys.All]</option>
+                        <option value="">@Localizer[ResourceKeys.All]</option>
                         @foreach (var type in Enum.GetValues<UserActionType>())
                         {
                             <option value="@((int)type)">@type</option>
                         }
                     </select>
                 </div>
+
                 <div class="col-md-4 d-flex align-items-end">
-                    <button class="btn btn-primary me-2" @onclick="ApplyFilter">@Loc[ResourceKeys.Apply]</button>
-                    <button class="btn btn-secondary" @onclick="ClearFilter">@Loc[ResourceKeys.Clear]</button>
+                    <button class="btn btn-primary me-2" @onclick="ApplyFilter">@Localizer[ResourceKeys.Apply]</button>
+                    <button class="btn btn-secondary" @onclick="ClearFilter">@Localizer[ResourceKeys.Clear]</button>
                 </div>
             </div>
 
@@ -32,23 +34,23 @@
                     <div class="spinner-border text-primary"></div>
                 </div>
             }
-            else if (ErrorMessage != "")
+            else if (ErrorMessage != string.Empty)
             {
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
             else if (Actions is null || Actions.Count == 0)
             {
-                <div class="alert alert-info">@Loc[ResourceKeys.NoActionsFound]</div>
+                <div class="alert alert-info">@Localizer[ResourceKeys.NoActionsFound]</div>
             }
             else
             {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>@Loc[ResourceKeys.User]</th>
-                            <th>@Loc[ResourceKeys.Action]</th>
-                            <th>@Loc[ResourceKeys.Entity]</th>
-                            <th>@Loc[ResourceKeys.When]</th>
+                            <th>@Localizer[ResourceKeys.User]</th>
+                            <th>@Localizer[ResourceKeys.Action]</th>
+                            <th>@Localizer[ResourceKeys.Entity]</th>
+                            <th>@Localizer[ResourceKeys.When]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +60,7 @@
                                 <td>@action.UserName</td>
                                 <td>@action.ActionType</td>
                                 <td>@action.EntityType</td>
-                                <td>@action.PerformedAt.ToLocalTime().ToString("g")</td>
+                                <td>@action.PerformedAt.ToLocalTime().ToString(FormatConstants.ShortDatePattern)</td>
                             </tr>
                         }
                     </tbody>
@@ -66,23 +68,26 @@
 
                 <nav class="mt-4">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                         </li>
+
                         <li class="page-item disabled">
                             <span class="page-link">@CurrentPage / @TotalPages</span>
                         </li>
-                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled": string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                         </li>
                     </ul>
                 </nav>
             }
         </div>
     </Authorized>
+
     <NotAuthorized>
         <div class="container py-4">
-            <div class="alert alert-danger">@Loc[ResourceKeys.AccessDenied]</div>
+            <div class="alert alert-danger">@Localizer[ResourceKeys.AccessDenied]</div>
         </div>
     </NotAuthorized>
 </AuthorizeView>

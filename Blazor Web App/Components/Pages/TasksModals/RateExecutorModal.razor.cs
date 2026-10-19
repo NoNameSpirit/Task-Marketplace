@@ -1,18 +1,25 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class RateExecutorModal : ComponentBase
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public EventCallback OnCompleted { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int MinRating = 1;
     private const int MaxRating = 5;
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public EventCallback OnCompleted { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
 
     private int SelectedRating = MinRating;
     private bool IsSubmitting;
@@ -33,7 +40,7 @@ public partial class RateExecutorModal : ComponentBase
         IsSubmitting = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.MarkAsDoneAsync(TaskId, rating);
+        var result = await ProjectTaskService.MarkAsDoneAsync(TaskId, rating);
 
         if (result.IsSuccess)
         {

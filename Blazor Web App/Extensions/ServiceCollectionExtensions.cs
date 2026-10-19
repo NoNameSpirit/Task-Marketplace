@@ -1,7 +1,6 @@
 ﻿using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.Culture;
 using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers;
 using Blazor_Web_App.Services.Receivers.Auth;
 using Blazor_Web_App.Services.Receivers.Chats;
 using Blazor_Web_App.Services.Receivers.ProjectTasks;
@@ -65,10 +64,6 @@ public static class ServiceCollectionExtensions
 
         services.AddLocalization()
                 .AddScoped<ICultureService, CultureService>();
-
-        services.AddScoped<BaseService>()
-                .AddScoped<IAuthService, AuthService>()
-                .AddScoped<IProjectTaskService, ProjectTaskService>();
 
         return services;
     }

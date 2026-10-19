@@ -1,5 +1,7 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -7,11 +9,16 @@ namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class EditTaskModal : ComponentBase
 {
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     [Parameter] public bool IsVisible { get; set; }
+
     [Parameter] public ProjectTaskDto? Task { get; set; }
+
     [Parameter] public EventCallback OnUpdated { get; set; }
+
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private string Title = string.Empty;
     private string Description = string.Empty;
@@ -23,7 +30,10 @@ public partial class EditTaskModal : ComponentBase
 
     protected override void OnParametersSet()
     {
-        if (Task is null) return;
+        if (Task is null)
+        {
+            return;
+        }
 
         Title = Task.Title;
         Description = Task.Description;
@@ -34,7 +44,10 @@ public partial class EditTaskModal : ComponentBase
 
     private async Task Submit()
     {
-        if (Task is null) return;
+        if (Task is null)
+        {
+            return;
+        }
 
         IsSubmitting = true;
         ErrorMessage = string.Empty;
@@ -46,7 +59,7 @@ public partial class EditTaskModal : ComponentBase
             StartsAt,
             EndsAt);
 
-        var result = await ApiService.UpdateTaskAsync(Task.Id, dto);
+        var result = await ProjectTaskService.UpdateTaskAsync(Task.Id, dto);
 
         if (result.IsSuccess)
         {

@@ -1,16 +1,23 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class ResponsesModal : ComponentBase
 {
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     [Parameter] public bool IsVisible { get; set; }
+
     [Parameter] public Guid TaskId { get; set; }
+
     [Parameter] public EventCallback OnAssigned { get; set; }
+
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<TaskResponseDto>? Responses;
     private Guid _assigningId;
@@ -32,7 +39,7 @@ public partial class ResponsesModal : ComponentBase
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -45,7 +52,7 @@ public partial class ResponsesModal : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetTaskResponsesAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskResponsesAsync(TaskId);
 
         if (result.IsSuccess)
         {
@@ -64,7 +71,7 @@ public partial class ResponsesModal : ComponentBase
         IsAssigning = true;
         _assigningId = executorId;
 
-        var result = await ApiService.AssignExecutorAsync(TaskId, executorId);
+        var result = await ProjectTaskService.AssignExecutorAsync(TaskId, executorId);
 
         if (result.IsSuccess)
         {

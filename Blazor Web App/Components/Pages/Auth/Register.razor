@@ -2,13 +2,11 @@
 
 @using Shared.Enums
 
-@attribute [AllowAnonymous]
-
-<PageTitle>@Loc[ResourceKeys.Register]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.Register]</PageTitle>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <div class="card p-4" style="width: 40rem;">
-        <h3 class="text-center mb-4">@Loc[ResourceKeys.Register]</h3>
+        <h3 class="text-center mb-4">@Localizer[ResourceKeys.Register]</h3>
 
         @if (!IsSuccess)
         {
@@ -21,29 +19,29 @@
 
             <input class="form-control mb-3"
                    type="text"
-                   placeholder="@Loc[ResourceKeys.Login]"
+                   placeholder="@Localizer[ResourceKeys.Login]"
                    @bind="Login" />
 
             <input class="form-control mb-3"
                    type="password"
-                   placeholder="@Loc[ResourceKeys.Password]"
+                   placeholder="@Localizer[ResourceKeys.Password]"
                    @bind="Password" />
 
             <select class="form-select mb-3" @bind="Role">
-                <option value="@UserRole.Customer">@Loc[ResourceKeys.Customer]</option>
-                <option value="@UserRole.Executor">@Loc[ResourceKeys.Executor]</option>
+                <option value="@UserRole.Customer">@Localizer[ResourceKeys.Customer]</option>
+                <option value="@UserRole.Executor">@Localizer[ResourceKeys.Executor]</option>
             </select>
 
             <button class="btn btn-primary w-100"
                     @onclick="HandleRegister"
                     disabled="@IsLoading">
-                @(IsLoading ? Loc[ResourceKeys.Loading].Value : Loc[ResourceKeys.Register].Value)
+                @(IsLoading ? Localizer[ResourceKeys.Loading].Value : Localizer[ResourceKeys.Register].Value)
             </button>
         }
         else
         {
             <div class="alert alert-success text-center">
-                @Loc[ResourceKeys.RegisteredSuccess]
+                @Localizer[ResourceKeys.RegisteredSuccess]
             </div>
         }
     </div>

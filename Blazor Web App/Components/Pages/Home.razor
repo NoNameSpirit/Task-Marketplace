@@ -1,12 +1,11 @@
 ﻿@page "/"
+
 @using Shared.Enums
 @using System.Security.Claims
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.AppName]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.AppName]</PageTitle>
 
 <div class="container py-5">
-
     <AuthorizeView>
         <Authorized Context="AuthContext">
             @{
@@ -16,27 +15,26 @@
 
             <div class="p-5 mb-4 bg-light rounded-3 border">
                 <div class="container-fluid py-2">
-                    <h1 class="display-5 fw-bold mb-2">@Loc[ResourceKeys.AppName]</h1>
+                    <h1 class="display-5 fw-bold mb-2">@Localizer[ResourceKeys.AppName]</h1>
 
                     <div class="d-flex align-items-center gap-3">
-                        <span class="fs-5">@Loc[ResourceKeys.Hello], <strong>@userName</strong></span>
+                        <span class="fs-5">@Localizer[ResourceKeys.Hello], <strong>@userName</strong></span>
                         <span class="badge bg-primary fs-6">@role</span>
                     </div>
                 </div>
             </div>
 
-            <h2 class="h4 mb-3">@Loc[ResourceKeys.QuickActions]</h2>
+            <h2 class="h4 mb-3">@Localizer[ResourceKeys.QuickActions]</h2>
 
             <div class="row g-3">
-
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
                 {
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.MyTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ManageMyTasks]</p>
-                                <a class="btn btn-primary mt-auto" href="/tasks">@Loc[ResourceKeys.OpenTasks]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.MyTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ManageMyTasks]</p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">@Localizer[ResourceKeys.OpenTasks]</a>
                             </div>
                         </div>
                     </div>
@@ -47,9 +45,9 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.BrowseTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.FindTasks]</p>
-                                <a class="btn btn-primary mt-auto" href="/tasks">@Loc[ResourceKeys.Browse]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.BrowseTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.FindTasks]</p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">@Localizer[ResourceKeys.Browse]</a>
                             </div>
                         </div>
                     </div>
@@ -57,9 +55,9 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.MyAssignedTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.TasksAssigned]</p>
-                                <a class="btn btn-primary mt-auto" href="/my-assigned">@Loc[ResourceKeys.OpenAssigned]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.MyAssignedTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.TasksAssigned]</p>
+                                <a class="btn btn-primary mt-auto" href="/my-assigned">@Localizer[ResourceKeys.OpenAssigned]</a>
                             </div>
                         </div>
                     </div>
@@ -70,9 +68,9 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.AdminUsers]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ManageUsers]</p>
-                                <a class="btn btn-primary mt-auto" href="/admin/users">@Loc[ResourceKeys.OpenUsers]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.AdminUsers]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ManageUsers]</p>
+                                <a class="btn btn-primary mt-auto" href="/admin/users">@Localizer[ResourceKeys.OpenUsers]</a>
                             </div>
                         </div>
                     </div>
@@ -80,9 +78,9 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.AdminActions]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ViewLog]</p>
-                                <a class="btn btn-primary mt-auto" href="/admin/actions">@Loc[ResourceKeys.OpenLog]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.AdminActions]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ViewLog]</p>
+                                <a class="btn btn-primary mt-auto" href="/admin/actions">@Localizer[ResourceKeys.OpenLog]</a>
                             </div>
                         </div>
                     </div>
@@ -92,14 +90,13 @@
 
         <NotAuthorized>
             <div class="p-5 mb-4 bg-light rounded-3 border text-center">
-                <h1 class="display-5 fw-bold mb-3">@Loc[ResourceKeys.AppName]</h1>
+                <h1 class="display-5 fw-bold mb-3">@Localizer[ResourceKeys.AppName]</h1>
 
                 <div class="d-flex justify-content-center gap-2">
-                    <a class="btn btn-primary btn-lg" href="/login">@Loc[ResourceKeys.SignIn]</a>
-                    <a class="btn btn-outline-secondary btn-lg" href="/register">@Loc[ResourceKeys.Register]</a>
+                    <a class="btn btn-primary btn-lg" href="/login">@Localizer[ResourceKeys.SignIn]</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="/register">@Localizer[ResourceKeys.Register]</a>
                 </div>
             </div>
         </NotAuthorized>
     </AuthorizeView>
-
 </div>

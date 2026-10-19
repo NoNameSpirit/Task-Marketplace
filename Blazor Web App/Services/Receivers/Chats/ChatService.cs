@@ -1,9 +1,8 @@
 ﻿using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers.Chats;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 
-namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
+namespace Blazor_Web_App.Services.Receivers.Chats;
 
 public class ChatService(
     HttpClient _httpClient,

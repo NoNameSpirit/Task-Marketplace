@@ -1,23 +1,27 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Blazor_Web_App.Components.Pages.Admin;
 
+[Authorize(Roles = nameof(UserRole.Admin))]
 public partial class AdminUsers : ComponentBase
 {
+    [Inject] public IUserService UserService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     private const int PageSize = 10;
     private const int FirstPage = 1;
-
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<UserDto>? Users;
     private int CurrentPage = FirstPage;
     private int TotalPages = FirstPage;
     private bool IsLoading;
     private string ErrorMessage = string.Empty;
-
     private Guid _processingUserId;
 
     protected override async Task OnInitializedAsync()
@@ -30,7 +34,7 @@ public partial class AdminUsers : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetUsersAsync(CurrentPage, PageSize);
+        var result = await UserService.GetUsersAsync(CurrentPage, PageSize);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -53,7 +57,10 @@ public partial class AdminUsers : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 
@@ -62,11 +69,14 @@ public partial class AdminUsers : ComponentBase
 
     private async Task HandleChangeRole(Guid userId, ChangeEventArgs e)
     {
-        if (!Enum.TryParse<UserRole>(e.Value?.ToString(), out var role)) return;
+        if (!Enum.TryParse<UserRole>(e.Value?.ToString(), out var role))
+        {
+            return;
+        }
 
         _processingUserId = userId;
 
-        var result = await ApiService.ChangeRoleAsync(userId, role);
+        var result = await UserService.ChangeRoleAsync(userId, role);
 
         if (result.IsSuccess)
         {
@@ -85,8 +95,8 @@ public partial class AdminUsers : ComponentBase
         _processingUserId = user.Id;
 
         var result = user.IsBlocked
-            ? await ApiService.UnblockUserAsync(user.Id)
-            : await ApiService.BlockUserAsync(user.Id);
+            ? await UserService.UnblockUserAsync(user.Id)
+            : await UserService.BlockUserAsync(user.Id);
 
         if (result.IsSuccess)
         {
@@ -104,7 +114,7 @@ public partial class AdminUsers : ComponentBase
     {
         _processingUserId = userId;
 
-        var result = await ApiService.DeleteUserAsync(userId);
+        var result = await UserService.DeleteUserAsync(userId);
 
         if (result.IsSuccess)
         {

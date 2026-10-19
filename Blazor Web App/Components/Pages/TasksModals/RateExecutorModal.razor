@@ -1,22 +1,20 @@
-﻿@inject IStringLocalizer<SharedResources> Loc
-
-@if (IsVisible)
+﻿@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.Rate]</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.Rate]</h5>
                     <button class="btn-close" @onclick="CloseModal"></button>
                 </div>
 
                 <div class="modal-body">
-                    @if (ErrorMessage != "")
+                    @if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
 
-                    <p>@string.Format(Loc[ResourceKeys.SelectRating], MinRating, MaxRating)</p>
+                    <p>@string.Format(Localizer[ResourceKeys.SelectRating], MinRating, MaxRating)</p>
 
                     <div class="d-flex gap-2 mb-3">
                         @for (var i = MinRating; i <= MaxRating; i++)
@@ -33,10 +31,10 @@
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" @onclick="Skip" disabled="@IsSubmitting">
-                        @Loc[ResourceKeys.Skip]
+                        @Localizer[ResourceKeys.Skip]
                     </button>
                     <button class="btn btn-primary" @onclick="Submit" disabled="@IsSubmitting">
-                        @(IsSubmitting ? "..." : Loc[ResourceKeys.Submit].Value)
+                        @(IsSubmitting ? "..." : Localizer[ResourceKeys.Submit].Value)
                     </button>
                 </div>
             </div>

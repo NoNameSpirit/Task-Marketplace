@@ -1,31 +1,39 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.Chats;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.Chats;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class ChatModal : ComponentBase, IDisposable
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public Guid CurrentUserId { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IChatService ChatService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
-    private bool _disposed;
+    private const int PollingIntervalSeconds = 2;
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public Guid CurrentUserId { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
     private ChatDto? Chat;
     private string TaskTitle = string.Empty;
     private string NewMessage = string.Empty;
     private string ErrorMessage = string.Empty;
     private bool IsLoading;
     private bool IsSending;
-
     private CancellationTokenSource? _cancellationTokenSource;
     private PeriodicTimer? _periodicTimer;
     private Guid? _currentTaskId;
-
-    private const int PollingIntervalSeconds = 2;
+    private bool _disposed;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -42,7 +50,6 @@ public partial class ChatModal : ComponentBase, IDisposable
         }
 
         StopPolling();
-
         _currentTaskId = TaskId;
 
         await LoadTitle();
@@ -92,7 +99,7 @@ public partial class ChatModal : ComponentBase, IDisposable
             return;
         }
 
-        var existing = await ApiService.GetChatByTaskIdAsync(TaskId);
+        var existing = await ChatService.GetChatByTaskIdAsync(TaskId);
 
         if (existing.IsSuccess && existing.Value is not null)
         {
@@ -102,7 +109,7 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -115,7 +122,7 @@ public partial class ChatModal : ComponentBase, IDisposable
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var existing = await ApiService.GetChatByTaskIdAsync(TaskId);
+        var existing = await ChatService.GetChatByTaskIdAsync(TaskId);
 
         if (existing.IsSuccess && existing.Value is not null)
         {
@@ -123,7 +130,7 @@ public partial class ChatModal : ComponentBase, IDisposable
         }
         else
         {
-            var created = await ApiService.CreateChatAsync(TaskId);
+            var created = await ChatService.CreateChatAsync(TaskId);
 
             if (!created.IsSuccess)
             {
@@ -140,11 +147,14 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private async Task Send()
     {
-        if (string.IsNullOrWhiteSpace(NewMessage) || Chat is null) return;
+        if (string.IsNullOrWhiteSpace(NewMessage) || Chat is null)
+        {
+            return;
+        }
 
         IsSending = true;
 
-        var result = await ApiService.SendMessageAsync(Chat.Id, NewMessage, CurrentUserId);
+        var result = await ChatService.SendMessageAsync(Chat.Id, NewMessage, CurrentUserId);
 
         if (result.IsSuccess)
         {
@@ -174,6 +184,7 @@ public partial class ChatModal : ComponentBase, IDisposable
             await Send();
         }
     }
+
     protected virtual void Dispose(bool disposing)
     {
         if (_disposed)

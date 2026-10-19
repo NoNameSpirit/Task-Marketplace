@@ -20,7 +20,7 @@ public class ProjectTaskService(
         await SetAuthHeaderAsync(cancellationToken);
 
         var response = await _httpClient.GetAsync(
-            $"/customer/{customerId}?page={page}&pageSize={pageSize}",
+            $"customer/{customerId}?page={page}&pageSize={pageSize}",
             cancellationToken);
 
         var result = await HandleResponseAsync<PagedResult<ProjectTaskDto>>(

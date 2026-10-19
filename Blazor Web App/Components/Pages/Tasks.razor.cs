@@ -1,6 +1,7 @@
 ﻿using Blazor_Web_App.Modals;
 using Blazor_Web_App.Resources;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -11,15 +12,17 @@ using System.Security.Claims;
 
 namespace Blazor_Web_App.Components.Pages;
 
+[Authorize]
 public partial class Tasks : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
-    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int PageSize = 10;
     private const int FirstPage = 1;
+    private const string LoginUri = "/login";
 
     private readonly ModalState _createModal = new();
     private readonly ModalState _responsesModal = new();
@@ -44,7 +47,10 @@ public partial class Tasks : ComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || _initialized) return;
+        if (!firstRender || _initialized)
+        {
+            return;
+        }
 
         _initialized = true;
 
@@ -52,7 +58,7 @@ public partial class Tasks : ComponentBase
 
         if (!state.User.Identity?.IsAuthenticated ?? true)
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -60,7 +66,7 @@ public partial class Tasks : ComponentBase
 
         if (!Guid.TryParse(idClaim, out var userId))
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -82,7 +88,10 @@ public partial class Tasks : ComponentBase
 
     private bool ComputeCanUpload()
     {
-        if (_attachmentsModalTask is null) return false;
+        if (_attachmentsModalTask is null)
+        {
+            return false;
+        }
 
         var isParticipant = _attachmentsModalTask.CustomerId == CurrentUserId
                             || _attachmentsModalTask.ExecutorId == CurrentUserId;
@@ -102,15 +111,15 @@ public partial class Tasks : ComponentBase
 
         if (!string.IsNullOrWhiteSpace(_searchQuery))
         {
-            result = await ApiService.SearchTasksAsync(_searchQuery, CurrentPage, PageSize);
+            result = await ProjectTaskService.SearchTasksAsync(_searchQuery, CurrentPage, PageSize);
         }
         else if (IsCustomer)
         {
-            result = await ApiService.GetMyTasksAsync(CurrentUserId, CurrentPage, PageSize);
+            result = await ProjectTaskService.GetMyTasksAsync(CurrentUserId, CurrentPage, PageSize);
         }
         else if (IsExecutor)
         {
-            result = await ApiService.GetPublishedTasksAsync(CurrentPage, PageSize);
+            result = await ProjectTaskService.GetPublishedTasksAsync(CurrentPage, PageSize);
         }
         else
         {
@@ -140,7 +149,7 @@ public partial class Tasks : ComponentBase
 
     private async Task HandleRespond(Guid taskId)
     {
-        var result = await ApiService.RespondToTaskAsync(taskId);
+        var result = await ProjectTaskService.RespondToTaskAsync(taskId);
 
         if (result.IsSuccess)
         {
@@ -165,7 +174,7 @@ public partial class Tasks : ComponentBase
 
     private async Task HandleCancel(Guid taskId)
     {
-        var result = await ApiService.CancelTaskAsync(taskId);
+        var result = await ProjectTaskService.CancelTaskAsync(taskId);
 
         if (result.IsSuccess)
         {
@@ -185,7 +194,10 @@ public partial class Tasks : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 

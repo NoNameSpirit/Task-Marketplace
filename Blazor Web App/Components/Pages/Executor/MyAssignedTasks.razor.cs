@@ -1,21 +1,27 @@
 ﻿using Blazor_Web_App.Modals;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using System.Security.Claims;
 
 namespace Blazor_Web_App.Components.Pages.Executor;
 
+[Authorize]
 public partial class MyAssignedTasks : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int PageSize = 10;
     private const int FirstPage = 1;
+    private const string LoginUri = "/login";
 
     private List<ProjectTaskDto>? ListTasks;
     private Guid CurrentUserId;
@@ -29,10 +35,12 @@ public partial class MyAssignedTasks : ComponentBase
     private readonly ModalState _attachmentsModal = new();
     private ProjectTaskDto? _attachmentsModalTask;
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || _initialized) return;
+        if (!firstRender || _initialized)
+        {
+            return;
+        }
 
         _initialized = true;
 
@@ -40,7 +48,7 @@ public partial class MyAssignedTasks : ComponentBase
 
         if (!state.User.Identity?.IsAuthenticated ?? true)
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -48,7 +56,7 @@ public partial class MyAssignedTasks : ComponentBase
 
         if (!Guid.TryParse(idClaim, out var userId))
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -67,7 +75,10 @@ public partial class MyAssignedTasks : ComponentBase
 
     private bool ComputeCanUpload()
     {
-        if (_attachmentsModalTask is null) return false;
+        if (_attachmentsModalTask is null)
+        {
+            return false;
+        }
 
         var isParticipant = _attachmentsModalTask.CustomerId == CurrentUserId
                             || _attachmentsModalTask.ExecutorId == CurrentUserId;
@@ -83,7 +94,7 @@ public partial class MyAssignedTasks : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetAssignedTasksAsync(CurrentUserId, CurrentPage, PageSize);
+        var result = await ProjectTaskService.GetAssignedTasksAsync(CurrentUserId, CurrentPage, PageSize);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -106,7 +117,10 @@ public partial class MyAssignedTasks : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 

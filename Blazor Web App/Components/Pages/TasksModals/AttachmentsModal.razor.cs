@@ -1,6 +1,9 @@
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Blazor_Web_App.Services.Receivers.TaskAttachments;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -8,17 +11,23 @@ namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class AttachmentsModal : ComponentBase
 {
+    [Inject] public ITaskAttachmentService TaskAttachmentService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+    [Inject] public IJSRuntime JS { get; set; } = null!;
+
     private const long MaxSizeBytes = 50L * 1024 * 1024;
     private const int MaxSizeMb = (int)(MaxSizeBytes / (1024 * 1024));
 
     [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public Guid CurrentUserId { get; set; }
-    [Parameter] public bool CanUpload { get; set; } = true;
-    [Parameter] public EventCallback OnClose { get; set; }
 
-    [Inject] public BaseService ApiService { get; set; } = null!;
-    [Inject] public IJSRuntime JS { get; set; } = null!;
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public Guid CurrentUserId { get; set; }
+
+    [Parameter] public bool CanUpload { get; set; } = true;
+
+    [Parameter] public EventCallback OnClose { get; set; }
 
     private List<TaskAttachmentDto>? Attachments;
     private string TaskTitle = string.Empty;
@@ -29,7 +38,10 @@ public partial class AttachmentsModal : ComponentBase
 
     protected override async Task OnParametersSetAsync()
     {
-        if (!IsVisible || TaskId == Guid.Empty) return;
+        if (!IsVisible || TaskId == Guid.Empty)
+        {
+            return;
+        }
 
         await LoadTitle();
         await LoadAttachments();
@@ -37,10 +49,12 @@ public partial class AttachmentsModal : ComponentBase
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
+        {
             TaskTitle = result.Value.Title;
+        }
     }
 
     private async Task LoadAttachments()
@@ -48,7 +62,7 @@ public partial class AttachmentsModal : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetTaskAttachmentsAsync(TaskId);
+        var result = await TaskAttachmentService.GetTaskAttachmentsAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -69,7 +83,10 @@ public partial class AttachmentsModal : ComponentBase
 
         var file = e.File;
 
-        if (file is null) return;
+        if (file is null)
+        {
+            return;
+        }
 
         if (file.Size > MaxSizeBytes)
         {
@@ -83,7 +100,7 @@ public partial class AttachmentsModal : ComponentBase
         {
             await using var stream = file.OpenReadStream(MaxSizeBytes);
 
-            var result = await ApiService.UploadAttachmentAsync(
+            var result = await TaskAttachmentService.UploadAttachmentAsync(
                 TaskId,
                 stream,
                 file.Name,
@@ -112,7 +129,7 @@ public partial class AttachmentsModal : ComponentBase
     {
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.DownloadAttachmentAsync(TaskId, attachment.Id);
+        var result = await TaskAttachmentService.DownloadAttachmentAsync(TaskId, attachment.Id);
 
         if (!result.IsSuccess || result.Value is null)
         {
@@ -134,7 +151,7 @@ public partial class AttachmentsModal : ComponentBase
         IsDeleting = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.DeleteAttachmentAsync(TaskId, attachment.Id);
+        var result = await TaskAttachmentService.DeleteAttachmentAsync(TaskId, attachment.Id);
 
         if (result.IsSuccess)
         {
@@ -156,8 +173,16 @@ public partial class AttachmentsModal : ComponentBase
 
     private static string FormatSize(long bytes)
     {
-        if (bytes < 1024) return $"{bytes} B";
-        if (bytes < 1024 * 1024) return $"{bytes / 1024.0:0.##} KB";
+        if (bytes < 1024)
+        {
+            return $"{bytes} B";
+        }
+
+        if (bytes < 1024 * 1024)
+        {
+            return $"{bytes / 1024.0:0.##} KB";
+        }
+
         return $"{bytes / (1024.0 * 1024.0):0.##} MB";
     }
 }
