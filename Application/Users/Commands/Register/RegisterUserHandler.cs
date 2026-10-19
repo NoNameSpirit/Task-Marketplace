@@ -1,6 +1,5 @@
 ﻿using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
-using Application.Users.Commands.Login;
 using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -69,8 +68,6 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<A
         }
 
         await _commandRepository.AddAsync(userResult.Value!, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var authDto = _jwtTokenGenerator.GenerateToken(userResult.Value!);
 

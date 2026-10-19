@@ -1,5 +1,4 @@
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,17 +9,10 @@ namespace Application.Users.Commands.BlockUser;
 public class BlockUserHandler : IRequestHandler<BlockUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public BlockUserHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public BlockUserHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -39,8 +31,6 @@ public class BlockUserHandler : IRequestHandler<BlockUserCommand, Result>
         }
 
         user.Block();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

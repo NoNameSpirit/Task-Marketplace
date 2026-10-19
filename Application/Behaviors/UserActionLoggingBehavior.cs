@@ -1,25 +1,26 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
+﻿using Application.Common;
+using Application.Interfaces;
+using Domain.Entities;
 using Domain.Interfaces.UserActions;
 using MediatR;
 using Shared.Dtos.Responses;
 using System.Reflection;
 
-namespace Application.Common;
+namespace Application.Behaviors;
 
 public class UserActionLoggingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
     private readonly IUserActionCommandRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public UserActionLoggingBehavior(
         IUserActionCommandRepository repository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _repository = repository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<TResponse> Handle(
@@ -29,8 +30,7 @@ public class UserActionLoggingBehavior<TRequest, TResponse>
     {
         var response = await next(cancellationToken);
 
-        if (request is not IUserCommand userCommand
-            || response is IResult { IsSuccess: false })
+        if (response is IResult { IsSuccess: false })
         {
             return response;
         }
@@ -43,13 +43,11 @@ public class UserActionLoggingBehavior<TRequest, TResponse>
         }
 
         var action = UserAction.Create(
-            userCommand.UserId,
+            _currentUser.Id,
             attribute.ActionType,
             attribute.EntityType);
 
         await _repository.AddAsync(action, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return response;
     }

@@ -123,9 +123,7 @@ public partial class Tasks : ComponentBase
         }
         else
         {
-            ErrorMessage = "Unknown role";
-            IsLoading = false;
-            return;
+            result = await ProjectTaskService.GetPublishedTasksAsync(CurrentPage, PageSize);
         }
 
         if (result.IsSuccess && result.Value is not null)

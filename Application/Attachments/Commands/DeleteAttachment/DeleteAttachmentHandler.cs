@@ -1,6 +1,6 @@
-﻿using Application.Services.FileStorage;
+﻿using Application.Interfaces;
+using Application.Services.FileStorage;
 using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -12,20 +12,17 @@ public class DeleteAttachmentHandler
     : IRequestHandler<DeleteAttachmentCommand, Result>
 {
     private readonly ITaskAttachmentQueryRepository _attachmentQueryRepository;
-    private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteAttachmentHandler(
         ITaskAttachmentQueryRepository attachmentQueryRepository,
-        ITaskAttachmentCommandRepository attachmentCommandRepository,
         IFileStorageService fileStorage,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _attachmentQueryRepository = attachmentQueryRepository;
-        _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -43,7 +40,7 @@ public class DeleteAttachmentHandler
                 ErrorType.NotFound);
         }
 
-        if (attachment.UploadedByUserId != request.CurrentUserId)
+        if (attachment.UploadedByUserId != _currentUser.Id)
         {
             return Result.Failure(
                 ErrorMessages.OnlyUploaderCanDeleteAttachment,
@@ -51,8 +48,6 @@ public class DeleteAttachmentHandler
         }
 
         attachment.Delete();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var relativePath = $"tasks/{attachment.TaskId}/{attachment.StoredFileName}";
 

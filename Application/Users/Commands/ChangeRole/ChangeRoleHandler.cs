@@ -1,5 +1,4 @@
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,17 +9,10 @@ namespace Application.Users.Commands.ChangeRole;
 public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public ChangeRoleHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public ChangeRoleHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -38,9 +30,12 @@ public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
                 ErrorType.NotFound);
         }
 
-        user.ChangeRole(request.NewRole);
+        var result = user.ChangeRole(request.NewRole);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        if (!result.IsSuccess)
+        {
+            return Result.Failure(result.Message, ErrorType.Validation);
+        }
 
         return Result.Success();
     }

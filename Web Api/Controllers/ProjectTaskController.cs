@@ -1,7 +1,8 @@
-﻿using Application.ProjectTasks.Commands.AssignExecutor;
+﻿using Application.Interfaces;
+using Application.ProjectTasks.Commands.AssignExecutor;
 using Application.ProjectTasks.Commands.Cancel;
 using Application.ProjectTasks.Commands.Create;
-using Application.ProjectTasks.Commands.DeleteProjectTask;
+using Application.ProjectTasks.Commands.Delete;
 using Application.ProjectTasks.Commands.MarkAsDone;
 using Application.ProjectTasks.Commands.RespondToTask;
 using Application.ProjectTasks.Commands.Update;
@@ -17,7 +18,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests;
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Enums;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -28,27 +28,27 @@ namespace Web_Api.Controllers;
 public class ProjectTaskController : ControllerBase
 {
     private readonly IMediator _mediatr;
+    private readonly ICurrentUser _currentUser;
 
-    public ProjectTaskController(IMediator mediatr)
+    public ProjectTaskController(IMediator mediatr, ICurrentUser currentUser)
     {
         _mediatr = mediatr;
+        _currentUser = currentUser;
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateProjectTaskDto request)
+        [FromBody] CreateProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new CreateProjectTaskCommand(
             request.Title,
             request.Description,
             request.Price,
             request.StartsAt,
-            request.EndsAt,
-            customerId);
+            request.EndsAt);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -60,13 +60,12 @@ public class ProjectTaskController : ControllerBase
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new DeleteProjectTaskCommand(id);
 
-        var command = new DeleteProjectTaskCommand(id, userId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -75,35 +74,31 @@ public class ProjectTaskController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(
         Guid id,
-        [FromBody] UpdateProjectTaskDto request)
+        [FromBody] UpdateProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new UpdateProjectTaskCommand(
             id,
             request.Title,
             request.Description,
             request.Price,
             request.StartsAt,
-            request.EndsAt,
-            customerId);
+            request.EndsAt);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
+    [Authorize(Roles = nameof(UserRole.Executor))]
     [HttpPost("{id}/respond")]
     public async Task<IActionResult> Respond(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var executorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var command = new RespondToTaskCommand(id);
 
-        var command = new RespondToTaskCommand(
-            id,
-            executorId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -112,16 +107,14 @@ public class ProjectTaskController : ControllerBase
     [HttpPost("{id}/mark-as-done")]
     public async Task<IActionResult> MarkAsDone(
         Guid id,
-        [FromBody] MarkAsDoneProjectTaskDto request)
+        [FromBody] MarkAsDoneProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new MarkAsDoneCommand(
             id,
-            customerId,
             request.Rating);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -129,86 +122,82 @@ public class ProjectTaskController : ControllerBase
     [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPost("{id}/cancel")]
     public async Task<IActionResult> Cancel(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new CancelProjectTaskCommand(id);
 
-        var command = new CancelProjectTaskCommand(
-            id,
-            customerId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPost("{id}/assign")]
     public async Task<IActionResult> Assign(
         Guid id,
-        [FromBody] AssignProjectTaskDto request)
+        [FromBody] AssignProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new AssignExecutorCommand(
             id,
-            request.ExecutorId,
-            customerId);
+            request.ExecutorId);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetProjectTaskByIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("customer/{customerId}")]
     public async Task<IActionResult> GetByCustomer(
         Guid customerId,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetTasksByCustomerQuery(
             customerId,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("published")]
     public async Task<IActionResult> GetPublished(
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var query = new GetPublishedTasksQuery(
             request.Page,
-            request.PageSize,
-            currentUserId);
+            request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}/responses")]
     public async Task<IActionResult> GetResponses(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetTaskResponsesQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -216,14 +205,15 @@ public class ProjectTaskController : ControllerBase
     [HttpGet("assigned/{executorId}")]
     public async Task<IActionResult> GetAssigned(
         Guid executorId,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetAssignedTasksQuery(
             executorId,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -231,20 +221,19 @@ public class ProjectTaskController : ControllerBase
     [HttpGet("search")]
     public async Task<IActionResult> Search(
         [FromQuery] string query,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
-        var isCustomer = User.IsInRole(nameof(UserRole.Customer));
+        var isCustomer = _currentUser.IsInRole(nameof(UserRole.Customer));
 
         var searchQuery = SearchTasksQueryFactory.Create(
-            currentUserId,
+            _currentUser,
             isCustomer,
             query,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(searchQuery);
+        var result = await _mediatr.Send(searchQuery, cancellationToken);
 
         return result.ToResponse(this);
     }

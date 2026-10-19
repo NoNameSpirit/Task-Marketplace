@@ -2,7 +2,6 @@
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
-using Shared.Dtos.Responses.Users;
 
 namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
 
@@ -89,22 +88,9 @@ public class ProjectTaskService(
     {
         await SetAuthHeaderAsync(cancellationToken);
 
-        var executorIdStr = await _localStorage
-            .GetItemAsync(nameof(AuthDto.Id));
-
-        if (string.IsNullOrEmpty(executorIdStr))
-        {
-            return Result.Failure("User ID not found");
-        }
-
-        var body = new
-        {
-            ExecutorId = executorIdStr
-        };
-
-        var response = await _httpClient.PostAsJsonAsync(
+        var response = await _httpClient.PostAsync(
             $"{taskId}/respond",
-            body,
+            null,
             cancellationToken);
 
         var result = await HandleResponseAsync(

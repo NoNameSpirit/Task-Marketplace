@@ -1,5 +1,5 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -13,18 +13,18 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
     private readonly IChatCommandRepository _commandRepository;
     private readonly IChatQueryRepository _queryRepository;
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteChatHandler(
         IChatCommandRepository commandRepository,
         IChatQueryRepository queryRepository,
         IProjectTaskQueryRepository taskQueryRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
         _queryRepository = queryRepository;
         _taskQueryRepository = taskQueryRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -47,7 +47,7 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
             cancellationToken);
 
         if (task is null
-            || task.CustomerId != request.CurrentUserId)
+            || task.CustomerId != _currentUser.Id)
         {
             return Result.Failure(
                 ErrorMessages.Forbidden,
@@ -55,8 +55,6 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
         }
 
         await _commandRepository.DeleteAsync(request.ChatId, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

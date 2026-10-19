@@ -1,5 +1,5 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
 using MediatR;
@@ -11,23 +11,17 @@ namespace Application.ProjectTasks.Commands.MarkAsDone;
 public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
-    private readonly IProjectTaskCommandRepository _taskCommandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
-    private readonly IUserCommandRepository _userCommandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public MarkAsDoneHandler(
         IProjectTaskQueryRepository taskQueryRepository,
-        IProjectTaskCommandRepository taskCommandRepository,
         IUserQueryRepository userQueryRepository,
-        IUserCommandRepository userCommandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _taskQueryRepository = taskQueryRepository;
-        _taskCommandRepository = taskCommandRepository;
         _userQueryRepository = userQueryRepository;
-        _userCommandRepository = userCommandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -45,7 +39,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = task.MarkAsDone(request.CurrentUserId, request.Rating);
+        var result = task.MarkAsDone(_currentUser.Id, request.Rating);
 
         if (!result.IsSuccess)
         {
@@ -53,8 +47,6 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         if (task.ExecutorId.HasValue && request.Rating.HasValue)
         {
@@ -71,8 +63,6 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 executor.RecalculateRating(ratings);
             }
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

@@ -4,12 +4,8 @@ using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 
-namespace Application.ProjectTasks.Commands.DeleteProjectTask;
+namespace Application.ProjectTasks.Commands.Delete;
 
 [LogAction(UserActionType.DeletedTask, nameof(ProjectTask))]
 public record DeleteProjectTaskCommand(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TaskId) : IRequest<Result>;

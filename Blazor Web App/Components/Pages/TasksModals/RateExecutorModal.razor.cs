@@ -25,6 +25,15 @@ public partial class RateExecutorModal : ComponentBase
     private bool IsSubmitting;
     private string ErrorMessage = string.Empty;
 
+    protected override void OnParametersSet()
+    {
+        if (IsVisible)
+        {
+            SelectedRating = MinRating;
+            ErrorMessage = string.Empty;
+        }
+    }
+
     private async Task Submit()
     {
         await Send(SelectedRating);

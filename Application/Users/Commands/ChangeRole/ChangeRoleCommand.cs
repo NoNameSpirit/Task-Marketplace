@@ -9,8 +9,4 @@ namespace Application.Users.Commands.ChangeRole;
 [LogAction(UserActionType.UserRoleChanged, nameof(User))]
 public record ChangeRoleCommand(
     Guid TargetUserId,
-    UserRole NewRole,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    UserRole NewRole) : IRequest<Result>;

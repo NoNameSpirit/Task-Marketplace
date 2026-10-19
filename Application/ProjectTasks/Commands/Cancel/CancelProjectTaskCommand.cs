@@ -8,8 +8,4 @@ namespace Application.ProjectTasks.Commands.Cancel;
 
 [LogAction(UserActionType.CancelledTask, nameof(ProjectTask))]
 public record CancelProjectTaskCommand(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TaskId) : IRequest<Result>;

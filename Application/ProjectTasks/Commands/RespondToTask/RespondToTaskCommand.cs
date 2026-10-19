@@ -8,8 +8,4 @@ namespace Application.ProjectTasks.Commands.RespondToTask;
 
 [LogAction(UserActionType.RespondedToTask, nameof(ProjectTask))]
 public record RespondToTaskCommand(
-    Guid TaskId,
-    Guid ExecutorId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => ExecutorId;
-}
+    Guid TaskId) : IRequest<Result>;

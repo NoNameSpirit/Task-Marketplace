@@ -54,8 +54,7 @@ public class ChatService(
 
         var body = new
         {
-            Text = text,
-            SenderId = senderId.ToString()
+            Text = text
         };
 
         var response = await _httpClient.PostAsJsonAsync(

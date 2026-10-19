@@ -5,7 +5,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Blazor_Web_App.Components.Pages;
 
-[Authorize]
+[AllowAnonymous]
 public partial class Home : ComponentBase
 {
     [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;

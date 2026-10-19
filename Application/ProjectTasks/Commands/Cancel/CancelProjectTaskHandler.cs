@@ -1,5 +1,5 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,17 +10,14 @@ namespace Application.ProjectTasks.Commands.Cancel;
 public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public CancelProjectTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -38,7 +35,7 @@ public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand
                 ErrorType.NotFound);
         }
 
-        var result = task.Cancel(request.CurrentUserId);
+        var result = task.Cancel(_currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -46,8 +43,6 @@ public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

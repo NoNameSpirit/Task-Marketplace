@@ -9,8 +9,4 @@ namespace Application.Chats.Commands.Create;
 
 [LogAction(UserActionType.CreatedChat, nameof(Chat))]
 public record CreateChatCommand(
-    Guid ProjectTaskId,
-    Guid CurrentUserId) : IRequest<Result<ChatDto>>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid ProjectTaskId) : IRequest<Result<ChatDto>>;

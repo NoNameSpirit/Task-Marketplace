@@ -24,7 +24,8 @@ public class UserActionController : ControllerBase
     public async Task<IActionResult> Get(
         [FromQuery] Guid? userId,
         [FromQuery] int? actionType,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetUserActionsQuery(
             userId,
@@ -32,7 +33,7 @@ public class UserActionController : ControllerBase
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }

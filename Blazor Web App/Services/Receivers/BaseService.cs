@@ -44,19 +44,29 @@ public abstract class BaseService
     }
 
     protected async Task<Result<T>> HandleResponseAsync<T>(
-        HttpResponseMessage response,
-        CancellationToken cancellationToken = default) where T : class
+    HttpResponseMessage response,
+    CancellationToken cancellationToken = default) where T : class
     {
         if (!response.IsSuccessStatusCode)
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
 
-            return Result<T>.Failure(problemDetails!.Detail!);
+            return Result<T>.Failure(problemDetails!.Detail! ?? ServiceMessages.UnknownServerError);
+        }
+
+        if (response.Content.Headers.ContentLength == AttachmentConstants.Zero)
+        {
+            return Result<T>.Failure(ServiceMessages.EmptyResponse);
         }
 
         var dto = await response.Content.ReadFromJsonAsync<T>(
             _options,
             cancellationToken);
+
+        if (dto is null)
+        {
+            return Result<T>.Failure(ServiceMessages.DeserializationFailed);
+        }
 
         return Result<T>.Success(dto!);
     }
@@ -69,7 +79,7 @@ public abstract class BaseService
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
 
-            return Result.Failure(problemDetails!.Detail!);
+            return Result.Failure(problemDetails!.Detail! ?? ServiceMessages.UnknownServerError);
         }
 
         return Result.Success();

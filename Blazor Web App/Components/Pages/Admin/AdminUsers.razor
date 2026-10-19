@@ -47,7 +47,7 @@
                                             value="@user.Role"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onchange="e => HandleChangeRole(user.Id, e)">
-                                        @foreach (var role in Enum.GetValues<UserRole>())
+                                        @foreach (var role in Enum.GetValues<UserRole>().Where(r => r != UserRole.Admin))
                                         {
                                             <option value="@role">@role</option>
                                         }

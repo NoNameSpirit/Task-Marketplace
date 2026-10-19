@@ -1,5 +1,5 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
@@ -12,23 +12,20 @@ namespace Application.Chats.Commands.AddMessage;
 public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
 {
     private readonly IChatQueryRepository _queryRepository;
-    private readonly IChatCommandRepository _commandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public AddMessageHandler(
         IChatQueryRepository queryRepository,
-        IChatCommandRepository commandRepository,
         IUserQueryRepository userQueryRepository,
-        IUnitOfWork unitOfWork,
-        IProjectTaskQueryRepository taskQueryRepository)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
         _userQueryRepository = userQueryRepository;
-        _unitOfWork = unitOfWork;
         _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -48,8 +45,8 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
 
         var task = await _taskQueryRepository.GetByIdAsync(chat.ProjectTaskId, cancellationToken);
         if (task is null
-            || (task.CustomerId != request.SenderId
-            && task.ExecutorId != request.SenderId))
+            || (task.CustomerId != _currentUser.Id
+            && task.ExecutorId != _currentUser.Id))
         {
             return Result.Failure(
                 ErrorMessages.Forbidden,
@@ -57,7 +54,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
         }
 
         var sender = await _userQueryRepository.GetByIdAsync(
-            request.SenderId,
+            _currentUser.Id,
             cancellationToken);
 
         if (sender is null)
@@ -67,7 +64,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = chat.AddMessage(request.Text, request.SenderId);
+        var result = chat.AddMessage(request.Text, _currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -75,8 +72,6 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

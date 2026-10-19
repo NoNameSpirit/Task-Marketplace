@@ -1,8 +1,9 @@
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
@@ -14,22 +15,34 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
 {
     private readonly IChatCommandRepository _commandRepository;
     private readonly IChatQueryRepository _queryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public CreateChatHandler(
         IChatCommandRepository commandRepository,
         IChatQueryRepository queryRepository,
-        IUnitOfWork unitOfWork)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
         _queryRepository = queryRepository;
-        _unitOfWork = unitOfWork;
+        _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<ChatDto>> Handle(
         CreateChatCommand request,
         CancellationToken cancellationToken = default)
     {
+        var task = await _taskQueryRepository.GetByIdAsync(request.ProjectTaskId, cancellationToken);
+
+        if (task is null || (task.CustomerId != _currentUser.Id && task.ExecutorId != _currentUser.Id))
+        {
+            return Result<ChatDto>.Failure(
+                ErrorMessages.Forbidden,
+                ErrorType.Forbidden);
+        }
+
         var existingChat = await _queryRepository.GetByTaskIdAsync(request.ProjectTaskId, cancellationToken);
 
         if (existingChat is not null)
@@ -49,8 +62,6 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
         }
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var dto = ChatMapper.ToDto(result.Value!, new Dictionary<Guid, string>());
 

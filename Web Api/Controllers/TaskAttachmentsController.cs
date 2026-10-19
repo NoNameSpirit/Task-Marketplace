@@ -6,7 +6,6 @@ using Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -27,7 +26,7 @@ public class TaskAttachmentsController : ControllerBase
     public async Task<IActionResult> Download(
         Guid taskId,
         Guid attachmentId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
         var query = new GetAttachmentFileQuery(attachmentId);
 
@@ -39,7 +38,7 @@ public class TaskAttachmentsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> List(
         Guid taskId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
         var query = new GetTaskAttachmentsQuery(taskId);
 
@@ -53,21 +52,18 @@ public class TaskAttachmentsController : ControllerBase
     [RequestFormLimits(MultipartBodyLengthLimit = AttachmentConstants.MaxSizeBytes)]
     public async Task<IActionResult> Upload(
         Guid taskId,
-        IFormFile file,
-        CancellationToken cancellationToken = default)
+        [FromForm] IFormFile file,
+        CancellationToken cancellationToken)
     {
         if (file is null || file.Length == 0)
         {
             return BadRequest(ErrorMessages.OriginalFileNameCannotBeEmpty);
         }
 
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         await using var stream = file.OpenReadStream();
 
         var command = new UploadAttachmentCommand(
             taskId,
-            userId,
             file.FileName,
             file.ContentType,
             file.Length,
@@ -82,11 +78,9 @@ public class TaskAttachmentsController : ControllerBase
     public async Task<IActionResult> Delete(
         Guid taskId,
         Guid attachmentId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
-        var command = new DeleteAttachmentCommand(attachmentId, userId);
+        var command = new DeleteAttachmentCommand(attachmentId);
 
         var result = await _mediatr.Send(command, cancellationToken);
 

@@ -1,12 +1,10 @@
 ﻿using Application.Mappers;
 using Domain.Config;
-using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
-using Shared.Enums;
 
 namespace Application.ProjectTasks.Queries.GetTasksByCustomer;
 
@@ -33,16 +31,7 @@ public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery
             request.PageSize,
             cancellationToken);
 
-        if (projectTask.TotalCount == CurrencyConstants.ZeroElements)
-        {
-            return Result<PagedResult<ProjectTaskDto>>.Failure(
-                ErrorMessages.ProjectTaskByCustomerNotFound,
-                ErrorType.NotFound);
-        }
-
         return Result<PagedResult<ProjectTaskDto>>.Success(
-            ProjectTaskMapper.ToPagedDto(
-                projectTask,
-                _appConfig.Currency));
+            ProjectTaskMapper.ToPagedDto(projectTask, _appConfig.Currency));
     }
 }

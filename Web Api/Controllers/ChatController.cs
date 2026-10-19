@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests.Chats;
 using Shared.Enums;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -21,14 +20,6 @@ public class ChatController : ControllerBase
 {
     private readonly IMediator _mediatr;
 
-    private Guid CurrentUserId
-    {
-        get
-        {
-            return Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-        }
-    }
-
     public ChatController(IMediator mediatr)
     {
         _mediatr = mediatr;
@@ -36,13 +27,12 @@ public class ChatController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        Guid projectTaskId)
+        [FromQuery] Guid projectTaskId,
+        CancellationToken cancellationToken)
     {
-        var command = new CreateChatCommand(
-            projectTaskId,
-            CurrentUserId);
+        var command = new CreateChatCommand(projectTaskId);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -55,11 +45,12 @@ public class ChatController : ControllerBase
     [HttpDelete("{id}")]
     [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> Delete(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var command = new DeleteChatCommand(id, CurrentUserId);
+        var command = new DeleteChatCommand(id);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -67,47 +58,48 @@ public class ChatController : ControllerBase
     [HttpPost("{id}/messages")]
     public async Task<IActionResult> AddMessage(
         Guid id,
-        [FromBody] AddMessageChatDto request)
+        [FromBody] AddMessageChatDto request,
+        CancellationToken cancellationToken)
     {
-        var command = new AddMessageCommand(
-            id,
-            request.Text,
-            CurrentUserId);
+        var command = new AddMessageCommand(id, request.Text);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetChatByIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("task/{id}")]
     public async Task<IActionResult> GetByTaskId(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var query = new GetChatByTaskIdQuery(id, CurrentUserId);
+        var query = new GetChatByTaskIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}/messages")]
     public async Task<IActionResult> GetAll(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetChatWithMessagesQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }

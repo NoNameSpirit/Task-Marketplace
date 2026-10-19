@@ -1,5 +1,7 @@
 ﻿using Domain.Config;
+using Domain.Constants;
 using Microsoft.Extensions.Options;
+using Shared.Dtos.Responses;
 
 namespace Application.Services.FileStorage;
 
@@ -7,27 +9,41 @@ public class FileStorageService : IFileStorageService
 {
     private readonly string _root;
 
-    public FileStorageService(
-        IOptions<FileSettings> fileSettings)
+    public FileStorageService(IOptions<FileSettings> fileSettings)
     {
         _root = fileSettings.Value.FullPath;
-
         Directory.CreateDirectory(_root);
     }
 
-    private string FullPath(string relativePath)
+    private Result<string> FullPath(string relativePath)
     {
-        var fullPath = Path.Combine(_root, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        var combined = Path.Combine(_root, relativePath.Replace('/', Path.DirectorySeparatorChar));
 
-        return fullPath;
+        var fullPath = Path.GetFullPath(combined);
+
+        var rootFullPath = Path.GetFullPath(_root);
+
+        if (!fullPath.StartsWith(rootFullPath, StringComparison.OrdinalIgnoreCase))
+        {
+            return Result<string>.Failure(ErrorMessages.InvalidFilePath);
+        }
+
+        return Result<string>.Success(fullPath);
     }
 
-    public async Task SaveAsync(
+    public async Task<Result> SaveAsync(
         Stream stream,
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Result.Failure(pathResult.Message);
+        }
+
+        var fullPath = pathResult.Value;
 
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
 
@@ -40,17 +56,26 @@ public class FileStorageService : IFileStorageService
             useAsync: true);
 
         await stream.CopyToAsync(fileStream, cancellationToken);
+
+        return Result.Success();
     }
 
-    public Task<Stream> OpenReadAsync(
+    public async Task<Result<Stream>> OpenReadAsync(
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Result<Stream>.Failure(pathResult.Message);
+        }
+
+        var fullPath = pathResult.Value;
 
         if (!File.Exists(fullPath))
         {
-            throw new FileNotFoundException(relativePath);
+            return Result<Stream>.Failure(ErrorMessages.TaskAttachmentNotFound);
         }
 
         Stream stream = new FileStream(
@@ -61,20 +86,27 @@ public class FileStorageService : IFileStorageService
             bufferSize: 81920,
             useAsync: true);
 
-        return Task.FromResult(stream);
+        return Result<Stream>.Success(stream);
     }
 
-    public Task DeleteAsync(
+    public Task<Result> DeleteAsync(
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Task.FromResult(Result.Failure(pathResult.Message));
+        }
+
+        var fullPath = pathResult.Value;
 
         if (File.Exists(fullPath))
         {
             File.Delete(fullPath);
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

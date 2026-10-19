@@ -50,7 +50,8 @@ public class ProjectTask : Entity
             Price = price,
             StartsAt = startsAt,
             EndsAt = endsAt,
-            CustomerId = customerId
+            CustomerId = customerId,
+            Status = ProjectTaskStatus.Published
         };
 
         return Result<ProjectTask>.Success(projectTask);
@@ -64,9 +65,11 @@ public class ProjectTask : Entity
         DateTimeOffset endsAt,
         Guid customerId)
     {
-        if (Status == ProjectTaskStatus.InProgress || Status == ProjectTaskStatus.Done)
+        if (Status == ProjectTaskStatus.InProgress
+            || Status == ProjectTaskStatus.Done
+            || Status == ProjectTaskStatus.Cancelled)
         {
-            return Result.Failure(ErrorMessages.CannotEditInProgressOrDone);
+            return Result.Failure(ErrorMessages.CannotEditInThisStatus);
         }
 
         if (customerId != CustomerId)
@@ -215,6 +218,11 @@ public class ProjectTask : Entity
         if (startsAt < DateTimeOffset.UtcNow || endsAt < DateTimeOffset.UtcNow)
         {
             return Result.Failure(ErrorMessages.FutureDateTime);
+        }
+
+        if (endsAt <= startsAt)
+        {
+            return Result.Failure(ErrorMessages.EndDateMustBeAfterStartDate);
         }
 
         return Result.Success();

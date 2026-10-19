@@ -1,4 +1,5 @@
 ﻿using Application.Users.Commands.Login;
+using Application.Users.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests.Users;

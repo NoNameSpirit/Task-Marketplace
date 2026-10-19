@@ -29,6 +29,11 @@ public class CultureService(
 
     public void Apply(string culture)
     {
+        if (!CultureConstants.Supported.Contains(culture))
+        {
+            culture = CultureConstants.Default;
+        }
+
         var cultureInfo = new CultureInfo(culture);
 
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;

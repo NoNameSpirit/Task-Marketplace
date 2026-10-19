@@ -30,7 +30,7 @@ public class UserQueryRepository : IUserQueryRepository
     {
         var user = await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Name == name);
+            .FirstOrDefaultAsync(u => u.Name == name, cancellationToken);
 
         return user;
     }

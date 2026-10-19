@@ -5,5 +5,4 @@ using Shared.Dtos.Responses.Chats;
 namespace Application.Chats.Queries.GetByTaskId;
 
 public record GetChatByTaskIdQuery(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result<ChatDto>>;
+    Guid TaskId) : IRequest<Result<ChatDto>>;

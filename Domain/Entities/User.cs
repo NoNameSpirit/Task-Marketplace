@@ -80,8 +80,15 @@ public class User : Entity
         IsBlocked = false;
     }
 
-    public void ChangeRole(UserRole role)
+    public Result ChangeRole(UserRole role)
     {
+        if (role == UserRole.Admin)
+        {
+            return Result.Failure(ErrorMessages.AdminRoleCannotSetup);
+        }
+
         Role = role;
+
+        return Result.Success();
     }
 }

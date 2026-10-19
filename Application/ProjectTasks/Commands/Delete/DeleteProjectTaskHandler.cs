@@ -1,23 +1,23 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 
-namespace Application.ProjectTasks.Commands.DeleteProjectTask;
+namespace Application.ProjectTasks.Commands.Delete;
 
 public class DeleteProjectTaskHandler : IRequestHandler<DeleteProjectTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteProjectTaskHandler(
         IProjectTaskQueryRepository taskQueryRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _taskQueryRepository = taskQueryRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -31,13 +31,12 @@ public class DeleteProjectTaskHandler : IRequestHandler<DeleteProjectTaskCommand
             return Result.Failure(ErrorMessages.ProjectTaskNotFound, ErrorType.NotFound);
         }
 
-        if (task.CustomerId != request.CurrentUserId)
+        if (task.CustomerId != _currentUser.Id)
         {
             return Result.Failure(ErrorMessages.Forbidden, ErrorType.Forbidden);
         }
-        task.Delete();
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        task.Delete();
 
         return Result.Success();
     }

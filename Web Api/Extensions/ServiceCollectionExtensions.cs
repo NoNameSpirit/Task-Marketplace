@@ -1,4 +1,5 @@
-﻿using Application.Common;
+﻿using Application.Behaviors;
+using Application.Interfaces;
 using Application.ProjectTasks.Commands.Create;
 using Application.Services.FileStorage;
 using Application.Services.Hasher;
@@ -99,7 +100,12 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
+
+        services.AddScoped<ICurrentUser, CurrentUser>();
+
         services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>))
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(UserActionLoggingBehavior<,>));
 
         services.AddMediatR(configuration =>

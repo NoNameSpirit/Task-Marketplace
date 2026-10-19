@@ -39,9 +39,18 @@ public class GetAttachmentFileHandler
 
         var relativePath = $"tasks/{attachment.TaskId}/{attachment.StoredFileName}";
 
-        await using var stream = await _fileStorage.OpenReadAsync(
+        var fileResult = await _fileStorage.OpenReadAsync(
             relativePath,
             cancellationToken);
+
+        if (!fileResult.IsSuccess)
+        {
+            return Result<AttachmentFileResult>.Failure(
+                fileResult.Message,
+                ErrorType.NotFound);
+        }
+
+        await using var stream = fileResult.Value!;
 
         using var ms = new MemoryStream();
         await stream.CopyToAsync(ms, cancellationToken);

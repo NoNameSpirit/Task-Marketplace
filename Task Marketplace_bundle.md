@@ -3,8 +3,8 @@
 - Root:
 	 `D:\########University########\4 курс\Курсач\Task Marketplace`
 - Output: `D:\########University########\4 курс\Курсач\Task Marketplace\Task Marketplace_bundle.md`
-- Files included: `301`
-- Total size: `480,6 KB`
+- Files included: `308`
+- Total size: `490,4 KB`
 - Max file size: `1,0 MB`
 
 ## File List
@@ -14,55 +14,56 @@
 .env-example [310 B]
 .gitignore [7,8 KB]
 Application/Application.csproj [702 B]
-Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentCommand.cs [310 B]
-Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentHandler.cs [2,1 KB]
-Application/Attachments/Commands/UploadAttachment/UploadAttachmentCommand.cs [456 B]
-Application/Attachments/Commands/UploadAttachment/UploadAttachmentHandler.cs [3,3 KB]
-Application/Attachments/Queries/GetAttachmentFile/GetAttachmentFileHandler.cs [1,9 KB]
+Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentCommand.cs [197 B]
+Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentHandler.cs [1,8 KB]
+Application/Attachments/Commands/UploadAttachment/UploadAttachmentCommand.cs [337 B]
+Application/Attachments/Commands/UploadAttachment/UploadAttachmentHandler.cs [3,2 KB]
+Application/Attachments/Queries/GetAttachmentFile/GetAttachmentFileHandler.cs [2,1 KB]
 Application/Attachments/Queries/GetAttachmentFile/GetAttachmentFileQuery.cs [263 B]
 Application/Attachments/Queries/GetTaskAttachments/GetTaskAttachmentsHandler.cs [1,0 KB]
 Application/Attachments/Queries/GetTaskAttachments/GetTaskAttachmentsQuery.cs [243 B]
-Application/Chats/Commands/AddMessage/AddMessageCommand.cs [396 B]
-Application/Chats/Commands/AddMessage/AddMessageHandler.cs [2,6 KB]
-Application/Chats/Commands/Create/CreateChatCommand.cs [436 B]
-Application/Chats/Commands/Create/CreateChatHandler.cs [1,8 KB]
-Application/Chats/Commands/Delete/DeleteChatCommand.cs [384 B]
-Application/Chats/Commands/Delete/DeleteChatHandler.cs [1,5 KB]
+Application/Behaviors/TransactionBehaviour.cs [962 B]
+Application/Behaviors/UserActionLoggingBehavior.cs [1,4 KB]
+Application/Chats/Commands/AddMessage/AddMessageCommand.cs [318 B]
+Application/Chats/Commands/AddMessage/AddMessageHandler.cs [2,4 KB]
+Application/Chats/Commands/Create/CreateChatCommand.cs [348 B]
+Application/Chats/Commands/Create/CreateChatHandler.cs [2,3 KB]
+Application/Chats/Commands/Delete/DeleteChatCommand.cs [296 B]
+Application/Chats/Commands/Delete/DeleteChatHandler.cs [1,9 KB]
 Application/Chats/Queries/GetById/GetChatByIdHandler.cs [1,2 KB]
 Application/Chats/Queries/GetById/GetChatByIdQuery.cs [215 B]
-Application/Chats/Queries/GetByTaskId/GetChatByTaskIdHandler.cs [2,0 KB]
-Application/Chats/Queries/GetByTaskId/GetChatByTaskIdQuery.cs [248 B]
+Application/Chats/Queries/GetByTaskId/GetChatByTaskIdHandler.cs [2,2 KB]
+Application/Chats/Queries/GetByTaskId/GetChatByTaskIdQuery.cs [221 B]
 Application/Chats/Queries/GetWithMessages/GetChatWithMessagesHandler.cs [1,2 KB]
 Application/Chats/Queries/GetWithMessages/GetChatWithMessagesQuery.cs [229 B]
-Application/Common/IUserCommand.cs [97 B]
 Application/Common/LogActionAttribute.cs [423 B]
-Application/Common/UserActionLoggingBehavior.cs [1,5 KB]
+Application/Interfaces/ICurrentUser.cs [130 B]
 Application/Mappers/ChatMapper.cs [627 B]
 Application/Mappers/ProjectTaskMapper.cs [1,6 KB]
 Application/Mappers/TaskAttachmentMapper.cs [670 B]
 Application/Mappers/UserMapper.cs [767 B]
-Application/ProjectTasks/Commands/AssignExecutor/AssignExecutorCommand.cs [437 B]
-Application/ProjectTasks/Commands/AssignExecutor/AssignExecutorHandler.cs [1,6 KB]
-Application/ProjectTasks/Commands/Cancel/CancelProjectTaskCommand.cs [405 B]
-Application/ProjectTasks/Commands/Cancel/CancelProjectTaskHandler.cs [1,6 KB]
-Application/ProjectTasks/Commands/Create/CreateProjectTaskCommand.cs [574 B]
+Application/ProjectTasks/Commands/AssignExecutor/AssignExecutorCommand.cs [349 B]
+Application/ProjectTasks/Commands/AssignExecutor/AssignExecutorHandler.cs [1,4 KB]
+Application/ProjectTasks/Commands/Cancel/CancelProjectTaskCommand.cs [319 B]
+Application/ProjectTasks/Commands/Cancel/CancelProjectTaskHandler.cs [1,3 KB]
+Application/ProjectTasks/Commands/Create/CreateProjectTaskCommand.cs [486 B]
 Application/ProjectTasks/Commands/Create/CreateProjectTaskHandler.cs [1,7 KB]
-Application/ProjectTasks/Commands/Delete/DeleteProjectTaskCommand.cs [416 B]
+Application/ProjectTasks/Commands/Delete/DeleteProjectTaskCommand.cs [317 B]
 Application/ProjectTasks/Commands/Delete/DeleteProjectTaskHandler.cs [1,3 KB]
-Application/ProjectTasks/Commands/MarkAsDone/MarkAsDoneCommand.cs [425 B]
-Application/ProjectTasks/Commands/MarkAsDone/MarkAsDoneHandler.cs [2,6 KB]
-Application/ProjectTasks/Commands/RespondToTask/RespondToTaskCommand.cs [406 B]
-Application/ProjectTasks/Commands/RespondToTask/RespondToTaskHandler.cs [1,5 KB]
-Application/ProjectTasks/Commands/Update/UpdateProjectTaskCommand.cs [533 B]
-Application/ProjectTasks/Commands/Update/UpdateProjectTaskHandler.cs [1,7 KB]
+Application/ProjectTasks/Commands/MarkAsDone/MarkAsDoneCommand.cs [339 B]
+Application/ProjectTasks/Commands/MarkAsDone/MarkAsDoneHandler.cs [2,1 KB]
+Application/ProjectTasks/Commands/RespondToTask/RespondToTaskCommand.cs [324 B]
+Application/ProjectTasks/Commands/RespondToTask/RespondToTaskHandler.cs [1,3 KB]
+Application/ProjectTasks/Commands/Update/UpdateProjectTaskCommand.cs [445 B]
+Application/ProjectTasks/Commands/Update/UpdateProjectTaskHandler.cs [1,5 KB]
 Application/ProjectTasks/Queries/GetAssigned/GetAssignedTasksHandler.cs [1,3 KB]
 Application/ProjectTasks/Queries/GetAssigned/GetAssignedTasksQuery.cs [296 B]
-Application/ProjectTasks/Queries/GetByCustomer/GetTasksByCustomerHandler.cs [1,6 KB]
+Application/ProjectTasks/Queries/GetByCustomer/GetTasksByCustomerHandler.cs [1,2 KB]
 Application/ProjectTasks/Queries/GetByCustomer/GetTasksByCustomerQuery.cs [305 B]
 Application/ProjectTasks/Queries/GetById/GetProjectTaskByIdHandler.cs [1,4 KB]
 Application/ProjectTasks/Queries/GetById/GetProjectTaskByIdQuery.cs [254 B]
-Application/ProjectTasks/Queries/GetPublished/GetPublishedTasksHandler.cs [1,6 KB]
-Application/ProjectTasks/Queries/GetPublished/GetPublishedTasksQuery.cs [304 B]
+Application/ProjectTasks/Queries/GetPublished/GetPublishedTasksHandler.cs [1,7 KB]
+Application/ProjectTasks/Queries/GetPublished/GetPublishedTasksQuery.cs [279 B]
 Application/ProjectTasks/Queries/GetResponses/GetTaskResponsesHandler.cs [1,2 KB]
 Application/ProjectTasks/Queries/GetResponses/GetTaskResponsesQuery.cs [251 B]
 Application/ProjectTasks/Queries/SearchTasks/ISearchTasksQuery.cs [241 B]
@@ -70,29 +71,29 @@ Application/ProjectTasks/Queries/SearchTasks/SearchCustomerTasksHandler.cs [1,5 
 Application/ProjectTasks/Queries/SearchTasks/SearchCustomerTasksQuery.cs [197 B]
 Application/ProjectTasks/Queries/SearchTasks/SearchPublishedTasksHandler.cs [1,6 KB]
 Application/ProjectTasks/Queries/SearchTasks/SearchPublishedTasksQuery.cs [201 B]
-Application/ProjectTasks/Queries/SearchTasks/SearchTasksQueryFactory.cs [476 B]
-Application/Services/FileStorage/FileStorageService.cs [2,0 KB]
-Application/Services/FileStorage/IFileStorageService.cs [390 B]
+Application/ProjectTasks/Queries/SearchTasks/SearchTasksQueryFactory.cs [517 B]
+Application/Services/FileStorage/FileStorageService.cs [3,0 KB]
+Application/Services/FileStorage/IFileStorageService.cs [444 B]
 Application/Services/Hasher/IPasswordHasher.cs [218 B]
 Application/Services/Hasher/PasswordHasher.cs [1,3 KB]
 Application/Services/JwtGenerator/IJwtTokenGenerator.cs [195 B]
 Application/Services/JwtGenerator/JwtTokenGenerator.cs [1,7 KB]
 Application/UserActions/Queries/GetUserActions/GetUserActionsHandler.cs [2,1 KB]
 Application/UserActions/Queries/GetUserActions/GetUserActionsQuery.cs [311 B]
-Application/Users/Commands/BlockUser/BlockUserCommand.cs [390 B]
-Application/Users/Commands/BlockUser/BlockUserHandler.cs [1,3 KB]
-Application/Users/Commands/ChangeRole/ChangeRoleCommand.cs [419 B]
-Application/Users/Commands/ChangeRole/ChangeRoleHandler.cs [1,3 KB]
-Application/Users/Commands/Delete/DeleteUserCommand.cs [388 B]
-Application/Users/Commands/Delete/DeleteUserHandler.cs [1,3 KB]
+Application/Users/Commands/BlockUser/BlockUserCommand.cs [304 B]
+Application/Users/Commands/BlockUser/BlockUserHandler.cs [957 B]
+Application/Users/Commands/ChangeRole/ChangeRoleCommand.cs [333 B]
+Application/Users/Commands/ChangeRole/ChangeRoleHandler.cs [1,1 KB]
+Application/Users/Commands/Delete/DeleteUserCommand.cs [302 B]
+Application/Users/Commands/Delete/DeleteUserHandler.cs [959 B]
 Application/Users/Commands/Login/LoginUserCommand.cs [234 B]
 Application/Users/Commands/Login/LoginUserHandler.cs [1,9 KB]
-Application/Users/Commands/Register/RegisterUserCommand.cs [278 B]
-Application/Users/Commands/Register/RegisterUserHandler.cs [2,5 KB]
-Application/Users/Commands/UnblockUser/UnblockUserCommand.cs [396 B]
-Application/Users/Commands/UnblockUser/UnblockUserHandler.cs [1,3 KB]
-Application/Users/Commands/Update/UpdateUserCommand.cs [189 B]
-Application/Users/Commands/Update/UpdateUserHandler.cs [1,5 KB]
+Application/Users/Commands/Register/RegisterUserCommand.cs [281 B]
+Application/Users/Commands/Register/RegisterUserHandler.cs [2,4 KB]
+Application/Users/Commands/UnblockUser/UnblockUserCommand.cs [310 B]
+Application/Users/Commands/UnblockUser/UnblockUserHandler.cs [969 B]
+Application/Users/Commands/Update/UpdateUserCommand.cs [193 B]
+Application/Users/Commands/Update/UpdateUserHandler.cs [1,3 KB]
 Application/Users/Queries/GetAll/GetAllUsersHandler.cs [902 B]
 Application/Users/Queries/GetAll/GetAllUsersQuery.cs [241 B]
 Application/Users/Queries/GetById/GetUserByIdHandler.cs [1,0 KB]
@@ -102,7 +103,7 @@ Application/Users/Queries/GetUsers/GetUsersQuery.cs [240 B]
 Application/Users/Queries/SearchByName/SearchUsersHandler.cs [1,1 KB]
 Application/Users/Queries/SearchByName/SearchUsersQuery.cs [272 B]
 Blazor Web App/appsettings.Development.json [127 B]
-Blazor Web App/appsettings.json [193 B]
+Blazor Web App/appsettings.json [151 B]
 Blazor Web App/Blazor Web App.csproj [524 B]
 Blazor Web App/Components/App.razor [713 B]
 Blazor Web App/Components/Layout/CultureSelector.razor [274 B]
@@ -116,41 +117,46 @@ Blazor Web App/Components/Layout/NavMenu.razor.css [3,3 KB]
 Blazor Web App/Components/Layout/ReconnectModal.razor [1,3 KB]
 Blazor Web App/Components/Layout/ReconnectModal.razor.css [3,8 KB]
 Blazor Web App/Components/Layout/ReconnectModal.razor.js [2,4 KB]
-Blazor Web App/Components/Pages/Admin/AdminActions.razor [3,7 KB]
-Blazor Web App/Components/Pages/Admin/AdminActions.razor.cs [2,0 KB]
-Blazor Web App/Components/Pages/Admin/AdminUsers.razor [4,4 KB]
-Blazor Web App/Components/Pages/Admin/AdminUsers.razor.cs [2,9 KB]
+Blazor Web App/Components/Pages/Admin/AdminActions.razor [3,9 KB]
+Blazor Web App/Components/Pages/Admin/AdminActions.razor.cs [2,3 KB]
+Blazor Web App/Components/Pages/Admin/AdminUsers.razor [4,6 KB]
+Blazor Web App/Components/Pages/Admin/AdminUsers.razor.cs [3,2 KB]
 Blazor Web App/Components/Pages/Auth/Login.razor [1,3 KB]
-Blazor Web App/Components/Pages/Auth/Login.razor.cs [2,2 KB]
-Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor [30 B]
-Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor.cs [395 B]
+Blazor Web App/Components/Pages/Auth/Login.razor.cs [2,3 KB]
+Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor [29 B]
+Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor.cs [458 B]
 Blazor Web App/Components/Pages/Auth/Register.razor [1,6 KB]
-Blazor Web App/Components/Pages/Auth/Register.razor.cs [2,4 KB]
+Blazor Web App/Components/Pages/Auth/Register.razor.cs [2,5 KB]
 Blazor Web App/Components/Pages/Errors/Error.razor [1,2 KB]
 Blazor Web App/Components/Pages/Errors/NotFound.razor [159 B]
 Blazor Web App/Components/Pages/Executor/MyAssignedTasks.razor [2,3 KB]
-Blazor Web App/Components/Pages/Executor/MyAssignedTasks.razor.cs [3,5 KB]
-Blazor Web App/Components/Pages/Home.razor [4,9 KB]
-Blazor Web App/Components/Pages/Tasks.razor [4,5 KB]
-Blazor Web App/Components/Pages/Tasks.razor.cs [6,6 KB]
-Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor [4,1 KB]
-Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor.cs [4,4 KB]
-Blazor Web App/Components/Pages/TasksModals/ChatModal.razor [2,8 KB]
-Blazor Web App/Components/Pages/TasksModals/ChatModal.razor.cs [5,1 KB]
+Blazor Web App/Components/Pages/Executor/MyAssignedTasks.razor.cs [3,9 KB]
+Blazor Web App/Components/Pages/Home.razor [5,0 KB]
+Blazor Web App/Components/Pages/Home.razor.cs [362 B]
+Blazor Web App/Components/Pages/Tasks.razor [4,7 KB]
+Blazor Web App/Components/Pages/Tasks.razor.cs [6,9 KB]
+Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor [4,2 KB]
+Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor.cs [5,0 KB]
+Blazor Web App/Components/Pages/TasksModals/ChatModal.razor [2,9 KB]
+Blazor Web App/Components/Pages/TasksModals/ChatModal.razor.cs [5,5 KB]
 Blazor Web App/Components/Pages/TasksModals/CreateTaskModal.razor [2,4 KB]
-Blazor Web App/Components/Pages/TasksModals/CreateTaskModal.razor.cs [1,6 KB]
+Blazor Web App/Components/Pages/TasksModals/CreateTaskModal.razor.cs [1,8 KB]
 Blazor Web App/Components/Pages/TasksModals/EditTaskModal.razor [2,4 KB]
-Blazor Web App/Components/Pages/TasksModals/EditTaskModal.razor.cs [1,8 KB]
+Blazor Web App/Components/Pages/TasksModals/EditTaskModal.razor.cs [2,1 KB]
 Blazor Web App/Components/Pages/TasksModals/RateExecutorModal.razor [1,8 KB]
-Blazor Web App/Components/Pages/TasksModals/RateExecutorModal.razor.cs [1,4 KB]
-Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor [2,7 KB]
-Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor.cs [2,2 KB]
+Blazor Web App/Components/Pages/TasksModals/RateExecutorModal.razor.cs [1,8 KB]
+Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor [2,8 KB]
+Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor.cs [2,4 KB]
 Blazor Web App/Components/Pages/TasksModals/TaskCard.razor [2,8 KB]
-Blazor Web App/Components/Pages/TasksModals/TaskCard.razor.cs [3,0 KB]
+Blazor Web App/Components/Pages/TasksModals/TaskCard.razor.cs [3,3 KB]
 Blazor Web App/Components/Routes.razor [612 B]
-Blazor Web App/Components/_Imports.razor [976 B]
-Blazor Web App/Constants/CultureConstants.cs [346 B]
-Blazor Web App/Extensions/ServiceCollectionExtensions.cs [3,7 KB]
+Blazor Web App/Components/_Imports.razor [978 B]
+Blazor Web App/Constants/AttachmentConstants.cs [121 B]
+Blazor Web App/Constants/CultureConstants.cs [374 B]
+Blazor Web App/Constants/FormatConstants.cs [232 B]
+Blazor Web App/Constants/Pagination.cs [159 B]
+Blazor Web App/Constants/ServiceMessages.cs [372 B]
+Blazor Web App/Extensions/ServiceCollectionExtensions.cs [3,4 KB]
 Blazor Web App/Modals/ModalState.cs [441 B]
 Blazor Web App/Program.cs [862 B]
 Blazor Web App/Properties/launchSettings.json [681 B]
@@ -158,29 +164,29 @@ Blazor Web App/Resources/ResourceKeys.cs [5,2 KB]
 Blazor Web App/Resources/SharedResources.cs [78 B]
 Blazor Web App/Resources/SharedResources.resx [11,8 KB]
 Blazor Web App/Resources/SharedResources.ru-RU.resx [13,1 KB]
-Blazor Web App/Services/Culture/CultureService.cs [1,0 KB]
+Blazor Web App/Services/Culture/CultureService.cs [1,2 KB]
 Blazor Web App/Services/Culture/ICultureService.cs [206 B]
 Blazor Web App/Services/CustomAuthStateProvider.cs [2,3 KB]
 Blazor Web App/Services/LocalStorage/ILocalStorageService.cs [237 B]
 Blazor Web App/Services/LocalStorage/LocalStorageService.cs [873 B]
 Blazor Web App/Services/Receivers/Auth/AuthService.cs [1,3 KB]
-Blazor Web App/Services/Receivers/Auth/IAuthService.cs [425 B]
-Blazor Web App/Services/Receivers/BaseService.cs [2,3 KB]
-Blazor Web App/Services/Receivers/Chats/ChatService.cs [1,9 KB]
-Blazor Web App/Services/Receivers/Chats/IChatService.cs [94 B]
-Blazor Web App/Services/Receivers/ProjectTasks/IProjectTaskService.cs [108 B]
-Blazor Web App/Services/Receivers/ProjectTasks/ProjectTaskService.cs [7,6 KB]
-Blazor Web App/Services/Receivers/TaskAttachments/ITaskAttachmentService.cs [114 B]
+Blazor Web App/Services/Receivers/Auth/IAuthService.cs [423 B]
+Blazor Web App/Services/Receivers/BaseService.cs [2,7 KB]
+Blazor Web App/Services/Receivers/Chats/ChatService.cs [1,8 KB]
+Blazor Web App/Services/Receivers/Chats/IChatService.cs [501 B]
+Blazor Web App/Services/Receivers/ProjectTasks/IProjectTaskService.cs [2,0 KB]
+Blazor Web App/Services/Receivers/ProjectTasks/ProjectTaskService.cs [7,3 KB]
+Blazor Web App/Services/Receivers/TaskAttachments/ITaskAttachmentService.cs [758 B]
 Blazor Web App/Services/Receivers/TaskAttachments/TaskAttachmentService.cs [2,8 KB]
-Blazor Web App/Services/Receivers/UserActions/IUserActionService.cs [106 B]
+Blazor Web App/Services/Receivers/UserActions/IUserActionService.cs [432 B]
 Blazor Web App/Services/Receivers/UserActions/UserActionService.cs [1,2 KB]
-Blazor Web App/Services/Receivers/Users/IUserService.cs [94 B]
+Blazor Web App/Services/Receivers/Users/IUserService.cs [798 B]
 Blazor Web App/Services/Receivers/Users/UserService.cs [2,8 KB]
 Blazor Web App/Settings/ApiSettings.cs [327 B]
 Blazor Web App/wwwroot/app.css [2,8 KB]
 Blazor Web App/wwwroot/download.js [456 B]
 blazor.dockerfile [434 B]
-docker-compose.yml [1,5 KB]
+docker-compose.yml [1,6 KB]
 Domain/Config/AppConfig.cs [459 B]
 Domain/Config/FileStorage.cs [397 B]
 Domain/Config/IConfigSection.cs [119 B]
@@ -194,10 +200,10 @@ Domain/Domain.csproj [312 B]
 Domain/Entities/Chat.cs [1,0 KB]
 Domain/Entities/Entity.cs [451 B]
 Domain/Entities/Message.cs [576 B]
-Domain/Entities/ProjectTask.cs [6,1 KB]
+Domain/Entities/ProjectTask.cs [6,4 KB]
 Domain/Entities/TaskAttachment.cs [3,0 KB]
 Domain/Entities/TaskResponse.cs [637 B]
-Domain/Entities/User.cs [2,0 KB]
+Domain/Entities/User.cs [2,2 KB]
 Domain/Entities/UserAction.cs [859 B]
 Domain/Interfaces/Chats/IChatCommandRepository.cs [356 B]
 Domain/Interfaces/Chats/IChatQueryRepository.cs [601 B]
@@ -211,7 +217,7 @@ Domain/Interfaces/UserActions/IUserActionQueryRepository.cs [345 B]
 Domain/Interfaces/Users/IUserCommandRepository.cs [356 B]
 Domain/Interfaces/Users/IUserQueryRepository.cs [917 B]
 Infrastructure/AppDbContext.cs [2,9 KB]
-Infrastructure/Infrastructure.csproj [605 B]
+Infrastructure/Infrastructure.csproj [690 B]
 Infrastructure/Migrations/20260927160150_InitialCreate.cs [4,5 KB]
 Infrastructure/Migrations/20260927160150_InitialCreate.Designer.cs [5,1 KB]
 Infrastructure/Migrations/20260930073322_AddPasswordHash.cs [802 B]
@@ -244,7 +250,7 @@ Infrastructure/Repositories/UserActions/UserActionCommandRepository.cs [556 B]
 Infrastructure/Repositories/UserActions/UserActionQueryRepository.cs [1,5 KB]
 Infrastructure/Repositories/Users/UserCommandRepository.cs [1,0 KB]
 Infrastructure/Repositories/Users/UserQueryRepository.cs [3,8 KB]
-README.md [439 B]
+README.md [1,3 KB]
 Shared/Dtos/Requests/Chats/AddMessageChatDto.cs [103 B]
 Shared/Dtos/Requests/PageDto.cs [103 B]
 Shared/Dtos/Requests/ProjectTasks/AssignProjectTaskDto.cs [117 B]
@@ -275,19 +281,20 @@ Task Marketplace.slnx [462 B]
 TgBot/Program.cs [40 B]
 TgBot/TgBot.csproj [253 B]
 Web Api/appsettings.json [385 B]
-Web Api/Controllers/AuthController.cs [1,2 KB]
-Web Api/Controllers/ChatController.cs [2,8 KB]
+Web Api/Controllers/AuthController.cs [1,3 KB]
+Web Api/Controllers/ChatController.cs [2,9 KB]
 Web Api/Controllers/ProjectTaskController.cs [7,0 KB]
-Web Api/Controllers/TaskAttachmentsController.cs [2,8 KB]
-Web Api/Controllers/UserActionController.cs [980 B]
-Web Api/Controllers/UserController.cs [2,7 KB]
+Web Api/Controllers/TaskAttachmentsController.cs [2,5 KB]
+Web Api/Controllers/UserActionController.cs [1,0 KB]
+Web Api/Controllers/UserController.cs [2,4 KB]
 Web Api/ExceptionHandler/GlobalExceptionHandler.cs [1,2 KB]
 Web Api/Extensions/Constants/SwaggerConstants.cs [469 B]
+Web Api/Extensions/CurrentUser.cs [742 B]
 Web Api/Extensions/ResultExtensions.cs [1,8 KB]
-Web Api/Extensions/ServiceCollectionExtensions.cs [6,2 KB]
+Web Api/Extensions/ServiceCollectionExtensions.cs [6,4 KB]
 Web Api/Program.cs [1,1 KB]
 Web Api/Properties/launchSettings.json [644 B]
-Web Api/Web Api.csproj [1,1 KB]
+Web Api/Web Api.csproj [1,2 KB]
 Web/appsettings.Development.json [154 B]
 Web/appsettings.json [151 B]
 Web/Pages/Error.cshtml [882 B]
@@ -323,44 +330,47 @@ Task Marketplace/
 │   ├── Attachments/
 │   │   ├── Commands/
 │   │   │   ├── DeleteAttachment/
-│   │   │   │   ├── DeleteAttachmentCommand.cs [310 B]
-│   │   │   │   └── DeleteAttachmentHandler.cs [2,1 KB]
+│   │   │   │   ├── DeleteAttachmentCommand.cs [197 B]
+│   │   │   │   └── DeleteAttachmentHandler.cs [1,8 KB]
 │   │   │   └── UploadAttachment/
-│   │   │       ├── UploadAttachmentCommand.cs [456 B]
-│   │   │       └── UploadAttachmentHandler.cs [3,3 KB]
+│   │   │       ├── UploadAttachmentCommand.cs [337 B]
+│   │   │       └── UploadAttachmentHandler.cs [3,2 KB]
 │   │   └── Queries/
 │   │       ├── GetAttachmentFile/
-│   │       │   ├── GetAttachmentFileHandler.cs [1,9 KB]
+│   │       │   ├── GetAttachmentFileHandler.cs [2,1 KB]
 │   │       │   └── GetAttachmentFileQuery.cs [263 B]
 │   │       └── GetTaskAttachments/
 │   │           ├── GetTaskAttachmentsHandler.cs [1,0 KB]
 │   │           └── GetTaskAttachmentsQuery.cs [243 B]
+│   ├── Behaviors/
+│   │   ├── TransactionBehaviour.cs [962 B]
+│   │   └── UserActionLoggingBehavior.cs [1,4 KB]
 │   ├── bin [IGNORED DIR]/
 │   ├── Chats/
 │   │   ├── Commands/
 │   │   │   ├── AddMessage/
-│   │   │   │   ├── AddMessageCommand.cs [396 B]
-│   │   │   │   └── AddMessageHandler.cs [2,6 KB]
+│   │   │   │   ├── AddMessageCommand.cs [318 B]
+│   │   │   │   └── AddMessageHandler.cs [2,4 KB]
 │   │   │   ├── Create/
-│   │   │   │   ├── CreateChatCommand.cs [436 B]
-│   │   │   │   └── CreateChatHandler.cs [1,8 KB]
+│   │   │   │   ├── CreateChatCommand.cs [348 B]
+│   │   │   │   └── CreateChatHandler.cs [2,3 KB]
 │   │   │   └── Delete/
-│   │   │       ├── DeleteChatCommand.cs [384 B]
-│   │   │       └── DeleteChatHandler.cs [1,5 KB]
+│   │   │       ├── DeleteChatCommand.cs [296 B]
+│   │   │       └── DeleteChatHandler.cs [1,9 KB]
 │   │   └── Queries/
 │   │       ├── GetById/
 │   │       │   ├── GetChatByIdHandler.cs [1,2 KB]
 │   │       │   └── GetChatByIdQuery.cs [215 B]
 │   │       ├── GetByTaskId/
-│   │       │   ├── GetChatByTaskIdHandler.cs [2,0 KB]
-│   │       │   └── GetChatByTaskIdQuery.cs [248 B]
+│   │       │   ├── GetChatByTaskIdHandler.cs [2,2 KB]
+│   │       │   └── GetChatByTaskIdQuery.cs [221 B]
 │   │       └── GetWithMessages/
 │   │           ├── GetChatWithMessagesHandler.cs [1,2 KB]
 │   │           └── GetChatWithMessagesQuery.cs [229 B]
 │   ├── Common/
-│   │   ├── IUserCommand.cs [97 B]
-│   │   ├── LogActionAttribute.cs [423 B]
-│   │   └── UserActionLoggingBehavior.cs [1,5 KB]
+│   │   └── LogActionAttribute.cs [423 B]
+│   ├── Interfaces/
+│   │   └── ICurrentUser.cs [130 B]
 │   ├── Mappers/
 │   │   ├── ChatMapper.cs [627 B]
 │   │   ├── ProjectTaskMapper.cs [1,6 KB]
@@ -370,39 +380,39 @@ Task Marketplace/
 │   ├── ProjectTasks/
 │   │   ├── Commands/
 │   │   │   ├── AssignExecutor/
-│   │   │   │   ├── AssignExecutorCommand.cs [437 B]
-│   │   │   │   └── AssignExecutorHandler.cs [1,6 KB]
+│   │   │   │   ├── AssignExecutorCommand.cs [349 B]
+│   │   │   │   └── AssignExecutorHandler.cs [1,4 KB]
 │   │   │   ├── Cancel/
-│   │   │   │   ├── CancelProjectTaskCommand.cs [405 B]
-│   │   │   │   └── CancelProjectTaskHandler.cs [1,6 KB]
+│   │   │   │   ├── CancelProjectTaskCommand.cs [319 B]
+│   │   │   │   └── CancelProjectTaskHandler.cs [1,3 KB]
 │   │   │   ├── Create/
-│   │   │   │   ├── CreateProjectTaskCommand.cs [574 B]
+│   │   │   │   ├── CreateProjectTaskCommand.cs [486 B]
 │   │   │   │   └── CreateProjectTaskHandler.cs [1,7 KB]
 │   │   │   ├── Delete/
-│   │   │   │   ├── DeleteProjectTaskCommand.cs [416 B]
+│   │   │   │   ├── DeleteProjectTaskCommand.cs [317 B]
 │   │   │   │   └── DeleteProjectTaskHandler.cs [1,3 KB]
 │   │   │   ├── MarkAsDone/
-│   │   │   │   ├── MarkAsDoneCommand.cs [425 B]
-│   │   │   │   └── MarkAsDoneHandler.cs [2,6 KB]
+│   │   │   │   ├── MarkAsDoneCommand.cs [339 B]
+│   │   │   │   └── MarkAsDoneHandler.cs [2,1 KB]
 │   │   │   ├── RespondToTask/
-│   │   │   │   ├── RespondToTaskCommand.cs [406 B]
-│   │   │   │   └── RespondToTaskHandler.cs [1,5 KB]
+│   │   │   │   ├── RespondToTaskCommand.cs [324 B]
+│   │   │   │   └── RespondToTaskHandler.cs [1,3 KB]
 │   │   │   └── Update/
-│   │   │       ├── UpdateProjectTaskCommand.cs [533 B]
-│   │   │       └── UpdateProjectTaskHandler.cs [1,7 KB]
+│   │   │       ├── UpdateProjectTaskCommand.cs [445 B]
+│   │   │       └── UpdateProjectTaskHandler.cs [1,5 KB]
 │   │   └── Queries/
 │   │       ├── GetAssigned/
 │   │       │   ├── GetAssignedTasksHandler.cs [1,3 KB]
 │   │       │   └── GetAssignedTasksQuery.cs [296 B]
 │   │       ├── GetByCustomer/
-│   │       │   ├── GetTasksByCustomerHandler.cs [1,6 KB]
+│   │       │   ├── GetTasksByCustomerHandler.cs [1,2 KB]
 │   │       │   └── GetTasksByCustomerQuery.cs [305 B]
 │   │       ├── GetById/
 │   │       │   ├── GetProjectTaskByIdHandler.cs [1,4 KB]
 │   │       │   └── GetProjectTaskByIdQuery.cs [254 B]
 │   │       ├── GetPublished/
-│   │       │   ├── GetPublishedTasksHandler.cs [1,6 KB]
-│   │       │   └── GetPublishedTasksQuery.cs [304 B]
+│   │       │   ├── GetPublishedTasksHandler.cs [1,7 KB]
+│   │       │   └── GetPublishedTasksQuery.cs [279 B]
 │   │       ├── GetResponses/
 │   │       │   ├── GetTaskResponsesHandler.cs [1,2 KB]
 │   │       │   └── GetTaskResponsesQuery.cs [251 B]
@@ -412,11 +422,11 @@ Task Marketplace/
 │   │           ├── SearchCustomerTasksQuery.cs [197 B]
 │   │           ├── SearchPublishedTasksHandler.cs [1,6 KB]
 │   │           ├── SearchPublishedTasksQuery.cs [201 B]
-│   │           └── SearchTasksQueryFactory.cs [476 B]
+│   │           └── SearchTasksQueryFactory.cs [517 B]
 │   ├── Services/
 │   │   ├── FileStorage/
-│   │   │   ├── FileStorageService.cs [2,0 KB]
-│   │   │   └── IFileStorageService.cs [390 B]
+│   │   │   ├── FileStorageService.cs [3,0 KB]
+│   │   │   └── IFileStorageService.cs [444 B]
 │   │   ├── Hasher/
 │   │   │   ├── IPasswordHasher.cs [218 B]
 │   │   │   └── PasswordHasher.cs [1,3 KB]
@@ -431,26 +441,26 @@ Task Marketplace/
 │   ├── Users/
 │   │   ├── Commands/
 │   │   │   ├── BlockUser/
-│   │   │   │   ├── BlockUserCommand.cs [390 B]
-│   │   │   │   └── BlockUserHandler.cs [1,3 KB]
+│   │   │   │   ├── BlockUserCommand.cs [304 B]
+│   │   │   │   └── BlockUserHandler.cs [957 B]
 │   │   │   ├── ChangeRole/
-│   │   │   │   ├── ChangeRoleCommand.cs [419 B]
-│   │   │   │   └── ChangeRoleHandler.cs [1,3 KB]
+│   │   │   │   ├── ChangeRoleCommand.cs [333 B]
+│   │   │   │   └── ChangeRoleHandler.cs [1,1 KB]
 │   │   │   ├── Delete/
-│   │   │   │   ├── DeleteUserCommand.cs [388 B]
-│   │   │   │   └── DeleteUserHandler.cs [1,3 KB]
+│   │   │   │   ├── DeleteUserCommand.cs [302 B]
+│   │   │   │   └── DeleteUserHandler.cs [959 B]
 │   │   │   ├── Login/
 │   │   │   │   ├── LoginUserCommand.cs [234 B]
 │   │   │   │   └── LoginUserHandler.cs [1,9 KB]
 │   │   │   ├── Register/
-│   │   │   │   ├── RegisterUserCommand.cs [278 B]
-│   │   │   │   └── RegisterUserHandler.cs [2,5 KB]
+│   │   │   │   ├── RegisterUserCommand.cs [281 B]
+│   │   │   │   └── RegisterUserHandler.cs [2,4 KB]
 │   │   │   ├── UnblockUser/
-│   │   │   │   ├── UnblockUserCommand.cs [396 B]
-│   │   │   │   └── UnblockUserHandler.cs [1,3 KB]
+│   │   │   │   ├── UnblockUserCommand.cs [310 B]
+│   │   │   │   └── UnblockUserHandler.cs [969 B]
 │   │   │   └── Update/
-│   │   │       ├── UpdateUserCommand.cs [189 B]
-│   │   │       └── UpdateUserHandler.cs [1,5 KB]
+│   │   │       ├── UpdateUserCommand.cs [193 B]
+│   │   │       └── UpdateUserHandler.cs [1,3 KB]
 │   │   └── Queries/
 │   │       ├── GetAll/
 │   │       │   ├── GetAllUsersHandler.cs [902 B]
@@ -482,48 +492,53 @@ Task Marketplace/
 │   │   │   └── ReconnectModal.razor.js [2,4 KB]
 │   │   ├── Pages/
 │   │   │   ├── Admin/
-│   │   │   │   ├── AdminActions.razor [3,7 KB]
-│   │   │   │   ├── AdminActions.razor.cs [2,0 KB]
-│   │   │   │   ├── AdminUsers.razor [4,4 KB]
-│   │   │   │   └── AdminUsers.razor.cs [2,9 KB]
+│   │   │   │   ├── AdminActions.razor [3,9 KB]
+│   │   │   │   ├── AdminActions.razor.cs [2,3 KB]
+│   │   │   │   ├── AdminUsers.razor [4,6 KB]
+│   │   │   │   └── AdminUsers.razor.cs [3,2 KB]
 │   │   │   ├── Auth/
 │   │   │   │   ├── Login.razor [1,3 KB]
-│   │   │   │   ├── Login.razor.cs [2,2 KB]
-│   │   │   │   ├── RedirectToLogin.razor [30 B]
-│   │   │   │   ├── RedirectToLogin.razor.cs [395 B]
+│   │   │   │   ├── Login.razor.cs [2,3 KB]
+│   │   │   │   ├── RedirectToLogin.razor [29 B]
+│   │   │   │   ├── RedirectToLogin.razor.cs [458 B]
 │   │   │   │   ├── Register.razor [1,6 KB]
-│   │   │   │   └── Register.razor.cs [2,4 KB]
+│   │   │   │   └── Register.razor.cs [2,5 KB]
 │   │   │   ├── Errors/
 │   │   │   │   ├── Error.razor [1,2 KB]
 │   │   │   │   └── NotFound.razor [159 B]
 │   │   │   ├── Executor/
 │   │   │   │   ├── MyAssignedTasks.razor [2,3 KB]
-│   │   │   │   └── MyAssignedTasks.razor.cs [3,5 KB]
+│   │   │   │   └── MyAssignedTasks.razor.cs [3,9 KB]
 │   │   │   ├── TasksModals/
-│   │   │   │   ├── AttachmentsModal.razor [4,1 KB]
-│   │   │   │   ├── AttachmentsModal.razor.cs [4,4 KB]
-│   │   │   │   ├── ChatModal.razor [2,8 KB]
-│   │   │   │   ├── ChatModal.razor.cs [5,1 KB]
+│   │   │   │   ├── AttachmentsModal.razor [4,2 KB]
+│   │   │   │   ├── AttachmentsModal.razor.cs [5,0 KB]
+│   │   │   │   ├── ChatModal.razor [2,9 KB]
+│   │   │   │   ├── ChatModal.razor.cs [5,5 KB]
 │   │   │   │   ├── CreateTaskModal.razor [2,4 KB]
-│   │   │   │   ├── CreateTaskModal.razor.cs [1,6 KB]
+│   │   │   │   ├── CreateTaskModal.razor.cs [1,8 KB]
 │   │   │   │   ├── EditTaskModal.razor [2,4 KB]
-│   │   │   │   ├── EditTaskModal.razor.cs [1,8 KB]
+│   │   │   │   ├── EditTaskModal.razor.cs [2,1 KB]
 │   │   │   │   ├── RateExecutorModal.razor [1,8 KB]
-│   │   │   │   ├── RateExecutorModal.razor.cs [1,4 KB]
-│   │   │   │   ├── ResponsesModal.razor [2,7 KB]
-│   │   │   │   ├── ResponsesModal.razor.cs [2,2 KB]
+│   │   │   │   ├── RateExecutorModal.razor.cs [1,8 KB]
+│   │   │   │   ├── ResponsesModal.razor [2,8 KB]
+│   │   │   │   ├── ResponsesModal.razor.cs [2,4 KB]
 │   │   │   │   ├── TaskCard.razor [2,8 KB]
-│   │   │   │   └── TaskCard.razor.cs [3,0 KB]
-│   │   │   ├── Home.razor [4,9 KB]
-│   │   │   ├── Tasks.razor [4,5 KB]
-│   │   │   └── Tasks.razor.cs [6,6 KB]
+│   │   │   │   └── TaskCard.razor.cs [3,3 KB]
+│   │   │   ├── Home.razor [5,0 KB]
+│   │   │   ├── Home.razor.cs [362 B]
+│   │   │   ├── Tasks.razor [4,7 KB]
+│   │   │   └── Tasks.razor.cs [6,9 KB]
 │   │   ├── App.razor [713 B]
 │   │   ├── Routes.razor [612 B]
-│   │   └── _Imports.razor [976 B]
+│   │   └── _Imports.razor [978 B]
 │   ├── Constants/
-│   │   └── CultureConstants.cs [346 B]
+│   │   ├── AttachmentConstants.cs [121 B]
+│   │   ├── CultureConstants.cs [374 B]
+│   │   ├── FormatConstants.cs [232 B]
+│   │   ├── Pagination.cs [159 B]
+│   │   └── ServiceMessages.cs [372 B]
 │   ├── Extensions/
-│   │   └── ServiceCollectionExtensions.cs [3,7 KB]
+│   │   └── ServiceCollectionExtensions.cs [3,4 KB]
 │   ├── Modals/
 │   │   └── ModalState.cs [441 B]
 │   ├── obj [IGNORED DIR]/
@@ -536,7 +551,7 @@ Task Marketplace/
 │   │   └── SharedResources.ru-RU.resx [13,1 KB]
 │   ├── Services/
 │   │   ├── Culture/
-│   │   │   ├── CultureService.cs [1,0 KB]
+│   │   │   ├── CultureService.cs [1,2 KB]
 │   │   │   └── ICultureService.cs [206 B]
 │   │   ├── LocalStorage/
 │   │   │   ├── ILocalStorageService.cs [237 B]
@@ -544,23 +559,23 @@ Task Marketplace/
 │   │   ├── Receivers/
 │   │   │   ├── Auth/
 │   │   │   │   ├── AuthService.cs [1,3 KB]
-│   │   │   │   └── IAuthService.cs [425 B]
+│   │   │   │   └── IAuthService.cs [423 B]
 │   │   │   ├── Chats/
-│   │   │   │   ├── ChatService.cs [1,9 KB]
-│   │   │   │   └── IChatService.cs [94 B]
+│   │   │   │   ├── ChatService.cs [1,8 KB]
+│   │   │   │   └── IChatService.cs [501 B]
 │   │   │   ├── ProjectTasks/
-│   │   │   │   ├── IProjectTaskService.cs [108 B]
-│   │   │   │   └── ProjectTaskService.cs [7,6 KB]
+│   │   │   │   ├── IProjectTaskService.cs [2,0 KB]
+│   │   │   │   └── ProjectTaskService.cs [7,3 KB]
 │   │   │   ├── TaskAttachments/
-│   │   │   │   ├── ITaskAttachmentService.cs [114 B]
+│   │   │   │   ├── ITaskAttachmentService.cs [758 B]
 │   │   │   │   └── TaskAttachmentService.cs [2,8 KB]
 │   │   │   ├── UserActions/
-│   │   │   │   ├── IUserActionService.cs [106 B]
+│   │   │   │   ├── IUserActionService.cs [432 B]
 │   │   │   │   └── UserActionService.cs [1,2 KB]
 │   │   │   ├── Users/
-│   │   │   │   ├── IUserService.cs [94 B]
+│   │   │   │   ├── IUserService.cs [798 B]
 │   │   │   │   └── UserService.cs [2,8 KB]
-│   │   │   └── BaseService.cs [2,3 KB]
+│   │   │   └── BaseService.cs [2,7 KB]
 │   │   └── CustomAuthStateProvider.cs [2,3 KB]
 │   ├── Settings/
 │   │   └── ApiSettings.cs [327 B]
@@ -572,7 +587,7 @@ Task Marketplace/
 │   │   ├── download.js [456 B]
 │   │   └── favicon.png [IGNORED FILE]
 │   ├── appsettings.Development.json [127 B]
-│   ├── appsettings.json [193 B]
+│   ├── appsettings.json [151 B]
 │   ├── Blazor Web App.csproj [524 B]
 │   ├── Blazor Web App.csproj.user [IGNORED FILE]
 │   └── Program.cs [862 B]
@@ -593,10 +608,10 @@ Task Marketplace/
 │   │   ├── Chat.cs [1,0 KB]
 │   │   ├── Entity.cs [451 B]
 │   │   ├── Message.cs [576 B]
-│   │   ├── ProjectTask.cs [6,1 KB]
+│   │   ├── ProjectTask.cs [6,4 KB]
 │   │   ├── TaskAttachment.cs [3,0 KB]
 │   │   ├── TaskResponse.cs [637 B]
-│   │   ├── User.cs [2,0 KB]
+│   │   ├── User.cs [2,2 KB]
 │   │   └── UserAction.cs [859 B]
 │   ├── Interfaces/
 │   │   ├── Chats/
@@ -660,7 +675,7 @@ Task Marketplace/
 │   │   │   └── UserQueryRepository.cs [3,8 KB]
 │   │   └── UnitOfWork.cs [429 B]
 │   ├── AppDbContext.cs [2,9 KB]
-│   ├── Infrastructure.csproj [605 B]
+│   ├── Infrastructure.csproj [690 B]
 │   └── Infrastructure.csproj.user [IGNORED FILE]
 ├── Shared/
 │   ├── bin [IGNORED DIR]/
@@ -703,13 +718,9 @@ Task Marketplace/
 │   ├── obj [IGNORED DIR]/
 │   └── Shared.csproj [219 B]
 ├── TgBot/
-│   ├── bin [IGNORED DIR]/
-│   ├── obj [IGNORED DIR]/
 │   ├── Program.cs [40 B]
 │   └── TgBot.csproj [253 B]
 ├── Web/
-│   ├── bin [IGNORED DIR]/
-│   ├── obj [IGNORED DIR]/
 │   ├── Pages/
 │   │   ├── Shared/
 │   │   │   ├── _Layout.cshtml [2,2 KB]
@@ -752,33 +763,34 @@ Task Marketplace/
 ├── Web Api/
 │   ├── bin [IGNORED DIR]/
 │   ├── Controllers/
-│   │   ├── AuthController.cs [1,2 KB]
-│   │   ├── ChatController.cs [2,8 KB]
+│   │   ├── AuthController.cs [1,3 KB]
+│   │   ├── ChatController.cs [2,9 KB]
 │   │   ├── ProjectTaskController.cs [7,0 KB]
-│   │   ├── TaskAttachmentsController.cs [2,8 KB]
-│   │   ├── UserActionController.cs [980 B]
-│   │   └── UserController.cs [2,7 KB]
+│   │   ├── TaskAttachmentsController.cs [2,5 KB]
+│   │   ├── UserActionController.cs [1,0 KB]
+│   │   └── UserController.cs [2,4 KB]
 │   ├── ExceptionHandler/
 │   │   └── GlobalExceptionHandler.cs [1,2 KB]
 │   ├── Extensions/
 │   │   ├── Constants/
 │   │   │   └── SwaggerConstants.cs [469 B]
+│   │   ├── CurrentUser.cs [742 B]
 │   │   ├── ResultExtensions.cs [1,8 KB]
-│   │   └── ServiceCollectionExtensions.cs [6,2 KB]
+│   │   └── ServiceCollectionExtensions.cs [6,4 KB]
 │   ├── obj [IGNORED DIR]/
 │   ├── Properties/
 │   │   └── launchSettings.json [644 B]
 │   ├── appsettings.json [385 B]
 │   ├── Program.cs [1,1 KB]
-│   ├── Web Api.csproj [1,1 KB]
+│   ├── Web Api.csproj [1,2 KB]
 │   └── Web Api.csproj.user [IGNORED FILE]
 ├── .editconfig [9,6 KB]
 ├── .env [IGNORED FILE]
 ├── .env-example [310 B]
 ├── .gitignore [7,8 KB]
 ├── blazor.dockerfile [434 B]
-├── docker-compose.yml [1,5 KB]
-├── README.md [439 B]
+├── docker-compose.yml [1,6 KB]
+├── README.md [1,3 KB]
 ├── Task Marketplace.slnx [462 B]
 └── wep-api.dockerfile [758 B]
 ```
@@ -1511,18 +1523,13 @@ FodyWeavers.xsd
 ## FILE: `Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentCommand.cs`
 
 ````csharp
-﻿using Application.Common;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 
 namespace Application.Attachments.Commands.DeleteAttachment;
 
 public record DeleteAttachmentCommand(
-    Guid AttachmentId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid AttachmentId) : IRequest<Result>;
 ````
 
 ---
@@ -1530,9 +1537,9 @@ public record DeleteAttachmentCommand(
 ## FILE: `Application/Attachments/Commands/DeleteAttachment/DeleteAttachmentHandler.cs`
 
 ````csharp
-﻿using Application.Services.FileStorage;
+﻿using Application.Interfaces;
+using Application.Services.FileStorage;
 using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -1544,20 +1551,17 @@ public class DeleteAttachmentHandler
     : IRequestHandler<DeleteAttachmentCommand, Result>
 {
     private readonly ITaskAttachmentQueryRepository _attachmentQueryRepository;
-    private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteAttachmentHandler(
         ITaskAttachmentQueryRepository attachmentQueryRepository,
-        ITaskAttachmentCommandRepository attachmentCommandRepository,
         IFileStorageService fileStorage,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _attachmentQueryRepository = attachmentQueryRepository;
-        _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -1575,7 +1579,7 @@ public class DeleteAttachmentHandler
                 ErrorType.NotFound);
         }
 
-        if (attachment.UploadedByUserId != request.CurrentUserId)
+        if (attachment.UploadedByUserId != _currentUser.Id)
         {
             return Result.Failure(
                 ErrorMessages.OnlyUploaderCanDeleteAttachment,
@@ -1583,8 +1587,6 @@ public class DeleteAttachmentHandler
         }
 
         attachment.Delete();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var relativePath = $"tasks/{attachment.TaskId}/{attachment.StoredFileName}";
 
@@ -1600,8 +1602,7 @@ public class DeleteAttachmentHandler
 ## FILE: `Application/Attachments/Commands/UploadAttachment/UploadAttachmentCommand.cs`
 
 ````csharp
-﻿using Application.Common;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -1609,14 +1610,10 @@ namespace Application.Attachments.Commands.UploadAttachment;
 
 public record UploadAttachmentCommand(
     Guid TaskId,
-    Guid UploadedByUserId,
     string FileName,
     string ContentType,
     long Size,
-    Stream Content) : IRequest<Result<TaskAttachmentDto>>, IUserCommand
-{
-    public Guid UserId => UploadedByUserId;
-}
+    Stream Content) : IRequest<Result<TaskAttachmentDto>>;
 ````
 
 ---
@@ -1624,11 +1621,11 @@ public record UploadAttachmentCommand(
 ## FILE: `Application/Attachments/Commands/UploadAttachment/UploadAttachmentHandler.cs`
 
 ````csharp
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Application.Services.FileStorage;
 using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -1644,18 +1641,18 @@ public class UploadAttachmentHandler
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
     private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public UploadAttachmentHandler(
         IProjectTaskQueryRepository taskQueryRepository,
         ITaskAttachmentCommandRepository attachmentCommandRepository,
         IFileStorageService fileStorage,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _taskQueryRepository = taskQueryRepository;
         _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<TaskAttachmentDto>> Handle(
@@ -1681,8 +1678,8 @@ public class UploadAttachmentHandler
                 ErrorType.Validation);
         }
 
-        if (task.CustomerId != request.UploadedByUserId
-            && task.ExecutorId != request.UploadedByUserId)
+        if (task.CustomerId != _currentUser.Id
+            && task.ExecutorId != _currentUser.Id)
         {
             return Result<TaskAttachmentDto>.Failure(
                 ErrorMessages.OnlyParticipantsCanAttach,
@@ -1696,7 +1693,7 @@ public class UploadAttachmentHandler
 
         var createResult = TaskAttachment.Create(
             request.TaskId,
-            request.UploadedByUserId,
+            _currentUser.Id,
             request.FileName,
             storedFileName,
             request.ContentType,
@@ -1718,8 +1715,6 @@ public class UploadAttachmentHandler
             cancellationToken);
 
         await _attachmentCommandRepository.AddAsync(attachment, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result<TaskAttachmentDto>.Success(TaskAttachmentMapper.ToDto(attachment));
     }
@@ -1772,9 +1767,18 @@ public class GetAttachmentFileHandler
 
         var relativePath = $"tasks/{attachment.TaskId}/{attachment.StoredFileName}";
 
-        await using var stream = await _fileStorage.OpenReadAsync(
+        var fileResult = await _fileStorage.OpenReadAsync(
             relativePath,
             cancellationToken);
+
+        if (!fileResult.IsSuccess)
+        {
+            return Result<AttachmentFileResult>.Failure(
+                fileResult.Message,
+                ErrorType.NotFound);
+        }
+
+        await using var stream = fileResult.Value!;
 
         using var ms = new MemoryStream();
         await stream.CopyToAsync(ms, cancellationToken);
@@ -1861,6 +1865,113 @@ public record GetTaskAttachmentsQuery(
 
 ---
 
+## FILE: `Application/Behaviors/TransactionBehaviour.cs`
+
+````csharp
+﻿using Domain.Interfaces;
+using MediatR;
+using Shared.Dtos.Responses;
+
+namespace Application.Behaviors;
+
+public class TransactionBehaviour<TRequest, TResponse>
+    : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : notnull
+{
+    private readonly IUnitOfWork _unitOfWork;
+
+    public TransactionBehaviour(IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await next(cancellationToken);
+
+        if (response is IResult { IsSuccess: false })
+        {
+            return response;
+        }
+
+        if (typeof(TRequest).Name.EndsWith("Query"))
+        {
+            return response;
+        }
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return response;
+    }
+}
+````
+
+---
+
+## FILE: `Application/Behaviors/UserActionLoggingBehavior.cs`
+
+````csharp
+﻿using Application.Common;
+using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces.UserActions;
+using MediatR;
+using Shared.Dtos.Responses;
+using System.Reflection;
+
+namespace Application.Behaviors;
+
+public class UserActionLoggingBehavior<TRequest, TResponse>
+    : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : notnull
+{
+    private readonly IUserActionCommandRepository _repository;
+    private readonly ICurrentUser _currentUser;
+
+    public UserActionLoggingBehavior(
+        IUserActionCommandRepository repository,
+        ICurrentUser currentUser)
+    {
+        _repository = repository;
+        _currentUser = currentUser;
+    }
+
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
+    {
+        var response = await next(cancellationToken);
+
+        if (response is IResult { IsSuccess: false })
+        {
+            return response;
+        }
+
+        var attribute = typeof(TRequest).GetCustomAttribute<LogActionAttribute>(false);
+
+        if (attribute is null)
+        {
+            return response;
+        }
+
+        var action = UserAction.Create(
+            _currentUser.Id,
+            attribute.ActionType,
+            attribute.EntityType);
+
+        await _repository.AddAsync(action, cancellationToken);
+
+        return response;
+    }
+}
+````
+
+---
+
 ## FILE: `Application/Chats/Commands/AddMessage/AddMessageCommand.cs`
 
 ````csharp
@@ -1875,11 +1986,7 @@ namespace Application.Chats.Commands.AddMessage;
 [LogAction(UserActionType.SentMessage, nameof(Chat))]
 public record AddMessageCommand(
     Guid ChatId,
-    string Text,
-    Guid SenderId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => SenderId;
-}
+    string Text) : IRequest<Result>;
 ````
 
 ---
@@ -1887,8 +1994,8 @@ public record AddMessageCommand(
 ## FILE: `Application/Chats/Commands/AddMessage/AddMessageHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
@@ -1901,23 +2008,20 @@ namespace Application.Chats.Commands.AddMessage;
 public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
 {
     private readonly IChatQueryRepository _queryRepository;
-    private readonly IChatCommandRepository _commandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public AddMessageHandler(
         IChatQueryRepository queryRepository,
-        IChatCommandRepository commandRepository,
         IUserQueryRepository userQueryRepository,
-        IUnitOfWork unitOfWork,
-        IProjectTaskQueryRepository taskQueryRepository)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
         _userQueryRepository = userQueryRepository;
-        _unitOfWork = unitOfWork;
         _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -1937,8 +2041,8 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
 
         var task = await _taskQueryRepository.GetByIdAsync(chat.ProjectTaskId, cancellationToken);
         if (task is null
-            || (task.CustomerId != request.SenderId
-            && task.ExecutorId != request.SenderId))
+            || (task.CustomerId != _currentUser.Id
+            && task.ExecutorId != _currentUser.Id))
         {
             return Result.Failure(
                 ErrorMessages.Forbidden,
@@ -1946,7 +2050,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
         }
 
         var sender = await _userQueryRepository.GetByIdAsync(
-            request.SenderId,
+            _currentUser.Id,
             cancellationToken);
 
         if (sender is null)
@@ -1956,7 +2060,7 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = chat.AddMessage(request.Text, request.SenderId);
+        var result = chat.AddMessage(request.Text, _currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -1964,8 +2068,6 @@ public class AddMessageHandler : IRequestHandler<AddMessageCommand, Result>
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -1988,11 +2090,7 @@ namespace Application.Chats.Commands.Create;
 
 [LogAction(UserActionType.CreatedChat, nameof(Chat))]
 public record CreateChatCommand(
-    Guid ProjectTaskId,
-    Guid CurrentUserId) : IRequest<Result<ChatDto>>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid ProjectTaskId) : IRequest<Result<ChatDto>>;
 ````
 
 ---
@@ -2000,11 +2098,12 @@ public record CreateChatCommand(
 ## FILE: `Application/Chats/Commands/Create/CreateChatHandler.cs`
 
 ````csharp
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
@@ -2016,22 +2115,34 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
 {
     private readonly IChatCommandRepository _commandRepository;
     private readonly IChatQueryRepository _queryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public CreateChatHandler(
         IChatCommandRepository commandRepository,
         IChatQueryRepository queryRepository,
-        IUnitOfWork unitOfWork)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
         _queryRepository = queryRepository;
-        _unitOfWork = unitOfWork;
+        _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<ChatDto>> Handle(
         CreateChatCommand request,
         CancellationToken cancellationToken = default)
     {
+        var task = await _taskQueryRepository.GetByIdAsync(request.ProjectTaskId, cancellationToken);
+
+        if (task is null || (task.CustomerId != _currentUser.Id && task.ExecutorId != _currentUser.Id))
+        {
+            return Result<ChatDto>.Failure(
+                ErrorMessages.Forbidden,
+                ErrorType.Forbidden);
+        }
+
         var existingChat = await _queryRepository.GetByTaskIdAsync(request.ProjectTaskId, cancellationToken);
 
         if (existingChat is not null)
@@ -2051,8 +2162,6 @@ public class CreateChatHandler : IRequestHandler<CreateChatCommand, Result<ChatD
         }
 
         await _commandRepository.AddAsync(result.Value!, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var dto = ChatMapper.ToDto(result.Value!, new Dictionary<Guid, string>());
 
@@ -2076,11 +2185,7 @@ namespace Application.Chats.Commands.Delete;
 
 [LogAction(UserActionType.DeletedChat, nameof(Chat))]
 public record DeleteChatCommand(
-    Guid ChatId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid ChatId) : IRequest<Result>;
 ````
 
 ---
@@ -2088,9 +2193,10 @@ public record DeleteChatCommand(
 ## FILE: `Application/Chats/Commands/Delete/DeleteChatHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.Chats;
+using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
@@ -2100,14 +2206,20 @@ namespace Application.Chats.Commands.Delete;
 public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
 {
     private readonly IChatCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IChatQueryRepository _queryRepository;
+    private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteChatHandler(
         IChatCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        IChatQueryRepository queryRepository,
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _queryRepository = queryRepository;
+        _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -2130,7 +2242,7 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
             cancellationToken);
 
         if (task is null
-            || task.CustomerId != request.CurrentUserId)
+            || task.CustomerId != _currentUser.Id)
         {
             return Result.Failure(
                 ErrorMessages.Forbidden,
@@ -2138,8 +2250,6 @@ public class DeleteChatHandler : IRequestHandler<DeleteChatCommand, Result>
         }
 
         await _commandRepository.DeleteAsync(request.ChatId, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -2211,7 +2321,8 @@ public record GetChatByIdQuery(
 ## FILE: `Application/Chats/Queries/GetByTaskId/GetChatByTaskIdHandler.cs`
 
 ````csharp
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Constants;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
@@ -2226,13 +2337,16 @@ public class GetChatByTaskIdHandler : IRequestHandler<GetChatByTaskIdQuery, Resu
 {
     private readonly IChatQueryRepository _queryRepository;
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public GetChatByTaskIdHandler(
         IChatQueryRepository queryRepository,
-        IProjectTaskQueryRepository taskQueryRepository)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
         _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<ChatDto>> Handle(
@@ -2250,8 +2364,8 @@ public class GetChatByTaskIdHandler : IRequestHandler<GetChatByTaskIdQuery, Resu
                 ErrorType.NotFound);
         }
 
-        if (task.CustomerId != request.CurrentUserId
-            && task.ExecutorId != request.CurrentUserId)
+        if (task.CustomerId != _currentUser.Id
+            && task.ExecutorId != _currentUser.Id)
         {
             return Result<ChatDto>.Failure(
                 ErrorMessages.Forbidden,
@@ -2291,8 +2405,7 @@ using Shared.Dtos.Responses.Chats;
 namespace Application.Chats.Queries.GetByTaskId;
 
 public record GetChatByTaskIdQuery(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result<ChatDto>>;
+    Guid TaskId) : IRequest<Result<ChatDto>>;
 ````
 
 ---
@@ -2358,19 +2471,6 @@ public record GetChatWithMessagesQuery(
 
 ---
 
-## FILE: `Application/Common/IUserCommand.cs`
-
-````csharp
-﻿namespace Application.Common;
-
-public interface IUserCommand
-{
-    Guid UserId { get; }
-}
-````
-
----
-
 ## FILE: `Application/Common/LogActionAttribute.cs`
 
 ````csharp
@@ -2396,64 +2496,15 @@ public sealed class LogActionAttribute : Attribute
 
 ---
 
-## FILE: `Application/Common/UserActionLoggingBehavior.cs`
+## FILE: `Application/Interfaces/ICurrentUser.cs`
 
 ````csharp
-﻿using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Interfaces.UserActions;
-using MediatR;
-using Shared.Dtos.Responses;
-using System.Reflection;
+﻿namespace Application.Interfaces;
 
-namespace Application.Common;
-
-public class UserActionLoggingBehavior<TRequest, TResponse>
-    : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : notnull
+public interface ICurrentUser
 {
-    private readonly IUserActionCommandRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UserActionLoggingBehavior(
-        IUserActionCommandRepository repository,
-        IUnitOfWork unitOfWork)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<TResponse> Handle(
-        TRequest request,
-        RequestHandlerDelegate<TResponse> next,
-        CancellationToken cancellationToken)
-    {
-        var response = await next(cancellationToken);
-
-        if (request is not IUserCommand userCommand
-            || response is IResult { IsSuccess: false })
-        {
-            return response;
-        }
-
-        var attribute = typeof(TRequest).GetCustomAttribute<LogActionAttribute>(false);
-
-        if (attribute is null)
-        {
-            return response;
-        }
-
-        var action = UserAction.Create(
-            userCommand.UserId,
-            attribute.ActionType,
-            attribute.EntityType);
-
-        await _repository.AddAsync(action, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return response;
-    }
+    Guid Id { get; }
+    bool IsInRole(string role);
 }
 ````
 
@@ -2641,11 +2692,7 @@ namespace Application.ProjectTasks.Commands.AssignExecutor;
 [LogAction(UserActionType.AssignedExecutor, nameof(ProjectTask))]
 public record AssignExecutorCommand(
     Guid TaskId,
-    Guid ExecutorId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid ExecutorId) : IRequest<Result>;
 ````
 
 ---
@@ -2653,8 +2700,8 @@ public record AssignExecutorCommand(
 ## FILE: `Application/ProjectTasks/Commands/AssignExecutor/AssignExecutorHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -2665,17 +2712,14 @@ namespace Application.ProjectTasks.Commands.AssignExecutor;
 public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public AssignExecutorHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -2695,7 +2739,7 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
 
         var result = task.AssignExecutor(
             request.ExecutorId,
-            request.CurrentUserId);
+            _currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -2703,8 +2747,6 @@ public class AssignExecutorHandler : IRequestHandler<AssignExecutorCommand, Resu
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -2726,11 +2768,7 @@ namespace Application.ProjectTasks.Commands.Cancel;
 
 [LogAction(UserActionType.CancelledTask, nameof(ProjectTask))]
 public record CancelProjectTaskCommand(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TaskId) : IRequest<Result>;
 ````
 
 ---
@@ -2738,8 +2776,8 @@ public record CancelProjectTaskCommand(
 ## FILE: `Application/ProjectTasks/Commands/Cancel/CancelProjectTaskHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -2750,17 +2788,14 @@ namespace Application.ProjectTasks.Commands.Cancel;
 public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public CancelProjectTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -2778,7 +2813,7 @@ public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand
                 ErrorType.NotFound);
         }
 
-        var result = task.Cancel(request.CurrentUserId);
+        var result = task.Cancel(_currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -2786,8 +2821,6 @@ public class CancelProjectTaskHandler : IRequestHandler<CancelProjectTaskCommand
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -2814,11 +2847,7 @@ public record class CreateProjectTaskCommand(
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
-    DateTimeOffset EndsAt,
-    Guid CurrentUserId) : IRequest<Result<ProjectTaskDto>>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    DateTimeOffset EndsAt) : IRequest<Result<ProjectTaskDto>>;
 ````
 
 ---
@@ -2826,10 +2855,10 @@ public record class CreateProjectTaskCommand(
 ## FILE: `Application/ProjectTasks/Commands/Create/CreateProjectTaskHandler.cs`
 
 ````csharp
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Config;
 using Domain.Entities;
-using Domain.Interfaces;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -2842,17 +2871,17 @@ namespace Application.ProjectTasks.Commands.Create;
 public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand, Result<ProjectTaskDto>>
 {
     private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
     private readonly string _currency;
 
     public CreateProjectTaskHandler(
         IProjectTaskCommandRepository commandRepository,
         IOptions<AppConfig> appConfig,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
         _currency = appConfig.Value.Currency;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<ProjectTaskDto>> Handle(
@@ -2865,7 +2894,7 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CurrentUserId);
+            _currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -2875,8 +2904,6 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
         }
 
         await _commandRepository.AddAsync(result.Value!);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result<ProjectTaskDto>.Success(
             ProjectTaskMapper.ToDto(
@@ -2897,15 +2924,11 @@ using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 
-namespace Application.ProjectTasks.Commands.DeleteProjectTask;
+namespace Application.ProjectTasks.Commands.Delete;
 
 [LogAction(UserActionType.DeletedTask, nameof(ProjectTask))]
 public record DeleteProjectTaskCommand(
-    Guid TaskId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TaskId) : IRequest<Result>;
 ````
 
 ---
@@ -2913,26 +2936,26 @@ public record DeleteProjectTaskCommand(
 ## FILE: `Application/ProjectTasks/Commands/Delete/DeleteProjectTaskHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 
-namespace Application.ProjectTasks.Commands.DeleteProjectTask;
+namespace Application.ProjectTasks.Commands.Delete;
 
 public class DeleteProjectTaskHandler : IRequestHandler<DeleteProjectTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public DeleteProjectTaskHandler(
         IProjectTaskQueryRepository taskQueryRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _taskQueryRepository = taskQueryRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -2946,13 +2969,12 @@ public class DeleteProjectTaskHandler : IRequestHandler<DeleteProjectTaskCommand
             return Result.Failure(ErrorMessages.ProjectTaskNotFound, ErrorType.NotFound);
         }
 
-        if (task.CustomerId != request.CurrentUserId)
+        if (task.CustomerId != _currentUser.Id)
         {
             return Result.Failure(ErrorMessages.Forbidden, ErrorType.Forbidden);
         }
-        task.Delete();
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        task.Delete();
 
         return Result.Success();
     }
@@ -2975,11 +2997,7 @@ namespace Application.ProjectTasks.Commands.MarkAsDone;
 [LogAction(UserActionType.MarkedTaskDone, nameof(ProjectTask))]
 public record MarkAsDoneCommand(
     Guid TaskId,
-    Guid CurrentUserId,
-    decimal? Rating) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    decimal? Rating) : IRequest<Result>;
 ````
 
 ---
@@ -2987,8 +3005,8 @@ public record MarkAsDoneCommand(
 ## FILE: `Application/ProjectTasks/Commands/MarkAsDone/MarkAsDoneHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.Users;
 using MediatR;
@@ -3000,23 +3018,17 @@ namespace Application.ProjectTasks.Commands.MarkAsDone;
 public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
-    private readonly IProjectTaskCommandRepository _taskCommandRepository;
     private readonly IUserQueryRepository _userQueryRepository;
-    private readonly IUserCommandRepository _userCommandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public MarkAsDoneHandler(
         IProjectTaskQueryRepository taskQueryRepository,
-        IProjectTaskCommandRepository taskCommandRepository,
         IUserQueryRepository userQueryRepository,
-        IUserCommandRepository userCommandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _taskQueryRepository = taskQueryRepository;
-        _taskCommandRepository = taskCommandRepository;
         _userQueryRepository = userQueryRepository;
-        _userCommandRepository = userCommandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -3034,7 +3046,7 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 ErrorType.NotFound);
         }
 
-        var result = task.MarkAsDone(request.CurrentUserId, request.Rating);
+        var result = task.MarkAsDone(_currentUser.Id, request.Rating);
 
         if (!result.IsSuccess)
         {
@@ -3042,8 +3054,6 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         if (task.ExecutorId.HasValue && request.Rating.HasValue)
         {
@@ -3060,8 +3070,6 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                 executor.RecalculateRating(ratings);
             }
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -3083,11 +3091,7 @@ namespace Application.ProjectTasks.Commands.RespondToTask;
 
 [LogAction(UserActionType.RespondedToTask, nameof(ProjectTask))]
 public record RespondToTaskCommand(
-    Guid TaskId,
-    Guid ExecutorId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => ExecutorId;
-}
+    Guid TaskId) : IRequest<Result>;
 ````
 
 ---
@@ -3095,8 +3099,8 @@ public record RespondToTaskCommand(
 ## FILE: `Application/ProjectTasks/Commands/RespondToTask/RespondToTaskHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -3107,17 +3111,14 @@ namespace Application.ProjectTasks.Commands.RespondToTask;
 public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public RespondToTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -3133,7 +3134,7 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
                 ErrorType.NotFound);
         }
 
-        var result = task.RespondToTask(request.ExecutorId);
+        var result = task.RespondToTask(_currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -3141,8 +3142,6 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -3169,11 +3168,7 @@ public record class UpdateProjectTaskCommand(
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
-    DateTimeOffset EndsAt,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    DateTimeOffset EndsAt) : IRequest<Result>;
 ````
 
 ---
@@ -3181,8 +3176,8 @@ public record class UpdateProjectTaskCommand(
 ## FILE: `Application/ProjectTasks/Commands/Update/UpdateProjectTaskHandler.cs`
 
 ````csharp
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -3193,17 +3188,14 @@ namespace Application.ProjectTasks.Commands.Update;
 public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public UpdateProjectTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -3225,7 +3217,7 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
             request.Price,
             request.StartsAt,
             request.EndsAt,
-            request.CurrentUserId);
+            _currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -3233,8 +3225,6 @@ public class UpdateProjectTaskHandler : IRequestHandler<UpdateProjectTaskCommand
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -3311,13 +3301,11 @@ public record GetAssignedTasksQuery(
 ````csharp
 ﻿using Application.Mappers;
 using Domain.Config;
-using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
-using Shared.Enums;
 
 namespace Application.ProjectTasks.Queries.GetTasksByCustomer;
 
@@ -3344,17 +3332,8 @@ public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery
             request.PageSize,
             cancellationToken);
 
-        if (projectTask.TotalCount == CurrencyConstants.ZeroElements)
-        {
-            return Result<PagedResult<ProjectTaskDto>>.Failure(
-                ErrorMessages.ProjectTaskByCustomerNotFound,
-                ErrorType.NotFound);
-        }
-
         return Result<PagedResult<ProjectTaskDto>>.Success(
-            ProjectTaskMapper.ToPagedDto(
-                projectTask,
-                _appConfig.Currency));
+            ProjectTaskMapper.ToPagedDto(projectTask, _appConfig.Currency));
     }
 }
 ````
@@ -3447,7 +3426,8 @@ public record GetProjectTaskByIdQuery(
 ## FILE: `Application/ProjectTasks/Queries/GetPublished/GetPublishedTasksHandler.cs`
 
 ````csharp
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Config;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -3461,13 +3441,16 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
     private readonly AppConfig _appConfig;
+    private readonly ICurrentUser _currentUser;
 
     public GetPublishedTasksHandler(
         IProjectTaskQueryRepository queryRepository,
-        IOptions<AppConfig> appConfig)
+        IOptions<AppConfig> appConfig,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
         _appConfig = appConfig.Value;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<PagedResult<ProjectTaskDto>>> Handle(
@@ -3483,7 +3466,7 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
             .Select(t => ProjectTaskMapper.ToDto(
                 t,
                 _appConfig.Currency,
-                t.Responses.Any(r => r.ExecutorId == request.CurrentUserId)))
+                t.Responses.Any(r => r.ExecutorId == _currentUser.Id)))
             .ToList();
 
         var result = PagedResult<ProjectTaskDto>.Create(
@@ -3510,8 +3493,7 @@ namespace Application.ProjectTasks.Queries.GetPublishedTasks;
 
 public record GetPublishedTasksQuery(
     int Page,
-    int PageSize,
-    Guid CurrentUserId) : IRequest<Result<PagedResult<ProjectTaskDto>>>;
+    int PageSize) : IRequest<Result<PagedResult<ProjectTaskDto>>>;
 ````
 
 ---
@@ -3732,20 +3714,22 @@ public record SearchPublishedTasksQuery(
 ## FILE: `Application/ProjectTasks/Queries/SearchTasks/SearchTasksQueryFactory.cs`
 
 ````csharp
-﻿namespace Application.ProjectTasks.Queries.SearchTasks;
+﻿using Application.Interfaces;
+
+namespace Application.ProjectTasks.Queries.SearchTasks;
 
 public class SearchTasksQueryFactory
 {
     public static ISearchTasksQuery Create(
-        Guid currentUserId,
+        ICurrentUser currentUser,
         bool isCustomer,
         string query,
         int page,
         int pageSize)
     {
         return isCustomer
-            ? new SearchCustomerTasksQuery(currentUserId, query, page, pageSize)
-            : new SearchPublishedTasksQuery(query, page, pageSize, currentUserId);
+            ? new SearchCustomerTasksQuery(currentUser.Id, query, page, pageSize)
+            : new SearchPublishedTasksQuery(query, page, pageSize, currentUser.Id);
     }
 }
 ````
@@ -3756,7 +3740,9 @@ public class SearchTasksQueryFactory
 
 ````csharp
 ﻿using Domain.Config;
+using Domain.Constants;
 using Microsoft.Extensions.Options;
+using Shared.Dtos.Responses;
 
 namespace Application.Services.FileStorage;
 
@@ -3764,27 +3750,41 @@ public class FileStorageService : IFileStorageService
 {
     private readonly string _root;
 
-    public FileStorageService(
-        IOptions<FileSettings> fileSettings)
+    public FileStorageService(IOptions<FileSettings> fileSettings)
     {
         _root = fileSettings.Value.FullPath;
-
         Directory.CreateDirectory(_root);
     }
 
-    private string FullPath(string relativePath)
+    private Result<string> FullPath(string relativePath)
     {
-        var fullPath = Path.Combine(_root, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        var combined = Path.Combine(_root, relativePath.Replace('/', Path.DirectorySeparatorChar));
 
-        return fullPath;
+        var fullPath = Path.GetFullPath(combined);
+
+        var rootFullPath = Path.GetFullPath(_root);
+
+        if (!fullPath.StartsWith(rootFullPath, StringComparison.OrdinalIgnoreCase))
+        {
+            return Result<string>.Failure(ErrorMessages.InvalidFilePath);
+        }
+
+        return Result<string>.Success(fullPath);
     }
 
-    public async Task SaveAsync(
+    public async Task<Result> SaveAsync(
         Stream stream,
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Result.Failure(pathResult.Message);
+        }
+
+        var fullPath = pathResult.Value;
 
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
 
@@ -3797,17 +3797,26 @@ public class FileStorageService : IFileStorageService
             useAsync: true);
 
         await stream.CopyToAsync(fileStream, cancellationToken);
+
+        return Result.Success();
     }
 
-    public Task<Stream> OpenReadAsync(
+    public async Task<Result<Stream>> OpenReadAsync(
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Result<Stream>.Failure(pathResult.Message);
+        }
+
+        var fullPath = pathResult.Value;
 
         if (!File.Exists(fullPath))
         {
-            throw new FileNotFoundException(relativePath);
+            return Result<Stream>.Failure(ErrorMessages.TaskAttachmentNotFound);
         }
 
         Stream stream = new FileStream(
@@ -3818,21 +3827,28 @@ public class FileStorageService : IFileStorageService
             bufferSize: 81920,
             useAsync: true);
 
-        return Task.FromResult(stream);
+        return Result<Stream>.Success(stream);
     }
 
-    public Task DeleteAsync(
+    public Task<Result> DeleteAsync(
         string relativePath,
         CancellationToken cancellationToken = default)
     {
-        var fullPath = FullPath(relativePath);
+        var pathResult = FullPath(relativePath);
+
+        if (!pathResult.IsSuccess || pathResult.Value is null)
+        {
+            return Task.FromResult(Result.Failure(pathResult.Message));
+        }
+
+        var fullPath = pathResult.Value;
 
         if (File.Exists(fullPath))
         {
             File.Delete(fullPath);
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }
 ````
@@ -3842,13 +3858,15 @@ public class FileStorageService : IFileStorageService
 ## FILE: `Application/Services/FileStorage/IFileStorageService.cs`
 
 ````csharp
-﻿namespace Application.Services.FileStorage;
+﻿using Shared.Dtos.Responses;
+
+namespace Application.Services.FileStorage;
 
 public interface IFileStorageService
 {
-    Task SaveAsync(Stream stream, string relativePath, CancellationToken cancellationToken = default);
-    Task<Stream> OpenReadAsync(string relativePath, CancellationToken cancellationToken = default);
-    Task DeleteAsync(string relativePath, CancellationToken cancellationToken = default);
+    Task<Result> SaveAsync(Stream stream, string relativePath, CancellationToken cancellationToken = default);
+    Task<Result<Stream>> OpenReadAsync(string relativePath, CancellationToken cancellationToken = default);
+    Task<Result> DeleteAsync(string relativePath, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -4110,11 +4128,7 @@ namespace Application.Users.Commands.BlockUser;
 
 [LogAction(UserActionType.UserBlocked, nameof(User))]
 public record BlockUserCommand(
-    Guid TargetUserId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TargetUserId) : IRequest<Result>;
 ````
 
 ---
@@ -4123,7 +4137,6 @@ public record BlockUserCommand(
 
 ````csharp
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -4134,17 +4147,10 @@ namespace Application.Users.Commands.BlockUser;
 public class BlockUserHandler : IRequestHandler<BlockUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public BlockUserHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public BlockUserHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -4163,8 +4169,6 @@ public class BlockUserHandler : IRequestHandler<BlockUserCommand, Result>
         }
 
         user.Block();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -4187,11 +4191,7 @@ namespace Application.Users.Commands.ChangeRole;
 [LogAction(UserActionType.UserRoleChanged, nameof(User))]
 public record ChangeRoleCommand(
     Guid TargetUserId,
-    UserRole NewRole,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    UserRole NewRole) : IRequest<Result>;
 ````
 
 ---
@@ -4200,7 +4200,6 @@ public record ChangeRoleCommand(
 
 ````csharp
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -4211,17 +4210,10 @@ namespace Application.Users.Commands.ChangeRole;
 public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public ChangeRoleHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public ChangeRoleHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -4239,9 +4231,12 @@ public class ChangeRoleHandler : IRequestHandler<ChangeRoleCommand, Result>
                 ErrorType.NotFound);
         }
 
-        user.ChangeRole(request.NewRole);
+        var result = user.ChangeRole(request.NewRole);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        if (!result.IsSuccess)
+        {
+            return Result.Failure(result.Message, ErrorType.Validation);
+        }
 
         return Result.Success();
     }
@@ -4263,11 +4258,7 @@ namespace Application.Users.Commands.Delete;
 
 [LogAction(UserActionType.UserDeleted, nameof(User))]
 public record DeleteUserCommand(
-    Guid TargetUserId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TargetUserId) : IRequest<Result>;
 ````
 
 ---
@@ -4276,7 +4267,6 @@ public record DeleteUserCommand(
 
 ````csharp
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -4287,17 +4277,10 @@ namespace Application.Users.Commands.Delete;
 public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteUserHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public DeleteUserHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -4316,8 +4299,6 @@ public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, Result>
         }
 
         user.Delete();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -4422,7 +4403,7 @@ using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
-namespace Application.Users.Commands.Login;
+namespace Application.Users.Commands.Register;
 
 public record RegisterUserCommand(
     string Name,
@@ -4437,7 +4418,6 @@ public record RegisterUserCommand(
 ````csharp
 ﻿using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
-using Application.Users.Commands.Login;
 using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -4507,8 +4487,6 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<A
 
         await _commandRepository.AddAsync(userResult.Value!, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
         var authDto = _jwtTokenGenerator.GenerateToken(userResult.Value!);
 
         return Result<AuthDto>.Success(authDto);
@@ -4531,11 +4509,7 @@ namespace Application.Users.Commands.UnblockUser;
 
 [LogAction(UserActionType.UserUnblocked, nameof(User))]
 public record UnblockUserCommand(
-    Guid TargetUserId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TargetUserId) : IRequest<Result>;
 ````
 
 ---
@@ -4544,7 +4518,6 @@ public record UnblockUserCommand(
 
 ````csharp
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -4555,17 +4528,10 @@ namespace Application.Users.Commands.UnblockUser;
 public class UnblockUserHandler : IRequestHandler<UnblockUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public UnblockUserHandler(
-        IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+    public UnblockUserHandler(IUserQueryRepository queryRepository)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
@@ -4585,8 +4551,6 @@ public class UnblockUserHandler : IRequestHandler<UnblockUserCommand, Result>
 
         user.Unblock();
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
         return Result.Success();
     }
 }
@@ -4603,7 +4567,7 @@ using Shared.Dtos.Responses;
 namespace Application.Users.Commands.Update;
 
 public record UpdateUserCommand(
-    Guid UserId,
+    Guid TargetUserId,
     string Name) : IRequest<Result>;
 ````
 
@@ -4613,7 +4577,6 @@ public record UpdateUserCommand(
 
 ````csharp
 ﻿using Domain.Constants;
-using Domain.Interfaces;
 using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -4625,23 +4588,20 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
 {
     private readonly IUserQueryRepository _queryRepository;
     private readonly IUserCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
     public UpdateUserHandler(
         IUserQueryRepository queryRepository,
-        IUserCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        IUserCommandRepository commandRepository)
     {
         _queryRepository = queryRepository;
         _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result> Handle(
         UpdateUserCommand request,
         CancellationToken cancellationToken = default)
     {
-        var user = await _queryRepository.GetByIdAsync(request.UserId, cancellationToken);
+        var user = await _queryRepository.GetTrackedByIdAsync(request.TargetUserId, cancellationToken);
 
         if (user is null)
         {
@@ -4654,12 +4614,12 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result>
 
         if (!result.IsSuccess)
         {
-            return Result.Failure(result.Message);
+            return Result.Failure(
+                result.Message,
+                ErrorType.Validation);
         }
 
         await _commandRepository.UpdateAsync(user, cancellationToken);
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }
@@ -4931,8 +4891,7 @@ public record SearchUsersQuery(
       "Microsoft.AspNetCore": "Warning"
     }
   },
-  "AllowedHosts": "*",
-  "ApiBaseUrl": "http://localhost:5020"
+  "AllowedHosts": "*"
 }
 ````
 
@@ -5049,7 +5008,7 @@ public partial class CultureSelector : ComponentBase
 
 ````text
 ﻿@inherits LayoutComponentBase
-@inject IStringLocalizer<SharedResources> Loc
+@inject IStringLocalizer<SharedResources> Localizer
 
 <div class="page">
     <div class="sidebar">
@@ -5066,7 +5025,7 @@ public partial class CultureSelector : ComponentBase
                     <AuthorizeView>
                         <NotAuthorized>
                             <a href="/login" class="btn btn-outline-light btn-sm">
-                                @Loc[ResourceKeys.SignIn]
+                                @Localizer[ResourceKeys.SignIn]
                             </a>
                         </NotAuthorized>
                     </AuthorizeView>
@@ -5213,20 +5172,20 @@ main {
 
 ````text
 ﻿@using global::Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
+@inject IStringLocalizer<SharedResources> Localizer
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">@Loc[ResourceKeys.AppName]</a>
+        <a class="navbar-brand" href="">@Localizer[ResourceKeys.AppName]</a>
         <AuthorizeView>
             <Authorized>
                 <button class="btn btn-outline-light btn-sm" @onclick="HandleLogout">
-                    @Loc[ResourceKeys.SignOut]
+                    @Localizer[ResourceKeys.SignOut]
                 </button>
             </Authorized>
             <NotAuthorized>
                 <a href="/login" class="btn btn-outline-light btn-sm">
-                    @Loc[ResourceKeys.SignIn]
+                    @Localizer[ResourceKeys.SignIn]
                 </a>
             </NotAuthorized>
         </AuthorizeView>
@@ -5243,12 +5202,12 @@ main {
                 {
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="/admin/users" Match="NavLinkMatch.Prefix">
-                            @Loc[ResourceKeys.AdminUsers]
+                            @Localizer[ResourceKeys.AdminUsers]
                         </NavLink>
                     </div>
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="/admin/actions" Match="NavLinkMatch.Prefix">
-                            @Loc[ResourceKeys.AdminActions]
+                            @Localizer[ResourceKeys.AdminActions]
                         </NavLink>
                     </div>
                 }
@@ -5256,7 +5215,7 @@ main {
                 {
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">
-                            @Loc[ResourceKeys.MyTasks]
+                            @Localizer[ResourceKeys.MyTasks]
                         </NavLink>
                     </div>
                 }
@@ -5264,12 +5223,12 @@ main {
                 {
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="/tasks" Match="NavLinkMatch.Prefix">
-                            @Loc[ResourceKeys.BrowseTasks]
+                            @Localizer[ResourceKeys.BrowseTasks]
                         </NavLink>
                     </div>
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="/my-assigned" Match="NavLinkMatch.Prefix">
-                            @Loc[ResourceKeys.MyAssigned]
+                            @Localizer[ResourceKeys.MyAssigned]
                         </NavLink>
                     </div>
                 }
@@ -5277,7 +5236,7 @@ main {
             <NotAuthorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="/login" Match="NavLinkMatch.Prefix">
-                        @Loc[ResourceKeys.SignIn]
+                        @Localizer[ResourceKeys.SignIn]
                     </NavLink>
                 </div>
             </NotAuthorized>
@@ -5709,30 +5668,32 @@ async function retryWhenDocumentBecomesVisible() {
 
 ````text
 ﻿@page "/admin/actions"
-@using Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.UserActions]</PageTitle>
+@using Blazor_Web_App.Constants
+@using Shared.Enums
+
+<PageTitle>@Localizer[ResourceKeys.UserActions]</PageTitle>
 
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container py-4">
-            <h2 class="mb-4">@Loc[ResourceKeys.UserActions]</h2>
+            <h2 class="mb-4">@Localizer[ResourceKeys.UserActions]</h2>
 
             <div class="row g-2 mb-3">
                 <div class="col-md-4">
-                    <label class="form-label">@Loc[ResourceKeys.ActionType]</label>
+                    <label class="form-label">@Localizer[ResourceKeys.ActionType]</label>
                     <select class="form-select" @bind="_filterActionType">
-                        <option value="">@Loc[ResourceKeys.All]</option>
+                        <option value="">@Localizer[ResourceKeys.All]</option>
                         @foreach (var type in Enum.GetValues<UserActionType>())
                         {
                             <option value="@((int)type)">@type</option>
                         }
                     </select>
                 </div>
+
                 <div class="col-md-4 d-flex align-items-end">
-                    <button class="btn btn-primary me-2" @onclick="ApplyFilter">@Loc[ResourceKeys.Apply]</button>
-                    <button class="btn btn-secondary" @onclick="ClearFilter">@Loc[ResourceKeys.Clear]</button>
+                    <button class="btn btn-primary me-2" @onclick="ApplyFilter">@Localizer[ResourceKeys.Apply]</button>
+                    <button class="btn btn-secondary" @onclick="ClearFilter">@Localizer[ResourceKeys.Clear]</button>
                 </div>
             </div>
 
@@ -5742,23 +5703,23 @@ async function retryWhenDocumentBecomesVisible() {
                     <div class="spinner-border text-primary"></div>
                 </div>
             }
-            else if (ErrorMessage != "")
+            else if (ErrorMessage != string.Empty)
             {
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
             else if (Actions is null || Actions.Count == 0)
             {
-                <div class="alert alert-info">@Loc[ResourceKeys.NoActionsFound]</div>
+                <div class="alert alert-info">@Localizer[ResourceKeys.NoActionsFound]</div>
             }
             else
             {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>@Loc[ResourceKeys.User]</th>
-                            <th>@Loc[ResourceKeys.Action]</th>
-                            <th>@Loc[ResourceKeys.Entity]</th>
-                            <th>@Loc[ResourceKeys.When]</th>
+                            <th>@Localizer[ResourceKeys.User]</th>
+                            <th>@Localizer[ResourceKeys.Action]</th>
+                            <th>@Localizer[ResourceKeys.Entity]</th>
+                            <th>@Localizer[ResourceKeys.When]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -5768,7 +5729,7 @@ async function retryWhenDocumentBecomesVisible() {
                                 <td>@action.UserName</td>
                                 <td>@action.ActionType</td>
                                 <td>@action.EntityType</td>
-                                <td>@action.PerformedAt.ToLocalTime().ToString("g")</td>
+                                <td>@action.PerformedAt.ToLocalTime().ToString(FormatConstants.ShortDatePattern)</td>
                             </tr>
                         }
                     </tbody>
@@ -5776,23 +5737,26 @@ async function retryWhenDocumentBecomesVisible() {
 
                 <nav class="mt-4">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                         </li>
+
                         <li class="page-item disabled">
                             <span class="page-link">@CurrentPage / @TotalPages</span>
                         </li>
-                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled": string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                         </li>
                     </ul>
                 </nav>
             }
         </div>
     </Authorized>
+
     <NotAuthorized>
         <div class="container py-4">
-            <div class="alert alert-danger">@Loc[ResourceKeys.AccessDenied]</div>
+            <div class="alert alert-danger">@Localizer[ResourceKeys.AccessDenied]</div>
         </div>
     </NotAuthorized>
 </AuthorizeView>
@@ -5803,25 +5767,30 @@ async function retryWhenDocumentBecomesVisible() {
 ## FILE: `Blazor Web App/Components/Pages/Admin/AdminActions.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.UserActions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.UserActions;
+using Shared.Enums;
 
 namespace Blazor_Web_App.Components.Pages.Admin;
 
+[Authorize(Roles = nameof(UserRole.Admin))]
 public partial class AdminActions : ComponentBase
 {
+    [Inject] public IUserActionService UserActionService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     private const int PageSize = 20;
     private const int FirstPage = 1;
-
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<UserActionDto>? Actions;
     private int CurrentPage = FirstPage;
     private int TotalPages = FirstPage;
     private bool IsLoading;
     private string ErrorMessage = string.Empty;
-
     private Guid? _filterUserId;
     private int? _filterActionType;
 
@@ -5835,7 +5804,7 @@ public partial class AdminActions : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetUserActionsAsync(
+        var result = await UserActionService.GetUserActionsAsync(
             _filterUserId,
             _filterActionType,
             CurrentPage,
@@ -5878,7 +5847,10 @@ public partial class AdminActions : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 
@@ -5893,15 +5865,16 @@ public partial class AdminActions : ComponentBase
 
 ````text
 ﻿@page "/admin/users"
-@using Shared.Enums
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.Users]</PageTitle>
+@using Blazor_Web_App.Constants
+@using Shared.Enums
+
+<PageTitle>@Localizer[ResourceKeys.Users]</PageTitle>
 
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container py-4">
-            <h2 class="mb-4">@Loc[ResourceKeys.Users]</h2>
+            <h2 class="mb-4">@Localizer[ResourceKeys.Users]</h2>
 
             @if (IsLoading)
             {
@@ -5909,24 +5882,24 @@ public partial class AdminActions : ComponentBase
                     <div class="spinner-border text-primary"></div>
                 </div>
             }
-            else if (ErrorMessage != "")
+            else if (ErrorMessage != string.Empty)
             {
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
             else if (Users is null || Users.Count == 0)
             {
-                <div class="alert alert-info">@Loc[ResourceKeys.NoUsersFound]</div>
+                <div class="alert alert-info">@Localizer[ResourceKeys.NoUsersFound]</div>
             }
             else
             {
                 <table class="table table-striped align-middle">
                     <thead>
                         <tr>
-                            <th>@Loc[ResourceKeys.Name]</th>
-                            <th>@Loc[ResourceKeys.Role]</th>
-                            <th>@Loc[ResourceKeys.Rating]</th>
-                            <th>@Loc[ResourceKeys.Blocked]</th>
-                            <th>@Loc[ResourceKeys.Actions]</th>
+                            <th>@Localizer[ResourceKeys.Name]</th>
+                            <th>@Localizer[ResourceKeys.Role]</th>
+                            <th>@Localizer[ResourceKeys.Rating]</th>
+                            <th>@Localizer[ResourceKeys.Blocked]</th>
+                            <th>@Localizer[ResourceKeys.Actions]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -5934,29 +5907,34 @@ public partial class AdminActions : ComponentBase
                         {
                             <tr>
                                 <td>@user.Name</td>
+
                                 <td>
                                     <select class="form-select form-select-sm"
                                             value="@user.Role"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onchange="e => HandleChangeRole(user.Id, e)">
-                                        @foreach (var role in Enum.GetValues<UserRole>())
+                                        @foreach (var role in Enum.GetValues<UserRole>().Where(r => r != UserRole.Admin))
                                         {
                                             <option value="@role">@role</option>
                                         }
                                     </select>
                                 </td>
-                                <td>@(user.Rating?.ToString("0.0") ?? "—")</td>
-                                <td>@(user.IsBlocked ? Loc[ResourceKeys.Yes].Value : Loc[ResourceKeys.No].Value)</td>
+
+                                <td>@(user.Rating?.ToString(FormatConstants.RatingFormat) ?? FormatConstants.EmptyPlaceholder)</td>
+
+                                <td>@(user.IsBlocked ? Localizer[ResourceKeys.Yes].Value : Localizer[ResourceKeys.No].Value)</td>
+
                                 <td>
                                     <button class="btn btn-sm btn-outline-warning me-1"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleBlock(user)">
-                                        @(user.IsBlocked ? Loc[ResourceKeys.Unblock].Value : Loc[ResourceKeys.Block].Value)
+                                        @(user.IsBlocked ? Localizer[ResourceKeys.Unblock].Value : Localizer[ResourceKeys.Block].Value)
                                     </button>
+
                                     <button class="btn btn-sm btn-outline-danger"
                                             disabled="@(_processingUserId == user.Id)"
                                             @onclick="() => HandleDelete(user.Id)">
-                                        @Loc[ResourceKeys.Delete]
+                                        @Localizer[ResourceKeys.Delete]
                                     </button>
                                 </td>
                             </tr>
@@ -5966,23 +5944,26 @@ public partial class AdminActions : ComponentBase
 
                 <nav class="mt-4">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                        <li class="page-item @(CurrentPage <= 1 ? "disabled": string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                         </li>
+
                         <li class="page-item disabled">
                             <span class="page-link">@CurrentPage / @TotalPages</span>
                         </li>
-                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                        <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                            <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                         </li>
                     </ul>
                 </nav>
             }
         </div>
     </Authorized>
+
     <NotAuthorized>
         <div class="container py-4">
-            <div class="alert alert-danger">@Loc[ResourceKeys.AccessDenied]</div>
+            <div class="alert alert-danger">@Localizer[ResourceKeys.AccessDenied]</div>
         </div>
     </NotAuthorized>
 </AuthorizeView>
@@ -5993,26 +5974,30 @@ public partial class AdminActions : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/Admin/AdminUsers.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 
 namespace Blazor_Web_App.Components.Pages.Admin;
 
+[Authorize(Roles = nameof(UserRole.Admin))]
 public partial class AdminUsers : ComponentBase
 {
+    [Inject] public IUserService UserService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     private const int PageSize = 10;
     private const int FirstPage = 1;
-
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<UserDto>? Users;
     private int CurrentPage = FirstPage;
     private int TotalPages = FirstPage;
     private bool IsLoading;
     private string ErrorMessage = string.Empty;
-
     private Guid _processingUserId;
 
     protected override async Task OnInitializedAsync()
@@ -6025,7 +6010,7 @@ public partial class AdminUsers : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetUsersAsync(CurrentPage, PageSize);
+        var result = await UserService.GetUsersAsync(CurrentPage, PageSize);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -6048,7 +6033,10 @@ public partial class AdminUsers : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 
@@ -6057,11 +6045,14 @@ public partial class AdminUsers : ComponentBase
 
     private async Task HandleChangeRole(Guid userId, ChangeEventArgs e)
     {
-        if (!Enum.TryParse<UserRole>(e.Value?.ToString(), out var role)) return;
+        if (!Enum.TryParse<UserRole>(e.Value?.ToString(), out var role))
+        {
+            return;
+        }
 
         _processingUserId = userId;
 
-        var result = await ApiService.ChangeRoleAsync(userId, role);
+        var result = await UserService.ChangeRoleAsync(userId, role);
 
         if (result.IsSuccess)
         {
@@ -6080,8 +6071,8 @@ public partial class AdminUsers : ComponentBase
         _processingUserId = user.Id;
 
         var result = user.IsBlocked
-            ? await ApiService.UnblockUserAsync(user.Id)
-            : await ApiService.BlockUserAsync(user.Id);
+            ? await UserService.UnblockUserAsync(user.Id)
+            : await UserService.BlockUserAsync(user.Id);
 
         if (result.IsSuccess)
         {
@@ -6099,7 +6090,7 @@ public partial class AdminUsers : ComponentBase
     {
         _processingUserId = userId;
 
-        var result = await ApiService.DeleteUserAsync(userId);
+        var result = await UserService.DeleteUserAsync(userId);
 
         if (result.IsSuccess)
         {
@@ -6122,13 +6113,11 @@ public partial class AdminUsers : ComponentBase
 ````text
 ﻿@page "/login"
 
-@attribute [AllowAnonymous]
-
-<PageTitle>@Loc[ResourceKeys.Login]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.Login]</PageTitle>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <div class="card p-4" style="width: 40rem;">
-        <h3 class="text-center mb-4">@Loc[ResourceKeys.Login]</h3>
+        <h3 class="text-center mb-4">@Localizer[ResourceKeys.Login]</h3>
 
         @if (!IsSuccess)
         {
@@ -6137,21 +6126,21 @@ public partial class AdminUsers : ComponentBase
                 <div class="alert alert-danger">@ErrorMessage</div>
             }
 
-            <input class="form-control mb-3" type="text" placeholder="@Loc[ResourceKeys.Login]" @bind="Name" />
+            <input class="form-control mb-3" type="text" placeholder="@Localizer[ResourceKeys.Login]" @bind="Name" />
 
-            <input class="form-control mb-3" type="password" placeholder="@Loc[ResourceKeys.Password]" @bind="Password" />
+            <input class="form-control mb-3" type="password" placeholder="@Localizer[ResourceKeys.Password]" @bind="Password" />
 
             <button class="btn btn-primary w-100" @onclick="HandleLogin" disabled="@IsLoading">
-                @(IsLoading ? Loc[ResourceKeys.Loading].Value : Loc[ResourceKeys.SignIn].Value)
+                @(IsLoading ? Localizer[ResourceKeys.Loading].Value : Localizer[ResourceKeys.SignIn].Value)
             </button>
 
             <div class="text-center mt-3">
-                <a href="/register" class="text-decoration-none">@Loc[ResourceKeys.NoAccount]</a>
+                <a href="/register" class="text-decoration-none">@Localizer[ResourceKeys.NoAccount]</a>
             </div>
         }
         else
         {
-            <div class="alert alert-success text-center">@Loc[ResourceKeys.LoggedInSuccess]</div>
+            <div class="alert alert-success text-center">@Localizer[ResourceKeys.LoggedInSuccess]</div>
         }
     </div>
 </div>
@@ -6165,7 +6154,8 @@ public partial class AdminUsers : ComponentBase
 ﻿using Blazor_Web_App.Resources;
 using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Services.Receivers.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -6174,18 +6164,25 @@ using Shared.Dtos.Responses.Users;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
+[AllowAnonymous]
 public partial class Login : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IAuthService AuthService { get; set; } = null!;
     [Inject] public ILocalStorageService LocalStorageService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
+    private const string IndexUri = "/";
 
     protected string Name { get; set; } = string.Empty;
+
     protected string Password { get; set; } = string.Empty;
+
     protected string ErrorMessage { get; set; } = string.Empty;
+
     protected bool IsSuccess { get; set; }
+
     protected bool IsLoading { get; set; }
 
     public async Task HandleLogin()
@@ -6194,7 +6191,7 @@ public partial class Login : ComponentBase
         ErrorMessage = string.Empty;
 
         var loginDto = new LoginDto(Name, Password);
-        var result = await ApiService.LoginAsync(loginDto);
+        var result = await AuthService.LoginAsync(loginDto);
 
         if (result.IsSuccess)
         {
@@ -6208,11 +6205,11 @@ public partial class Login : ComponentBase
                 result.Value.Role.ToString(),
                 result.Value.Id.ToString());
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo(IndexUri);
         }
         else
         {
-            ErrorMessage = result.Message ?? "Invalid credentials";
+            ErrorMessage = result.Message;
         }
 
         IsLoading = false;
@@ -6225,7 +6222,7 @@ public partial class Login : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor`
 
 ````text
-﻿@attribute [AllowAnonymous]
+﻿@page "/redirect-to-login"
 ````
 
 ---
@@ -6233,19 +6230,21 @@ public partial class Login : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/Auth/RedirectToLogin.razor.cs`
 
 ````csharp
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
+[AllowAnonymous]
 public partial class RedirectToLogin : ComponentBase
 {
     [Inject] public NavigationManager Navigation { get; set; } = null!;
 
-    private bool _isForseNavigate = true;
+    private const bool IsForceNavigate = true;
 
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo("/login", _isForseNavigate);
+        Navigation.NavigateTo("/login", IsForceNavigate);
     }
 }
 ````
@@ -6259,13 +6258,11 @@ public partial class RedirectToLogin : ComponentBase
 
 @using Shared.Enums
 
-@attribute [AllowAnonymous]
-
-<PageTitle>@Loc[ResourceKeys.Register]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.Register]</PageTitle>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <div class="card p-4" style="width: 40rem;">
-        <h3 class="text-center mb-4">@Loc[ResourceKeys.Register]</h3>
+        <h3 class="text-center mb-4">@Localizer[ResourceKeys.Register]</h3>
 
         @if (!IsSuccess)
         {
@@ -6278,29 +6275,29 @@ public partial class RedirectToLogin : ComponentBase
 
             <input class="form-control mb-3"
                    type="text"
-                   placeholder="@Loc[ResourceKeys.Login]"
+                   placeholder="@Localizer[ResourceKeys.Login]"
                    @bind="Login" />
 
             <input class="form-control mb-3"
                    type="password"
-                   placeholder="@Loc[ResourceKeys.Password]"
+                   placeholder="@Localizer[ResourceKeys.Password]"
                    @bind="Password" />
 
             <select class="form-select mb-3" @bind="Role">
-                <option value="@UserRole.Customer">@Loc[ResourceKeys.Customer]</option>
-                <option value="@UserRole.Executor">@Loc[ResourceKeys.Executor]</option>
+                <option value="@UserRole.Customer">@Localizer[ResourceKeys.Customer]</option>
+                <option value="@UserRole.Executor">@Localizer[ResourceKeys.Executor]</option>
             </select>
 
             <button class="btn btn-primary w-100"
                     @onclick="HandleRegister"
                     disabled="@IsLoading">
-                @(IsLoading ? Loc[ResourceKeys.Loading].Value : Loc[ResourceKeys.Register].Value)
+                @(IsLoading ? Localizer[ResourceKeys.Loading].Value : Localizer[ResourceKeys.Register].Value)
             </button>
         }
         else
         {
             <div class="alert alert-success text-center">
-                @Loc[ResourceKeys.RegisteredSuccess]
+                @Localizer[ResourceKeys.RegisteredSuccess]
             </div>
         }
     </div>
@@ -6315,7 +6312,8 @@ public partial class RedirectToLogin : ComponentBase
 ﻿using Blazor_Web_App.Resources;
 using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Services.Receivers.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -6325,21 +6323,27 @@ using Shared.Enums;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
+[AllowAnonymous]
 public partial class Register : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IAuthService AuthService { get; set; } = null!;
     [Inject] public ILocalStorageService LocalStorageService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
-    protected string PageTitle
-        => nameof(Register);
+    private const string IndexUri = "/";
+
     protected string Login { get; set; } = string.Empty;
+
     protected string Password { get; set; } = string.Empty;
+
     protected UserRole Role { get; set; } = UserRole.Customer;
+
     protected string ErrorMessage { get; set; } = string.Empty;
+
     protected bool IsSuccess { get; set; }
+
     protected bool IsLoading { get; set; }
 
     public async Task HandleRegister()
@@ -6349,7 +6353,7 @@ public partial class Register : ComponentBase
 
         var registerUserDto = new RegisterUserDto(Login, Password, Role);
 
-        var registerResult = await ApiService.RegisterAsync(registerUserDto);
+        var registerResult = await AuthService.RegisterAsync(registerUserDto);
 
         if (registerResult.IsSuccess)
         {
@@ -6363,7 +6367,7 @@ public partial class Register : ComponentBase
                 registerResult.Value!.Role,
                 registerResult.Value.Id.ToString());
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo(IndexUri);
         }
         else
         {
@@ -6443,24 +6447,23 @@ public partial class Register : ComponentBase
 
 ````text
 ﻿@page "/my-assigned"
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.MyAssignedTasks]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.MyAssignedTasks]</PageTitle>
 
 <div class="container py-4">
-    <h2 class="mb-4">@Loc[ResourceKeys.MyAssignedTasks]</h2>
+    <h2 class="mb-4">@Localizer[ResourceKeys.MyAssignedTasks]</h2>
 
     @if (IsLoading)
     {
         <div class="spinner-border text-primary"></div>
     }
-    else if (ErrorMessage != "")
+    else if (ErrorMessage != string.Empty)
     {
         <div class="alert alert-danger">@ErrorMessage</div>
     }
     else if (ListTasks is null || ListTasks.Count == 0)
     {
-        <div class="alert alert-info">@Loc[ResourceKeys.NoAssignedTasks]</div>
+        <div class="alert alert-info">@Localizer[ResourceKeys.NoAssignedTasks]</div>
     }
     else
     {
@@ -6468,39 +6471,39 @@ public partial class Register : ComponentBase
             @foreach (var task in ListTasks)
             {
                 <div class="col-md-6 col-lg-4">
-                    <TaskCard
-                        ProjectTask="task"
-                        CurrentUserId="CurrentUserId"
-                        IsExecutor="true"
-                        IsCustomer="false"
-                        IsResponded="true"
-                        OnOpenChat="OpenChatModal"
-                        OnOpenAttachments="OpenAttachmentsModal" />
+                    <TaskCard ProjectTask="task"
+                              CurrentUserId="CurrentUserId"
+                              IsExecutor="true"
+                              IsCustomer="false"
+                              IsResponded="true"
+                              OnOpenChat="OpenChatModal"
+                              OnOpenAttachments="OpenAttachmentsModal" />
                 </div>
             }
         </div>
 
         <nav class="mt-4">
             <ul class="pagination justify-content-center">
-                <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                 </li>
+
                 <li class="page-item disabled">
                     <span class="page-link">@CurrentPage / @TotalPages</span>
                 </li>
-                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                 </li>
             </ul>
         </nav>
     }
 </div>
 
-<ChatModal
-    IsVisible="IsChatModalOpen"
-    TaskId="_chatTaskId"
-    CurrentUserId="CurrentUserId"
-    OnClose="() => IsChatModalOpen = false" />
+<ChatModal IsVisible="IsChatModalOpen"
+           TaskId="_chatTaskId"
+           CurrentUserId="CurrentUserId"
+           OnClose="() => IsChatModalOpen = false" />
 
 <AttachmentsModal IsVisible="_attachmentsModal.IsOpen"
                   TaskId="_attachmentsModal.TaskId"
@@ -6515,23 +6518,29 @@ public partial class Register : ComponentBase
 
 ````csharp
 ﻿using Blazor_Web_App.Modals;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using System.Security.Claims;
 
 namespace Blazor_Web_App.Components.Pages.Executor;
 
+[Authorize]
 public partial class MyAssignedTasks : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int PageSize = 10;
     private const int FirstPage = 1;
+    private const string LoginUri = "/login";
 
     private List<ProjectTaskDto>? ListTasks;
     private Guid CurrentUserId;
@@ -6545,10 +6554,12 @@ public partial class MyAssignedTasks : ComponentBase
     private readonly ModalState _attachmentsModal = new();
     private ProjectTaskDto? _attachmentsModalTask;
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || _initialized) return;
+        if (!firstRender || _initialized)
+        {
+            return;
+        }
 
         _initialized = true;
 
@@ -6556,7 +6567,7 @@ public partial class MyAssignedTasks : ComponentBase
 
         if (!state.User.Identity?.IsAuthenticated ?? true)
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -6564,7 +6575,7 @@ public partial class MyAssignedTasks : ComponentBase
 
         if (!Guid.TryParse(idClaim, out var userId))
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -6583,7 +6594,10 @@ public partial class MyAssignedTasks : ComponentBase
 
     private bool ComputeCanUpload()
     {
-        if (_attachmentsModalTask is null) return false;
+        if (_attachmentsModalTask is null)
+        {
+            return false;
+        }
 
         var isParticipant = _attachmentsModalTask.CustomerId == CurrentUserId
                             || _attachmentsModalTask.ExecutorId == CurrentUserId;
@@ -6599,7 +6613,7 @@ public partial class MyAssignedTasks : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetAssignedTasksAsync(CurrentUserId, CurrentPage, PageSize);
+        var result = await ProjectTaskService.GetAssignedTasksAsync(CurrentUserId, CurrentPage, PageSize);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -6622,7 +6636,10 @@ public partial class MyAssignedTasks : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 
@@ -6643,14 +6660,13 @@ public partial class MyAssignedTasks : ComponentBase
 
 ````text
 ﻿@page "/"
+
 @using Shared.Enums
 @using System.Security.Claims
-@inject IStringLocalizer<SharedResources> Loc
 
-<PageTitle>@Loc[ResourceKeys.AppName]</PageTitle>
+<PageTitle>@Localizer[ResourceKeys.AppName]</PageTitle>
 
 <div class="container py-5">
-
     <AuthorizeView>
         <Authorized Context="AuthContext">
             @{
@@ -6660,27 +6676,26 @@ public partial class MyAssignedTasks : ComponentBase
 
             <div class="p-5 mb-4 bg-light rounded-3 border">
                 <div class="container-fluid py-2">
-                    <h1 class="display-5 fw-bold mb-2">@Loc[ResourceKeys.AppName]</h1>
+                    <h1 class="display-5 fw-bold mb-2">@Localizer[ResourceKeys.AppName]</h1>
 
                     <div class="d-flex align-items-center gap-3">
-                        <span class="fs-5">@Loc[ResourceKeys.Hello], <strong>@userName</strong></span>
+                        <span class="fs-5">@Localizer[ResourceKeys.Hello], <strong>@userName</strong></span>
                         <span class="badge bg-primary fs-6">@role</span>
                     </div>
                 </div>
             </div>
 
-            <h2 class="h4 mb-3">@Loc[ResourceKeys.QuickActions]</h2>
+            <h2 class="h4 mb-3">@Localizer[ResourceKeys.QuickActions]</h2>
 
             <div class="row g-3">
-
                 @if (AuthContext.User.IsInRole(nameof(UserRole.Customer)))
                 {
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.MyTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ManageMyTasks]</p>
-                                <a class="btn btn-primary mt-auto" href="/tasks">@Loc[ResourceKeys.OpenTasks]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.MyTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ManageMyTasks]</p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">@Localizer[ResourceKeys.OpenTasks]</a>
                             </div>
                         </div>
                     </div>
@@ -6691,9 +6706,9 @@ public partial class MyAssignedTasks : ComponentBase
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.BrowseTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.FindTasks]</p>
-                                <a class="btn btn-primary mt-auto" href="/tasks">@Loc[ResourceKeys.Browse]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.BrowseTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.FindTasks]</p>
+                                <a class="btn btn-primary mt-auto" href="/tasks">@Localizer[ResourceKeys.Browse]</a>
                             </div>
                         </div>
                     </div>
@@ -6701,9 +6716,9 @@ public partial class MyAssignedTasks : ComponentBase
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.MyAssignedTasks]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.TasksAssigned]</p>
-                                <a class="btn btn-primary mt-auto" href="/my-assigned">@Loc[ResourceKeys.OpenAssigned]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.MyAssignedTasks]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.TasksAssigned]</p>
+                                <a class="btn btn-primary mt-auto" href="/my-assigned">@Localizer[ResourceKeys.OpenAssigned]</a>
                             </div>
                         </div>
                     </div>
@@ -6714,9 +6729,9 @@ public partial class MyAssignedTasks : ComponentBase
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.AdminUsers]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ManageUsers]</p>
-                                <a class="btn btn-primary mt-auto" href="/admin/users">@Loc[ResourceKeys.OpenUsers]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.AdminUsers]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ManageUsers]</p>
+                                <a class="btn btn-primary mt-auto" href="/admin/users">@Localizer[ResourceKeys.OpenUsers]</a>
                             </div>
                         </div>
                     </div>
@@ -6724,9 +6739,9 @@ public partial class MyAssignedTasks : ComponentBase
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@Loc[ResourceKeys.AdminActions]</h5>
-                                <p class="card-text text-muted">@Loc[ResourceKeys.ViewLog]</p>
-                                <a class="btn btn-primary mt-auto" href="/admin/actions">@Loc[ResourceKeys.OpenLog]</a>
+                                <h5 class="card-title">@Localizer[ResourceKeys.AdminActions]</h5>
+                                <p class="card-text text-muted">@Localizer[ResourceKeys.ViewLog]</p>
+                                <a class="btn btn-primary mt-auto" href="/admin/actions">@Localizer[ResourceKeys.OpenLog]</a>
                             </div>
                         </div>
                     </div>
@@ -6736,17 +6751,35 @@ public partial class MyAssignedTasks : ComponentBase
 
         <NotAuthorized>
             <div class="p-5 mb-4 bg-light rounded-3 border text-center">
-                <h1 class="display-5 fw-bold mb-3">@Loc[ResourceKeys.AppName]</h1>
+                <h1 class="display-5 fw-bold mb-3">@Localizer[ResourceKeys.AppName]</h1>
 
                 <div class="d-flex justify-content-center gap-2">
-                    <a class="btn btn-primary btn-lg" href="/login">@Loc[ResourceKeys.SignIn]</a>
-                    <a class="btn btn-outline-secondary btn-lg" href="/register">@Loc[ResourceKeys.Register]</a>
+                    <a class="btn btn-primary btn-lg" href="/login">@Localizer[ResourceKeys.SignIn]</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="/register">@Localizer[ResourceKeys.Register]</a>
                 </div>
             </div>
         </NotAuthorized>
     </AuthorizeView>
-
 </div>
+````
+
+---
+
+## FILE: `Blazor Web App/Components/Pages/Home.razor.cs`
+
+````csharp
+﻿using Blazor_Web_App.Resources;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
+
+namespace Blazor_Web_App.Components.Pages;
+
+[AllowAnonymous]
+public partial class Home : ComponentBase
+{
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+}
 ````
 
 ---
@@ -6757,24 +6790,25 @@ public partial class MyAssignedTasks : ComponentBase
 ﻿@page "/tasks"
 
 @using Blazor_Web_App.Components.Pages.TasksModals
+@using Blazor_Web_App.Constants
 @using Shared.Enums
 
-<PageTitle>@Loc[PageTitleTextKey]</PageTitle>
+<PageTitle>@Localizer[PageTitleTextKey]</PageTitle>
 
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>@Loc[PageTitleTextKey]</h2>
+        <h2>@Localizer[PageTitleTextKey]</h2>
 
         @if (IsCustomer)
         {
-            <button class="btn btn-primary" @onclick="ShowCreateModal">@Loc[ResourceKeys.NewTask]</button>
+            <button class="btn btn-primary" @onclick="ShowCreateModal">@Localizer[ResourceKeys.NewTask]</button>
         }
     </div>
 
     <div class="d-flex gap-2 mb-3">
-        <input class="form-control" placeholder="@Loc[ResourceKeys.SearchPlaceholder]" @bind="_searchQuery" />
-        <button class="btn btn-primary" @onclick="HandleSearch">@Loc[ResourceKeys.Search]</button>
-        <button class="btn btn-secondary" @onclick="ClearSearch">@Loc[ResourceKeys.Clear]</button>
+        <input class="form-control" placeholder="@Localizer[ResourceKeys.SearchPlaceholder]" @bind="_searchQuery" />
+        <button class="btn btn-primary" @onclick="HandleSearch">@Localizer[ResourceKeys.Search]</button>
+        <button class="btn btn-secondary" @onclick="ClearSearch">@Localizer[ResourceKeys.Clear]</button>
     </div>
 
     @if (IsLoading)
@@ -6783,13 +6817,13 @@ public partial class MyAssignedTasks : ComponentBase
             <div class="spinner-border text-primary"></div>
         </div>
     }
-    else if (ErrorMessage != "")
+    else if (ErrorMessage != string.Empty)
     {
         <div class="alert alert-danger">@ErrorMessage</div>
     }
     else if (ListTasks is null || ListTasks.Count == 0)
     {
-        <div class="alert alert-info text-center">@Loc[ResourceKeys.NoTasksFound]</div>
+        <div class="alert alert-info text-center">@Localizer[ResourceKeys.NoTasksFound]</div>
     }
     else
     {
@@ -6798,25 +6832,24 @@ public partial class MyAssignedTasks : ComponentBase
             {
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex flex-column h-100">
-                        <TaskCard
-                            ProjectTask="task"
-                            CurrentUserId="CurrentUserId"
-                            IsExecutor="IsExecutor"
-                            IsCustomer="IsCustomer"
-                            IsResponded="task.IsRespondedByCurrentUser"
-                            OnDeleted="HandleTaskDeleted"
-                            OnRespond="HandleRespond"
-                            OnOpenChat="OpenChatModal"
-                            OnOpenAttachments="OpenAttachmentsModal"
-                            OnMarkDone="OpenRateModal"
-                            OnCancel="HandleCancel"
-                            OnEdit="OpenEditModal" />
+                        <TaskCard ProjectTask="task"
+                                  CurrentUserId="CurrentUserId"
+                                  IsExecutor="IsExecutor"
+                                  IsCustomer="IsCustomer"
+                                  IsResponded="task.IsRespondedByCurrentUser"
+                                  OnDeleted="HandleTaskDeleted"
+                                  OnRespond="HandleRespond"
+                                  OnOpenChat="OpenChatModal"
+                                  OnOpenAttachments="OpenAttachmentsModal"
+                                  OnMarkDone="OpenRateModal"
+                                  OnCancel="HandleCancel"
+                                  OnEdit="OpenEditModal" />
 
                         @if (IsCustomer && task.Status == ProjectTaskStatus.Published)
                         {
                             <button class="btn btn-sm btn-outline-primary w-100 mt-2"
                                     @onclick="() => OpenResponsesModal(task.Id, task.Title)">
-                                @Loc[ResourceKeys.ViewCandidates]
+                                @Localizer[ResourceKeys.ViewCandidates]
                             </button>
                         }
                     </div>
@@ -6826,14 +6859,16 @@ public partial class MyAssignedTasks : ComponentBase
 
         <nav class="mt-4 mb-5">
             <ul class="pagination justify-content-center">
-                <li class="page-item @(CurrentPage <= 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Loc[ResourceKeys.Prev]</button>
+                <li class="page-item @(CurrentPage <= 1 ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage - 1)">@Localizer[ResourceKeys.Prev]</button>
                 </li>
+
                 <li class="page-item disabled">
                     <span class="page-link">@CurrentPage / @TotalPages</span>
                 </li>
-                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Loc[ResourceKeys.Next]</button>
+
+                <li class="page-item @(CurrentPage >= TotalPages ? "disabled" : string.Empty)">
+                    <button class="page-link" @onclick="() => GoToPage(CurrentPage + 1)">@Localizer[ResourceKeys.Next]</button>
                 </li>
             </ul>
         </nav>
@@ -6881,7 +6916,8 @@ public partial class MyAssignedTasks : ComponentBase
 ````csharp
 ﻿using Blazor_Web_App.Modals;
 using Blazor_Web_App.Resources;
-using Blazor_Web_App.Services.Receivers;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
@@ -6892,15 +6928,17 @@ using System.Security.Claims;
 
 namespace Blazor_Web_App.Components.Pages;
 
+[Authorize]
 public partial class Tasks : ComponentBase
 {
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
     [Inject] public NavigationManager Nav { get; set; } = null!;
-    [Inject] public IStringLocalizer<SharedResources> Loc { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int PageSize = 10;
     private const int FirstPage = 1;
+    private const string LoginUri = "/login";
 
     private readonly ModalState _createModal = new();
     private readonly ModalState _responsesModal = new();
@@ -6925,7 +6963,10 @@ public partial class Tasks : ComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || _initialized) return;
+        if (!firstRender || _initialized)
+        {
+            return;
+        }
 
         _initialized = true;
 
@@ -6933,7 +6974,7 @@ public partial class Tasks : ComponentBase
 
         if (!state.User.Identity?.IsAuthenticated ?? true)
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -6941,7 +6982,7 @@ public partial class Tasks : ComponentBase
 
         if (!Guid.TryParse(idClaim, out var userId))
         {
-            Nav.NavigateTo("/login");
+            Nav.NavigateTo(LoginUri);
             return;
         }
 
@@ -6963,7 +7004,10 @@ public partial class Tasks : ComponentBase
 
     private bool ComputeCanUpload()
     {
-        if (_attachmentsModalTask is null) return false;
+        if (_attachmentsModalTask is null)
+        {
+            return false;
+        }
 
         var isParticipant = _attachmentsModalTask.CustomerId == CurrentUserId
                             || _attachmentsModalTask.ExecutorId == CurrentUserId;
@@ -6983,21 +7027,19 @@ public partial class Tasks : ComponentBase
 
         if (!string.IsNullOrWhiteSpace(_searchQuery))
         {
-            result = await ApiService.SearchTasksAsync(_searchQuery, CurrentPage, PageSize);
+            result = await ProjectTaskService.SearchTasksAsync(_searchQuery, CurrentPage, PageSize);
         }
         else if (IsCustomer)
         {
-            result = await ApiService.GetMyTasksAsync(CurrentUserId, CurrentPage, PageSize);
+            result = await ProjectTaskService.GetMyTasksAsync(CurrentUserId, CurrentPage, PageSize);
         }
         else if (IsExecutor)
         {
-            result = await ApiService.GetPublishedTasksAsync(CurrentPage, PageSize);
+            result = await ProjectTaskService.GetPublishedTasksAsync(CurrentPage, PageSize);
         }
         else
         {
-            ErrorMessage = "Unknown role";
-            IsLoading = false;
-            return;
+            result = await ProjectTaskService.GetPublishedTasksAsync(CurrentPage, PageSize);
         }
 
         if (result.IsSuccess && result.Value is not null)
@@ -7021,7 +7063,7 @@ public partial class Tasks : ComponentBase
 
     private async Task HandleRespond(Guid taskId)
     {
-        var result = await ApiService.RespondToTaskAsync(taskId);
+        var result = await ProjectTaskService.RespondToTaskAsync(taskId);
 
         if (result.IsSuccess)
         {
@@ -7046,7 +7088,7 @@ public partial class Tasks : ComponentBase
 
     private async Task HandleCancel(Guid taskId)
     {
-        var result = await ApiService.CancelTaskAsync(taskId);
+        var result = await ProjectTaskService.CancelTaskAsync(taskId);
 
         if (result.IsSuccess)
         {
@@ -7066,7 +7108,10 @@ public partial class Tasks : ComponentBase
 
     private async Task GoToPage(int page)
     {
-        if (page < FirstPage || page > TotalPages) return;
+        if (page < FirstPage || page > TotalPages)
+        {
+            return;
+        }
 
         CurrentPage = page;
 
@@ -7132,22 +7177,21 @@ public partial class Tasks : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor`
 
 ````text
-﻿@using Microsoft.AspNetCore.Components.Forms
-@inject IStringLocalizer<SharedResources> Loc
+﻿@using Blazor_Web_App.Constants
+@using Microsoft.AspNetCore.Components.Forms
 
 @if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.Attachments]: @TaskTitle</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.Attachments]: @TaskTitle</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
                 <div class="modal-body">
-                    @if (ErrorMessage != "")
+                    @if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
@@ -7156,12 +7200,13 @@ public partial class Tasks : ComponentBase
                     {
                         <div class="mb-3">
                             <label class="form-label">
-                                @Loc[ResourceKeys.UploadFile]
-                                @string.Format(Loc[ResourceKeys.MaxSizeLabel], MaxSizeMb)
+                                @Localizer[ResourceKeys.UploadFile]
+                                @string.Format(Localizer[ResourceKeys.MaxSizeLabel], MaxSizeMb)
                             </label>
                             <InputFile class="form-control"
                                        OnChange="HandleFileSelected"
                                        disabled="@IsUploading" />
+
                             @if (IsUploading)
                             {
                                 <div class="spinner-border spinner-border-sm text-primary mt-2"></div>
@@ -7177,7 +7222,7 @@ public partial class Tasks : ComponentBase
                     }
                     else if (Attachments is null || Attachments.Count == 0)
                     {
-                        <div class="alert alert-info">@Loc[ResourceKeys.NoAttachments]</div>
+                        <div class="alert alert-info">@Localizer[ResourceKeys.NoAttachments]</div>
                     }
                     else
                     {
@@ -7189,14 +7234,14 @@ public partial class Tasks : ComponentBase
                                         <strong>@a.OriginalFileName</strong>
                                         <br />
                                         <small class="text-muted">
-                                            @FormatSize(a.SizeBytes) — @a.UploadedAt.ToLocalTime().ToString("g")
+                                            @FormatSize(a.SizeBytes) — @a.UploadedAt.ToLocalTime().ToString(FormatConstants.ShortDatePattern)
                                         </small>
                                     </div>
 
                                     <div class="d-flex gap-1">
                                         <button class="btn btn-sm btn-outline-primary"
                                                 @onclick="() => Download(a)">
-                                            @Loc[ResourceKeys.Download]
+                                            @Localizer[ResourceKeys.Download]
                                         </button>
 
                                         @if (a.UploadedByUserId == CurrentUserId)
@@ -7204,7 +7249,7 @@ public partial class Tasks : ComponentBase
                                             <button class="btn btn-sm btn-outline-danger"
                                                     @onclick="() => Delete(a)"
                                                     disabled="@IsDeleting">
-                                                @Loc[ResourceKeys.Delete]
+                                                @Localizer[ResourceKeys.Delete]
                                             </button>
                                         }
                                     </div>
@@ -7216,10 +7261,9 @@ public partial class Tasks : ComponentBase
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" @onclick="Close">
-                        @Loc[ResourceKeys.Close]
+                        @Localizer[ResourceKeys.Close]
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -7231,9 +7275,12 @@ public partial class Tasks : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/AttachmentsModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
+using Blazor_Web_App.Services.Receivers.TaskAttachments;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -7241,17 +7288,23 @@ namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class AttachmentsModal : ComponentBase
 {
+    [Inject] public ITaskAttachmentService TaskAttachmentService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+    [Inject] public IJSRuntime JS { get; set; } = null!;
+
     private const long MaxSizeBytes = 50L * 1024 * 1024;
     private const int MaxSizeMb = (int)(MaxSizeBytes / (1024 * 1024));
 
     [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public Guid CurrentUserId { get; set; }
-    [Parameter] public bool CanUpload { get; set; } = true;
-    [Parameter] public EventCallback OnClose { get; set; }
 
-    [Inject] public BaseService ApiService { get; set; } = null!;
-    [Inject] public IJSRuntime JS { get; set; } = null!;
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public Guid CurrentUserId { get; set; }
+
+    [Parameter] public bool CanUpload { get; set; } = true;
+
+    [Parameter] public EventCallback OnClose { get; set; }
 
     private List<TaskAttachmentDto>? Attachments;
     private string TaskTitle = string.Empty;
@@ -7262,7 +7315,10 @@ public partial class AttachmentsModal : ComponentBase
 
     protected override async Task OnParametersSetAsync()
     {
-        if (!IsVisible || TaskId == Guid.Empty) return;
+        if (!IsVisible || TaskId == Guid.Empty)
+        {
+            return;
+        }
 
         await LoadTitle();
         await LoadAttachments();
@@ -7270,10 +7326,12 @@ public partial class AttachmentsModal : ComponentBase
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
+        {
             TaskTitle = result.Value.Title;
+        }
     }
 
     private async Task LoadAttachments()
@@ -7281,7 +7339,7 @@ public partial class AttachmentsModal : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetTaskAttachmentsAsync(TaskId);
+        var result = await TaskAttachmentService.GetTaskAttachmentsAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -7302,7 +7360,10 @@ public partial class AttachmentsModal : ComponentBase
 
         var file = e.File;
 
-        if (file is null) return;
+        if (file is null)
+        {
+            return;
+        }
 
         if (file.Size > MaxSizeBytes)
         {
@@ -7316,7 +7377,7 @@ public partial class AttachmentsModal : ComponentBase
         {
             await using var stream = file.OpenReadStream(MaxSizeBytes);
 
-            var result = await ApiService.UploadAttachmentAsync(
+            var result = await TaskAttachmentService.UploadAttachmentAsync(
                 TaskId,
                 stream,
                 file.Name,
@@ -7345,7 +7406,7 @@ public partial class AttachmentsModal : ComponentBase
     {
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.DownloadAttachmentAsync(TaskId, attachment.Id);
+        var result = await TaskAttachmentService.DownloadAttachmentAsync(TaskId, attachment.Id);
 
         if (!result.IsSuccess || result.Value is null)
         {
@@ -7367,7 +7428,7 @@ public partial class AttachmentsModal : ComponentBase
         IsDeleting = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.DeleteAttachmentAsync(TaskId, attachment.Id);
+        var result = await TaskAttachmentService.DeleteAttachmentAsync(TaskId, attachment.Id);
 
         if (result.IsSuccess)
         {
@@ -7389,8 +7450,16 @@ public partial class AttachmentsModal : ComponentBase
 
     private static string FormatSize(long bytes)
     {
-        if (bytes < 1024) return $"{bytes} B";
-        if (bytes < 1024 * 1024) return $"{bytes / 1024.0:0.##} KB";
+        if (bytes < 1024)
+        {
+            return $"{bytes} B";
+        }
+
+        if (bytes < 1024 * 1024)
+        {
+            return $"{bytes / 1024.0:0.##} KB";
+        }
+
         return $"{bytes / (1024.0 * 1024.0):0.##} MB";
     }
 }
@@ -7401,16 +7470,15 @@ public partial class AttachmentsModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/ChatModal.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
+﻿@using Blazor_Web_App.Constants
 
 @if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.ChatTitle]: @TaskTitle</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.ChatTitle]: @TaskTitle</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
@@ -7419,20 +7487,20 @@ public partial class AttachmentsModal : ComponentBase
                     {
                         <div class="spinner-border text-primary"></div>
                     }
-                    else if (ErrorMessage != "")
+                    else if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
                     else if (Chat?.Messages is null || Chat.Messages.Count == 0)
                     {
-                        <div class="text-muted">@Loc[ResourceKeys.NoMessages]</div>
+                        <div class="text-muted">@Localizer[ResourceKeys.NoMessages]</div>
                     }
                     else
                     {
                         @foreach (var m in Chat.Messages.AsEnumerable().Reverse())
                         {
                             var own = m.UserId == CurrentUserId;
-                            var sender = own ? Loc[ResourceKeys.You].Value : m.UserName;
+                            var sender = own ? Localizer[ResourceKeys.You].Value : m.UserName;
 
                             <div class="mb-3 @(own ? "text-end" : "text-start")">
                                 <div>
@@ -7443,7 +7511,7 @@ public partial class AttachmentsModal : ComponentBase
                                     @m.Text
                                 </div>
                                 <div>
-                                    <small class="text-muted">@m.SentAt.ToLocalTime().ToString("g")</small>
+                                    <small class="text-muted">@m.SentAt.ToLocalTime().ToString(FormatConstants.ShortDatePattern)</small>
                                 </div>
                             </div>
                         }
@@ -7455,12 +7523,11 @@ public partial class AttachmentsModal : ComponentBase
                            @bind="NewMessage"
                            @bind:event="oninput"
                            @onkeydown="HandleKeyDown"
-                           placeholder="@Loc[ResourceKeys.MessagePlaceholder]" />
+                           placeholder="@Localizer[ResourceKeys.MessagePlaceholder]" />
                     <button class="btn btn-primary" @onclick="Send" disabled="@IsSending">
-                        @Loc[ResourceKeys.Send]
+                        @Localizer[ResourceKeys.Send]
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -7472,34 +7539,42 @@ public partial class AttachmentsModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/ChatModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.Chats;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.Chats;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class ChatModal : ComponentBase, IDisposable
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public Guid CurrentUserId { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IChatService ChatService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
-    private bool _disposed;
+    private const int PollingIntervalSeconds = 2;
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public Guid CurrentUserId { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
     private ChatDto? Chat;
     private string TaskTitle = string.Empty;
     private string NewMessage = string.Empty;
     private string ErrorMessage = string.Empty;
     private bool IsLoading;
     private bool IsSending;
-
     private CancellationTokenSource? _cancellationTokenSource;
     private PeriodicTimer? _periodicTimer;
     private Guid? _currentTaskId;
-
-    private const int PollingIntervalSeconds = 2;
+    private bool _disposed;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -7516,7 +7591,6 @@ public partial class ChatModal : ComponentBase, IDisposable
         }
 
         StopPolling();
-
         _currentTaskId = TaskId;
 
         await LoadTitle();
@@ -7566,7 +7640,7 @@ public partial class ChatModal : ComponentBase, IDisposable
             return;
         }
 
-        var existing = await ApiService.GetChatByTaskIdAsync(TaskId);
+        var existing = await ChatService.GetChatByTaskIdAsync(TaskId);
 
         if (existing.IsSuccess && existing.Value is not null)
         {
@@ -7576,7 +7650,7 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -7589,7 +7663,7 @@ public partial class ChatModal : ComponentBase, IDisposable
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var existing = await ApiService.GetChatByTaskIdAsync(TaskId);
+        var existing = await ChatService.GetChatByTaskIdAsync(TaskId);
 
         if (existing.IsSuccess && existing.Value is not null)
         {
@@ -7597,7 +7671,7 @@ public partial class ChatModal : ComponentBase, IDisposable
         }
         else
         {
-            var created = await ApiService.CreateChatAsync(TaskId);
+            var created = await ChatService.CreateChatAsync(TaskId);
 
             if (!created.IsSuccess)
             {
@@ -7614,11 +7688,14 @@ public partial class ChatModal : ComponentBase, IDisposable
 
     private async Task Send()
     {
-        if (string.IsNullOrWhiteSpace(NewMessage) || Chat is null) return;
+        if (string.IsNullOrWhiteSpace(NewMessage) || Chat is null)
+        {
+            return;
+        }
 
         IsSending = true;
 
-        var result = await ApiService.SendMessageAsync(Chat.Id, NewMessage, CurrentUserId);
+        var result = await ChatService.SendMessageAsync(Chat.Id, NewMessage, CurrentUserId);
 
         if (result.IsSuccess)
         {
@@ -7648,6 +7725,7 @@ public partial class ChatModal : ComponentBase, IDisposable
             await Send();
         }
     }
+
     protected virtual void Dispose(bool disposing)
     {
         if (_disposed)
@@ -7692,55 +7770,53 @@ public partial class ChatModal : ComponentBase, IDisposable
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/CreateTaskModal.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
-
-@if (IsVisible)
+﻿@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.CreateTask]</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.CreateTask]</h5>
                     <button class="btn-close" @onclick="CloseModal"></button>
                 </div>
 
                 <div class="modal-body">
-                    @if (ErrorMessage != "")
+                    @if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Title]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Title]</label>
                         <input class="form-control" @bind="Title" />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Description]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Description]</label>
                         <textarea class="form-control" rows="2" @bind="Description"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Price]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Price]</label>
                         <input class="form-control" type="number" step="0.01" @bind="Price" />
                     </div>
 
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label class="form-label">@Loc[ResourceKeys.Start]</label>
+                            <label class="form-label">@Localizer[ResourceKeys.Start]</label>
                             <input class="form-control" type="datetime-local" @bind="StartsAt" />
                         </div>
                         <div class="col-6 mb-3">
-                            <label class="form-label">@Loc[ResourceKeys.End]</label>
+                            <label class="form-label">@Localizer[ResourceKeys.End]</label>
                             <input class="form-control" type="datetime-local" @bind="EndsAt" />
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="CloseModal">@Loc[ResourceKeys.Cancel]</button>
+                    <button class="btn btn-secondary" @onclick="CloseModal">@Localizer[ResourceKeys.Cancel]</button>
                     <button class="btn btn-primary" @onclick="SubmitTask" disabled="@IsSubmitting">
-                        @(IsSubmitting ? "..." : Loc[ResourceKeys.Create].Value)
+                        @(IsSubmitting ? "..." : Localizer[ResourceKeys.Create].Value)
                     </button>
                 </div>
             </div>
@@ -7754,20 +7830,26 @@ public partial class ChatModal : ComponentBase, IDisposable
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/CreateTaskModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Requests.ProjectTasks;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class CreateTaskModal : ComponentBase
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public EventCallback OnCreated { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int DefaultDurationDays = 7;
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public EventCallback OnCreated { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
 
     private string Title = string.Empty;
     private string Description = string.Empty;
@@ -7791,7 +7873,7 @@ public partial class CreateTaskModal : ComponentBase
             EndsAt = EndsAt
         };
 
-        var result = await ApiService.CreateTaskAsync(dto);
+        var result = await ProjectTaskService.CreateTaskAsync(dto);
 
         if (result.IsSuccess)
         {
@@ -7819,55 +7901,53 @@ public partial class CreateTaskModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/EditTaskModal.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
-
-@if (IsVisible)
+﻿@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.EditTask]</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.EditTask]</h5>
                     <button class="btn-close" @onclick="CloseModal"></button>
                 </div>
 
                 <div class="modal-body">
-                    @if (ErrorMessage != "")
+                    @if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Title]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Title]</label>
                         <input class="form-control" @bind="Title" />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Description]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Description]</label>
                         <textarea class="form-control" rows="2" @bind="Description"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">@Loc[ResourceKeys.Price]</label>
+                        <label class="form-label">@Localizer[ResourceKeys.Price]</label>
                         <input class="form-control" type="number" step="0.01" @bind="Price" />
                     </div>
 
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label class="form-label">@Loc[ResourceKeys.Start]</label>
+                            <label class="form-label">@Localizer[ResourceKeys.Start]</label>
                             <input class="form-control" type="datetime-local" @bind="StartsAt" />
                         </div>
                         <div class="col-6 mb-3">
-                            <label class="form-label">@Loc[ResourceKeys.End]</label>
+                            <label class="form-label">@Localizer[ResourceKeys.End]</label>
                             <input class="form-control" type="datetime-local" @bind="EndsAt" />
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="CloseModal">@Loc[ResourceKeys.Cancel]</button>
+                    <button class="btn btn-secondary" @onclick="CloseModal">@Localizer[ResourceKeys.Cancel]</button>
                     <button class="btn btn-primary" @onclick="Submit" disabled="@IsSubmitting">
-                        @(IsSubmitting ? "..." : Loc[ResourceKeys.Save].Value)
+                        @(IsSubmitting ? "..." : Localizer[ResourceKeys.Save].Value)
                     </button>
                 </div>
             </div>
@@ -7881,8 +7961,10 @@ public partial class CreateTaskModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/EditTaskModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses.ProjectTasks;
 
@@ -7890,11 +7972,16 @@ namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class EditTaskModal : ComponentBase
 {
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     [Parameter] public bool IsVisible { get; set; }
+
     [Parameter] public ProjectTaskDto? Task { get; set; }
+
     [Parameter] public EventCallback OnUpdated { get; set; }
+
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private string Title = string.Empty;
     private string Description = string.Empty;
@@ -7906,7 +7993,10 @@ public partial class EditTaskModal : ComponentBase
 
     protected override void OnParametersSet()
     {
-        if (Task is null) return;
+        if (Task is null)
+        {
+            return;
+        }
 
         Title = Task.Title;
         Description = Task.Description;
@@ -7917,7 +8007,10 @@ public partial class EditTaskModal : ComponentBase
 
     private async Task Submit()
     {
-        if (Task is null) return;
+        if (Task is null)
+        {
+            return;
+        }
 
         IsSubmitting = true;
         ErrorMessage = string.Empty;
@@ -7929,7 +8022,7 @@ public partial class EditTaskModal : ComponentBase
             StartsAt,
             EndsAt);
 
-        var result = await ApiService.UpdateTaskAsync(Task.Id, dto);
+        var result = await ProjectTaskService.UpdateTaskAsync(Task.Id, dto);
 
         if (result.IsSuccess)
         {
@@ -7957,25 +8050,23 @@ public partial class EditTaskModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/RateExecutorModal.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
-
-@if (IsVisible)
+﻿@if (IsVisible)
 {
     <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.Rate]</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.Rate]</h5>
                     <button class="btn-close" @onclick="CloseModal"></button>
                 </div>
 
                 <div class="modal-body">
-                    @if (ErrorMessage != "")
+                    @if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
 
-                    <p>@string.Format(Loc[ResourceKeys.SelectRating], MinRating, MaxRating)</p>
+                    <p>@string.Format(Localizer[ResourceKeys.SelectRating], MinRating, MaxRating)</p>
 
                     <div class="d-flex gap-2 mb-3">
                         @for (var i = MinRating; i <= MaxRating; i++)
@@ -7992,10 +8083,10 @@ public partial class EditTaskModal : ComponentBase
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" @onclick="Skip" disabled="@IsSubmitting">
-                        @Loc[ResourceKeys.Skip]
+                        @Localizer[ResourceKeys.Skip]
                     </button>
                     <button class="btn btn-primary" @onclick="Submit" disabled="@IsSubmitting">
-                        @(IsSubmitting ? "..." : Loc[ResourceKeys.Submit].Value)
+                        @(IsSubmitting ? "..." : Localizer[ResourceKeys.Submit].Value)
                     </button>
                 </div>
             </div>
@@ -8009,25 +8100,41 @@ public partial class EditTaskModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/RateExecutorModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class RateExecutorModal : ComponentBase
 {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public Guid TaskId { get; set; }
-    [Parameter] public EventCallback OnCompleted { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     private const int MinRating = 1;
     private const int MaxRating = 5;
 
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public Guid TaskId { get; set; }
+
+    [Parameter] public EventCallback OnCompleted { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
     private int SelectedRating = MinRating;
     private bool IsSubmitting;
     private string ErrorMessage = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        if (IsVisible)
+        {
+            SelectedRating = MinRating;
+            ErrorMessage = string.Empty;
+        }
+    }
 
     private async Task Submit()
     {
@@ -8044,7 +8151,7 @@ public partial class RateExecutorModal : ComponentBase
         IsSubmitting = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.MarkAsDoneAsync(TaskId, rating);
+        var result = await ProjectTaskService.MarkAsDoneAsync(TaskId, rating);
 
         if (result.IsSuccess)
         {
@@ -8072,7 +8179,7 @@ public partial class RateExecutorModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
+﻿@using Blazor_Web_App.Constants
 
 @if (IsVisible)
 {
@@ -8080,7 +8187,7 @@ public partial class RateExecutorModal : ComponentBase
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@Loc[ResourceKeys.CandidatesFor] "@TaskTitle"</h5>
+                    <h5 class="modal-title">@Localizer[ResourceKeys.CandidatesFor] "@TaskTitle"</h5>
                     <button class="btn-close" @onclick="Close"></button>
                 </div>
 
@@ -8089,13 +8196,13 @@ public partial class RateExecutorModal : ComponentBase
                     {
                         <div class="spinner-border text-primary"></div>
                     }
-                    else if (ErrorMessage != "")
+                    else if (ErrorMessage != string.Empty)
                     {
                         <div class="alert alert-danger">@ErrorMessage</div>
                     }
                     else if (Responses is null || Responses.Count == 0)
                     {
-                        <div class="alert alert-info">@Loc[ResourceKeys.NoCandidates]</div>
+                        <div class="alert alert-info">@Localizer[ResourceKeys.NoCandidates]</div>
                     }
                     else
                     {
@@ -8107,18 +8214,19 @@ public partial class RateExecutorModal : ComponentBase
                                         <strong>@resp.ExecutorName</strong>
                                         <span class="badge bg-warning text-dark ms-2">
                                             @(resp.ExecutorRating.HasValue
-                                                ? resp.ExecutorRating.Value.ToString("0.0")
-                                                : "—")
+                                                ? resp.ExecutorRating.Value.ToString(FormatConstants.RatingFormat)
+                                                : FormatConstants.EmptyPlaceholder)
                                         </span>
                                         <br />
                                         <small class="text-muted">
-                                            @Loc[ResourceKeys.RespondedAt] @resp.RespondedAt.Date.ToShortDateString()
+                                            @Localizer[ResourceKeys.RespondedAt] @resp.RespondedAt.Date.ToShortDateString()
                                         </small>
                                     </div>
+
                                     <button class="btn btn-sm btn-primary"
                                             @onclick="() => HandleAssign(resp.ExecutorId)"
                                             disabled="@IsAssigning">
-                                        @(IsAssigning && _assigningId == resp.ExecutorId ? "..." : Loc[ResourceKeys.Assign].Value)
+                                        @(IsAssigning && _assigningId == resp.ExecutorId ? "..." : Localizer[ResourceKeys.Assign].Value)
                                     </button>
                                 </li>
                             }
@@ -8136,19 +8244,26 @@ public partial class RateExecutorModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/ResponsesModal.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.ProjectTasks;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class ResponsesModal : ComponentBase
 {
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
     [Parameter] public bool IsVisible { get; set; }
+
     [Parameter] public Guid TaskId { get; set; }
+
     [Parameter] public EventCallback OnAssigned { get; set; }
+
     [Parameter] public EventCallback OnClose { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private List<TaskResponseDto>? Responses;
     private Guid _assigningId;
@@ -8170,7 +8285,7 @@ public partial class ResponsesModal : ComponentBase
 
     private async Task LoadTitle()
     {
-        var result = await ApiService.GetTaskByIdAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskByIdAsync(TaskId);
 
         if (result.IsSuccess && result.Value is not null)
         {
@@ -8183,7 +8298,7 @@ public partial class ResponsesModal : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var result = await ApiService.GetTaskResponsesAsync(TaskId);
+        var result = await ProjectTaskService.GetTaskResponsesAsync(TaskId);
 
         if (result.IsSuccess)
         {
@@ -8202,7 +8317,7 @@ public partial class ResponsesModal : ComponentBase
         IsAssigning = true;
         _assigningId = executorId;
 
-        var result = await ApiService.AssignExecutorAsync(TaskId, executorId);
+        var result = await ProjectTaskService.AssignExecutorAsync(TaskId, executorId);
 
         if (result.IsSuccess)
         {
@@ -8231,14 +8346,14 @@ public partial class ResponsesModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/TaskCard.razor`
 
 ````text
-﻿@inject IStringLocalizer<SharedResources> Loc
+﻿@using Blazor_Web_App.Constants
 
 <div class="card h-100 d-flex flex-column">
     <div class="card-body position-relative">
         @if (ShowDeleteButton)
         {
             <button class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-2"
-                    title="@Loc[ResourceKeys.Delete]"
+                    title="@Localizer[ResourceKeys.Delete]"
                     @onclick="HandleDelete">
                 ✕
             </button>
@@ -8249,12 +8364,12 @@ public partial class ResponsesModal : ComponentBase
 
         <div class="d-flex justify-content-between align-items-center">
             <span class="badge bg-secondary">@ProjectTask.Status</span>
-            <span class="fw-bold">@ProjectTask.Currency@ProjectTask.Price.ToString("0.00")</span>
+            <span class="fw-bold">@ProjectTask.Currency@ProjectTask.Price.ToString(PriceFormat)</span>
 
             @if (ProjectTask.ProjectRating.HasValue)
             {
                 <span class="badge bg-warning text-dark">
-                    @ProjectTask.ProjectRating.Value.ToString("0.0")
+                    @ProjectTask.ProjectRating.Value.ToString(FormatConstants.RatingFormat)
                 </span>
             }
         </div>
@@ -8270,41 +8385,42 @@ public partial class ResponsesModal : ComponentBase
             <button class="btn btn-sm flex-fill @(IsResponded ? "btn-secondary" : "btn-success")"
                     @onclick="HandleRespond"
                     disabled="@IsResponded">
-                @(IsResponded ? Loc[ResourceKeys.Responded] : Loc[ResourceKeys.Respond])
+                @(IsResponded ? Localizer[ResourceKeys.Responded] : Localizer[ResourceKeys.Respond])
             </button>
         }
 
         @if (ShowChatButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleOpenChat">
-                @Loc[ResourceKeys.Chat]
+                @Localizer[ResourceKeys.Chat]
             </button>
         }
 
         @if (ShowMarkDoneButton)
         {
             <button class="btn btn-sm btn-outline-success flex-fill" @onclick="HandleMarkDone">
-                @Loc[ResourceKeys.Done]
+                @Localizer[ResourceKeys.Done]
             </button>
         }
 
         @if (ShowEditButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleEdit">
-                @Loc[ResourceKeys.Edit]
+                @Localizer[ResourceKeys.Edit]
             </button>
         }
 
         @if (ShowCancelButton)
         {
             <button class="btn btn-sm btn-outline-info flex-fill" @onclick="HandleCancel">
-                @Loc[ResourceKeys.Cancel]
+                @Localizer[ResourceKeys.Cancel]
             </button>
         }
+
         @if (ShowAttachmentsButton)
         {
             <button class="btn btn-sm btn-outline-secondary flex-fill" @onclick="HandleOpenAttachments">
-                @Loc[ResourceKeys.Attachments]
+                @Localizer[ResourceKeys.Attachments]
             </button>
         }
     </div>
@@ -8316,8 +8432,10 @@ public partial class ResponsesModal : ComponentBase
 ## FILE: `Blazor Web App/Components/Pages/TasksModals/TaskCard.razor.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.Receivers;
+﻿using Blazor_Web_App.Resources;
+using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 
@@ -8325,25 +8443,40 @@ namespace Blazor_Web_App.Components.Pages.TasksModals;
 
 public partial class TaskCard : ComponentBase
 {
+    [Inject] public IProjectTaskService ProjectTaskService { get; set; } = null!;
+    [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
+
+    public const string PriceFormat = "0.00";
+
     [Parameter, EditorRequired] public ProjectTaskDto ProjectTask { get; set; } = null!;
+
     [Parameter] public bool IsExecutor { get; set; }
+
     [Parameter] public bool IsCustomer { get; set; }
+
     [Parameter] public bool IsResponded { get; set; }
+
     [Parameter] public EventCallback<Guid> OnDeleted { get; set; }
+
     [Parameter] public EventCallback<Guid> OnRespond { get; set; }
+
     [Parameter] public EventCallback<Guid> OnOpenChat { get; set; }
+
     [Parameter] public EventCallback<Guid> OnMarkDone { get; set; }
+
     [Parameter] public EventCallback<Guid> OnCancel { get; set; }
+
     [Parameter] public EventCallback<Guid> OnEdit { get; set; }
+
     [Parameter] public Guid CurrentUserId { get; set; }
+
     [Parameter] public EventCallback<Guid> OnOpenAttachments { get; set; }
-    [Inject] public BaseService ApiService { get; set; } = null!;
 
     private bool ShowEditButton
-         => IsCustomer
-         && ProjectTask.Status != ProjectTaskStatus.InProgress
-         && ProjectTask.Status != ProjectTaskStatus.Done
-         && ProjectTask.Status != ProjectTaskStatus.Cancelled;
+        => IsCustomer
+        && ProjectTask.Status != ProjectTaskStatus.InProgress
+        && ProjectTask.Status != ProjectTaskStatus.Done
+        && ProjectTask.Status != ProjectTaskStatus.Cancelled;
 
     private bool ShowDeleteButton
         => IsCustomer
@@ -8363,6 +8496,7 @@ public partial class TaskCard : ComponentBase
         => IsCustomer
         && ProjectTask.Status != ProjectTaskStatus.Done
         && ProjectTask.Status != ProjectTaskStatus.Cancelled;
+
     private bool ShowAttachmentsButton
         => ProjectTask.CustomerId == CurrentUserId
         || ProjectTask.ExecutorId == CurrentUserId;
@@ -8379,7 +8513,7 @@ public partial class TaskCard : ComponentBase
 
     private async Task HandleDelete()
     {
-        var result = await ApiService.DeleteTaskAsync(ProjectTask.Id);
+        var result = await ProjectTaskService.DeleteTaskAsync(ProjectTask.Id);
 
         if (result.IsSuccess)
         {
@@ -8458,7 +8592,21 @@ public partial class TaskCard : ComponentBase
 @using Microsoft.Extensions.Localization
 @using Blazor_Web_App.Resources
 @using Blazor_Web_App.Constants
+
 @attribute [Authorize]
+````
+
+---
+
+## FILE: `Blazor Web App/Constants/AttachmentConstants.cs`
+
+````csharp
+﻿namespace Blazor_Web_App.Constants;
+
+public static class AttachmentConstants
+{
+    public const int Zero = 0;
+}
 ````
 
 ---
@@ -8477,7 +8625,56 @@ public static class CultureConstants
 
     public const string StorageKey = "app.culture";
 
-    public static readonly string[] Supported = { English, Russian };
+    public static readonly string[] Supported =
+    [
+        English,
+        Russian
+    ];
+}
+````
+
+---
+
+## FILE: `Blazor Web App/Constants/FormatConstants.cs`
+
+````csharp
+﻿namespace Blazor_Web_App.Constants;
+
+public static class FormatConstants
+{
+    public const string ShortDatePattern = "g";
+    public const string RatingFormat = "0.0";
+    public const string EmptyPlaceholder = "—";
+}
+````
+
+---
+
+## FILE: `Blazor Web App/Constants/Pagination.cs`
+
+````csharp
+﻿namespace Blazor_Web_App.Constants;
+
+public static class Pagination
+{
+    public const int FirstPage = 1;
+    public const int DefaultPageSize = 10;
+}
+````
+
+---
+
+## FILE: `Blazor Web App/Constants/ServiceMessages.cs`
+
+````csharp
+﻿namespace Blazor_Web_App.Constants;
+
+public static class ServiceMessages
+{
+    public const string EmptyResponse = "Empty response from server";
+    public const string DeserializationFailed = "Failed to deserialize response";
+    public const string UnknownServerError = "Unknown server error";
+    public const string UserIdNotFound = "User ID not found";
 }
 ````
 
@@ -8489,12 +8686,12 @@ public static class CultureConstants
 ﻿using Blazor_Web_App.Services;
 using Blazor_Web_App.Services.Culture;
 using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers;
 using Blazor_Web_App.Services.Receivers.Auth;
 using Blazor_Web_App.Services.Receivers.Chats;
 using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Blazor_Web_App.Services.Receivers.TaskAttachments;
 using Blazor_Web_App.Services.Receivers.UserActions;
+using Blazor_Web_App.Services.Receivers.Users;
 using Blazor_Web_App.Settings;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -8525,13 +8722,8 @@ public static class ServiceCollectionExtensions
         services.AddHttpClient<IUserActionService, UserActionService>(client =>
             client.BaseAddress = new Uri($"{apiSettings!.ApiUrl}/api/useraction/"));
 
-        services.AddHttpClient<IUserActionService, UserActionService>(client =>
+        services.AddHttpClient<IUserService, UserService>(client =>
             client.BaseAddress = new Uri($"{apiSettings!.ApiUrl}/api/user/"));
-
-        services.AddHttpClient<BaseService>(options =>
-        {
-            options.BaseAddress = new Uri(apiSettings!.ApiUrl);
-        });
 
         return services;
     }
@@ -8557,10 +8749,6 @@ public static class ServiceCollectionExtensions
 
         services.AddLocalization()
                 .AddScoped<ICultureService, CultureService>();
-
-        services.AddScoped<BaseService>()
-                .AddScoped<IAuthService, AuthService>()
-                .AddScoped<IProjectTaskService, ProjectTaskService>();
 
         return services;
     }
@@ -9287,6 +9475,11 @@ public class CultureService(
 
     public void Apply(string culture)
     {
+        if (!CultureConstants.Supported.Contains(culture))
+        {
+            culture = CultureConstants.Default;
+        }
+
         var cultureInfo = new CultureInfo(culture);
 
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -9522,7 +9715,8 @@ public interface IAuthService
 ## FILE: `Blazor Web App/Services/Receivers/BaseService.cs`
 
 ````csharp
-﻿using Blazor_Web_App.Services.LocalStorage;
+﻿using Blazor_Web_App.Constants;
+using Blazor_Web_App.Services.LocalStorage;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
@@ -9537,8 +9731,8 @@ public abstract class BaseService
     protected ILocalStorageService _localStorage { get; private set; }
 
     private const string Scheme = "Bearer";
-    protected const int FirstPageNumber = 1;
-    protected const int BasePageSize = 10;
+    protected const int FirstPageNumber = Pagination.FirstPage;
+    protected const int BasePageSize = Pagination.DefaultPageSize;
 
     private readonly JsonSerializerOptions _options = new JsonSerializerOptions
     {
@@ -9567,19 +9761,29 @@ public abstract class BaseService
     }
 
     protected async Task<Result<T>> HandleResponseAsync<T>(
-        HttpResponseMessage response,
-        CancellationToken cancellationToken = default) where T : class
+    HttpResponseMessage response,
+    CancellationToken cancellationToken = default) where T : class
     {
         if (!response.IsSuccessStatusCode)
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
 
-            return Result<T>.Failure(problemDetails!.Detail!);
+            return Result<T>.Failure(problemDetails!.Detail! ?? ServiceMessages.UnknownServerError);
+        }
+
+        if (response.Content.Headers.ContentLength == AttachmentConstants.Zero)
+        {
+            return Result<T>.Failure(ServiceMessages.EmptyResponse);
         }
 
         var dto = await response.Content.ReadFromJsonAsync<T>(
             _options,
             cancellationToken);
+
+        if (dto is null)
+        {
+            return Result<T>.Failure(ServiceMessages.DeserializationFailed);
+        }
 
         return Result<T>.Success(dto!);
     }
@@ -9592,7 +9796,7 @@ public abstract class BaseService
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
 
-            return Result.Failure(problemDetails!.Detail!);
+            return Result.Failure(problemDetails!.Detail! ?? ServiceMessages.UnknownServerError);
         }
 
         return Result.Success();
@@ -9606,11 +9810,10 @@ public abstract class BaseService
 
 ````csharp
 ﻿using Blazor_Web_App.Services.LocalStorage;
-using Blazor_Web_App.Services.Receivers.Chats;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 
-namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
+namespace Blazor_Web_App.Services.Receivers.Chats;
 
 public class ChatService(
     HttpClient _httpClient,
@@ -9662,8 +9865,7 @@ public class ChatService(
 
         var body = new
         {
-            Text = text,
-            SenderId = senderId.ToString()
+            Text = text
         };
 
         var response = await _httpClient.PostAsJsonAsync(
@@ -9685,10 +9887,18 @@ public class ChatService(
 ## FILE: `Blazor Web App/Services/Receivers/Chats/IChatService.cs`
 
 ````csharp
-﻿namespace Blazor_Web_App.Services.Receivers.Chats;
+﻿using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Chats;
+
+namespace Blazor_Web_App.Services.Receivers.Chats;
 
 public interface IChatService
 {
+    Task<Result<ChatDto>> CreateChatAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result<ChatDto>> GetChatByTaskIdAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result> SendMessageAsync(Guid chatId, string text, Guid senderId, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -9697,10 +9907,40 @@ public interface IChatService
 ## FILE: `Blazor Web App/Services/Receivers/ProjectTasks/IProjectTaskService.cs`
 
 ````csharp
-﻿namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
+﻿using Blazor_Web_App.Constants;
+using Shared.Dtos.Requests.ProjectTasks;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
+
+namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
 
 public interface IProjectTaskService
 {
+    Task<Result<PagedResult<ProjectTaskDto>>> GetMyTasksAsync(Guid customerId, int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
+
+    Task<Result<ProjectTaskDto>> CreateTaskAsync(CreateProjectTaskDto dto, CancellationToken cancellationToken = default);
+
+    Task<Result> DeleteTaskAsync(Guid id, CancellationToken cancellationToken = default);
+
+    Task<Result<PagedResult<ProjectTaskDto>>> GetPublishedTasksAsync(int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
+
+    Task<Result> RespondToTaskAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result<List<TaskResponseDto>>> GetTaskResponsesAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result> AssignExecutorAsync(Guid taskId, Guid executorId, CancellationToken cancellationToken = default);
+
+    Task<Result<PagedResult<ProjectTaskDto>>> GetAssignedTasksAsync(Guid executorId, int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
+
+    Task<Result<ProjectTaskDto>> GetTaskByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
+    Task<Result> CancelTaskAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result> MarkAsDoneAsync(Guid taskId, decimal? rating, CancellationToken cancellationToken = default);
+
+    Task<Result<PagedResult<ProjectTaskDto>>> SearchTasksAsync(string query, int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
+
+    Task<Result> UpdateTaskAsync(Guid id, UpdateProjectTaskDto dto, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -9713,7 +9953,6 @@ public interface IProjectTaskService
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
-using Shared.Dtos.Responses.Users;
 
 namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
 
@@ -9731,7 +9970,7 @@ public class ProjectTaskService(
         await SetAuthHeaderAsync(cancellationToken);
 
         var response = await _httpClient.GetAsync(
-            $"/customer/{customerId}?page={page}&pageSize={pageSize}",
+            $"customer/{customerId}?page={page}&pageSize={pageSize}",
             cancellationToken);
 
         var result = await HandleResponseAsync<PagedResult<ProjectTaskDto>>(
@@ -9800,22 +10039,9 @@ public class ProjectTaskService(
     {
         await SetAuthHeaderAsync(cancellationToken);
 
-        var executorIdStr = await _localStorage
-            .GetItemAsync(nameof(AuthDto.Id));
-
-        if (string.IsNullOrEmpty(executorIdStr))
-        {
-            return Result.Failure("User ID not found");
-        }
-
-        var body = new
-        {
-            ExecutorId = executorIdStr
-        };
-
-        var response = await _httpClient.PostAsJsonAsync(
+        var response = await _httpClient.PostAsync(
             $"{taskId}/respond",
-            body,
+            null,
             cancellationToken);
 
         var result = await HandleResponseAsync(
@@ -9990,10 +10216,20 @@ public class ProjectTaskService(
 ## FILE: `Blazor Web App/Services/Receivers/TaskAttachments/ITaskAttachmentService.cs`
 
 ````csharp
-﻿namespace Blazor_Web_App.Services.Receivers.TaskAttachments;
+﻿using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.ProjectTasks;
+
+namespace Blazor_Web_App.Services.Receivers.TaskAttachments;
 
 public interface ITaskAttachmentService
 {
+    Task<Result<List<TaskAttachmentDto>>> GetTaskAttachmentsAsync(Guid taskId, CancellationToken cancellationToken = default);
+
+    Task<Result<TaskAttachmentDto>> UploadAttachmentAsync(Guid taskId, Stream content, string fileName, string contentType, CancellationToken cancellationToken = default);
+
+    Task<Result> DeleteAttachmentAsync(Guid taskId, Guid attachmentId, CancellationToken cancellationToken = default);
+
+    Task<Result<AttachmentFileResult>> DownloadAttachmentAsync(Guid taskId, Guid attachmentId, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -10104,10 +10340,15 @@ public class TaskAttachmentService(
 ## FILE: `Blazor Web App/Services/Receivers/UserActions/IUserActionService.cs`
 
 ````csharp
-﻿namespace Blazor_Web_App.Services.Receivers.UserActions;
+﻿using Blazor_Web_App.Constants;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.UserActions;
+
+namespace Blazor_Web_App.Services.Receivers.UserActions;
 
 public interface IUserActionService
 {
+    Task<Result<PagedResult<UserActionDto>>> GetUserActionsAsync(Guid? userId, int? actionType, int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -10165,10 +10406,24 @@ public class UserActionService(HttpClient _httpClient,
 ## FILE: `Blazor Web App/Services/Receivers/Users/IUserService.cs`
 
 ````csharp
-﻿namespace Blazor_Web_App.Services.Receivers.Users;
+﻿using Blazor_Web_App.Constants;
+using Shared.Dtos.Responses;
+using Shared.Dtos.Responses.Users;
+using Shared.Enums;
+
+namespace Blazor_Web_App.Services.Receivers.Users;
 
 public interface IUserService
 {
+    Task<Result<PagedResult<UserDto>>> GetUsersAsync(int page = Pagination.FirstPage, int pageSize = Pagination.DefaultPageSize, CancellationToken cancellationToken = default);
+
+    Task<Result> ChangeRoleAsync(Guid userId, UserRole newRole, CancellationToken cancellationToken = default);
+
+    Task<Result> BlockUserAsync(Guid userId, CancellationToken cancellationToken = default);
+
+    Task<Result> UnblockUserAsync(Guid userId, CancellationToken cancellationToken = default);
+
+    Task<Result> DeleteUserAsync(Guid userId, CancellationToken cancellationToken = default);
 }
 ````
 
@@ -10462,6 +10717,7 @@ services:
       - web_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080
     env_file:
       - .env
     
@@ -10476,6 +10732,7 @@ services:
       - web_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080 
     env_file:
       - .env
 
@@ -10609,11 +10866,12 @@ public static class ErrorMessages
     public const string DescriptionCannotBeEmpty = "Description can't be empty";
     public const string PriceConnotBeNegative = "Price must be greater than 0";
     public const string FutureDateTime = "StartsAt and EndsAt must be in the future";
+    public const string EndDateMustBeAfterStartDate = "End date must be after start date";
 
     public const string PasswordCannotBeEmpty = "User password can't be empty";
     public const string PasswordHashCannotBeEmpty = "User passwordhash can't be empty";
     public const string UserNameCannotBeEmpty = "User name can't be empty";
-    public const string CannotEditInProgressOrDone = "Can't edit in progress or done";
+    public const string CannotEditInThisStatus = "Can't edit in progress/done/cancelled";
     public const string CustomerMustBeSame = "Customer must be same";
     public const string OnlyCustomerCanAssign = "Only customer can assign to project task";
     public const string AdminRoleCannotSetup = "Admin role cannot setup";
@@ -10631,7 +10889,6 @@ public static class ErrorMessages
     public const string UserNotFound = "User not found";
     public const string ChatNotFound = "Chat not found";
 
-    public const string ProjectTaskByCustomerNotFound = "Project task by customer zero elements";
     public const string UsersNotFound = "Users not found";
     public const string UsersAlreadyExists = "User already exists";
 
@@ -10665,6 +10922,7 @@ public static class ErrorMessages
     public const string FileSizeMustBePositive = "File size must be positive.";
     public const string FileSizeExceedsLimit = "File size exceeds the allowed limit of {0} MB.";
     public const string FileExtensionForbidden = "File extension {0} is forbidden.";
+    public const string InvalidFilePath = "Invalid file path";
     public const string CannotAttachToClosedTask = "Cannot attach files to a closed task.";
     public const string OnlyParticipantsCanAttach = "Only the customer or the executor can attach files to the task.";
     public const string OnlyUploaderCanDeleteAttachment = "Only the uploader can delete the attachment.";
@@ -10892,7 +11150,8 @@ public class ProjectTask : Entity
             Price = price,
             StartsAt = startsAt,
             EndsAt = endsAt,
-            CustomerId = customerId
+            CustomerId = customerId,
+            Status = ProjectTaskStatus.Published
         };
 
         return Result<ProjectTask>.Success(projectTask);
@@ -10906,9 +11165,11 @@ public class ProjectTask : Entity
         DateTimeOffset endsAt,
         Guid customerId)
     {
-        if (Status == ProjectTaskStatus.InProgress || Status == ProjectTaskStatus.Done)
+        if (Status == ProjectTaskStatus.InProgress
+            || Status == ProjectTaskStatus.Done
+            || Status == ProjectTaskStatus.Cancelled)
         {
-            return Result.Failure(ErrorMessages.CannotEditInProgressOrDone);
+            return Result.Failure(ErrorMessages.CannotEditInThisStatus);
         }
 
         if (customerId != CustomerId)
@@ -11057,6 +11318,11 @@ public class ProjectTask : Entity
         if (startsAt < DateTimeOffset.UtcNow || endsAt < DateTimeOffset.UtcNow)
         {
             return Result.Failure(ErrorMessages.FutureDateTime);
+        }
+
+        if (endsAt <= startsAt)
+        {
+            return Result.Failure(ErrorMessages.EndDateMustBeAfterStartDate);
         }
 
         return Result.Success();
@@ -11288,9 +11554,16 @@ public class User : Entity
         IsBlocked = false;
     }
 
-    public void ChangeRole(UserRole role)
+    public Result ChangeRole(UserRole role)
     {
+        if (role == UserRole.Admin)
+        {
+            return Result.Failure(ErrorMessages.AdminRoleCannotSetup);
+        }
+
         Role = role;
+
+        return Result.Success();
     }
 }
 ````
@@ -11649,6 +11922,7 @@ public class AppDbContext : DbContext
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.13" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.13" />
+	<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15482,7 +15756,7 @@ public class UserQueryRepository : IUserQueryRepository
     {
         var user = await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Name == name);
+            .FirstOrDefaultAsync(u => u.Name == name, cancellationToken);
 
         return user;
     }
@@ -15585,7 +15859,34 @@ public class UserQueryRepository : IUserQueryRepository
 ## FILE: `README.md`
 
 ````markdown
-- Start up:
+# Start up:
+
+1. Step - .env
+
+- change .env-example and rename into .env
+
+	1.1. .env-example:
+Change all variables in <...> 
+```
+# AppConfig.
+AppConfig__ConnectionString=Server=sqlserver;Database=ProjectTaskDb;User Id=sa;Password=${AppConfig__Password};TrustServerCertificate=True;
+AppConfig__Password=<YOUR_PASSWORD>
+
+# JwtSettings.
+JwtSettings__Key=<LONG_KEY_MIN_LENGTH_32>
+
+# ApiSettings.
+ApiSettings__ApiUrl=http://web_api:8080
+```
+	1.2. rename .env-example into .env
+
+2. Step - run app
+
+	2.1. Go to the root file, open CMD
+
+	2.2. Open Docker
+
+	2.3. Write commands into CMD
 ```bash
 docker-compose down -v
 
@@ -15593,10 +15894,24 @@ docker-compose up --build
 docker ps
 ```
 
-- SWAGGER: 
-http://localhost:7025/swagger/index.html
+# Swagger and Clients: 
+1 Open Swagger:
+- http://localhost:7025/swagger/index.html
 
-- Set admin role (set correct, container_name, db password, db, account_login):
+2 Open Clients: 
+- http://localhost:5021/
+- http://localhost:5020/
+
+# ?? 
+If something goes wrong, try checking Docker and running the container that is currently not working correctly
+OR
+one more repeat of using 
+```
+docker-compose up --build
+```
+
+# Set admin role 
+- (set correct, container_name, db password, db, account_login):
 ```bash
 docker exec -it projecttask-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "<YOUR_PASSWORD_FROM_ENV>" -C -Q "UPDATE ProjectTaskDb.dbo.Users SET Role = 2 WHERE Name = 'YOUR_LOGIN'"
 ```
@@ -16282,6 +16597,7 @@ public enum UserRole
 
 ````csharp
 ﻿using Application.Users.Commands.Login;
+using Application.Users.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests.Users;
@@ -16347,7 +16663,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests.Chats;
 using Shared.Enums;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -16359,14 +16674,6 @@ public class ChatController : ControllerBase
 {
     private readonly IMediator _mediatr;
 
-    private Guid CurrentUserId
-    {
-        get
-        {
-            return Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-        }
-    }
-
     public ChatController(IMediator mediatr)
     {
         _mediatr = mediatr;
@@ -16374,13 +16681,12 @@ public class ChatController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        Guid projectTaskId)
+        [FromQuery] Guid projectTaskId,
+        CancellationToken cancellationToken)
     {
-        var command = new CreateChatCommand(
-            projectTaskId,
-            CurrentUserId);
+        var command = new CreateChatCommand(projectTaskId);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -16393,11 +16699,12 @@ public class ChatController : ControllerBase
     [HttpDelete("{id}")]
     [Authorize(Roles = $"{nameof(UserRole.Customer)},{nameof(UserRole.Admin)}")]
     public async Task<IActionResult> Delete(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var command = new DeleteChatCommand(id, CurrentUserId);
+        var command = new DeleteChatCommand(id);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16405,47 +16712,48 @@ public class ChatController : ControllerBase
     [HttpPost("{id}/messages")]
     public async Task<IActionResult> AddMessage(
         Guid id,
-        [FromBody] AddMessageChatDto request)
+        [FromBody] AddMessageChatDto request,
+        CancellationToken cancellationToken)
     {
-        var command = new AddMessageCommand(
-            id,
-            request.Text,
-            CurrentUserId);
+        var command = new AddMessageCommand(id, request.Text);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetChatByIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("task/{id}")]
     public async Task<IActionResult> GetByTaskId(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var query = new GetChatByTaskIdQuery(id, CurrentUserId);
+        var query = new GetChatByTaskIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}/messages")]
     public async Task<IActionResult> GetAll(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetChatWithMessagesQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16457,10 +16765,11 @@ public class ChatController : ControllerBase
 ## FILE: `Web Api/Controllers/ProjectTaskController.cs`
 
 ````csharp
-﻿using Application.ProjectTasks.Commands.AssignExecutor;
+﻿using Application.Interfaces;
+using Application.ProjectTasks.Commands.AssignExecutor;
 using Application.ProjectTasks.Commands.Cancel;
 using Application.ProjectTasks.Commands.Create;
-using Application.ProjectTasks.Commands.DeleteProjectTask;
+using Application.ProjectTasks.Commands.Delete;
 using Application.ProjectTasks.Commands.MarkAsDone;
 using Application.ProjectTasks.Commands.RespondToTask;
 using Application.ProjectTasks.Commands.Update;
@@ -16476,7 +16785,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests;
 using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Enums;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -16487,27 +16795,27 @@ namespace Web_Api.Controllers;
 public class ProjectTaskController : ControllerBase
 {
     private readonly IMediator _mediatr;
+    private readonly ICurrentUser _currentUser;
 
-    public ProjectTaskController(IMediator mediatr)
+    public ProjectTaskController(IMediator mediatr, ICurrentUser currentUser)
     {
         _mediatr = mediatr;
+        _currentUser = currentUser;
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateProjectTaskDto request)
+        [FromBody] CreateProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new CreateProjectTaskCommand(
             request.Title,
             request.Description,
             request.Price,
             request.StartsAt,
-            request.EndsAt,
-            customerId);
+            request.EndsAt);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -16519,13 +16827,12 @@ public class ProjectTaskController : ControllerBase
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new DeleteProjectTaskCommand(id);
 
-        var command = new DeleteProjectTaskCommand(id, userId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16534,35 +16841,31 @@ public class ProjectTaskController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(
         Guid id,
-        [FromBody] UpdateProjectTaskDto request)
+        [FromBody] UpdateProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new UpdateProjectTaskCommand(
             id,
             request.Title,
             request.Description,
             request.Price,
             request.StartsAt,
-            request.EndsAt,
-            customerId);
+            request.EndsAt);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
+    [Authorize(Roles = nameof(UserRole.Executor))]
     [HttpPost("{id}/respond")]
     public async Task<IActionResult> Respond(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var executorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var command = new RespondToTaskCommand(id);
 
-        var command = new RespondToTaskCommand(
-            id,
-            executorId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16571,16 +16874,14 @@ public class ProjectTaskController : ControllerBase
     [HttpPost("{id}/mark-as-done")]
     public async Task<IActionResult> MarkAsDone(
         Guid id,
-        [FromBody] MarkAsDoneProjectTaskDto request)
+        [FromBody] MarkAsDoneProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new MarkAsDoneCommand(
             id,
-            customerId,
             request.Rating);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16588,86 +16889,82 @@ public class ProjectTaskController : ControllerBase
     [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPost("{id}/cancel")]
     public async Task<IActionResult> Cancel(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new CancelProjectTaskCommand(id);
 
-        var command = new CancelProjectTaskCommand(
-            id,
-            customerId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpPost("{id}/assign")]
     public async Task<IActionResult> Assign(
         Guid id,
-        [FromBody] AssignProjectTaskDto request)
+        [FromBody] AssignProjectTaskDto request,
+        CancellationToken cancellationToken)
     {
-        var customerId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var command = new AssignExecutorCommand(
             id,
-            request.ExecutorId,
-            customerId);
+            request.ExecutorId);
 
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetProjectTaskByIdQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
-    [Authorize]
     [HttpGet("customer/{customerId}")]
     public async Task<IActionResult> GetByCustomer(
         Guid customerId,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetTasksByCustomerQuery(
             customerId,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("published")]
     public async Task<IActionResult> GetPublished(
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         var query = new GetPublishedTasksQuery(
             request.Page,
-            request.PageSize,
-            currentUserId);
+            request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpGet("{id}/responses")]
     public async Task<IActionResult> GetResponses(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetTaskResponsesQuery(id);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16675,14 +16972,15 @@ public class ProjectTaskController : ControllerBase
     [HttpGet("assigned/{executorId}")]
     public async Task<IActionResult> GetAssigned(
         Guid executorId,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetAssignedTasksQuery(
             executorId,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16690,20 +16988,19 @@ public class ProjectTaskController : ControllerBase
     [HttpGet("search")]
     public async Task<IActionResult> Search(
         [FromQuery] string query,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
-        var isCustomer = User.IsInRole(nameof(UserRole.Customer));
+        var isCustomer = _currentUser.IsInRole(nameof(UserRole.Customer));
 
         var searchQuery = SearchTasksQueryFactory.Create(
-            currentUserId,
+            _currentUser,
             isCustomer,
             query,
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(searchQuery);
+        var result = await _mediatr.Send(searchQuery, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16723,7 +17020,6 @@ using Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -16744,7 +17040,7 @@ public class TaskAttachmentsController : ControllerBase
     public async Task<IActionResult> Download(
         Guid taskId,
         Guid attachmentId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
         var query = new GetAttachmentFileQuery(attachmentId);
 
@@ -16756,7 +17052,7 @@ public class TaskAttachmentsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> List(
         Guid taskId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
         var query = new GetTaskAttachmentsQuery(taskId);
 
@@ -16770,21 +17066,18 @@ public class TaskAttachmentsController : ControllerBase
     [RequestFormLimits(MultipartBodyLengthLimit = AttachmentConstants.MaxSizeBytes)]
     public async Task<IActionResult> Upload(
         Guid taskId,
-        IFormFile file,
-        CancellationToken cancellationToken = default)
+        [FromForm] IFormFile file,
+        CancellationToken cancellationToken)
     {
         if (file is null || file.Length == 0)
         {
             return BadRequest(ErrorMessages.OriginalFileNameCannotBeEmpty);
         }
 
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
         await using var stream = file.OpenReadStream();
 
         var command = new UploadAttachmentCommand(
             taskId,
-            userId,
             file.FileName,
             file.ContentType,
             file.Length,
@@ -16799,11 +17092,9 @@ public class TaskAttachmentsController : ControllerBase
     public async Task<IActionResult> Delete(
         Guid taskId,
         Guid attachmentId,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
-
-        var command = new DeleteAttachmentCommand(attachmentId, userId);
+        var command = new DeleteAttachmentCommand(attachmentId);
 
         var result = await _mediatr.Send(command, cancellationToken);
 
@@ -16843,7 +17134,8 @@ public class UserActionController : ControllerBase
     public async Task<IActionResult> Get(
         [FromQuery] Guid? userId,
         [FromQuery] int? actionType,
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
         var query = new GetUserActionsQuery(
             userId,
@@ -16851,7 +17143,7 @@ public class UserActionController : ControllerBase
             request.Page,
             request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16874,7 +17166,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Requests;
 using Shared.Dtos.Requests.Users;
 using Shared.Enums;
-using System.Security.Claims;
 using Web_Api.Extensions;
 
 namespace Web_Api.Controllers;
@@ -16893,13 +17184,12 @@ public class UserController : ControllerBase
 
     [HttpGet]
     public async Task<IActionResult> Get(
-        [FromQuery] PageDto request)
+        [FromQuery] PageDto request,
+        CancellationToken cancellationToken)
     {
-        var query = new GetUsersQuery(
-            request.Page,
-            request.PageSize);
+        var query = new GetUsersQuery(request.Page, request.PageSize);
 
-        var result = await _mediatr.Send(query);
+        var result = await _mediatr.Send(query, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -16907,61 +17197,48 @@ public class UserController : ControllerBase
     [HttpPatch("{id}/role")]
     public async Task<IActionResult> ChangeRole(
         Guid id,
-        [FromBody] ChangeRoleUserDto request)
+        [FromBody] ChangeRoleUserDto request,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new ChangeRoleCommand(id, request.NewRole);
 
-        var command = new ChangeRoleCommand(
-            id,
-            request.NewRole,
-            currentUserId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpPost("{id}/block")]
     public async Task<IActionResult> Block(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new BlockUserCommand(id);
 
-        var command = new BlockUserCommand(
-            id,
-            currentUserId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpPost("{id}/unblock")]
     public async Task<IActionResult> Unblock(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new UnblockUserCommand(id);
 
-        var command = new UnblockUserCommand(
-            id,
-            currentUserId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(
-        Guid id)
+        Guid id,
+        CancellationToken cancellationToken)
     {
-        var currentUserId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var command = new DeleteUserCommand(id);
 
-        var command = new DeleteUserCommand(
-            id,
-            currentUserId);
-
-        var result = await _mediatr.Send(command);
+        var result = await _mediatr.Send(command, cancellationToken);
 
         return result.ToResponse(this);
     }
@@ -17037,6 +17314,44 @@ public static class SwaggerConstants
 
 ---
 
+## FILE: `Web Api/Extensions/CurrentUser.cs`
+
+````csharp
+﻿using Application.Interfaces;
+using System.Security.Claims;
+
+namespace Web_Api.Extensions;
+
+public class CurrentUser : ICurrentUser
+{
+    private readonly IHttpContextAccessor _contextAccessor;
+
+    public CurrentUser(IHttpContextAccessor contextAccessor)
+    {
+        _contextAccessor = contextAccessor;
+    }
+
+    public Guid Id
+    {
+        get
+        {
+            var value = _contextAccessor.HttpContext?.User
+                .FindFirstValue(ClaimTypes.NameIdentifier);
+
+            return Guid.TryParse(value, out var id) ? id : Guid.Empty;
+        }
+    }
+
+    public bool IsInRole(string role)
+    {
+        return _contextAccessor.HttpContext?.User
+            .IsInRole(role) ?? false;
+    }
+}
+````
+
+---
+
 ## FILE: `Web Api/Extensions/ResultExtensions.cs`
 
 ````csharp
@@ -17103,7 +17418,8 @@ public static class ResultExtensions
 ## FILE: `Web Api/Extensions/ServiceCollectionExtensions.cs`
 
 ````csharp
-﻿using Application.Common;
+﻿using Application.Behaviors;
+using Application.Interfaces;
 using Application.ProjectTasks.Commands.Create;
 using Application.Services.FileStorage;
 using Application.Services.Hasher;
@@ -17204,7 +17520,12 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
+
+        services.AddScoped<ICurrentUser, CurrentUser>();
+
         services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>))
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(UserActionLoggingBehavior<,>));
 
         services.AddMediatR(configuration =>
@@ -17382,6 +17703,7 @@ app.Run();
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.0" />
+	<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>

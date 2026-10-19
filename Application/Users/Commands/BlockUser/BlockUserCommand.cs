@@ -8,8 +8,4 @@ namespace Application.Users.Commands.BlockUser;
 
 [LogAction(UserActionType.UserBlocked, nameof(User))]
 public record BlockUserCommand(
-    Guid TargetUserId,
-    Guid CurrentUserId) : IRequest<Result>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    Guid TargetUserId) : IRequest<Result>;

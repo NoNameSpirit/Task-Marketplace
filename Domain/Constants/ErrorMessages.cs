@@ -8,11 +8,12 @@ public static class ErrorMessages
     public const string DescriptionCannotBeEmpty = "Description can't be empty";
     public const string PriceConnotBeNegative = "Price must be greater than 0";
     public const string FutureDateTime = "StartsAt and EndsAt must be in the future";
+    public const string EndDateMustBeAfterStartDate = "End date must be after start date";
 
     public const string PasswordCannotBeEmpty = "User password can't be empty";
     public const string PasswordHashCannotBeEmpty = "User passwordhash can't be empty";
     public const string UserNameCannotBeEmpty = "User name can't be empty";
-    public const string CannotEditInProgressOrDone = "Can't edit in progress or done";
+    public const string CannotEditInThisStatus = "Can't edit in progress/done/cancelled";
     public const string CustomerMustBeSame = "Customer must be same";
     public const string OnlyCustomerCanAssign = "Only customer can assign to project task";
     public const string AdminRoleCannotSetup = "Admin role cannot setup";
@@ -30,7 +31,6 @@ public static class ErrorMessages
     public const string UserNotFound = "User not found";
     public const string ChatNotFound = "Chat not found";
 
-    public const string ProjectTaskByCustomerNotFound = "Project task by customer zero elements";
     public const string UsersNotFound = "Users not found";
     public const string UsersAlreadyExists = "User already exists";
 
@@ -64,6 +64,7 @@ public static class ErrorMessages
     public const string FileSizeMustBePositive = "File size must be positive.";
     public const string FileSizeExceedsLimit = "File size exceeds the allowed limit of {0} MB.";
     public const string FileExtensionForbidden = "File extension {0} is forbidden.";
+    public const string InvalidFilePath = "Invalid file path";
     public const string CannotAttachToClosedTask = "Cannot attach files to a closed task.";
     public const string OnlyParticipantsCanAttach = "Only the customer or the executor can attach files to the task.";
     public const string OnlyUploaderCanDeleteAttachment = "Only the uploader can delete the attachment.";

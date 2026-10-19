@@ -13,8 +13,4 @@ public record class CreateProjectTaskCommand(
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
-    DateTimeOffset EndsAt,
-    Guid CurrentUserId) : IRequest<Result<ProjectTaskDto>>, IUserCommand
-{
-    public Guid UserId => CurrentUserId;
-}
+    DateTimeOffset EndsAt) : IRequest<Result<ProjectTaskDto>>;

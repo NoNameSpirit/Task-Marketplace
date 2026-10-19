@@ -1,4 +1,5 @@
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Config;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -12,13 +13,16 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
     private readonly AppConfig _appConfig;
+    private readonly ICurrentUser _currentUser;
 
     public GetPublishedTasksHandler(
         IProjectTaskQueryRepository queryRepository,
-        IOptions<AppConfig> appConfig)
+        IOptions<AppConfig> appConfig,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
         _appConfig = appConfig.Value;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<PagedResult<ProjectTaskDto>>> Handle(
@@ -34,7 +38,7 @@ public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, 
             .Select(t => ProjectTaskMapper.ToDto(
                 t,
                 _appConfig.Currency,
-                t.Responses.Any(r => r.ExecutorId == request.CurrentUserId)))
+                t.Responses.Any(r => r.ExecutorId == _currentUser.Id)))
             .ToList();
 
         var result = PagedResult<ProjectTaskDto>.Create(

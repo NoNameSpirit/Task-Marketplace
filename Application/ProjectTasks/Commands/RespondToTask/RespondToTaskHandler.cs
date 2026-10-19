@@ -1,5 +1,5 @@
-﻿using Domain.Constants;
-using Domain.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,17 +10,14 @@ namespace Application.ProjectTasks.Commands.RespondToTask;
 public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly IProjectTaskCommandRepository _commandRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUser _currentUser;
 
     public RespondToTaskHandler(
         IProjectTaskQueryRepository queryRepository,
-        IProjectTaskCommandRepository commandRepository,
-        IUnitOfWork unitOfWork)
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _commandRepository = commandRepository;
-        _unitOfWork = unitOfWork;
+        _currentUser = currentUser;
     }
 
     public async Task<Result> Handle(
@@ -36,7 +33,7 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
                 ErrorType.NotFound);
         }
 
-        var result = task.RespondToTask(request.ExecutorId);
+        var result = task.RespondToTask(_currentUser.Id);
 
         if (!result.IsSuccess)
         {
@@ -44,8 +41,6 @@ public class RespondToTaskHandler : IRequestHandler<RespondToTaskCommand, Result
                 result.Message,
                 ErrorType.Validation);
         }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

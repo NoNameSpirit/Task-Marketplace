@@ -1,4 +1,5 @@
-﻿using Application.Mappers;
+﻿using Application.Interfaces;
+using Application.Mappers;
 using Domain.Constants;
 using Domain.Interfaces.Chats;
 using Domain.Interfaces.ProjectTasks;
@@ -13,13 +14,16 @@ public class GetChatByTaskIdHandler : IRequestHandler<GetChatByTaskIdQuery, Resu
 {
     private readonly IChatQueryRepository _queryRepository;
     private readonly IProjectTaskQueryRepository _taskQueryRepository;
+    private readonly ICurrentUser _currentUser;
 
     public GetChatByTaskIdHandler(
         IChatQueryRepository queryRepository,
-        IProjectTaskQueryRepository taskQueryRepository)
+        IProjectTaskQueryRepository taskQueryRepository,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
         _taskQueryRepository = taskQueryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<ChatDto>> Handle(
@@ -37,8 +41,8 @@ public class GetChatByTaskIdHandler : IRequestHandler<GetChatByTaskIdQuery, Resu
                 ErrorType.NotFound);
         }
 
-        if (task.CustomerId != request.CurrentUserId
-            && task.ExecutorId != request.CurrentUserId)
+        if (task.CustomerId != _currentUser.Id
+            && task.ExecutorId != _currentUser.Id)
         {
             return Result<ChatDto>.Failure(
                 ErrorMessages.Forbidden,
