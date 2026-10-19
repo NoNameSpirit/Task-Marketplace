@@ -46,6 +46,7 @@ services:
       - web_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080
     env_file:
       - .env
     
@@ -60,6 +61,7 @@ services:
       - web_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__ApiUrl=http://web_api:8080 
     env_file:
       - .env
 
