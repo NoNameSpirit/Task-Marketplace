@@ -13,6 +13,7 @@ public partial class TaskCard : ComponentBase
     [Inject] public IStringLocalizer<SharedResources> Localizer { get; set; } = null!;
 
     public const string PriceFormat = "0.00";
+    public const int MaxLengthOfDescription = 150;
 
     [Parameter, EditorRequired] public ProjectTaskDto ProjectTask { get; set; } = null!;
 
@@ -37,6 +38,9 @@ public partial class TaskCard : ComponentBase
     [Parameter] public Guid CurrentUserId { get; set; }
 
     [Parameter] public EventCallback<Guid> OnOpenAttachments { get; set; }
+
+    private bool _isReadMoreModalActive = false;
+    private ProjectTaskDto? projectTaskDto;
 
     private bool ShowEditButton
         => IsCustomer
@@ -66,6 +70,17 @@ public partial class TaskCard : ComponentBase
     private bool ShowAttachmentsButton
         => ProjectTask.CustomerId == CurrentUserId
         || ProjectTask.ExecutorId == CurrentUserId;
+
+    private async Task HandleReadMoreModel()
+    {
+        _isReadMoreModalActive = true;
+        projectTaskDto = ProjectTask;
+    }
+
+    private void CloseReadMoreModal()
+    {
+        _isReadMoreModalActive = false;
+    }
 
     private async Task HandleOpenAttachments()
     {

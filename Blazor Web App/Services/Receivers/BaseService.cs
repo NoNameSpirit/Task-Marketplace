@@ -3,6 +3,7 @@ using Blazor_Web_App.Services.LocalStorage;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -47,6 +48,11 @@ public abstract class BaseService
         HttpResponseMessage response,
         CancellationToken cancellationToken = default) where T : class
     {
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            return Result<T>.Failure(ServiceMessages.Unauthorized);
+        }
+
         if (!response.IsSuccessStatusCode)
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);
@@ -54,7 +60,7 @@ public abstract class BaseService
             return Result<T>.Failure(problemDetails?.Detail ?? ServiceMessages.UnknownServerError);
         }
 
-        if (response.Content.Headers.ContentLength == AttachmentConstants.Zero)
+        if (response.Content.Headers.ContentLength == AttachmentConstants.EmptyContentLength)
         {
             return Result<T>.Failure(ServiceMessages.EmptyResponse);
         }
@@ -75,6 +81,11 @@ public abstract class BaseService
        HttpResponseMessage response,
        CancellationToken cancellationToken = default)
     {
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            return Result.Failure(ServiceMessages.Unauthorized);
+        }
+
         if (!response.IsSuccessStatusCode)
         {
             var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(cancellationToken);

@@ -1,0 +1,34 @@
+﻿@if (IsVisible)
+{
+    <div class="modal show fade d-block" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-break">@ProjectTask.Title</h5>
+                    <button type="button" class="btn-close" @onclick="HandleClose"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="text-start text-break" style="white-space: pre-wrap;">@ProjectTask.Description</p>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge text-bg-secondary">@ProjectTask.Status</span>
+                        <span class="fw-bold">@ProjectTask.Currency @ProjectTask.Price.ToString(TaskCard.PriceFormat)</span>
+                    </div>
+
+                    <small class="text-muted d-block">
+                        @ProjectTask.StartsAt.ToString(FormatConstants.ShortDatePattern) - @ProjectTask.EndsAt.ToString(FormatConstants.ShortDatePattern)
+                    </small>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-100" @onclick="HandleClose">
+                        @Localizer[ResourceKeys.Close]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
