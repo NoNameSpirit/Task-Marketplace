@@ -82,7 +82,8 @@ public partial class ChatModal : ComponentBase, IDisposable
                         break;
                     }
 
-                    await SilentReload();
+                    await InvokeAsync(async () => await SilentReload());
+
                     await InvokeAsync(StateHasChanged);
                 }
             }

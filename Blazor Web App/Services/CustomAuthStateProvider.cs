@@ -15,17 +15,16 @@ public class CustomAuthStateProvider(
         try
         {
             var token = await _localStorage.GetItemAsync(nameof(AuthDto.Token));
+            var name = await _localStorage.GetItemAsync(nameof(AuthDto.Name));
+            var role = await _localStorage.GetItemAsync(nameof(AuthDto.Role));
+            var id = await _localStorage.GetItemAsync(nameof(AuthDto.Id));
 
-            if (string.IsNullOrEmpty(token))
+            if (!IsParamsNotEmpty(token, name, role, id))
             {
                 return new AuthenticationState(
                     new ClaimsPrincipal(
                         new ClaimsIdentity()));
             }
-
-            var name = await _localStorage.GetItemAsync(nameof(AuthDto.Name));
-            var role = await _localStorage.GetItemAsync(nameof(AuthDto.Role));
-            var id = await _localStorage.GetItemAsync(nameof(AuthDto.Id));
 
             var identity = CreateClaimsIdentity(name!, role!, id!);
 
@@ -73,5 +72,18 @@ public class CustomAuthStateProvider(
         ], AuthenticationType);
 
         return identity;
+    }
+
+    private bool IsParamsNotEmpty(params string?[] claims)
+    {
+        foreach (var claim in claims)
+        {
+            if (string.IsNullOrEmpty(claim))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

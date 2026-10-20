@@ -2,8 +2,8 @@
 
 public class PagedResult<T>
 {
-    private static int ZeroElements = 0;
-    private static int MinPage = 0;
+    private const int ZeroElements = 0;
+    private const int MinPage = 0;
 
     public IReadOnlyCollection<T> Collection { get; set; } = null!;
     public int Page { get; set; }

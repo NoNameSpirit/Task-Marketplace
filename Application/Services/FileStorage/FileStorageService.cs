@@ -23,7 +23,11 @@ public class FileStorageService : IFileStorageService
 
         var rootFullPath = Path.GetFullPath(_root);
 
-        if (!fullPath.StartsWith(rootFullPath, StringComparison.OrdinalIgnoreCase))
+        var rootWithSeparator = rootFullPath.EndsWith(Path.DirectorySeparatorChar)
+            ? rootFullPath
+            : rootFullPath + Path.DirectorySeparatorChar;
+
+        if (!fullPath.StartsWith(rootWithSeparator, StringComparison.OrdinalIgnoreCase))
         {
             return Result<string>.Failure(ErrorMessages.InvalidFilePath);
         }

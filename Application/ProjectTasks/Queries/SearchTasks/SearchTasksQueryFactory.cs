@@ -13,6 +13,6 @@ public class SearchTasksQueryFactory
     {
         return isCustomer
             ? new SearchCustomerTasksQuery(currentUser.Id, query, page, pageSize)
-            : new SearchPublishedTasksQuery(query, page, pageSize, currentUser.Id);
+            : new SearchPublishedTasksQuery(query, page, pageSize);
     }
 }

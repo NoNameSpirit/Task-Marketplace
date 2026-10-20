@@ -52,7 +52,7 @@ public class TaskAttachmentsController : ControllerBase
     [RequestFormLimits(MultipartBodyLengthLimit = AttachmentConstants.MaxSizeBytes)]
     public async Task<IActionResult> Upload(
         Guid taskId,
-        [FromForm] IFormFile file,
+        IFormFile file,
         CancellationToken cancellationToken)
     {
         if (file is null || file.Length == 0)

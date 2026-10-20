@@ -3,6 +3,7 @@ using Application.Mappers;
 using Application.Services.FileStorage;
 using Domain.Constants;
 using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Interfaces.Files;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
@@ -19,17 +20,20 @@ public class UploadAttachmentHandler
     private readonly ITaskAttachmentCommandRepository _attachmentCommandRepository;
     private readonly IFileStorageService _fileStorage;
     private readonly ICurrentUser _currentUser;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UploadAttachmentHandler(
         IProjectTaskQueryRepository taskQueryRepository,
         ITaskAttachmentCommandRepository attachmentCommandRepository,
         IFileStorageService fileStorage,
-        ICurrentUser currentUser)
+        ICurrentUser currentUser,
+        IUnitOfWork unitOfWork)
     {
         _taskQueryRepository = taskQueryRepository;
         _attachmentCommandRepository = attachmentCommandRepository;
         _fileStorage = fileStorage;
         _currentUser = currentUser;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<TaskAttachmentDto>> Handle(
@@ -86,12 +90,25 @@ public class UploadAttachmentHandler
         var attachment = createResult.Value!;
         var relativePath = $"tasks/{request.TaskId}/{storedFileName}";
 
-        await _fileStorage.SaveAsync(
+        await _attachmentCommandRepository.AddAsync(attachment, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        var saveResult = await _fileStorage.SaveAsync(
             request.Content,
             relativePath,
             cancellationToken);
 
-        await _attachmentCommandRepository.AddAsync(attachment, cancellationToken);
+        if (!saveResult.IsSuccess)
+        {
+            attachment.Delete();
+
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return Result<TaskAttachmentDto>.Failure(
+                saveResult.Message,
+                ErrorType.Failure);
+        }
 
         return Result<TaskAttachmentDto>.Success(TaskAttachmentMapper.ToDto(attachment));
     }

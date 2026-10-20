@@ -3,5 +3,4 @@
 public record SearchPublishedTasksQuery(
     string Query,
     int Page,
-    int PageSize,
-    Guid CurrentUserId) : ISearchTasksQuery;
+    int PageSize) : ISearchTasksQuery;

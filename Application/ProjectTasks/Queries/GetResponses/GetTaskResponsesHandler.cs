@@ -1,4 +1,5 @@
-﻿using Domain.Constants;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
@@ -10,10 +11,14 @@ namespace Application.ProjectTasks.Queries.GetResponses;
 public class GetTaskResponsesHandler : IRequestHandler<GetTaskResponsesQuery, Result<List<TaskResponseDto>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
+    private readonly ICurrentUser _currentUser;
 
-    public GetTaskResponsesHandler(IProjectTaskQueryRepository queryRepository)
+    public GetTaskResponsesHandler(
+        IProjectTaskQueryRepository queryRepository,
+        ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
+        _currentUser = currentUser;
     }
 
     public async Task<Result<List<TaskResponseDto>>> Handle(
@@ -27,6 +32,13 @@ public class GetTaskResponsesHandler : IRequestHandler<GetTaskResponsesQuery, Re
             return Result<List<TaskResponseDto>>.Failure(
                 ErrorMessages.ProjectTaskNotFound,
                 ErrorType.NotFound);
+        }
+
+        if (task.CustomerId != _currentUser.Id)
+        {
+            return Result<List<TaskResponseDto>>.Failure(
+                ErrorMessages.Forbidden,
+                ErrorType.Forbidden);
         }
 
         var responses = await _queryRepository.GetResponsesByTaskIdAsync(request.TaskId, cancellationToken);

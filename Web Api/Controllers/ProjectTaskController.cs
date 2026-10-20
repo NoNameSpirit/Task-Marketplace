@@ -58,6 +58,7 @@ public class ProjectTaskController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);
     }
 
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(
         Guid id,
@@ -190,6 +191,7 @@ public class ProjectTaskController : ControllerBase
         return result.ToResponse(this);
     }
 
+    [Authorize(Roles = nameof(UserRole.Customer))]
     [HttpGet("{id}/responses")]
     public async Task<IActionResult> GetResponses(
         Guid id,

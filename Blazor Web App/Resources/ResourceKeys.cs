@@ -45,6 +45,7 @@ public static class ResourceKeys
     public const string Cancel = nameof(Cancel);
     public const string Attachments = nameof(Attachments);
 
+    public const string UploadedFile = nameof(UploadedFile);
     public const string UploadFile = nameof(UploadFile);
     public const string MaxSizeLabel = nameof(MaxSizeLabel);
     public const string NoAttachments = nameof(NoAttachments);
@@ -52,7 +53,6 @@ public static class ResourceKeys
     public const string Delete = nameof(Delete);
     public const string Close = nameof(Close);
 
-    // Chat
     public const string ChatTitle = nameof(ChatTitle);
     public const string NoMessages = nameof(NoMessages);
     public const string MessagePlaceholder = nameof(MessagePlaceholder);
@@ -69,7 +69,6 @@ public static class ResourceKeys
     public const string Create = nameof(Create);
     public const string Save = nameof(Save);
 
-    // Responses
     public const string CandidatesFor = nameof(CandidatesFor);
     public const string NoCandidates = nameof(NoCandidates);
     public const string RespondedAt = nameof(RespondedAt);

@@ -115,9 +115,9 @@ public partial class AttachmentsModal : ComponentBase
                 ErrorMessage = result.Message ?? "Failed to upload attachment";
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ErrorMessage = ex.Message;
+            ErrorMessage = Localizer[ResourceKeys.UploadedFile];
         }
         finally
         {

@@ -141,6 +141,7 @@
 	<data name="Cancel" xml:space="preserve"><value>Отменить</value></data>
 	<data name="Attachments" xml:space="preserve"><value>Вложения</value></data>
 
+	<data name="UploadedFile" xml:space="preserve"><value>Неудалось загрузить файл.</value></data>
 	<data name="UploadFile" xml:space="preserve"><value>Загрузить файл</value></data>
 	<data name="MaxSizeLabel" xml:space="preserve"><value>(макс. {0} МБ)</value></data>
 	<data name="NoAttachments" xml:space="preserve"><value>Вложений пока нет.</value></data>

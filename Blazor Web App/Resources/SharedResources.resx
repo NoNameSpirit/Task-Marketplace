@@ -141,6 +141,7 @@
 	<data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
 	<data name="Attachments" xml:space="preserve"><value>Attachments</value></data>
 
+	<data name="UploadedFile" xml:space="preserve"><value>Failed to upload attachment.</value></data>
 	<data name="UploadFile" xml:space="preserve"><value>Upload file</value></data>
 	<data name="MaxSizeLabel" xml:space="preserve"><value>(max {0} MB)</value></data>
 	<data name="NoAttachments" xml:space="preserve"><value>No attachments yet.</value></data>

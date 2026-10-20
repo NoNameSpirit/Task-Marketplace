@@ -60,7 +60,11 @@ public class MarkAsDoneHandler : IRequestHandler<MarkAsDoneCommand, Result>
                     executor.Id,
                     cancellationToken);
 
-                executor.RecalculateRating(ratings);
+                var ratingsWithCurrent = ratings
+                    .Append(request.Rating.Value)
+                    .ToList();
+
+                executor.RecalculateRating(ratingsWithCurrent);
             }
         }
 

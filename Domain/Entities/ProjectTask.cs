@@ -212,7 +212,7 @@ public class ProjectTask : Entity
 
         if (price < CurrencyConstants.BasePrice)
         {
-            return Result.Failure(ErrorMessages.PriceConnotBeNegative);
+            return Result.Failure(ErrorMessages.PriceCannotBeNegative);
         }
 
         if (startsAt < DateTimeOffset.UtcNow || endsAt < DateTimeOffset.UtcNow)

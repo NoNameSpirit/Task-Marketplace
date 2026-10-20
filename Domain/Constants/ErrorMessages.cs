@@ -6,7 +6,7 @@ public static class ErrorMessages
 
     public const string TitleCannotBeEmpty = "Title can't be empty";
     public const string DescriptionCannotBeEmpty = "Description can't be empty";
-    public const string PriceConnotBeNegative = "Price must be greater than 0";
+    public const string PriceCannotBeNegative = "Price must be greater than 0";
     public const string FutureDateTime = "StartsAt and EndsAt must be in the future";
     public const string EndDateMustBeAfterStartDate = "End date must be after start date";
 
@@ -22,6 +22,8 @@ public static class ErrorMessages
     public const string OnlyPublishedTaskCanBeAssigned = "Only a published task can be assigned";
     public const string MustBePublishedToRespond = "Project task must be published to respond";
     public const string CustomerCannotRespond = "Customer cannot respond to his own project task";
+    public const string CustomerWithSameId = "Customer must be the current user";
+
 
     public const string MessageTextCannotBeEmpty = "Message text cannot be empty";
 
