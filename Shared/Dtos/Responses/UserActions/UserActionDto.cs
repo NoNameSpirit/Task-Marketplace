@@ -2,7 +2,7 @@
 
 namespace Shared.Dtos.Responses.UserActions;
 
-public record class UserActionDto
+public class UserActionDto
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
