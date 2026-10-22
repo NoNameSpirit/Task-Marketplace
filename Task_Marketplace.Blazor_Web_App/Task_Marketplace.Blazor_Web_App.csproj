@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Shared\Task_Marketplace.Shared.csproj" />
   </ItemGroup>
 
 </Project>

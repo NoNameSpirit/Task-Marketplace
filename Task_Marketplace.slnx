@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Task_Marketplace.Application/Task_Marketplace.Application.csproj" />
+  <Project Path="Task_Marketplace.Blazor_Web_App/Task_Marketplace.Blazor_Web_App.csproj" Id="02384016-ea71-49c2-9fc6-644b00343494" />
+  <Project Path="Task_Marketplace.Domain/Task_Marketplace.Domain.csproj" />
+  <Project Path="Task_Marketplace.Infrastructure/Task_Marketplace.Infrastructure.csproj" />
+  <Project Path="Task_Marketplace.Shared/Task_Marketplace.Shared.csproj" Id="135bf695-b4f1-4f3b-a89c-9d44b2c8260e" />
+  <Project Path="Task Marketplace.Tests/Task_Marketplace.Tests.csproj" Id="fb25d067-7476-4945-8a6b-743ad4ec107c" />
+  <Project Path="Task_Marketplace.Web_Api/Task_Marketplace.Web_Api.csproj" />
+</Solution>

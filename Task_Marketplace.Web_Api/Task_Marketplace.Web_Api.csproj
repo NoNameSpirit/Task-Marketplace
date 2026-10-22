@@ -19,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Application\Task_Marketplace.Application.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Domain\Task_Marketplace.Domain.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Infrastructure\Task_Marketplace.Infrastructure.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

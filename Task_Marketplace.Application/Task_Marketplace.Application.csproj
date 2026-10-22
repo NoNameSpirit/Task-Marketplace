@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Domain\Task_Marketplace.Domain.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Shared\Task_Marketplace.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
