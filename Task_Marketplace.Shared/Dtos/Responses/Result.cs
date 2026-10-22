@@ -32,6 +32,25 @@ public class Result : IResult
             Error = error
         };
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Result other)
+        {
+            return false;
+        }
+
+        var isEqual = other.IsSuccess == IsSuccess
+            && other.Message == Message
+            && other.Error == Error;
+
+        return isEqual;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(IsSuccess, Message, Error);
+    }
 }
 
 public class Result<T> : IResult
@@ -61,6 +80,26 @@ public class Result<T> : IResult
             Message = message,
             Error = error
         };
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Result<T> other)
+        {
+            return false;
+        }
+
+        var isEqual = other.IsSuccess == IsSuccess
+            && other.Message == Message
+            && other.Error == Error
+            && EqualityComparer<T?>.Default.Equals(other.Value, Value);
+
+        return isEqual;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(IsSuccess, Message, Error);
     }
 }
 

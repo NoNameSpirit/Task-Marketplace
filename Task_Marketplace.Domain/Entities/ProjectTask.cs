@@ -163,7 +163,7 @@ public class ProjectTask : Entity
             Id,
             executorId);
 
-        Responses.Add(response);
+        Responses.Add(response.Value!);
 
         return Result.Success();
     }

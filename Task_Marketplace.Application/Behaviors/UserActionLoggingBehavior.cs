@@ -47,7 +47,7 @@ public class UserActionLoggingBehavior<TRequest, TResponse>
             attribute.ActionType,
             attribute.EntityType);
 
-        await _repository.AddAsync(action, cancellationToken);
+        await _repository.AddAsync(action.Value!, cancellationToken);
 
         return response;
     }

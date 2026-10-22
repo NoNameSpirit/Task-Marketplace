@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using Shared.Dtos.Responses;
+
+namespace Domain.Entities;
 
 public class TaskResponse : Entity
 {
@@ -9,16 +11,18 @@ public class TaskResponse : Entity
 
     private TaskResponse() { }
 
-    public static TaskResponse Create(
+    public static Result<TaskResponse> Create(
         Guid taskId,
         Guid executorId)
     {
-        return new TaskResponse
+        var taskResponse = new TaskResponse
         {
             Id = Guid.NewGuid(),
             TaskId = taskId,
             ExecutorId = executorId,
             RespondedAt = DateTimeOffset.UtcNow
         };
+
+        return Result<TaskResponse>.Success(taskResponse);
     }
 }

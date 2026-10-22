@@ -1,4 +1,5 @@
-﻿using Shared.Enums;
+﻿using Shared.Dtos.Responses;
+using Shared.Enums;
 
 namespace Domain.Entities;
 
@@ -12,13 +13,13 @@ public class UserAction : Entity
 
     private UserAction() { }
 
-    public static UserAction Create(
+    public static Result<UserAction> Create(
         Guid userId,
         UserActionType actionType,
         string entityType,
         Guid? entityId = null)
     {
-        return new UserAction
+        var userAction = new UserAction
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -27,5 +28,7 @@ public class UserAction : Entity
             EntityId = entityId,
             PerformedAt = DateTimeOffset.UtcNow
         };
+
+        return Result<UserAction>.Success(userAction);
     }
 }

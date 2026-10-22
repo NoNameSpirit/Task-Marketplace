@@ -7,4 +7,32 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="10.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="8.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <PackageReference Include="NSubstitute" Version="6.2.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Task_Marketplace.Application\Task_Marketplace.Application.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Domain\Task_Marketplace.Domain.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Infrastructure\Task_Marketplace.Infrastructure.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Shared\Task_Marketplace.Shared.csproj" />
+    <ProjectReference Include="..\Task_Marketplace.Web_Api\Task_Marketplace.Web_Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Application\" />
+  </ItemGroup>
+
 </Project>
