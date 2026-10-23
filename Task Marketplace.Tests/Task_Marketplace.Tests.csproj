@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Application\" />
   </ItemGroup>
 
 </Project>

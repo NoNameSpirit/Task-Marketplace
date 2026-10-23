@@ -47,5 +47,24 @@ public class PagedResult<T>
     {
         return new PagedResult<T>(Array.Empty<T>(), page, pageSize, ZeroElements);
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not PagedResult<T> other)
+        {
+            return false;
+        }
+
+        return Page == other.Page
+            && PageSize == other.PageSize
+            && TotalCount == other.TotalCount
+            && TotalPages == other.TotalPages
+            && Collection.SequenceEqual(other.Collection);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Page, PageSize, TotalCount, TotalPages, Collection);
+    }
 }
 

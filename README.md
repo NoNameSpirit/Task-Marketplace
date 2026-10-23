@@ -18,12 +18,13 @@ Task marketplace: customers publish tasks, executors respond, get assigned, chat
 
 ```text
 Task Marketplace/
-├── Domain/ 			# Entities, enums, consts, repo interfaces
-├── Application/ 		# Use Cases (MediatR), mapping, services (hasher, JWT, files)
-├── Infrastructure/ 	# EF Core, DbContext, repos, migrations
-├── Shared/ 			# Request/response DTOs, Result<T>, PagedResult<T>, enums
-├── Web Api/ 			# REST API, controllers, JWT-auth, Swagger
-└── Blazor Web App/ 	# UI-client (Interactive Server), serivce-senders
+├── Task_Marketplace.Domain/ 			# Entities, enums, consts, repo interfaces
+├── Task_Marketplace.Application/ 		# Use Cases (MediatR), mapping, services (hasher, JWT, files)
+├── Task_Marketplace.Infrastructure/ 	# EF Core, DbContext, repos, migrations
+├── Task_Marketplace.Shared/ 			# Request/response DTOs, Result<T>, PagedResult<T>, enums
+├── Task_Marketplace.Web_Api/ 			# REST API, controllers, JWT-auth, Swagger
+├── Task_Marketplace.Blazor_Web_App/ 	# UI-client (Interactive Server), serivce-senders
+└── Task Marketplace.Tests/ 			# Tests (xUnit, NSubstitute, FluentAssertions)
 ```
 
 # Start up:
@@ -79,3 +80,11 @@ docker exec -it projecttask-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost
 2. **Customer** — creates a task (`/tasks`), views responses, assigns an executor, marks the task as done and rates the executor, chats, attaches files.
 3. **Executor** — browses published tasks (`/tasks`), responds, and after assignment — `/my-assigned`, chat, attachments.
 4. **Admin** — `/admin/users` (roles, blocking, deletion), `/admin/actions` (activity log).
+
+# Tests
+
+Run tests (using CMD, or FCC):
+
+```bash
+dotnet test
+```
