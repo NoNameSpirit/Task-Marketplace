@@ -41,7 +41,7 @@ public static class ResultExtensions
             title: title);
     }
 
-    private static (int StatusCode, string Title) StatusSelector(ErrorType error)
+    public static (int StatusCode, string Title) StatusSelector(ErrorType error)
     {
         return error switch
         {

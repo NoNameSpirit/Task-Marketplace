@@ -2,8 +2,8 @@
 using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses.ProjectTasks;
+using Task_Marketplace.Shared.Dtos.Requests.ProjectTasks.Commands;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
@@ -52,7 +52,7 @@ public partial class EditTaskModal : ComponentBase
         IsSubmitting = true;
         ErrorMessage = string.Empty;
 
-        var dto = new UpdateProjectTaskDto(
+        var dto = new UpdateRequest(
             Title,
             Description,
             Price,
