@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
-using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses.Users;
+using Task_Marketplace.Shared.Dtos.Requests.Auth.Commands;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
@@ -37,7 +37,7 @@ public partial class Login : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var loginDto = new LoginDto(Name, Password);
+        var loginDto = new LoginRequest(Name, Password);
         var result = await AuthService.LoginAsync(loginDto);
 
         if (result.IsSuccess)

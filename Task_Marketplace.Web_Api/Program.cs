@@ -1,3 +1,5 @@
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Web_Api.ExceptionHandler;
@@ -5,9 +7,12 @@ using Web_Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddControllers();
+builder.Services
+    .AddFastEndpoints()
+    .SwaggerDocument(o =>
+    {
+        o.AutoTagPathSegmentIndex = 0;
+    });
 
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -18,8 +23,8 @@ builder.Services
     .AddConfigurationOptions(configuration)
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
-    .AddJwtBearer(builder.Configuration)
-    .AddSwagger();
+    .AddAuthorization()
+    .AddJwtBearer(builder.Configuration);
 
 var app = builder.Build();
 
@@ -43,8 +48,10 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseFastEndpoints()
+   .UseSwaggerGen();
 
-app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapGet("/", () => Results.Redirect("/swagger"))
+   .ExcludeFromDescription();
 
 app.Run();

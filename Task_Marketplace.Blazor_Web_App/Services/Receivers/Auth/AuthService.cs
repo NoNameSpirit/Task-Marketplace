@@ -1,7 +1,7 @@
 ﻿using Blazor_Web_App.Services.LocalStorage;
-using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
+using Task_Marketplace.Shared.Dtos.Requests.Auth.Commands;
 
 namespace Blazor_Web_App.Services.Receivers.Auth;
 
@@ -11,7 +11,7 @@ public class AuthService(
     : BaseService(_httpClient, _localStorage), IAuthService
 {
     public async Task<Result<AuthDto>> RegisterAsync(
-        RegisterUserDto registerUserDto,
+        RegisterRequest registerUserDto,
         CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);
@@ -27,7 +27,7 @@ public class AuthService(
     }
 
     public async Task<Result<AuthDto>> LoginAsync(
-        LoginDto loginDto,
+        LoginRequest loginDto,
         CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);

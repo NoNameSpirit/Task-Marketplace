@@ -15,9 +15,11 @@ public class ChatService(
     {
         await SetAuthHeaderAsync(cancellationToken);
 
-        var response = await _httpClient.PostAsync(
+        var body = new { ProjectTaskId = taskId };
+
+        var response = await _httpClient.PostAsJsonAsync(
             $"?projectTaskId={taskId}",
-            null,
+            body,
             cancellationToken);
 
         var result = await HandleResponseAsync<ChatDto>(

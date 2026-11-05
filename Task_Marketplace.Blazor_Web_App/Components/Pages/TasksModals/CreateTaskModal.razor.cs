@@ -2,7 +2,7 @@
 using Blazor_Web_App.Services.Receivers.ProjectTasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Shared.Dtos.Requests.ProjectTasks;
+using Task_Marketplace.Shared.Dtos.Requests.ProjectTasks.Commands;
 
 namespace Blazor_Web_App.Components.Pages.TasksModals;
 
@@ -32,7 +32,7 @@ public partial class CreateTaskModal : ComponentBase
         IsSubmitting = true;
         ErrorMessage = string.Empty;
 
-        var dto = new CreateProjectTaskDto
+        var dto = new CreateRequest
         {
             Title = Title,
             Description = Description,

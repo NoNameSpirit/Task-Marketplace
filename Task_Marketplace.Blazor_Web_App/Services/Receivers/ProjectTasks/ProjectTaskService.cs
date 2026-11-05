@@ -1,7 +1,7 @@
 ﻿using Blazor_Web_App.Services.LocalStorage;
-using Shared.Dtos.Requests.ProjectTasks;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
+using Task_Marketplace.Shared.Dtos.Requests.ProjectTasks.Commands;
 
 namespace Blazor_Web_App.Services.Receivers.ProjectTasks;
 
@@ -30,7 +30,7 @@ public class ProjectTaskService(
     }
 
     public async Task<Result<ProjectTaskDto>> CreateTaskAsync(
-        CreateProjectTaskDto dto,
+        CreateRequest dto,
         CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);
@@ -241,7 +241,7 @@ public class ProjectTaskService(
 
     public async Task<Result> UpdateTaskAsync(
         Guid id,
-        UpdateProjectTaskDto dto,
+        UpdateRequest dto,
         CancellationToken cancellationToken = default)
     {
         await SetAuthHeaderAsync(cancellationToken);

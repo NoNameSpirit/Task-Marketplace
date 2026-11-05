@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
-using Shared.Dtos.Requests.Users;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
+using Task_Marketplace.Shared.Dtos.Requests.Auth.Commands;
 
 namespace Blazor_Web_App.Components.Pages.Auth;
 
@@ -40,7 +40,7 @@ public partial class Register : ComponentBase
         IsLoading = true;
         ErrorMessage = string.Empty;
 
-        var registerUserDto = new RegisterUserDto(Login, Password, Role);
+        var registerUserDto = new RegisterRequest(Login, Password, Role);
 
         var registerResult = await AuthService.RegisterAsync(registerUserDto);
 

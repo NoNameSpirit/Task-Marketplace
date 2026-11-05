@@ -1,6 +1,5 @@
 ﻿using Application.Behaviors;
 using Application.Interfaces;
-using Application.ProjectTasks.Commands.Create;
 using Application.Services.FileStorage;
 using Application.Services.Hasher;
 using Application.Services.JwtGenerator;
@@ -24,6 +23,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
+using Task_Marketplace.Application.Handlers.ProjectTasks.Commands.Create;
 using Web_Api.Extensions.Constants;
 
 namespace Web_Api.Extensions;
