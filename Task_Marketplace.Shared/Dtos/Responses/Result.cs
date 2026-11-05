@@ -9,9 +9,9 @@ public interface IResult
 
 public class Result : IResult
 {
-    public bool IsSuccess { get; private set; }
-    public string Message { get; private set; } = string.Empty;
-    public ErrorType Error { get; private set; }
+    public bool IsSuccess { get; init; }
+    public string Message { get; init; } = string.Empty;
+    public ErrorType Error { get; init; }
 
     public static Result Success()
     {
@@ -56,10 +56,10 @@ public class Result : IResult
 public class Result<T> : IResult
     where T : class
 {
-    public bool IsSuccess { get; private set; }
-    public string Message { get; private set; } = string.Empty;
-    public T? Value { get; private set; } = null;
-    public ErrorType Error { get; private set; }
+    public bool IsSuccess { get; init; }
+    public string Message { get; init; } = string.Empty;
+    public T? Value { get; init; } = null;
+    public ErrorType Error { get; init; }
 
     public static Result<T> Success(T value)
     {

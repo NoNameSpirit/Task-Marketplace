@@ -7,6 +7,7 @@ Task marketplace: customers publish tasks, executors respond, get assigned, chat
 - EF Core (SQL Server)
 - MediatR (CQRS), 
 - JWT, 
+- Redis (Distributed Caching),
 - Docker Compose.
 
 # Requirements
@@ -42,6 +43,9 @@ JwtSettings__Key=<LONG_KEY_MIN_LENGTH_32>
 
 # ApiSettings.
 ApiSettings__ApiUrl=http://web_api:8080
+
+# Redis 
+ConnectionStrings__Redis=redis:6379
 ```
 
 2. Step: run app

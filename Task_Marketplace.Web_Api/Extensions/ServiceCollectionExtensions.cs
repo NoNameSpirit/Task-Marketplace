@@ -11,6 +11,7 @@ using Domain.Interfaces.ProjectTasks;
 using Domain.Interfaces.UserActions;
 using Domain.Interfaces.Users;
 using Infrastructure;
+using Infrastructure.Cache;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Chats;
 using Infrastructure.Repositories.Files;
@@ -23,6 +24,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
+using Task_Marketplace.Application.Abstraction.Cache;
+using Task_Marketplace.Application.Behaviors;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Commands.Create;
 using Web_Api.Extensions.Constants;
 
@@ -105,8 +108,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICurrentUser, CurrentUser>();
 
         services.AddScoped<IUserActionCommandRepository, UserActionCommandRepository>()
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheInvalidationBehaviour<,>))
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>))
-                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UserActionLoggingBehavior<,>));
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UserActionLoggingBehavior<,>))
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehaviour<,>));
 
         services.AddMediatR(configuration =>
             configuration.RegisterServicesFromAssembly(typeof(CreateProjectTaskCommand).Assembly));
@@ -143,6 +148,14 @@ public static class ServiceCollectionExtensions
                 .AddScoped<ITaskAttachmentQueryRepository, TaskAttachmentQueryRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetConnectionString(RedisCacheConstants.ConnectionStringName);
+            options.InstanceName = RedisCacheConstants.InstanceName;
+        });
+
+        services.AddScoped<ICacheService, CacheService>();
 
         return services;
     }

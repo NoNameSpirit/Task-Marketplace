@@ -3,6 +3,7 @@ using Domain.Entities;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
+using Task_Marketplace.Application.Abstraction.Cache;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Commands.Update;
 
@@ -13,4 +14,7 @@ public record class UpdateProjectTaskCommand(
     string Description,
     decimal Price,
     DateTimeOffset StartsAt,
-    DateTimeOffset EndsAt) : IRequest<Result>;
+    DateTimeOffset EndsAt) : IRequest<Result>, ICacheInvalidation
+{
+    public string CacheKey { get; } = $"project-task:{TaskId}";
+}
