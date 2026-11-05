@@ -1,13 +1,13 @@
-﻿using Application.Interfaces;
-using Application.Mappers;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Chats;
-using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Chats;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Chats.Commands.Create;
 

@@ -1,14 +1,14 @@
-﻿using Application.Interfaces;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Chats;
-using Domain.Interfaces.ProjectTasks;
-using Domain.Interfaces.Users;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.Chats.Commands.AddMessage;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Chats;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Chats.Commands.AddMessage;

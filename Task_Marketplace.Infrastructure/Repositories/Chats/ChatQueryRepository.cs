@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Chats;
 using Microsoft.EntityFrameworkCore;
+using Task_Marketplace.Application.Interfaces.Repositories.Chats;
 
 namespace Infrastructure.Repositories.Chats;
 

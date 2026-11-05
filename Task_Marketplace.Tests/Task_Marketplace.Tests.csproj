@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Task_Marketplace.Web_Api\Task_Marketplace.Web_Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
 </Project>

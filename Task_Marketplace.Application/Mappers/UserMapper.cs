@@ -2,7 +2,7 @@
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 
-namespace Application.Mappers;
+namespace Task_Marketplace.Application.Mappers;
 
 public static class UserMapper
 {

@@ -1,12 +1,12 @@
-﻿using Application.Behaviors;
-using Application.Common;
-using Application.Interfaces;
-using Domain.Entities;
-using Domain.Interfaces.UserActions;
+﻿using Domain.Entities;
 using MediatR;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Enums;
+using Task_Marketplace.Application.Attributes;
+using Task_Marketplace.Application.Behaviors;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.UserActions;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Behaviors;

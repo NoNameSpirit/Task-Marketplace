@@ -1,12 +1,12 @@
-﻿using Application.Interfaces;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Commands.Delete;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.ProjectTasks.Commands.Delete;

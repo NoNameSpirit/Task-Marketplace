@@ -1,10 +1,9 @@
-﻿using Application.Mappers;
-using Domain.Config;
-using Domain.Interfaces.ProjectTasks;
+﻿using Domain.Configuration;
 using MediatR;
-using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Queries.SearchTasks;
 
@@ -12,14 +11,14 @@ public class SearchCustomerTasksHandler
     : IRequestHandler<SearchCustomerTasksQuery, Result<PagedResult<ProjectTaskDto>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly AppConfig _appConfig;
+    private readonly AppConfiguration _appConfig;
 
     public SearchCustomerTasksHandler(
         IProjectTaskQueryRepository queryRepository,
-        IOptions<AppConfig> appConfig)
+        AppConfiguration appConfig)
     {
         _queryRepository = queryRepository;
-        _appConfig = appConfig.Value;
+        _appConfig = appConfig;
     }
 
     public async Task<Result<PagedResult<ProjectTaskDto>>> Handle(

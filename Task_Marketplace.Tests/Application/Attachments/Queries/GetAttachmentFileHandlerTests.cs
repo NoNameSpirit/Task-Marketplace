@@ -1,13 +1,13 @@
-﻿using Application.Services.FileStorage;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Files;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.Attachments.Queries.GetAttachmentFile;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Attachments.Queries;

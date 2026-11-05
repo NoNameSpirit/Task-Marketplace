@@ -1,0 +1,8 @@
+﻿namespace Task_Marketplace.Application.Interfaces.Cache;
+
+public interface ICacheService
+{
+    public Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken = default);
+    public Task SetAsync<T>(string key, T? value, TimeSpan? ttl = null, CancellationToken cancellationToken = default);
+    public Task RemoveAsync(string key, CancellationToken cancellationToken = default);
+}

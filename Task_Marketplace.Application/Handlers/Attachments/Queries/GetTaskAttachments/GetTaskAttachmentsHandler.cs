@@ -1,8 +1,8 @@
-﻿using Application.Mappers;
-using Domain.Interfaces.Files;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Attachments.Queries.GetTaskAttachments;
 

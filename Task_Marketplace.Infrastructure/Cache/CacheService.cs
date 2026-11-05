@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
-using Task_Marketplace.Application.Abstraction.Cache;
+using Task_Marketplace.Application.Interfaces.Cache;
 
-namespace Infrastructure.Cache;
+namespace Task_Marketplace.Infrastructure.Cache;
 
 public class CacheService : ICacheService
 {

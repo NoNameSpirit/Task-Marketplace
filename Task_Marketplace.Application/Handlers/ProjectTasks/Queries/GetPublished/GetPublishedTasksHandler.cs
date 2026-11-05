@@ -1,27 +1,26 @@
-﻿using Application.Interfaces;
-using Application.Mappers;
-using Domain.Config;
-using Domain.Interfaces.ProjectTasks;
+﻿using Domain.Configuration;
 using MediatR;
-using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Queries.GetPublished;
 
 public class GetPublishedTasksHandler : IRequestHandler<GetPublishedTasksQuery, Result<PagedResult<ProjectTaskDto>>>
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
-    private readonly AppConfig _appConfig;
+    private readonly AppConfiguration _appConfig;
     private readonly ICurrentUser _currentUser;
 
     public GetPublishedTasksHandler(
         IProjectTaskQueryRepository queryRepository,
-        IOptions<AppConfig> appConfig,
+        AppConfiguration appConfig,
         ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _appConfig = appConfig.Value;
+        _appConfig = appConfig;
         _currentUser = currentUser;
     }
 

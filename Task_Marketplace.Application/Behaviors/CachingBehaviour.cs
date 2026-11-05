@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Shared.Dtos.Responses;
-using Task_Marketplace.Application.Abstraction.Cache;
+using Task_Marketplace.Application.Interfaces.Cache;
 
 namespace Task_Marketplace.Application.Behaviors;
 

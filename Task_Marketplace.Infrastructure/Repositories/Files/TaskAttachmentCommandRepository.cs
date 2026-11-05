@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Files;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
 
 namespace Infrastructure.Repositories.Files;
 

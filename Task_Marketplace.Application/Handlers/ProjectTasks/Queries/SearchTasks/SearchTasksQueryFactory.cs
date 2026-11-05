@@ -1,4 +1,4 @@
-﻿using Application.Interfaces;
+﻿using Task_Marketplace.Application.Interfaces;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Queries.SearchTasks;
 

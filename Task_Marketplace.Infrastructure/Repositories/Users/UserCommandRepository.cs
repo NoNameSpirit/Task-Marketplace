@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Infrastructure.Repositories.Users;
 

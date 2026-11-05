@@ -1,11 +1,10 @@
-﻿using Application.Services.Hasher;
-using Application.Services.JwtGenerator;
-using Domain.Constants;
-using Domain.Interfaces.Users;
+﻿using Domain.Constants;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Task_Marketplace.Application.Handlers.Auth.Commands.Login;
 

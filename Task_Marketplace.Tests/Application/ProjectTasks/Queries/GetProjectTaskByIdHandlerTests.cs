@@ -1,14 +1,13 @@
-﻿using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using FluentAssertions;
-using Microsoft.Extensions.Options;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Queries.GetById;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.ProjectTasks.Queries.GetProjectTaskById;
@@ -23,7 +22,7 @@ public class GetProjectTaskByIdHandlerTests
 
     public GetProjectTaskByIdHandlerTests()
     {
-        var appConfig = Options.Create(new AppConfig { Currency = _currency });
+        var appConfig = new AppConfiguration { Currency = _currency };
         _handler = new GetProjectTaskByIdHandler(_queryRepository, appConfig);
     }
 

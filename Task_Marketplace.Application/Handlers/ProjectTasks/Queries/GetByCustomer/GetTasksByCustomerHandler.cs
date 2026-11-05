@@ -1,13 +1,12 @@
-﻿using Application.Interfaces;
-using Application.Mappers;
-using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Constants;
-using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Queries.GetByCustomer;
 
@@ -15,15 +14,15 @@ public class GetTasksByCustomerHandler : IRequestHandler<GetTasksByCustomerQuery
 {
     private readonly IProjectTaskQueryRepository _queryRepository;
     private readonly ICurrentUser _currentUser;
-    private readonly AppConfig _appConfig;
+    private readonly AppConfiguration _appConfig;
 
     public GetTasksByCustomerHandler(
         IProjectTaskQueryRepository queryRepository,
-        IOptions<AppConfig> appConfig,
+        AppConfiguration appConfig,
         ICurrentUser currentUser)
     {
         _queryRepository = queryRepository;
-        _appConfig = appConfig.Value;
+        _appConfig = appConfig;
         _currentUser = currentUser;
     }
 

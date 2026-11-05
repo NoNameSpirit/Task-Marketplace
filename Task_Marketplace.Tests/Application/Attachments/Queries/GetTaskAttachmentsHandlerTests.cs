@@ -1,11 +1,11 @@
-﻿using Application.Mappers;
-using Domain.Entities;
-using Domain.Interfaces.Files;
+﻿using Domain.Entities;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Task_Marketplace.Application.Handlers.Attachments.Queries.GetTaskAttachments;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
+using Task_Marketplace.Application.Mappers;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Attachments.Queries;

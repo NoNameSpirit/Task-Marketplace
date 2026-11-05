@@ -1,9 +1,9 @@
-﻿using Application.Common;
-using Domain.Entities;
+﻿using Domain.Entities;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 using Shared.Enums;
+using Task_Marketplace.Application.Attributes;
 
 namespace Task_Marketplace.Application.Handlers.Chats.Commands.Create;
 

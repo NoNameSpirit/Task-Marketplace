@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.UserActions;
+using Task_Marketplace.Application.Interfaces.Repositories.UserActions;
 
 namespace Infrastructure.Repositories.UserActions;
 
