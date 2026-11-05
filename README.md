@@ -34,9 +34,9 @@ Task Marketplace/
 
 - change .env-example and rename into .env (Change all variables in <...>):
 ```
-# AppConfig.
-AppConfig__ConnectionString=Server=sqlserver;Database=ProjectTaskDb;User Id=sa;Password=${AppConfig__Password};TrustServerCertificate=True;
-AppConfig__Password=<YOUR_PASSWORD>
+# AppConfiguration.
+AppConfiguration__ConnectionString=Server=sqlserver;Database=ProjectTaskDb;User Id=sa;Password=<YOUR_PASSWORD>;TrustServerCertificate=True;
+AppConfiguration__Password=<YOUR_PASSWORD>
 
 # JwtSettings.
 JwtSettings__Key=<LONG_KEY_MIN_LENGTH_32>
