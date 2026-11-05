@@ -30,6 +30,8 @@ services:
     depends_on:
         sqlserver:
             condition: service_healthy
+        redis:
+            condition: service_healthy
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
     env_file:
@@ -64,6 +66,17 @@ services:
       - ApiSettings__ApiUrl=http://web_api:8080 
     env_file:
       - .env
+   
+  redis:
+    image: redis:7-alpine
+    container_name: projecttask-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   sqlserver-data:
