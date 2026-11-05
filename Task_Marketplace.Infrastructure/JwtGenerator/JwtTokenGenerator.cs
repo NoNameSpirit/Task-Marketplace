@@ -1,21 +1,21 @@
-﻿using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Entities;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Dtos.Responses.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Task_Marketplace.Application.Interfaces;
 
-namespace Application.Services.JwtGenerator;
+namespace Task_Marketplace.Infrastructure.Services.JwtGenerator;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly JwtSettings _jwtSettings;
 
-    public JwtTokenGenerator(IOptions<JwtSettings> jwtSettings)
+    public JwtTokenGenerator(JwtSettings jwtSettings)
     {
-        _jwtSettings = jwtSettings.Value;
+        _jwtSettings = jwtSettings;
     }
 
     public AuthDto GenerateToken(User user)

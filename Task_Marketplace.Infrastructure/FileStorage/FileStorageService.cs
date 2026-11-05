@@ -1,17 +1,17 @@
-﻿using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Constants;
-using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
+using Task_Marketplace.Application.Interfaces;
 
-namespace Application.Services.FileStorage;
+namespace Task_Marketplace.Infrastructure.FileStorage;
 
 public class FileStorageService : IFileStorageService
 {
     private readonly string _root;
 
-    public FileStorageService(IOptions<FileSettings> fileSettings)
+    public FileStorageService(FileSettings fileSettings)
     {
-        _root = fileSettings.Value.FullPath;
+        _root = fileSettings.FullPath;
         Directory.CreateDirectory(_root);
     }
 

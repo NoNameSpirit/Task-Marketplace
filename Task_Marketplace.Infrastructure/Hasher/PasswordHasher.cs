@@ -1,8 +1,9 @@
 ﻿using Domain.Constants;
 using Shared.Dtos.Responses;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
 
-namespace Application.Services.Hasher;
+namespace Task_Marketplace.Infrastructure.Services.Hasher;
 
 public class PasswordHasher : IPasswordHasher
 {
