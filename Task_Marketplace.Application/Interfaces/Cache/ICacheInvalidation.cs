@@ -1,4 +1,4 @@
-﻿namespace Task_Marketplace.Application.Abstraction.Cache;
+﻿namespace Task_Marketplace.Application.Interfaces.Cache;
 
 public interface ICacheInvalidation
 {

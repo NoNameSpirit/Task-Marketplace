@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Shared.Dtos.Responses;
 
-namespace Domain.Interfaces.Users;
+namespace Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 public interface IUserQueryRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Interfaces;
+﻿namespace Task_Marketplace.Application.Interfaces;
 
 public interface IUnitOfWork
 {

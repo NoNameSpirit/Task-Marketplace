@@ -1,6 +1,6 @@
 ﻿using Shared.Enums;
 
-namespace Application.Common;
+namespace Task_Marketplace.Application.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class LogActionAttribute : Attribute

@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Interfaces.Users;
+namespace Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 public interface IUserCommandRepository
 {

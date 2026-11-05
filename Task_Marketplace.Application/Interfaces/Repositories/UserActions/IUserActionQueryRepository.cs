@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Shared.Dtos.Responses;
 
-namespace Domain.Interfaces.UserActions;
+namespace Task_Marketplace.Application.Interfaces.Repositories.UserActions;
 
 public interface IUserActionQueryRepository
 {

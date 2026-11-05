@@ -2,7 +2,7 @@
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 
-namespace Domain.Interfaces.ProjectTasks;
+namespace Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 
 public interface IProjectTaskQueryRepository
 {

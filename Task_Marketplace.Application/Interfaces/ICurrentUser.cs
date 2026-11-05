@@ -1,4 +1,4 @@
-﻿namespace Application.Interfaces;
+﻿namespace Task_Marketplace.Application.Interfaces;
 
 public interface ICurrentUser
 {

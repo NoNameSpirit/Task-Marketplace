@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Interfaces.Files;
+namespace Task_Marketplace.Application.Interfaces.Repositories.Files;
 
 public interface ITaskAttachmentCommandRepository
 {
