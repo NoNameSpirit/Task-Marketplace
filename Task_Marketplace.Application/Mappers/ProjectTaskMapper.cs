@@ -2,7 +2,7 @@
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 
-namespace Application.Mappers;
+namespace Task_Marketplace.Application.Mappers;
 
 public static class ProjectTaskMapper
 {
@@ -39,20 +39,5 @@ public static class ProjectTaskMapper
             paged.Page,
             paged.PageSize,
             paged.TotalCount);
-    }
-
-    public static List<TaskResponseDto> ToResponseDtos(ProjectTask entity)
-    {
-        if (entity.Responses is null || !entity.Responses.Any())
-            return new List<TaskResponseDto>();
-
-        return entity.Responses
-            .Select(r => new TaskResponseDto
-            {
-                ExecutorId = r.ExecutorId,
-                ExecutorName = $"Executor {r.ExecutorId}",
-                RespondedAt = r.RespondedAt
-            })
-            .ToList();
     }
 }

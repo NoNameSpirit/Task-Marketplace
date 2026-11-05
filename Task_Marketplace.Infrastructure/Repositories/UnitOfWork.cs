@@ -1,4 +1,4 @@
-﻿using Domain.Interfaces;
+﻿using Task_Marketplace.Application.Interfaces;
 
 namespace Infrastructure.Repositories;
 

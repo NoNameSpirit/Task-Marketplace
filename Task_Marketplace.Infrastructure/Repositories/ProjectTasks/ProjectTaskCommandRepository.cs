@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using Microsoft.EntityFrameworkCore;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 
 namespace Infrastructure.Repositories.ProjectTasks;
 

@@ -1,12 +1,12 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Chats;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.Chats.Queries.GetWithMessages;
+using Task_Marketplace.Application.Interfaces.Repositories.Chats;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Chats.Queries.GetWithMessages;

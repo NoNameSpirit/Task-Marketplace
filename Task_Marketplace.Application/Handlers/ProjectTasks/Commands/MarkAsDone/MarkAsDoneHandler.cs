@@ -1,10 +1,10 @@
-﻿using Application.Interfaces;
-using Domain.Constants;
-using Domain.Interfaces.ProjectTasks;
-using Domain.Interfaces.Users;
+﻿using Domain.Constants;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Commands.MarkAsDone;
 

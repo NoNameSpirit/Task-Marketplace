@@ -1,10 +1,10 @@
-﻿using Application.Mappers;
-using Domain.Constants;
-using Domain.Interfaces.Chats;
+﻿using Domain.Constants;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Chats;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces.Repositories.Chats;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Chats.Queries.GetWithMessages;
 

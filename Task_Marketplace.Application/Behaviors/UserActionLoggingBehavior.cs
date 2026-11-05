@@ -1,12 +1,12 @@
-﻿using Application.Common;
-using Application.Interfaces;
-using Domain.Entities;
-using Domain.Interfaces.UserActions;
+﻿using Domain.Entities;
 using MediatR;
 using Shared.Dtos.Responses;
 using System.Reflection;
+using Task_Marketplace.Application.Attributes;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.UserActions;
 
-namespace Application.Behaviors;
+namespace Task_Marketplace.Application.Behaviors;
 
 public class UserActionLoggingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>

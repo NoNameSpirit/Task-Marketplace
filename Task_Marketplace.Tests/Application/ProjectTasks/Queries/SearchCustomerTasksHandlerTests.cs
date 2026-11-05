@@ -1,11 +1,10 @@
-﻿using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using FluentAssertions;
-using Microsoft.Extensions.Options;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Queries.SearchTasks;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.ProjectTasks.Queries.SearchTasks;
@@ -21,7 +20,7 @@ public class SearchCustomerTasksHandlerTests
 
     public SearchCustomerTasksHandlerTests()
     {
-        var appConfig = Options.Create(new AppConfig { Currency = _currency });
+        var appConfig = new AppConfiguration { Currency = _currency };
         _handler = new SearchCustomerTasksHandler(_queryRepository, appConfig);
     }
 

@@ -1,10 +1,10 @@
-﻿using Application.Interfaces;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using System.Security.Claims;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Queries.SearchTasks;
+using Task_Marketplace.Application.Interfaces;
 using Task_Marketplace.Shared.Dtos.Requests.ProjectTasks.Queries;
 
 namespace Web_Api.Controllers.Projects;

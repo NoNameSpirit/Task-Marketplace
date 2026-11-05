@@ -1,13 +1,13 @@
-﻿using Application.Interfaces;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Queries.GetResponses;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.ProjectTasks.Queries.GetResponses;

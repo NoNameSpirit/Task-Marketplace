@@ -1,7 +1,7 @@
-﻿using Domain.Interfaces.Users;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Task_Marketplace.Application.Handlers.Users.Queries.GetUsers;
 

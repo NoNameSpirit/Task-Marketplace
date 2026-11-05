@@ -1,8 +1,8 @@
-﻿using Application.Mappers;
-using Domain.Interfaces.Users;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Users.Queries.GetAll;
 

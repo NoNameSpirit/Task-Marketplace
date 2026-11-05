@@ -1,12 +1,12 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.UserActions;
-using Domain.Interfaces.Users;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.UserActions;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.UserActions.Queries.GetUserActions;
+using Task_Marketplace.Application.Interfaces.Repositories.UserActions;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.UserActions.Queries.GetUserActions;

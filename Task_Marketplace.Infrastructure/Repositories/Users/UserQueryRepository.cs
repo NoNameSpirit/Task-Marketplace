@@ -1,8 +1,8 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
 using Shared.Dtos.Responses;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Infrastructure.Repositories.Users;
 

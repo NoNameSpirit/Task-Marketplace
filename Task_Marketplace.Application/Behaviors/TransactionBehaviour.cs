@@ -1,8 +1,8 @@
-﻿using Domain.Interfaces;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
+using Task_Marketplace.Application.Interfaces;
 
-namespace Application.Behaviors;
+namespace Task_Marketplace.Application.Behaviors;
 
 public class TransactionBehaviour<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>

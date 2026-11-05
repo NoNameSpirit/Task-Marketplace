@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Users;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Task_Marketplace.Application.Handlers.Users.Queries.GetAll;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Users.Queries.GetAll;

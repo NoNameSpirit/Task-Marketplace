@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Shared.Dtos.Responses.Chats;
 
-namespace Application.Mappers;
+namespace Task_Marketplace.Application.Mappers;
 
 public static class ChatMapper
 {

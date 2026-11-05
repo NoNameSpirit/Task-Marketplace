@@ -1,8 +1,8 @@
-﻿using Domain.Interfaces.UserActions;
-using Domain.Interfaces.Users;
-using MediatR;
+﻿using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.UserActions;
+using Task_Marketplace.Application.Interfaces.Repositories.UserActions;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Task_Marketplace.Application.Handlers.UserActions.Queries.GetUserActions;
 

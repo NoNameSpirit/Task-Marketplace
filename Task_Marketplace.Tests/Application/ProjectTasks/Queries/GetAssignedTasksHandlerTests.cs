@@ -1,15 +1,14 @@
-﻿using Application.Interfaces;
-using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using FluentAssertions;
-using Microsoft.Extensions.Options;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.ProjectTasks.Queries.GetAssigned;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.ProjectTasks.Queries.GetAssigned;
@@ -25,7 +24,7 @@ public class GetAssignedTasksHandlerTests
 
     public GetAssignedTasksHandlerTests()
     {
-        var appConfig = Options.Create(new AppConfig { Currency = _currency });
+        var appConfig = new AppConfiguration { Currency = _currency };
         _handler = new GetAssignedTasksHandler(_queryRepository, appConfig, _currentUser);
     }
 

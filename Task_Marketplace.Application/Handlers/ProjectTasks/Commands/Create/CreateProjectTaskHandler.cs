@@ -1,13 +1,12 @@
-﻿using Application.Interfaces;
-using Application.Mappers;
-using Domain.Config;
+﻿using Domain.Configuration;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using MediatR;
-using Microsoft.Extensions.Options;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.ProjectTasks.Commands.Create;
 
@@ -19,11 +18,11 @@ public class CreateProjectTaskHandler : IRequestHandler<CreateProjectTaskCommand
 
     public CreateProjectTaskHandler(
         IProjectTaskCommandRepository commandRepository,
-        IOptions<AppConfig> appConfig,
+        AppConfiguration appConfig,
         ICurrentUser currentUser)
     {
         _commandRepository = commandRepository;
-        _currency = appConfig.Value.Currency;
+        _currency = appConfig.Currency;
         _currentUser = currentUser;
     }
 

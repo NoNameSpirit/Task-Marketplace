@@ -1,15 +1,13 @@
-﻿using Application.Services.Hasher;
-using Application.Services.JwtGenerator;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Interfaces.Users;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.Auth.Commands.Register;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Users.Commands.Register;
@@ -20,7 +18,6 @@ public class RegisterUserHandlerTests
     private readonly IJwtTokenGenerator _jwtTokenGenerator = Substitute.For<IJwtTokenGenerator>();
     private readonly IPasswordHasher _passwordHasher = Substitute.For<IPasswordHasher>();
     private readonly IUserQueryRepository _queryRepository = Substitute.For<IUserQueryRepository>();
-    private readonly IUnitOfWork _unitOfWork = Substitute.For<IUnitOfWork>();
     private readonly RegisterUserHandler _handler;
 
     private const string _name = "Ivan";
@@ -30,7 +27,7 @@ public class RegisterUserHandlerTests
 
     public RegisterUserHandlerTests()
     {
-        _handler = new RegisterUserHandler(_commandRepository, _jwtTokenGenerator, _passwordHasher, _queryRepository, _unitOfWork);
+        _handler = new RegisterUserHandler(_commandRepository, _jwtTokenGenerator, _passwordHasher, _queryRepository);
     }
 
     [Fact]

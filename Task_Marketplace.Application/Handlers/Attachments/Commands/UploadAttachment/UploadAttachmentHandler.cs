@@ -1,15 +1,13 @@
-﻿using Application.Interfaces;
-using Application.Mappers;
-using Application.Services.FileStorage;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Interfaces.Files;
-using Domain.Interfaces.ProjectTasks;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Attachments.Commands.UploadAttachment;
 

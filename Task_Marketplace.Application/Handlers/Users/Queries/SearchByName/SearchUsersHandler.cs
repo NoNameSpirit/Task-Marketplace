@@ -1,10 +1,10 @@
-﻿using Application.Mappers;
-using Domain.Constants;
-using Domain.Interfaces.Users;
+﻿using Domain.Constants;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
+using Task_Marketplace.Application.Mappers;
 
 namespace Task_Marketplace.Application.Handlers.Users.Queries.SearchByName;
 

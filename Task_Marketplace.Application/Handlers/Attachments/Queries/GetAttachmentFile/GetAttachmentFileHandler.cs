@@ -1,10 +1,10 @@
-﻿using Application.Services.FileStorage;
-using Domain.Constants;
-using Domain.Interfaces.Files;
+﻿using Domain.Constants;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Files;
 
 namespace Task_Marketplace.Application.Handlers.Attachments.Queries.GetAttachmentFile;
 

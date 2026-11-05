@@ -1,14 +1,13 @@
-﻿using Application.Services.Hasher;
-using Application.Services.JwtGenerator;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.Users;
 using FluentAssertions;
 using NSubstitute;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
 using Task_Marketplace.Application.Handlers.Auth.Commands.Login;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 using Xunit;
 
 namespace Task_Marketplace.Tests.Application.Users.Commands.Login;

@@ -1,13 +1,11 @@
-﻿using Application.Services.Hasher;
-using Application.Services.JwtGenerator;
-using Domain.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Interfaces.Users;
 using MediatR;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.Users;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces;
+using Task_Marketplace.Application.Interfaces.Repositories.Users;
 
 namespace Task_Marketplace.Application.Handlers.Auth.Commands.Register;
 
@@ -17,20 +15,17 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<A
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserQueryRepository _queryRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
     public RegisterUserHandler(
         IUserCommandRepository commandRepository,
         IJwtTokenGenerator jwtTokenGenerator,
         IPasswordHasher passwordHasher,
-        IUserQueryRepository queryRepository,
-        IUnitOfWork unitOfWork)
+        IUserQueryRepository queryRepository)
     {
         _commandRepository = commandRepository;
         _jwtTokenGenerator = jwtTokenGenerator;
         _passwordHasher = passwordHasher;
         _queryRepository = queryRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<AuthDto>> Handle(

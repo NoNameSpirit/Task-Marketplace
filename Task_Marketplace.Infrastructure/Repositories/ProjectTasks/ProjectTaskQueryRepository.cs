@@ -1,10 +1,10 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Interfaces.ProjectTasks;
 using Microsoft.EntityFrameworkCore;
 using Shared.Dtos.Responses;
 using Shared.Dtos.Responses.ProjectTasks;
 using Shared.Enums;
+using Task_Marketplace.Application.Interfaces.Repositories.ProjectTasks;
 
 namespace Infrastructure.Repositories.ProjectTasks;
 
