@@ -24,7 +24,7 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
     .AddAuthorization()
-    .AddJwtBearer(builder.Configuration);
+    .AddJwtAuthentication();
 
 var app = builder.Build();
 
