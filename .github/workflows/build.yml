@@ -1,0 +1,48 @@
+name: Build and Code Quality Validation
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  validate:
+    name: Validate Code and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v6
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.slnx') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore App
+        run: dotnet restore Task_Marketplace.slnx
+
+      - name: Check code formatting
+        run: dotnet format Task_Marketplace.slnx --verify-no-changes --no-restore
+
+      - name: Build App
+        run: dotnet build Task_Marketplace.slnx -c Debug --no-restore
+
+      - name: Test App
+        run: dotnet test Task_Marketplace.slnx -c Debug --no-restore --logger "trx;LogFileName=test-result.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: "**/TestResults/test-result.trx"
+        if: always()
