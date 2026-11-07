@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a bug in the application
+labels: ["bug"]
+
+body:
+  - type: textarea
+    id: commit
+    attributes:
+      label: Commit hash
+      description: The application commit where the bug was found
+    validations:
+      required: true
+
+  - type: textarea
+    id: actions
+    attributes:
+      label: Steps to reproduce
+      description: The sequence of actions that led to this bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Current behaviour
+      description: Describe what is currently happening
+    validations:
+      required: true
+
+  - type: textarea
+    id: behaviour_expected
+    attributes:
+      label: Expected behaviour
+      description: Describe the expected behaviour and why
+    validations:
+      required: true
+
+  - type: textarea
+    id: test
+    attributes:
+      label: How should it be tested?
+      description: Describe how the fix should be tested
+    validations:
+      required: true

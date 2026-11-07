@@ -1,0 +1,20 @@
+name: Feature
+description: Suggest a new feature for the application
+labels: ["enhancement"]
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the problem
+    validations:
+      required: true
+
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Proposed behaviour
+      description: Describe the proposed behaviour
+    validations:
+      required: true
