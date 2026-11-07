@@ -92,3 +92,15 @@ Run tests (using CMD, or FCC):
 ```bash
 dotnet test
 ```
+
+# CI/CD
+
+GitHub Actions automatically runs CI checks on every push and Pull Request to main.
+
+The workflow performs:
+- NuGet dependency restoration.
+- Code formatting validation.
+- Solution build.
+- Unit tests execution.
+
+Test results are uploaded as a GitHub artifact, including when tests fail.
